@@ -54,6 +54,10 @@
         margin-bottom: 1rem;
     }
 
+    .hidden {
+        display: none !important;
+    }
+
     .field-list {
         max-height: 300px;
         overflow-y: auto;
@@ -220,8 +224,28 @@
                                         <label class="slds-form-element__label" for="object-selector">Select Object:</label>
                                         <div class="slds-form-element__control">
                                             <div class="slds-select_container">
-                                                <select id="object-selector" class="slds-select" onchange="handleObjectSelection(this.value)" size="1">
+                                                <select
+                                                    id="object-selector"
+                                                    class="slds-select"
+                                                    data-has-initial="{{ has_initial_objects|yesno:'true,false' }}"
+                                                    size="1"
+                                                    onchange="handleObjectSelection(this.value)"
+                                                >
                                                     <option value="">-- Select an Object --</option>
+                                                    {% if available_objects.standard %}
+                                                        <optgroup label="Standard Objects">
+                                                        {% for obj in available_objects.standard %}
+                                                            <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
+                                                        {% endfor %}
+                                                        </optgroup>
+                                                    {% endif %}
+                                                    {% if available_objects.custom %}
+                                                        <optgroup label="Custom Objects">
+                                                        {% for obj in available_objects.custom %}
+                                                            <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
+                                                        {% endfor %}
+                                                        </optgroup>
+                                                    {% endif %}
                                                 </select>
                                             </div>
                                         </div>
@@ -265,7 +289,7 @@
                             </div>
 
                             <!-- Fields and Operators -->
-                            <div class="slds-grid slds-gutters slds-m-top_medium" id="query-builder-details" style="display: none;">
+                            <div class="slds-grid slds-gutters slds-m-top_medium hidden" id="query-builder-details">
                                 <!-- Field List -->
                                 <div class="slds-col slds-size_1-of-2">
                                     <div class="slds-form-element">
@@ -619,32 +643,49 @@ let selectedFields = new Set();
 
 // Initialize on page load
 $(document).ready(function() {
-    // Always try to load objects and handle errors
-    console.log('Page loaded, attempting to load Salesforce objects...');
-    loadObjects();
+    const selector = $('#object-selector');
+    const hasInitialObjects = selector.data('has-initial') === true || selector.data('has-initial') === 'true';
 
-    // Restore last selected object from localStorage after objects are loaded
-    setTimeout(function() {
-        const lastSelectedObject = localStorage.getItem('lastSelectedObject');
-        if (lastSelectedObject) {
-            $('#object-selector').val(lastSelectedObject);
-            handleObjectSelection(lastSelectedObject);
-        }
-    }, 1000); // Wait for objects to load
+    if (hasInitialObjects) {
+        console.log('Using server-rendered Salesforce object list');
+        restoreLastSelectedObject();
+    } else {
+        console.log('Page loaded, attempting to load Salesforce objects...');
+        loadObjects();
+    }
 });
 
 // Handle object selection
-function handleObjectSelection(objectName) {
+window.handleObjectSelection = function(objectName) {
     if (objectName) {
+        currentObject = objectName;
+        selectedFields = new Set(['Id']);
         // Save selection to localStorage
         localStorage.setItem('lastSelectedObject', objectName);
         loadObjectFields(objectName);
+
+        $('#id_query').val(`SELECT Id FROM ${objectName}`);
     } else {
         localStorage.removeItem('lastSelectedObject');
-        $('#query-builder-details').hide();
+        $('#query-builder-details').addClass('hidden').hide();
         currentObject = null;
         currentFields = [];
         selectedFields.clear();
+        $('#id_query').val('');
+    }
+}
+
+function restoreLastSelectedObject() {
+    const lastSelectedObject = localStorage.getItem('lastSelectedObject');
+    if (!lastSelectedObject) {
+        return;
+    }
+
+    const selector = $('#object-selector');
+    const optionExists = selector.find(`option[value="${lastSelectedObject}"]`).length > 0;
+    if (optionExists) {
+        selector.val(lastSelectedObject);
+        handleObjectSelection(lastSelectedObject);
     }
 }
 
@@ -699,23 +740,7 @@ function loadObjects() {
                     selector.append(customGroup);
                 }
 
-                // Remove any existing change handlers before adding new one
-                selector.off('change');
-
-                // Handle object selection
-                selector.on('change', function() {
-                    const objectName = $(this).val();
-                    if (objectName) {
-                        loadObjectFields(objectName);
-                        // Auto-populate basic query
-                        $('#id_query').val(`SELECT Id FROM ${objectName}`);
-                    } else {
-                        $('#query-builder-details').hide();
-                        currentObject = null;
-                        currentFields = [];
-                        selectedFields.clear();
-                    }
-                });
+                restoreLastSelectedObject();
 
                 console.log('Objects loaded successfully');
             } else {
@@ -770,11 +795,13 @@ function loadObjectFields(objectName) {
             if (response.success) {
                 currentObject = objectName;
                 currentFields = response.fields;
-                selectedFields.clear();
-                selectedFields.add('Id'); // Always include Id
+                selectedFields = new Set(['Id']);
 
                 displayFields(response.fields);
-                $('#query-builder-details').show();
+                $('#field-Id').prop('checked', true);
+                $('#query-builder-details').removeClass('hidden').show();
+                applyFieldsToQuery(orderSelectedFields());
+                console.log('Fields loaded for', objectName, response.fields.length, 'fields');
             } else {
                 workbench.showToast('Failed to load fields: ' + response.error, 'error');
             }
@@ -829,7 +856,7 @@ function createFieldItem(field) {
     return `
         <div class="field-item" data-field-name="${field.name}">
             <input type="checkbox" class="field-checkbox" id="field-${field.name}" value="${field.name}" ${checked}
-                   onchange="toggleFieldAndUpdateQuery('${field.name}')">
+                   onchange="toggleFieldAndUpdateQuery(this, '${field.name}')">
             <label for="field-${field.name}" style="cursor: pointer; display: inline-block; width: 100%;">
                 ${field.label}
                 <span class="field-type">(${field.type})</span>
@@ -853,38 +880,25 @@ function filterFields() {
 }
 
 // Toggle field selection and update query
-function toggleFieldAndUpdateQuery(fieldName) {
-    if (selectedFields.has(fieldName)) {
-        selectedFields.delete(fieldName);
-    } else {
+function toggleFieldAndUpdateQuery(checkbox, fieldName) {
+    if (checkbox.checked) {
         selectedFields.add(fieldName);
+    } else {
+        selectedFields.delete(fieldName);
     }
 
-    // Automatically update the query
-    if (currentObject && selectedFields.size > 0) {
-        // Get fields in order with ID first
-        let fieldArray = Array.from(selectedFields);
-
-        // Ensure ID is always first if it exists
-        if (fieldArray.includes('Id')) {
-            fieldArray = fieldArray.filter(f => f !== 'Id');
-            fieldArray.unshift('Id');
-        }
-
-        const fields = fieldArray.join(', ');
-        const currentQuery = $('#id_query').val();
-
-        // Check if the query already has a FROM clause for this object
-        const fromRegex = new RegExp(`FROM\\s+${currentObject}`, 'i');
-        if (fromRegex.test(currentQuery)) {
-            // Update the SELECT part only
-            const newQuery = currentQuery.replace(/SELECT\\s+[^FROM]+/i, `SELECT ${fields} `);
-            $('#id_query').val(newQuery);
-        } else {
-            // Build new query
-            $('#id_query').val(`SELECT ${fields} FROM ${currentObject}`);
-        }
+    if (!currentObject) {
+        return;
     }
+
+    const fieldArray = orderSelectedFields();
+
+    if (fieldArray.length === 0) {
+        $('#id_query').val('');
+        return;
+    }
+
+    applyFieldsToQuery(fieldArray);
 }
 
 // Insert field into query (deprecated - now handled by toggleFieldAndUpdateQuery)
@@ -910,24 +924,51 @@ function buildQuery() {
         return;
     }
 
+    // Sync selectedFields with current checkbox states to ensure accuracy
+    selectedFields = new Set();
+    $('#field-items .field-checkbox:checked').each(function() {
+        selectedFields.add($(this).val());
+    });
+
     if (selectedFields.size === 0) {
         workbench.showToast('Please select at least one field', 'warning');
         return;
     }
 
-    // Get fields in order with ID first
-    let fieldArray = Array.from(selectedFields);
+    const fieldArray = orderSelectedFields();
+    applyFieldsToQuery(fieldArray);
+    workbench.showToast('Query built successfully', 'success');
+}
 
-    // Ensure ID is always first if it exists
+function orderSelectedFields() {
+    let fieldArray = Array.from(selectedFields);
     if (fieldArray.includes('Id')) {
         fieldArray = fieldArray.filter(f => f !== 'Id');
         fieldArray.unshift('Id');
     }
+    return fieldArray;
+}
+
+function applyFieldsToQuery(fieldArray) {
+    if (!currentObject || fieldArray.length === 0) {
+        return;
+    }
 
     const fields = fieldArray.join(', ');
-    const query = `SELECT ${fields} FROM ${currentObject}`;
-    $('#id_query').val(query);
-    workbench.showToast('Query built successfully', 'success');
+    let query = $('#id_query').val().trim();
+    const fromClause = `FROM ${currentObject}`;
+    const upperQuery = query.toUpperCase();
+    const expectedFrom = fromClause.toUpperCase();
+
+    if (!query) {
+        query = `SELECT ${fields} ${fromClause}`;
+    } else if (!/select\s+/i.test(query) || !upperQuery.includes(expectedFrom)) {
+        query = `SELECT ${fields} ${fromClause}`;
+    } else {
+        query = query.replace(/SELECT\s+([\s\S]*?)\s+FROM/i, `SELECT ${fields} FROM`);
+    }
+
+    $('#id_query').val(query.trim());
 }
 
 // Insert operator into query
@@ -1188,44 +1229,28 @@ function selectAllFields() {
         return;
     }
 
-    // Clear and add all fields with ID first
-    selectedFields.clear();
-
-    // Always add ID field first
-    selectedFields.add('Id');
+    $('#field-items .field-checkbox').prop('checked', true);
+    selectedFields = new Set(currentFields.map(field => field.name));
+    if (!selectedFields.has('Id')) {
+        selectedFields.add('Id');
+    }
     $('#field-Id').prop('checked', true);
 
-    // Then add all other fields
-    currentFields.forEach(field => {
-        if (field.name !== 'Id') {
-            selectedFields.add(field.name);
-            $(`#field-${field.name}`).prop('checked', true);
-    });
-
-    // Update query
-    if (currentObject && selectedFields.size > 0) {
-        const fields = Array.from(selectedFields).join(', ');
-        $('#id_query').val(`SELECT ${fields} FROM ${currentObject}`);
-    }
-
+    const fieldArray = orderSelectedFields();
+    applyFieldsToQuery(fieldArray);
     workbench.showToast('All fields selected', 'success');
 }
 
 // Clear field selection
 function clearFieldSelection() {
-    selectedFields.clear();
-    selectedFields.add('Id'); // Keep Id field
-
-    // Uncheck all except Id
-    $('.field-checkbox').prop('checked', false);
+    $('#field-items .field-checkbox').prop('checked', false);
+    selectedFields = new Set(['Id']);
     $('#field-Id').prop('checked', true);
 
-    // Update query
     if (currentObject) {
-        $('#id_query').val(`SELECT Id FROM ${currentObject}`);
+        applyFieldsToQuery(orderSelectedFields());
+        workbench.showToast('Field selection cleared', 'info');
     }
-
-    workbench.showToast('Field selection cleared', 'info');
 }
 </script>
 {% endblock %}

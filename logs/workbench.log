@@ -2161,3 +2161,641 @@ Token refresh failed: 400 Client Error: Bad Request for url: https://login.sales
 Internal Server Error: /auth/refresh-token/
 "POST /auth/refresh-token/ HTTP/1.1" 500 102
 - Broken pipe from ('127.0.0.1', 50377)
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zaIjFi1oMwU.JL6z1meThbfTSxS83ArPUDXhwr64HgMZB2tZhQ%3D%3D&state=0b84b826-9f40-40bd-a633-716534e83228 HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25124
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zXTDndG2OtoaAW4efezTNTqXXsDf3MO7W7SleW4cGGFvnoeSXA%3D%3D&state=73f83623-817c-420b-bc2d-f2abe2eef690 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64487
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /auth/login/ HTTP/1.1" 200 24818
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zUUQkcs.SvSEmkDqXwplqpRnbq8XHQuRarwmjHvQY0hUupownQ%3D%3D&state=06da3188-4eb6-4b56-8a01-60eb796937b8 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64483
+"GET /query/ HTTP/1.1" 200 64188
+"POST /query/ HTTP/1.1" 200 684760
+"GET /query/record/Account/0015h000004ZkXKAA0/ HTTP/1.1" 200 226347
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /query/ HTTP/1.1" 200 685192
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"POST /query/ HTTP/1.1" 200 685192
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zc5hqRu00WngBmFuDx5l5V6sQUKgNkF9Jtz.Cc4wyKoeBoFmGA%3D%3D&state=8d8f5a14-bd78-47f4-a0ae-d1318c9371f9 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 403430
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zXmE74MVFqfsYwEyVz0iJYNvIzzD7TVdBv7Tm0tEF2hRKXv8Bw%3D%3D&state=e988141b-0ef9-4a3d-b622-2b10a4282e69 HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25124
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zZKgwRzjqBW8MHh53cbfnUyKZFsbt_w0iQEPvSRbaEctkpvnjg%3D%3D&state=1e6a6df6-99d3-4bb8-b153-99ac0c9df4ca HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 403429
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTCWlfSS_69GA3qq0o03Z5NOTtTL_wSBqpKTOyqErohGqBBCcQ%3D%3D&state=d71925a4-7714-45ad-975a-37ec44c07587 HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25124
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zcQLNcnMM4j6g5.JLmeBS6_eWLbG2hdCcRHJuG.3zhZLVznZHg%3D%3D&state=9cf668dd-c6fd-409d-b57a-d1b91139f7eb HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 403429
+Internal Server Error: /query/saved/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 442, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/saved_queries.html
+"GET /query/saved/ HTTP/1.1" 500 95712
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /query/ HTTP/1.1" 200 403125
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402671
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zeZn.uSNF1hebdv3pG6auQwSee58Oz760ueDYsc_7iRTpoLxPw%3D%3D&state=916cbaf9-fdf5-4a23-bb2f-70f4fa84bf67 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402977
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/login/ HTTP/1.1" 200 24818
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zUsMW9CjQnpuo9TFGtzxqwmGDxNhWwdeT86D1ihHfUJdo0_DAg%3D%3D&state=ad1d10c7-e206-4672-9010-c78a16e625ed HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402977
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 64167
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 64167
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTSU1NTHGD1RAx5IaBfxk0dDN5S8LTjPh47AtGoFIqH9yyiEwg%3D%3D&state=27c59a77-1a69-4193-a466-6ac2bb057468 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402979
+"GET /query/ HTTP/1.1" 200 402673
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 402673
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402673
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 402673
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 402770
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 402481
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zSTxuY9n8eC7.DqPIhbLjtxdyOxXa5SudLTM0KrpqRDcwkB4jw%3D%3D&state=282602a2-3351-4112-afae-2276b2b0db60 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402787
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402481
+"GET /query/ HTTP/1.1" 200 402481
+"GET /query/ HTTP/1.1" 200 402481
+"GET /query/ HTTP/1.1" 200 402481
+Not Found: /favicon.ico
+Not Found: /apple-touch-icon-precomposed.png
+"GET /favicon.ico HTTP/1.1" 404 3441
+Not Found: /apple-touch-icon.png
+"GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3504
+"GET /apple-touch-icon.png HTTP/1.1" 404 3468
+Not Found: /apple-touch-icon-precomposed.png
+"GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3504
+Not Found: /favicon.ico
+Not Found: /apple-touch-icon.png
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /apple-touch-icon.png HTTP/1.1" 404 3468
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402481
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/login/ HTTP/1.1" 302 0
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 63975
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 63975
+"GET /query/ HTTP/1.1" 200 402481
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zWWkKyR8wyy1uYG9rgCygdvEfo6cWn5neG4Ol7SdfxLLFWVOow%3D%3D&state=9f9e55cf-f03f-4cd5-98b1-ca2cc14a5b3a HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402787
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402481
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 519, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 97297
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402481
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402481
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTJYADHK3w26p1ZVkdbaGCFmW3MOAVrkYiS6y_1Nk.mxbFGcwg%3D%3D&state=02549924-d4c6-40ce-9b64-d4d6c8667b11 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402787
+"GET /query/ HTTP/1.1" 200 402481
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 402481
+"GET /query/ HTTP/1.1" 200 402481
+"GET /query/ HTTP/1.1" 200 402547
+"GET /query/ HTTP/1.1" 200 402547
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zUAtnrLpcWqmPi1zp31echXMB1GDXhQPUUptMX3VrSFY8oVuNw%3D%3D&state=387aa731-7140-46f6-9907-53d3ac2b5227 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402853
+"GET /query/ HTTP/1.1" 200 402547
+"GET /query/ HTTP/1.1" 200 402547
+"GET /query/ HTTP/1.1" 200 402547
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402547
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402547
+"GET /query/ HTTP/1.1" 200 402547
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 64051
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 64051
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'This session is not valid for use with the REST API', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 64051
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbS9GI81p_0hI7rGaknAdKbdD6dhMxvXw2xNMHsyN.FSF8oRzw%3D%3D&state=95de3fef-c1f1-4508-9171-7c5386749f26 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402863
+"GET /query/ HTTP/1.1" 200 402558
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zfvT5H4S.t_VJpr3lNxPthSJQw.k2LqozpWjnMUp516wzN5t0w%3D%3D&state=188138ee-cdf6-4566-af3d-ea35eb33d4c7 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402864
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"GET /query/ HTTP/1.1" 200 402669
+"GET /query/ HTTP/1.1" 200 402669
+"GET /query/ HTTP/1.1" 200 402669
+"GET /query/ HTTP/1.1" 200 402669
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zeOuKVT85R7NsOpsHM9QGmrdGe8XI7nQpogJ8mx.759mKdZF8g%3D%3D&state=4ec51fef-7dfb-41d9-8115-360abdaa7842 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402975
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zf.8iRCj9BUNuurs59DvgZORboYBslUiDUc57JwF0EGWnjnOxw%3D%3D&state=7c87999e-605e-4315-bd34-2dc01d52a719 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402976
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402675
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zc2eHiK5M0ZxA1oJc_jf8pHhMh_5p8a5n5XLLHaBua4Qnf_lbQ%3D%3D&state=5eb99bc8-0bc5-408e-8377-d74539ad57fc HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402992
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402698
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402698
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402698
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402698
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402699
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402710
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402710
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=ApexEmailNotification user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ApexEmailNotification HTTP/1.1" 200 2597
+"POST /query/ HTTP/1.1" 200 62411
+"GET /query/ HTTP/1.1" 200 402654
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=ApexEmailNotification user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ApexEmailNotification HTTP/1.1" 200 2597
+"POST /query/ HTTP/1.1" 200 62515
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 810745
+"GET /query/record/Test__c/a005h00000sR3vqAAC/ HTTP/1.1" 200 39413
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402479
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+"GET /query/ HTTP/1.1" 200 402518
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Loading fields for object=DefaultModel__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=DefaultModel__c HTTP/1.1" 200 20321
+Loading fields for object=TypeOfBusinessCode__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=TypeOfBusinessCode__c HTTP/1.1" 200 22382
+Loading fields for object=JointSuretyDelegateExam__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=JointSuretyDelegateExam__c HTTP/1.1" 200 22252
+"POST /query/ HTTP/1.1" 200 62937
+"GET /query/ HTTP/1.1" 200 402037
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=JointSuretyDelegateExam__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=JointSuretyDelegateExam__c HTTP/1.1" 200 22252
+Loading fields for object=Receive_Child__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Receive_Child__c HTTP/1.1" 200 23059
+"POST /query/ HTTP/1.1" 200 62689
+Loading fields for object=Destination__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Destination__c HTTP/1.1" 200 23704
+"POST /query/ HTTP/1.1" 200 62698
+"POST /query/ HTTP/1.1" 200 62687
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 1569074
+"POST /query/ HTTP/1.1" 200 4687602
+"GET /query/export/59/?format=csv HTTP/1.1" 200 48366
+"POST /query/ HTTP/1.1" 200 62772
+"GET /query/ HTTP/1.1" 200 402364
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /query/ HTTP/1.1" 200 402367
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+"GET /query/ HTTP/1.1" 200 402295
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+Loading fields for object=PreScoring__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 22160
+Internal Server Error: /query/saved/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 442, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/saved_queries.html
+"GET /query/saved/ HTTP/1.1" 500 95691
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 519, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 97178
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+Token refresh failed: 400 Client Error: Bad Request for url: https://login.salesforce.com/services/oauth2/token
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 102
