@@ -1,0 +1,104 @@
+/* Global Select Element Fix - Ensures text is not cut off */
+
+/* Base select styling to prevent text cutoff */
+select,
+.form-select,
+.form-control[type="select"],
+.slds-select,
+#object-selector,
+[id*="select"],
+[class*="select"] select {
+    /* Remove fixed height constraints */
+    height: auto !important;
+    min-height: 44px !important;
+
+    /* Proper padding for text visibility */
+    padding-top: 0.625rem !important;
+    padding-bottom: 0.625rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 2.5rem !important;
+
+    /* Line height for proper text display */
+    line-height: 1.5 !important;
+
+    /* Font settings */
+    font-size: 0.95rem !important;
+
+    /* Display settings */
+    display: block !important;
+    box-sizing: border-box !important;
+
+    /* Ensure text is visible */
+    color: var(--neutral-900, #212529) !important;
+    background-color: white !important;
+
+    /* Prevent overflow */
+    overflow: visible !important;
+    text-overflow: clip !important;
+}
+
+/* Multiple select elements need different handling */
+select[multiple],
+.form-select[multiple],
+.slds-select[multiple] {
+    height: auto !important;
+    min-height: 120px !important;
+}
+
+/* Option styling */
+select option,
+.form-select option,
+.slds-select option {
+    padding: 0.5rem 0.75rem !important;
+    line-height: 1.5 !important;
+    font-size: 0.95rem !important;
+}
+
+/* Prevent Bootstrap from overriding */
+.form-select:not([size]):not([multiple]) {
+    height: auto !important;
+    min-height: 44px !important;
+}
+
+/* Fix for Safari/WebKit browsers */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select,
+    .form-select,
+    .slds-select {
+        -webkit-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1.5em 1.5em;
+    }
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+    select,
+    .form-select,
+    .slds-select {
+        -moz-appearance: none;
+        appearance: none;
+        text-indent: 0.01px;
+        text-overflow: '';
+    }
+}
+
+/* Ensure focused state doesn't change height */
+select:focus,
+.form-select:focus,
+.slds-select:focus {
+    height: auto !important;
+    min-height: 44px !important;
+}
+
+/* Fix for disabled selects */
+select:disabled,
+.form-select:disabled,
+.slds-select:disabled {
+    height: auto !important;
+    min-height: 44px !important;
+    opacity: 0.6;
+}

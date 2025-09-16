@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Query API</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Test Salesforce Objects API</h1>
+
+    <div>
+        <h2>Session Info:</h2>
+        <p>Session ID: <span id="session-id">Checking...</span></p>
+        <p>CSRF Token: <span id="csrf-token">Checking...</span></p>
+    </div>
+
+    <div>
+        <h2>Test API Call:</h2>
+        <button onclick="testAPI()">Test /query/api/objects/</button>
+        <button onclick="checkLogin()">Check Login Status</button>
+    </div>
+
+    <div>
+        <h2>Response:</h2>
+        <pre id="response"></pre>
+    </div>
+
+    <div>
+        <h2>Select Object:</h2>
+        <select id="object-selector">
+            <option value="">Loading...</option>
+        </select>
+    </div>
+
+    <script>
+    // Get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Display session info
+    $(document).ready(function() {
+        const sessionId = getCookie('sessionid');
+        const csrfToken = getCookie('csrftoken');
+
+        $('#session-id').text(sessionId || 'None');
+        $('#csrf-token').text(csrfToken || 'None');
+
+        // Auto-test on load
+        testAPI();
+    });
+
+    function checkLogin() {
+        console.log('Checking login status...');
+        $('#response').text('Checking login status...');
+
+        $.ajax({
+            url: '/auth/health/',
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            }
+        })
+        .done(function(response) {
+            console.log('Health check response:', response);
+            $('#response').text(JSON.stringify(response, null, 2));
+        })
+        .fail(function(xhr, status, error) {
+            console.error('Health check failed:', status, error);
+            $('#response').text('Health check failed: ' + status + ' - ' + error + '\n\nResponse: ' + xhr.responseText);
+        });
+    }
+
+    function testAPI() {
+        console.log('Testing API...');
+        $('#response').text('Calling /query/api/objects/...');
+
+        $.ajax({
+            url: '/query/api/objects/',
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function(xhr) {
+                const csrftoken = getCookie('csrftoken');
+                if (csrftoken) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+                console.log('Request headers:', {
+                    'X-CSRFToken': csrftoken,
+                    'Cookie': document.cookie
+                });
+            }
+        })
+        .done(function(response, textStatus, xhr) {
+            console.log('Success:', response);
+            console.log('Status:', xhr.status);
+            console.log('Response headers:', xhr.getAllResponseHeaders());
+
+            $('#response').text('Status: ' + xhr.status + '\n\n' + JSON.stringify(response, null, 2));
+
+            if (response.success && response.objects) {
+                const selector = $('#object-selector');
+                selector.empty();
+                selector.append('<option value="">-- Select an Object --</option>');
+
+                response.objects.forEach(function(obj) {
+                    selector.append('<option value="' + obj.name + '">' + obj.label + ' (' + obj.name + ')</option>');
+                });
+
+                alert('Successfully loaded ' + response.objects.length + ' objects!');
+            } else {
+                alert('API call succeeded but no objects: ' + (response.error || 'Unknown error'));
+            }
+        })
+        .fail(function(xhr, status, error) {
+            console.error('Error:', status, error);
+            console.log('Response status:', xhr.status);
+            console.log('Response text:', xhr.responseText);
+
+            $('#response').text('Status: ' + xhr.status + '\nError: ' + status + ' - ' + error + '\n\nResponse: ' + xhr.responseText);
+            alert('API call failed with status ' + xhr.status + ': ' + error);
+        });
+    }
+    </script>
+</body>
+</html>

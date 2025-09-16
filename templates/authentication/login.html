@@ -1,0 +1,612 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login - Django Workbench{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-container {
+        max-width: 600px;
+        margin: 50px auto;
+    }
+    .login-card {
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        border: none;
+        overflow: hidden;
+    }
+
+    /* Redesigned Header */
+    .login-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2.5rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .login-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+    .login-header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(to top, rgba(255,255,255,0.1), transparent);
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.1); opacity: 0.3; }
+    }
+
+    .login-header-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-header h3 {
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        letter-spacing: -0.5px;
+    }
+
+    .login-header h3 i {
+        font-size: 1.8rem;
+        margin-right: 0.5rem;
+        color: #ffd700;
+        text-shadow: 0 0 20px rgba(255,215,0,0.5);
+        animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    .login-header p {
+        color: rgba(255,255,255,0.95);
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+
+    .login-header-badge {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .login-tabs .nav-link {
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .login-tabs .nav-link.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+    }
+
+    /* Error Alert Styles */
+    .error-alert {
+        display: none;
+        animation: slideDown 0.3s ease;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .error-alert.show {
+        display: block;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .alert-danger-modern {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+        border: none;
+        color: white;
+        padding: 1rem 1.25rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .alert-danger-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.5);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .alert-danger-modern .alert-icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+
+    .alert-danger-modern .close {
+        color: white;
+        opacity: 0.8;
+        font-size: 1.2rem;
+        background: none;
+        border: none;
+        padding: 0;
+        margin-left: auto;
+    }
+
+    .alert-danger-modern .close:hover {
+        opacity: 1;
+    }
+
+    /* Field Error Styles */
+    .field-error {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: none;
+    }
+
+    .field-error.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+
+    /* Loading State */
+    .btn-loading {
+        position: relative;
+        color: transparent !important;
+    }
+
+    .btn-loading::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spinner 0.6s linear infinite;
+    }
+
+    @keyframes spinner {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Success Message */
+    .alert-success-modern {
+        background: linear-gradient(135deg, #2DCE89 0%, #3DDC97 100%);
+        border: none;
+        color: white;
+        padding: 1rem 1.25rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(45, 206, 137, 0.3);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="card login-card">
+        <div class="login-header text-center">
+            <div class="login-header-content">
+                <h3><i class="fas fa-tools"></i> Django Workbench</h3>
+                <p>Salesforce Developer Tool</p>
+                <span class="login-header-badge">
+                    <i class="fas fa-shield-alt"></i> Secure Authentication
+                </span>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- Global Error Alert -->
+            <div id="global-error-alert" class="error-alert">
+                <div class="alert alert-danger-modern d-flex align-items-center">
+                    <i class="fas fa-exclamation-triangle alert-icon"></i>
+                    <div class="flex-grow-1" id="global-error-message"></div>
+                    <button type="button" class="close" onclick="hideGlobalError()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success Alert -->
+            <div id="global-success-alert" class="error-alert">
+                <div class="alert alert-success-modern d-flex align-items-center">
+                    <i class="fas fa-check-circle alert-icon"></i>
+                    <div class="flex-grow-1" id="global-success-message"></div>
+                </div>
+            </div>
+
+            <!-- Login Type Tabs -->
+            <ul class="nav nav-tabs login-tabs mb-4" id="loginTabs" role="tablist">
+                {% if oauth_enabled %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="oauth-tab" data-bs-toggle="tab" data-bs-target="#oauth"
+                            type="button" role="tab" aria-controls="oauth" aria-selected="true">
+                        <i class="fab fa-salesforce"></i> OAuth Login
+                    </button>
+                </li>
+                {% endif %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {% if not oauth_enabled %}active{% endif %}" id="standard-tab" data-bs-toggle="tab"
+                            data-bs-target="#standard" type="button" role="tab" aria-controls="standard"
+                            aria-selected="{% if not oauth_enabled %}true{% else %}false{% endif %}">
+                        <i class="fas fa-key"></i> Username/Password
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="loginTabContent">
+                <!-- OAuth Login Tab -->
+                {% if oauth_enabled %}
+                <div class="tab-pane fade show active" id="oauth" role="tabpanel" aria-labelledby="oauth-tab">
+                    <form method="post" action="{% url 'authentication:login' %}" id="oauth-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="login_type" value="oauth">
+
+                        <div class="row mb-3">
+                            <label for="id_environment" class="col-sm-3 col-form-label">Environment:</label>
+                            <div class="col-sm-9">
+                                {{ oauth_form.environment }}
+                                <div class="form-text">Choose your Salesforce environment</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3" id="custom-domain-row" style="display: none;">
+                            <label for="id_custom_domain" class="col-sm-3 col-form-label">Custom Domain:</label>
+                            <div class="col-sm-9">
+                                {{ oauth_form.custom_domain }}
+                                <div class="form-text">Enter your custom Salesforce domain</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="id_api_version" class="col-sm-3 col-form-label">API Version:</label>
+                            <div class="col-sm-9">
+                                {{ oauth_form.api_version }}
+                                <div class="form-text">Salesforce API version to use</div>
+                            </div>
+                        </div>
+
+                        {{ oauth_form.state }}
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fab fa-salesforce"></i> Login with Salesforce
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+
+                <!-- Standard Login Tab -->
+                <div class="tab-pane fade {% if not oauth_enabled %}show active{% endif %}" id="standard" role="tabpanel" aria-labelledby="standard-tab">
+                    <form method="post" action="{% url 'authentication:login' %}" id="standard-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="login_type" value="standard">
+
+                        <div class="row mb-3">
+                            <label for="id_username" class="col-sm-3 col-form-label">Username:</label>
+                            <div class="col-sm-9">
+                                {{ standard_form.username }}
+                                <div class="field-error" id="username-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="id_password" class="col-sm-3 col-form-label">Password:</label>
+                            <div class="col-sm-9">
+                                {{ standard_form.password }}
+                                <div class="field-error" id="password-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="id_security_token" class="col-sm-3 col-form-label">Security Token:</label>
+                            <div class="col-sm-9">
+                                {{ standard_form.security_token }}
+                                <div class="form-text">{{ standard_form.security_token.help_text }}</div>
+                                <div class="field-error" id="security_token-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="id_environment_standard" class="col-sm-3 col-form-label">Environment:</label>
+                            <div class="col-sm-9">
+                                <select name="environment" class="form-control" id="id_environment_standard">
+                                    <option value="production">Production</option>
+                                    <option value="sandbox">Sandbox</option>
+                                    <option value="custom">Custom Domain</option>
+                                </select>
+                                <div class="field-error" id="environment-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3" id="standard-custom-domain-row" style="display: none;">
+                            <label for="id_custom_domain_standard" class="col-sm-3 col-form-label">Custom Domain:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="custom_domain" class="form-control" id="id_custom_domain_standard" placeholder="https://mydomain.my.salesforce.com">
+                                <div class="form-text">Enter your custom Salesforce domain</div>
+                                <div class="field-error" id="custom_domain-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="id_api_version_standard" class="col-sm-3 col-form-label">API Version:</label>
+                            <div class="col-sm-9">
+                                <select name="api_version" class="form-control" id="id_api_version_standard">
+                                    <option value="62.0">62.0</option>
+                                    <option value="61.0">61.0</option>
+                                    <option value="60.0">60.0</option>
+                                    <option value="59.0">59.0</option>
+                                    <option value="58.0">58.0</option>
+                                </select>
+                                <div class="field-error" id="api_version-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg" id="standard-submit-btn">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-center text-muted">
+            <small>
+                Securely connect to your Salesforce organization<br>
+                Your credentials are encrypted and not stored permanently
+            </small>
+        </div>
+    </div>
+
+    <!-- Information Cards -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-shield-alt fa-2x text-success mb-2"></i>
+                    <h6>Secure</h6>
+                    <small class="text-muted">OAuth 2.0 authentication with encrypted token storage</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-tools fa-2x text-primary mb-2"></i>
+                    <h6>Powerful</h6>
+                    <small class="text-muted">Complete Salesforce API access for development</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-code fa-2x text-info mb-2"></i>
+                    <h6>Developer-Friendly</h6>
+                    <small class="text-muted">Built for Salesforce developers and admins</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Handle environment selection for OAuth
+    $('#id_environment').change(function() {
+        if ($(this).val() === 'custom') {
+            $('#custom-domain-row').show();
+        } else {
+            $('#custom-domain-row').hide();
+        }
+    });
+
+    // Handle environment selection for Standard login
+    $('#id_environment_standard').change(function() {
+        if ($(this).val() === 'custom') {
+            $('#standard-custom-domain-row').show();
+        } else {
+            $('#standard-custom-domain-row').hide();
+        }
+    });
+
+    // Show/hide custom domain based on initial selection
+    if ($('#id_environment').val() === 'custom') {
+        $('#custom-domain-row').show();
+    }
+
+    if ($('#id_environment_standard').val() === 'custom') {
+        $('#standard-custom-domain-row').show();
+    }
+
+    // Ajax form submission for standard login
+    $('#standard-form').on('submit', function(e) {
+        e.preventDefault();
+
+        // Clear previous errors
+        clearAllErrors();
+
+        // Get form data
+        var formData = $(this).serialize();
+        var submitBtn = $('#standard-submit-btn');
+        var originalBtnText = submitBtn.html();
+
+        // Show loading state
+        submitBtn.addClass('btn-loading').prop('disabled', true);
+
+        // Make Ajax request
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Show success message
+                    showGlobalSuccess(response.message);
+
+                    // Redirect after a short delay
+                    setTimeout(function() {
+                        window.location.href = response.redirect_url;
+                    }, 1000);
+                }
+            },
+            error: function(xhr) {
+                // Re-enable submit button
+                submitBtn.removeClass('btn-loading').prop('disabled', false).html(originalBtnText);
+
+                var response = xhr.responseJSON;
+
+                if (response) {
+                    // Handle field errors
+                    if (response.errors) {
+                        Object.keys(response.errors).forEach(function(field) {
+                            showFieldError(field, response.errors[field]);
+                        });
+                    }
+
+                    // Handle general error
+                    if (response.error) {
+                        var errorMessage = response.error.message || 'An error occurred during login.';
+                        showGlobalError(errorMessage);
+
+                        // Add specific help for common errors
+                        if (response.error.type === 'invalid_credentials') {
+                            addHelpSuggestions([
+                                'Verify your username is correct',
+                                'Check if you need to append your security token to your password',
+                                'Ensure your account is not locked'
+                            ]);
+                        } else if (response.error.type === 'token_required') {
+                            addHelpSuggestions([
+                                'Find your security token in Setup → Personal Setup → My Personal Information → Reset My Security Token',
+                                'Append the security token directly to your password (no space)',
+                                'Or add your IP to the trusted IP ranges in Salesforce'
+                            ]);
+                        } else if (response.error.type === 'api_disabled') {
+                            addHelpSuggestions([
+                                'Contact your Salesforce administrator to enable API access',
+                                'Check if your user profile has API Enabled permission'
+                            ]);
+                        }
+                    } else if (response.message) {
+                        showGlobalError(response.message);
+                    } else {
+                        showGlobalError('Login failed. Please check your credentials and try again.');
+                    }
+                } else {
+                    showGlobalError('An unexpected error occurred. Please try again.');
+                }
+            }
+        });
+    });
+});
+
+// Error display functions
+function showGlobalError(message) {
+    $('#global-error-message').html(message);
+    $('#global-error-alert').addClass('show');
+
+    // Error messages must be manually closed - no auto-hide
+}
+
+function hideGlobalError() {
+    $('#global-error-alert').removeClass('show');
+}
+
+function showGlobalSuccess(message) {
+    $('#global-success-message').html(message);
+    $('#global-success-alert').addClass('show');
+}
+
+function showFieldError(field, message) {
+    var errorElement = $('#' + field + '-error');
+    var inputElement = $('[name="' + field + '"]');
+
+    if (errorElement.length) {
+        errorElement.text(message).addClass('show');
+        inputElement.addClass('is-invalid');
+    }
+}
+
+function clearAllErrors() {
+    $('.field-error').removeClass('show').text('');
+    $('.form-control').removeClass('is-invalid');
+    $('#global-error-alert').removeClass('show');
+    $('#global-success-alert').removeClass('show');
+}
+
+function addHelpSuggestions(suggestions) {
+    if (suggestions && suggestions.length > 0) {
+        var helpHtml = '<div class="mt-3"><strong>Suggestions:</strong><ul class="mb-0 mt-2">';
+        suggestions.forEach(function(suggestion) {
+            helpHtml += '<li>' + suggestion + '</li>';
+        });
+        helpHtml += '</ul></div>';
+
+        var currentMessage = $('#global-error-message').html();
+        $('#global-error-message').html(currentMessage + helpHtml);
+    }
+}
+</script>
+{% endblock %}

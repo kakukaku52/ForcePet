@@ -1,0 +1,1231 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}SOQL Query - Django Workbench{% endblock %}
+
+{% block extra_css %}
+<!-- Salesforce Lightning Design System CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
+<style>
+    .query-sidebar {
+        background-color: #f3f2f2;
+        border-right: 1px solid #d8dde6;
+        min-height: calc(100vh - 200px);
+    }
+
+    .recent-query {
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .recent-query:hover {
+        background-color: #ecebea;
+    }
+
+    .query-results {
+        max-height: 600px;
+        overflow: auto;
+        background-color: white;
+        color: #080707 !important;
+    }
+
+    /* Ensure all text in results section is visible */
+    #results-section * {
+        color: #080707 !important;
+    }
+
+    #results-section .slds-card__header {
+        background-color: #f3f2f2;
+    }
+
+    #results-section table td,
+    #results-section table th {
+        color: #080707 !important;
+    }
+
+    .query-builder-panel {
+        background-color: #f3f2f2;
+        border: 1px solid #d8dde6;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .field-list {
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #d8dde6;
+        border-radius: 0.25rem;
+        padding: 0.75rem;
+        background: white;
+    }
+
+    .field-item {
+        padding: 0.25rem;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .field-item:hover {
+        background-color: #e7f3ff;
+    }
+
+    .field-type {
+        color: #706e6b;
+        font-size: 0.75rem;
+        margin-left: 0.25rem;
+    }
+
+    .operator-btn {
+        margin: 0.125rem;
+        font-size: 0.875rem;
+    }
+
+    .query-helper-section {
+        margin-bottom: 0.75rem;
+    }
+
+    .field-checkbox {
+        margin-right: 0.25rem;
+    }
+
+    .slds-scope .slds-card {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    /* SLDS overrides for better form integration */
+    .slds-scope .form-control {
+        background-color: white;
+        border: 1px solid #d8dde6;
+        border-radius: 0.25rem;
+        color: #080707;
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+        width: 100%;
+    }
+
+    .slds-scope .form-control:focus {
+        border-color: #1589ee;
+        box-shadow: 0 0 3px #0176d3;
+        outline: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="slds-scope">
+    <div class="slds-grid slds-gutters">
+        <!-- Sidebar -->
+        <div class="slds-col slds-size_3-of-12">
+            <div class="slds-card query-sidebar">
+                <div class="slds-card__header">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-icon_container slds-icon-utility-search">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                <use xlink:href="#utility-search"></use>
+                            </svg>
+                        </span>
+                        SOQL Query
+                    </h2>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <!-- Recent Queries -->
+                    <div class="slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">Recent Queries</h3>
+                        {% for query in recent_queries %}
+                            <div class="recent-query slds-box slds-box_xx-small" onclick="loadQuery('{{ query.query_text|escapejs }}')">
+                                <div class="slds-truncate">
+                                    <div class="slds-text-color_weak slds-text-body_small">{{ query.executed_at|timesince }} ago</div>
+                                    <code class="slds-text-body_small">{{ query.query_text|truncatechars:50 }}</code>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p class="slds-text-color_weak slds-text-body_small">No recent queries</p>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Saved Queries -->
+                    <div>
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">Saved Queries</h3>
+                        {% for query in saved_queries %}
+                            <div class="recent-query slds-box slds-box_xx-small" onclick="loadQuery('{{ query.query_text|escapejs }}')">
+                                <div>
+                                    <div class="slds-text-body_small slds-text-title">{{ query.name }}</div>
+                                    <code class="slds-text-body_small slds-text-color_weak">{{ query.query_text|truncatechars:40 }}</code>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p class="slds-text-color_weak slds-text-body_small">No saved queries</p>
+                        {% endfor %}
+                        <a href="{% url 'query:saved_queries' %}" class="slds-button slds-button_outline-brand slds-button_small slds-m-top_small">
+                            Manage Saved Queries
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="slds-col slds-size_9-of-12">
+            <div class="slds-card">
+                <div class="slds-card__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-code">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="#utility-code"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>SOQL Query Editor</span>
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                            <a href="{% url 'query:history' %}" class="slds-button slds-button_neutral slds-button_small">
+                                <span class="slds-icon_container slds-icon-utility-history slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-history"></use>
+                                    </svg>
+                                </span>
+                                Query History
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body slds-card__body_inner">
+                    <!-- Query Builder Panel -->
+                    <div class="query-builder-panel slds-card slds-card_boundary">
+                        <div class="slds-card__header">
+                            <h3 class="slds-card__header-title">
+                                <span class="slds-icon_container slds-icon-utility-settings slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                        <use xlink:href="#utility-settings"></use>
+                                    </svg>
+                                </span>
+                                Query Builder
+                            </h3>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <div class="slds-grid slds-gutters">
+                                <!-- Object Selector -->
+                                <div class="slds-col slds-size_1-of-3">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="object-selector">Select Object:</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select id="object-selector" class="slds-select" onchange="handleObjectSelection(this.value)" size="1">
+                                                    <option value="">-- Select an Object --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Actions -->
+                                <div class="slds-col slds-size_2-of-3">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">Quick Actions:</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-button-group" role="group">
+                                                <button type="button" class="slds-button slds-button_outline-brand slds-button_small" onclick="selectAllFields()">
+                                                    <span class="slds-icon_container slds-icon-utility-check slds-m-right_xx-small">
+                                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                                            <use xlink:href="#utility-check"></use>
+                                                        </svg>
+                                                    </span>
+                                                    Select All Fields
+                                                </button>
+                                                <button type="button" class="slds-button slds-button_neutral slds-button_small" onclick="clearFieldSelection()">
+                                                    <span class="slds-icon_container slds-icon-utility-clear slds-m-right_xx-small">
+                                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                                            <use xlink:href="#utility-clear"></use>
+                                                        </svg>
+                                                    </span>
+                                                    Clear Fields
+                                                </button>
+                                                <button type="button" class="slds-button slds-button_success slds-button_small" onclick="buildQuery()">
+                                                    <span class="slds-icon_container slds-icon-utility-builder slds-m-right_xx-small">
+                                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                                            <use xlink:href="#utility-builder"></use>
+                                                        </svg>
+                                                    </span>
+                                                    Build Query
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Fields and Operators -->
+                            <div class="slds-grid slds-gutters slds-m-top_medium" id="query-builder-details" style="display: none;">
+                                <!-- Field List -->
+                                <div class="slds-col slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">Available Fields:</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="field-list slds-scrollable_y" id="field-list">
+                                                <div class="slds-text-color_weak">Select an object to view fields</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Operators and Helpers -->
+                                <div class="slds-col slds-size_1-of-2">
+                                    <div class="query-helper-section">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Operators:</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-button-group-row">
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('AND')">
+                                                        AND
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('OR')">
+                                                        OR
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('NOT')">
+                                                        NOT
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('IN')">
+                                                        IN
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('LIKE')">
+                                                        LIKE
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('=')">
+                                                        =
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('!=')">
+                                                        !=
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('<')">
+                                                        &lt;
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('>')">
+                                                        &gt;
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('<=')">
+                                                        &lt;=
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('>=')">
+                                                        &gt;=
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="query-helper-section">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Clauses:</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-button-group-row">
+                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('WHERE')">
+                                                        WHERE
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('ORDER BY')">
+                                                        ORDER BY
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('GROUP BY')">
+                                                        GROUP BY
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('HAVING')">
+                                                        HAVING
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('LIMIT')">
+                                                        LIMIT
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('OFFSET')">
+                                                        OFFSET
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="query-helper-section">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Functions:</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-button-group-row">
+                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('COUNT()')">
+                                                        COUNT()
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('SUM()')">
+                                                        SUM()
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('AVG()')">
+                                                        AVG()
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('MIN()')">
+                                                        MIN()
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('MAX()')">
+                                                        MAX()
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" id="query-form" onsubmit="executeQueryAjax(event); return false;">
+                        {% csrf_token %}
+
+                        <!-- Query Input -->
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="{{ form.query.id_for_label }}">
+                                SOQL Query:
+                            </label>
+                            <div class="slds-form-element__control">
+                                {{ form.query }}
+                                {% if form.query.errors %}
+                                    <div class="slds-form-element__help slds-text-color_error">
+                                        {{ form.query.errors.0 }}
+                                    </div>
+                                {% endif %}
+                                <div class="slds-form-element__help">{{ form.query.help_text }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-checkbox">
+                                            {{ form.include_deleted }}
+                                            <label class="slds-checkbox__label" for="{{ form.include_deleted.id_for_label }}">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{{ form.include_deleted.label }}</span>
+                                            </label>
+                                        </div>
+                                        <div class="slds-form-element__help">{{ form.include_deleted.help_text }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <button type="button" class="slds-button slds-button_outline-brand slds-button_small" onclick="validateQuery()">
+                                    <span class="slds-icon_container slds-icon-utility-check slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-check"></use>
+                                        </svg>
+                                    </span>
+                                    Validate Query
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="slds-button-group" role="group">
+                            <button type="submit" class="slds-button slds-button_brand">
+                                <span class="slds-icon_container slds-icon-utility-play slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-play"></use>
+                                    </svg>
+                                </span>
+                                Execute Query
+                            </button>
+                            <button type="button" class="slds-button slds-button_neutral" onclick="clearQuery()">
+                                <span class="slds-icon_container slds-icon-utility-clear slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-clear"></use>
+                                    </svg>
+                                </span>
+                                Clear
+                            </button>
+                            <button type="button" class="slds-button slds-button_success" onclick="saveQuery()" {% if not query_executed %}disabled{% endif %}>
+                                <span class="slds-icon_container slds-icon-utility-save slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-save"></use>
+                                    </svg>
+                                </span>
+                                Save Query
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Query Results -->
+            <div id="results-section">
+            {% if query_executed and results %}
+            <div class="slds-card slds-m-top_medium">
+                <div class="slds-card__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-table">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="#utility-table"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>Query Results</span>
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                            <div class="slds-button-group" role="group">
+                                <a href="{% url 'query:export' results.history_id %}?format=csv"
+                                   class="slds-button slds-button_outline-brand slds-button_small">
+                                    <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-download"></use>
+                                        </svg>
+                                    </span>
+                                    CSV
+                                </a>
+                                <a href="{% url 'query:export' results.history_id %}?format=json"
+                                   class="slds-button slds-button_outline-brand slds-button_small">
+                                    <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-download"></use>
+                                        </svg>
+                                    </span>
+                                    JSON
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body slds-card__body_inner">
+                    <!-- Results Info -->
+                    <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                        <div class="slds-col slds-size_1-of-4">
+                            <div class="slds-text-body_regular">
+                                <strong>Records Found:</strong> {{ results.totalSize|default:0 }}
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4">
+                            <div class="slds-text-body_regular">
+                                <strong>Execution Time:</strong> {{ results.execution_time|floatformat:3 }}s
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4">
+                            <div class="slds-text-body_regular">
+                                <strong>Records Displayed:</strong> {{ results.records|length }}
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-4">
+                            {% if not results.done %}
+                                <span class="slds-badge slds-badge_warning">More records available</span>
+                            {% else %}
+                                <span class="slds-badge slds-badge_success">Complete</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Results Table -->
+                    {% if results.records %}
+                    <div class="slds-scrollable_x query-results">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    {% for key in results.records.0.keys %}
+                                        {% if key != 'attributes' %}
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="{{ key }}">{{ key }}</div>
+                                            </th>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody id="results-tbody">
+                                {% for record in results.records %}
+                                    <tr class="slds-hint-parent">
+                                        {% for key, value in record.items %}
+                                            {% if key != 'attributes' %}
+                                                <td data-label="{{ key }}">
+                                                    <div class="slds-truncate">
+                                                        {% if key|upper == 'ID' and value and results.object_type %}
+                                                            <a href="{% url 'query:record_detail' results.object_type value %}"
+                                                               class="text-primary" style="text-decoration: underline;">
+                                                                {{ value }}
+                                                            </a>
+                                                        {% elif value == None %}
+                                                            <span class="slds-text-color_weak">null</span>
+                                                        {% elif value|length > 100 %}
+                                                            <span title="{{ value }}">
+                                                                {{ value|truncatechars:100 }}
+                                                            </span>
+                                                        {% else %}
+                                                            {{ value }}
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Load More Button -->
+                    {% if not results.done and results.nextRecordsUrl %}
+                    <div class="slds-align_absolute-center slds-m-top_medium">
+                        <button class="slds-button slds-button_outline-brand load-more-results"
+                                data-next-url="{{ results.nextRecordsUrl }}">
+                            <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
+                                <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                    <use xlink:href="#utility-download"></use>
+                                </svg>
+                            </span>
+                            Load More Results
+                        </button>
+                    </div>
+                    {% endif %}
+
+                    {% else %}
+                        <div class="slds-align_absolute-center slds-m-top_large">
+                            <div class="slds-text-color_weak slds-text-align_center">
+                                <span class="slds-icon_container slds-icon-utility-info">
+                                    <svg class="slds-icon slds-icon_large" aria-hidden="true">
+                                        <use xlink:href="#utility-info"></use>
+                                    </svg>
+                                </span>
+                                <p class="slds-text-heading_medium">No records found.</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            </div> <!-- End of results-section -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Global variables for query builder
+let currentObject = null;
+let currentFields = [];
+let selectedFields = new Set();
+
+// Initialize on page load
+$(document).ready(function() {
+    // Always try to load objects and handle errors
+    console.log('Page loaded, attempting to load Salesforce objects...');
+    loadObjects();
+
+    // Restore last selected object from localStorage after objects are loaded
+    setTimeout(function() {
+        const lastSelectedObject = localStorage.getItem('lastSelectedObject');
+        if (lastSelectedObject) {
+            $('#object-selector').val(lastSelectedObject);
+            handleObjectSelection(lastSelectedObject);
+        }
+    }, 1000); // Wait for objects to load
+});
+
+// Handle object selection
+function handleObjectSelection(objectName) {
+    if (objectName) {
+        // Save selection to localStorage
+        localStorage.setItem('lastSelectedObject', objectName);
+        loadObjectFields(objectName);
+    } else {
+        localStorage.removeItem('lastSelectedObject');
+        $('#query-builder-details').hide();
+        currentObject = null;
+        currentFields = [];
+        selectedFields.clear();
+    }
+}
+
+// Load all Salesforce objects
+function loadObjects() {
+    console.log('Loading Salesforce objects...');
+
+    $.ajax({
+        url: '/query/api/objects/',
+        method: 'GET',
+        xhrFields: {
+            withCredentials: true
+        },
+        credentials: 'same-origin'
+    })
+        .done(function(response) {
+            console.log('Objects API response:', response);
+
+            if (response.success) {
+                const selector = $('#object-selector');
+                selector.empty();
+                selector.append('<option value="">-- Select an Object --</option>');
+
+                // Check if we have objects
+                if (!response.objects || response.objects.length === 0) {
+                    console.warn('No objects returned from API');
+                    workbench.showToast('No Salesforce objects available. Please check your connection.', 'warning');
+                    return;
+                }
+
+                // Group objects by standard vs custom
+                const standardObjects = response.objects.filter(obj => !obj.custom);
+                const customObjects = response.objects.filter(obj => obj.custom);
+
+                console.log(`Found ${standardObjects.length} standard objects and ${customObjects.length} custom objects`);
+
+                // Add standard objects
+                if (standardObjects.length > 0) {
+                    const standardGroup = $('<optgroup label="Standard Objects"></optgroup>');
+                    standardObjects.forEach(obj => {
+                        standardGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
+                    });
+                    selector.append(standardGroup);
+                }
+
+                // Add custom objects
+                if (customObjects.length > 0) {
+                    const customGroup = $('<optgroup label="Custom Objects"></optgroup>');
+                    customObjects.forEach(obj => {
+                        customGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
+                    });
+                    selector.append(customGroup);
+                }
+
+                // Remove any existing change handlers before adding new one
+                selector.off('change');
+
+                // Handle object selection
+                selector.on('change', function() {
+                    const objectName = $(this).val();
+                    if (objectName) {
+                        loadObjectFields(objectName);
+                        // Auto-populate basic query
+                        $('#id_query').val(`SELECT Id FROM ${objectName}`);
+                    } else {
+                        $('#query-builder-details').hide();
+                        currentObject = null;
+                        currentFields = [];
+                        selectedFields.clear();
+                    }
+                });
+
+                console.log('Objects loaded successfully');
+            } else {
+                console.error('Failed to load objects:', response.error);
+                workbench.showToast('Failed to load objects: ' + response.error, 'error');
+
+                // If authentication error, redirect to login
+                if (response.error && response.error.includes('No active Salesforce connection')) {
+                    setTimeout(function() {
+                        window.location.href = '/auth/login/';
+                    }, 3000);
+                }
+            }
+        })
+        .fail(function(xhr, status, error) {
+            console.error('AJAX request failed:', status, error);
+            console.error('Response:', xhr.responseText);
+
+            let errorMessage = 'Failed to load Salesforce objects';
+            if (xhr.status === 401) {
+                errorMessage = 'Not authenticated. Please log in to Salesforce.';
+                setTimeout(function() {
+                    window.location.href = '/auth/login/';
+                }, 3000);
+            } else if (xhr.status === 500) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        errorMessage = 'Server error: ' + response.error;
+                    }
+                } catch (e) {
+                    errorMessage = 'Server error occurred while loading objects';
+                }
+            }
+
+            workbench.showToast(errorMessage, 'error');
+        });
+}
+
+// Load fields for selected object
+function loadObjectFields(objectName) {
+    $.ajax({
+        url: '/query/api/fields/',
+        method: 'GET',
+        data: {object: objectName},
+        xhrFields: {
+            withCredentials: true
+        },
+        credentials: 'same-origin'
+    })
+        .done(function(response) {
+            if (response.success) {
+                currentObject = objectName;
+                currentFields = response.fields;
+                selectedFields.clear();
+                selectedFields.add('Id'); // Always include Id
+
+                displayFields(response.fields);
+                $('#query-builder-details').show();
+            } else {
+                workbench.showToast('Failed to load fields: ' + response.error, 'error');
+            }
+        })
+        .fail(function() {
+            workbench.showToast('Failed to load object fields', 'error');
+        });
+}
+
+// Display fields in the field list
+function displayFields(fields) {
+    const fieldList = $('#field-list');
+    fieldList.empty();
+
+    // Group fields by type
+    const standardFields = fields.filter(f => !f.custom);
+    const customFields = fields.filter(f => f.custom);
+
+    // Add search box
+    fieldList.append(`
+        <div class="slds-m-bottom_small">
+            <input type="text" class="form-control slds-input" id="field-search"
+                   placeholder="Search fields..." onkeyup="filterFields()">
+        </div>
+    `);
+
+    // Add field items
+    const fieldContainer = $('<div id="field-items"></div>');
+
+    // Standard fields
+    if (standardFields.length > 0) {
+        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small">Standard Fields</div>');
+        standardFields.forEach(field => {
+            fieldContainer.append(createFieldItem(field));
+        });
+    }
+
+    // Custom fields
+    if (customFields.length > 0) {
+        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small slds-m-top_small">Custom Fields</div>');
+        customFields.forEach(field => {
+            fieldContainer.append(createFieldItem(field));
+        });
+    }
+
+    fieldList.append(fieldContainer);
+}
+
+// Create field item HTML
+function createFieldItem(field) {
+    const checked = selectedFields.has(field.name) ? 'checked' : '';
+    return `
+        <div class="field-item" data-field-name="${field.name}">
+            <input type="checkbox" class="field-checkbox" id="field-${field.name}" value="${field.name}" ${checked}
+                   onchange="toggleFieldAndUpdateQuery('${field.name}')">
+            <label for="field-${field.name}" style="cursor: pointer; display: inline-block; width: 100%;">
+                ${field.label}
+                <span class="field-type">(${field.type})</span>
+            </label>
+        </div>
+    `;
+}
+
+// Filter fields based on search
+function filterFields() {
+    const searchTerm = $('#field-search').val().toLowerCase();
+    $('.field-item').each(function() {
+        const fieldName = $(this).data('field-name').toLowerCase();
+        const fieldText = $(this).text().toLowerCase();
+        if (fieldName.includes(searchTerm) || fieldText.includes(searchTerm)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+// Toggle field selection and update query
+function toggleFieldAndUpdateQuery(fieldName) {
+    if (selectedFields.has(fieldName)) {
+        selectedFields.delete(fieldName);
+    } else {
+        selectedFields.add(fieldName);
+    }
+
+    // Automatically update the query
+    if (currentObject && selectedFields.size > 0) {
+        // Get fields in order with ID first
+        let fieldArray = Array.from(selectedFields);
+
+        // Ensure ID is always first if it exists
+        if (fieldArray.includes('Id')) {
+            fieldArray = fieldArray.filter(f => f !== 'Id');
+            fieldArray.unshift('Id');
+        }
+
+        const fields = fieldArray.join(', ');
+        const currentQuery = $('#id_query').val();
+
+        // Check if the query already has a FROM clause for this object
+        const fromRegex = new RegExp(`FROM\\s+${currentObject}`, 'i');
+        if (fromRegex.test(currentQuery)) {
+            // Update the SELECT part only
+            const newQuery = currentQuery.replace(/SELECT\\s+[^FROM]+/i, `SELECT ${fields} `);
+            $('#id_query').val(newQuery);
+        } else {
+            // Build new query
+            $('#id_query').val(`SELECT ${fields} FROM ${currentObject}`);
+        }
+    }
+}
+
+// Insert field into query (deprecated - now handled by toggleFieldAndUpdateQuery)
+function insertField(fieldName) {
+    // This function is no longer used
+    // Field insertion is now handled by toggleFieldAndUpdateQuery
+}
+
+// Note: selectAllFields function is defined below with ID-first ordering
+
+// Clear field selection
+function clearFieldSelection() {
+    selectedFields.clear();
+    selectedFields.add('Id'); // Keep Id selected
+    $('.field-checkbox').prop('checked', false);
+    $('.field-checkbox[value="Id"]').prop('checked', true);
+}
+
+// Build query from selected fields
+function buildQuery() {
+    if (!currentObject) {
+        workbench.showToast('Please select an object first', 'warning');
+        return;
+    }
+
+    if (selectedFields.size === 0) {
+        workbench.showToast('Please select at least one field', 'warning');
+        return;
+    }
+
+    // Get fields in order with ID first
+    let fieldArray = Array.from(selectedFields);
+
+    // Ensure ID is always first if it exists
+    if (fieldArray.includes('Id')) {
+        fieldArray = fieldArray.filter(f => f !== 'Id');
+        fieldArray.unshift('Id');
+    }
+
+    const fields = fieldArray.join(', ');
+    const query = `SELECT ${fields} FROM ${currentObject}`;
+    $('#id_query').val(query);
+    workbench.showToast('Query built successfully', 'success');
+}
+
+// Insert operator into query
+function insertOperator(operator) {
+    const queryTextarea = $('#id_query')[0];
+    const start = queryTextarea.selectionStart;
+    const end = queryTextarea.selectionEnd;
+    const text = queryTextarea.value;
+
+    const before = text.substring(0, start);
+    const after = text.substring(end);
+
+    // Add spaces around operator
+    const insertion = ` ${operator} `;
+
+    queryTextarea.value = before + insertion + after;
+    queryTextarea.selectionStart = queryTextarea.selectionEnd = start + insertion.length;
+    queryTextarea.focus();
+}
+
+// Insert clause into query
+function insertClause(clause) {
+    const queryTextarea = $('#id_query')[0];
+    const text = queryTextarea.value;
+
+    // Add clause at the end with proper formatting
+    let insertion = '';
+    if (clause === 'WHERE') {
+        insertion = `\nWHERE `;
+    } else if (clause === 'ORDER BY') {
+        insertion = `\nORDER BY `;
+    } else if (clause === 'GROUP BY') {
+        insertion = `\nGROUP BY `;
+    } else if (clause === 'HAVING') {
+        insertion = `\nHAVING `;
+    } else if (clause === 'LIMIT') {
+        insertion = `\nLIMIT 100`;
+    } else if (clause === 'OFFSET') {
+        insertion = `\nOFFSET 0`;
+    }
+
+    queryTextarea.value = text + insertion;
+    queryTextarea.selectionStart = queryTextarea.selectionEnd = queryTextarea.value.length;
+    queryTextarea.focus();
+}
+
+// Insert function into query
+function insertFunction(func) {
+    const queryTextarea = $('#id_query')[0];
+    const start = queryTextarea.selectionStart;
+    const end = queryTextarea.selectionEnd;
+    const text = queryTextarea.value;
+
+    const before = text.substring(0, start);
+    const after = text.substring(end);
+
+    queryTextarea.value = before + func + after;
+    queryTextarea.selectionStart = queryTextarea.selectionEnd = start + func.length - 1; // Position cursor inside parentheses
+    queryTextarea.focus();
+}
+
+// Original functions
+function loadQuery(queryText) {
+    $('#id_query').val(queryText);
+}
+
+function clearQuery() {
+    $('#id_query').val('');
+    $('#id_include_deleted').prop('checked', false);
+}
+
+function validateQuery() {
+    const query = $('#id_query').val();
+    const validation = workbench.validateSOQL(query);
+
+    if (validation.isValid) {
+        workbench.showToast('Query syntax is valid', 'success');
+    } else {
+        workbench.showToast('Query validation failed: ' + validation.errors.join(', '), 'error');
+    }
+}
+
+function saveQuery() {
+    const query = $('#id_query').val();
+    if (!query.trim()) {
+        workbench.showToast('No query to save', 'warning');
+        return;
+    }
+
+    // Create a simple save dialog
+    const name = prompt('Enter a name for this query:');
+    if (!name) return;
+
+    // This would normally be an AJAX call to save the query
+    // For now, just show a message
+    workbench.showToast('Query saving functionality will be implemented via AJAX', 'info');
+}
+
+// Handle load more results
+$(document).on('click', '.load-more-results', function() {
+    const button = $(this);
+    const nextUrl = button.data('next-url');
+
+    button.html('<span class="loading-spinner"></span> Loading...');
+
+    $.get('/query/more/', {nextRecordsUrl: nextUrl})
+        .done(function(response) {
+            if (response.success) {
+                // Add new rows to table
+                const tbody = $('#results-tbody');
+                const objectType = response.object_type;
+                response.records.forEach(function(record) {
+                    let row = '<tr class="slds-hint-parent">';
+                    for (const [key, value] of Object.entries(record)) {
+                        // Skip attributes field
+                        if (key === 'attributes') continue;
+
+                        let displayValue;
+                        if (key.toUpperCase() === 'ID' && value && objectType) {
+                            // Make ID a clickable link
+                            displayValue = '<a href="/query/record/' + objectType + '/' + value + '/" class="text-primary" style="text-decoration: underline;">' + value + '</a>';
+                        } else if (value === null) {
+                            displayValue = '<span class="slds-text-color_weak">null</span>';
+                        } else if (String(value).length > 100) {
+                            displayValue = '<span title="' + value + '">' + String(value).substring(0, 100) + '...</span>';
+                        } else {
+                            displayValue = value;
+                        }
+                        row += '<td data-label="' + key + '"><div class="slds-truncate">' + displayValue + '</div></td>';
+                    }
+                    row += '</tr>';
+                    tbody.append(row);
+                });
+
+                // Update button or hide if done
+                if (response.done || !response.nextRecordsUrl) {
+                    button.hide();
+                } else {
+                    button.data('next-url', response.nextRecordsUrl);
+                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+                }
+            } else {
+                workbench.showToast('Failed to load more results: ' + response.error, 'error');
+                button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+            }
+        })
+        .fail(function() {
+            workbench.showToast('Failed to load more results', 'error');
+            button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+        });
+});
+
+// Execute query via Ajax
+function executeQueryAjax(event) {
+    event.preventDefault();
+
+    const formData = new FormData(document.getElementById('query-form'));
+    const queryText = $('#id_query').val();
+
+    if (!queryText.trim()) {
+        workbench.showToast('Please enter a query', 'warning');
+        return;
+    }
+
+    // Save current object selection
+    const selectedObject = $('#object-selector').val();
+
+    // Show loading indicator
+    $('#results-section').html('<div class="slds-align_absolute-center slds-m-top_large"><div class="slds-spinner slds-spinner_medium" role="status"><span class="slds-assistive-text">Loading...</span><div class="slds-spinner__dot-a"></div><div class="slds-spinner__dot-b"></div></div></div>');
+
+    $.ajax({
+        url: '/query/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            // Parse the HTML response and extract the results section
+            const newContent = $(response).find('#results-section').html();
+            if (newContent) {
+                $('#results-section').html(newContent);
+
+                // Restore object selection
+                if (selectedObject) {
+                    $('#object-selector').val(selectedObject);
+                    localStorage.setItem('lastSelectedObject', selectedObject);
+                }
+
+                // Re-bind event handlers for load more button
+                $('.load-more-results').off('click').on('click', function() {
+                    const button = $(this);
+                    const nextUrl = button.data('next-url');
+
+                    if (!nextUrl) {
+                        return;
+                    }
+
+                    button.html('<span class="loading-spinner"></span> Loading...');
+
+                    $.get('/query/more/', {nextRecordsUrl: nextUrl})
+                        .done(function(response) {
+                            if (response.success) {
+                                const tbody = $('#results-tbody');
+                                const objectType = response.object_type;
+                                response.records.forEach(function(record) {
+                                    let row = '<tr class="slds-hint-parent">';
+                                    for (const [key, value] of Object.entries(record)) {
+                                        if (key === 'attributes') continue;
+
+                                        let displayValue;
+                                        if (key.toUpperCase() === 'ID' && value && objectType) {
+                                            displayValue = '<a href="/query/record/' + objectType + '/' + value + '/" class="text-primary" style="text-decoration: underline;">' + value + '</a>';
+                                        } else if (value === null) {
+                                            displayValue = '<span class="slds-text-color_weak">null</span>';
+                                        } else if (String(value).length > 100) {
+                                            displayValue = '<span title="' + value + '">' + String(value).substring(0, 100) + '...</span>';
+                                        } else {
+                                            displayValue = value;
+                                        }
+                                        row += '<td data-label="' + key + '"><div class="slds-truncate">' + displayValue + '</div></td>';
+                                    }
+                                    row += '</tr>';
+                                    tbody.append(row);
+                                });
+
+                                if (response.done || !response.nextRecordsUrl) {
+                                    button.hide();
+                                } else {
+                                    button.data('next-url', response.nextRecordsUrl);
+                                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+                                }
+                            } else {
+                                workbench.showToast('Failed to load more results: ' + response.error, 'error');
+                            }
+                        })
+                        .fail(function() {
+                            workbench.showToast('Failed to load more results', 'error');
+                        });
+                });
+
+                workbench.showToast('Query executed successfully', 'success');
+            } else {
+                // If no results section, show the full response (might be an error page)
+                $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">No results returned from query</div>');
+            }
+        },
+        error: function(xhr, status, error) {
+            $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">Error executing query: ' + error + '</div>');
+            workbench.showToast('Query execution failed', 'error');
+        }
+    });
+}
+
+// Select all fields
+function selectAllFields() {
+    if (!currentFields) {
+        workbench.showToast('Please select an object first', 'warning');
+        return;
+    }
+
+    // Clear and add all fields with ID first
+    selectedFields.clear();
+
+    // Always add ID field first
+    selectedFields.add('Id');
+    $('#field-Id').prop('checked', true);
+
+    // Then add all other fields
+    currentFields.forEach(field => {
+        if (field.name !== 'Id') {
+            selectedFields.add(field.name);
+            $(`#field-${field.name}`).prop('checked', true);
+    });
+
+    // Update query
+    if (currentObject && selectedFields.size > 0) {
+        const fields = Array.from(selectedFields).join(', ');
+        $('#id_query').val(`SELECT ${fields} FROM ${currentObject}`);
+    }
+
+    workbench.showToast('All fields selected', 'success');
+}
+
+// Clear field selection
+function clearFieldSelection() {
+    selectedFields.clear();
+    selectedFields.add('Id'); // Keep Id field
+
+    // Uncheck all except Id
+    $('.field-checkbox').prop('checked', false);
+    $('#field-Id').prop('checked', true);
+
+    // Update query
+    if (currentObject) {
+        $('#id_query').val(`SELECT Id FROM ${currentObject}`);
+    }
+
+    workbench.showToast('Field selection cleared', 'info');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,479 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Record Detail - {{ object_type }} - Django Workbench{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Override problematic background */
+    body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+        min-height: 100vh;
+    }
+
+    body::before {
+        display: none !important;
+    }
+
+    .container-fluid {
+        padding-top: 20px;
+    }
+
+    /* Record Header Card */
+    .record-header {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid;
+        border-image: linear-gradient(135deg, #667eea, #764ba2) 1;
+    }
+
+    .record-header h2 {
+        color: #2d3748;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+    }
+
+    .record-header p {
+        color: #718096;
+        font-size: 0.95rem;
+        font-family: 'Monaco', 'Menlo', monospace;
+        background: #f7fafc;
+        padding: 8px 12px;
+        border-radius: 6px;
+        display: inline-block;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .action-buttons .btn {
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .action-buttons .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #f56565, #e53e3e);
+    }
+
+    .btn-info {
+        background: linear-gradient(135deg, #4299e1, #3182ce);
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #718096, #4a5568);
+    }
+
+    /* Fields Table Card */
+    .card {
+        background: white !important;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: visible;
+    }
+
+    .card-body {
+        padding: 0;
+        background: white !important;
+    }
+
+    /* Field Grid */
+    .field-grid {
+        display: grid;
+        grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr) minmax(300px, 2fr) minmax(120px, 0.5fr);
+        gap: 15px;
+        align-items: center;
+        padding: 18px 25px;
+        border-bottom: 1px solid #e2e8f0;
+        background: white;
+        transition: all 0.2s ease;
+    }
+
+    .field-grid:hover:not(.header) {
+        background: #f8fafc;
+        box-shadow: inset 0 0 0 1px #e2e8f0;
+    }
+
+    .field-grid.header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        border-bottom: none;
+        border-radius: 16px 16px 0 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .field-grid > div {
+        color: #2d3748;
+    }
+
+    .field-grid.header > div {
+        color: white;
+    }
+
+    /* Field Values */
+    .field-value {
+        font-family: 'Monaco', 'Menlo', monospace;
+        font-size: 0.9rem;
+        word-break: break-word;
+        color: #2d3748;
+    }
+
+    .field-value span {
+        display: block;
+        padding: 8px 12px;
+        background: #f7fafc;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .field-value input,
+    .field-value textarea,
+    .field-value select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 2px solid #e2e8f0;
+        border-radius: 6px;
+        background: white;
+        color: #2d3748;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+    }
+
+    .field-value input:focus,
+    .field-value textarea:focus,
+    .field-value select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        outline: none;
+    }
+
+    .field-value textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+
+    /* Edit Mode */
+    .edit-mode .field-value.editable span {
+        display: none;
+    }
+
+    .edit-mode .field-value.editable {
+        background: #fffbf0;
+        padding: 5px;
+        border-radius: 6px;
+    }
+
+    /* Field Types */
+    .field-grid > div:last-child {
+        font-size: 0.85rem;
+        color: #718096;
+        padding: 4px 10px;
+        background: #edf2f7;
+        border-radius: 20px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    /* Modal Improvements */
+    .modal-content {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #f56565, #e53e3e);
+        color: white;
+        border-radius: 16px 16px 0 0;
+        border: none;
+    }
+
+    .modal-footer {
+        border: none;
+        padding: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .field-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .field-grid > div:nth-child(3),
+        .field-grid > div:nth-child(4) {
+            grid-column: span 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .field-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn {
+            width: 100%;
+        }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="record-header">
+        <h2>{{ object_type }} Record</h2>
+        <p class="mb-0">ID: {{ record_id }}</p>
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn btn-primary" id="editBtn" onclick="toggleEditMode()">
+            <i class="fas fa-edit"></i> Edit
+        </button>
+        <button class="btn btn-success" id="saveBtn" onclick="saveRecord()" style="display: none;">
+            <i class="fas fa-save"></i> Save
+        </button>
+        <button class="btn btn-secondary" id="cancelBtn" onclick="cancelEdit()" style="display: none;">
+            <i class="fas fa-times"></i> Cancel
+        </button>
+        <button class="btn btn-danger" onclick="confirmDelete()">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+        <button class="btn btn-info" onclick="viewInSalesforce()">
+            <i class="fas fa-external-link-alt"></i> View in Salesforce
+        </button>
+        <a href="{% url 'query:index' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Query
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="field-grid header">
+                <div>Field Label</div>
+                <div>API Name</div>
+                <div>Value</div>
+                <div>Type</div>
+            </div>
+
+            <form id="recordForm">
+                {% csrf_token %}
+                {% for field in fields %}
+                <div class="field-grid">
+                    <div>{{ field.label }}</div>
+                    <div style="font-family: monospace;">{{ field.name }}</div>
+                    <div class="field-value {% if field.updateable %}editable{% endif %}" data-field="{{ field.name }}">
+                        {% if field.updateable %}
+                            {% if field.type == 'boolean' %}
+                                <select name="{{ field.name }}" disabled class="edit-field">
+                                    <option value="">--None--</option>
+                                    <option value="true" {% if field.value %}selected{% endif %}>True</option>
+                                    <option value="false" {% if field.value == False %}selected{% endif %}>False</option>
+                                </select>
+                            {% elif field.type == 'picklist' %}
+                                <select name="{{ field.name }}" disabled class="edit-field">
+                                    <option value="">--None--</option>
+                                    {% for option in field.picklistValues %}
+                                        <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>
+                                            {{ option.label }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            {% elif field.type == 'textarea' %}
+                                <textarea name="{{ field.name }}" disabled class="edit-field">{{ field.value|default:"" }}</textarea>
+                            {% elif field.type == 'date' %}
+                                <input type="date" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
+                            {% elif field.type == 'datetime' %}
+                                <input type="datetime-local" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
+                            {% elif field.type == 'double' or field.type == 'currency' or field.type == 'percent' %}
+                                <input type="number" step="any" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
+                            {% elif field.type == 'int' %}
+                                <input type="number" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
+                            {% else %}
+                                <input type="text" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
+                            {% endif %}
+                        {% else %}
+                            <span>{{ field.value|default:"-" }}</span>
+                        {% endif %}
+                    </div>
+                    <div>{{ field.type }}</div>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this {{ object_type }} record?</p>
+                <p class="text-danger"><strong>This action cannot be undone.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRecord()">Delete Record</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let originalValues = {};
+let editMode = false;
+
+function toggleEditMode() {
+    editMode = true;
+    document.querySelectorAll('.edit-field').forEach(field => {
+        field.disabled = false;
+        originalValues[field.name] = field.value;
+    });
+
+    document.getElementById('editBtn').style.display = 'none';
+    document.getElementById('saveBtn').style.display = 'inline-block';
+    document.getElementById('cancelBtn').style.display = 'inline-block';
+    document.body.classList.add('edit-mode');
+}
+
+function cancelEdit() {
+    editMode = false;
+    document.querySelectorAll('.edit-field').forEach(field => {
+        field.disabled = true;
+        field.value = originalValues[field.name] || '';
+    });
+
+    document.getElementById('editBtn').style.display = 'inline-block';
+    document.getElementById('saveBtn').style.display = 'none';
+    document.getElementById('cancelBtn').style.display = 'none';
+    document.body.classList.remove('edit-mode');
+}
+
+function saveRecord() {
+    const formData = new FormData(document.getElementById('recordForm'));
+
+    // Only include changed fields
+    const changedData = new FormData();
+    changedData.append('csrfmiddlewaretoken', formData.get('csrfmiddlewaretoken'));
+
+    document.querySelectorAll('.edit-field').forEach(field => {
+        if (field.value !== originalValues[field.name]) {
+            changedData.append(field.name, field.value);
+        }
+    });
+
+    fetch("{% url 'query:update_record' object_type record_id %}", {
+        method: 'POST',
+        body: changedData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Record updated successfully');
+            location.reload();
+        } else {
+            alert('Error updating record: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Error updating record: ' + error);
+    });
+}
+
+function confirmDelete() {
+    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
+}
+
+function deleteRecord() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch("{% url 'query:delete_record' object_type record_id %}", {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Record deleted successfully');
+            window.location.href = data.redirect_url;
+        } else {
+            alert('Error deleting record: ' + data.error);
+        }
+    })
+    .catch(error => {
+        alert('Error deleting record: ' + error);
+    });
+}
+
+function viewInSalesforce() {
+    const baseUrl = "{{ org_instance }}";
+    const recordUrl = `${baseUrl}/lightning/r/{{ object_type }}/{{ record_id }}/view`;
+    window.open(recordUrl, '_blank');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,369 @@
+/**
+ * Django Workbench - SLDS Custom Styles
+ * Complementary styles for Salesforce Lightning Design System
+ */
+
+/* Global Adjustments */
+.slds-scope {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Global Header Customizations */
+.slds-global-header_container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.slds-global-header__logo img {
+    vertical-align: middle;
+}
+
+/* Context Bar Styling */
+.slds-context-bar {
+    background: #f3f3f3;
+    border-bottom: 1px solid #dddbda;
+}
+
+/* Navigation Dropdowns - Fix for hover behavior */
+.slds-dropdown-trigger_hover:hover .slds-dropdown {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.slds-dropdown-trigger_hover .slds-dropdown {
+    display: none;
+}
+
+/* Card Enhancements */
+.slds-card {
+    margin-bottom: 1rem;
+}
+
+.slds-card_boundary {
+    background: #fafafa;
+}
+
+/* Query Builder Specific Styles */
+.query-builder-panel {
+    background: #f9f9f9;
+}
+
+.field-list {
+    max-height: 400px;
+    background: white;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+}
+
+.field-item {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.field-item:hover {
+    background-color: #e5f2ff;
+}
+
+.field-type {
+    color: #706e6b;
+    font-size: 0.75rem;
+}
+
+/* Query Sidebar */
+.query-sidebar {
+    background-color: #fafafa;
+    min-height: calc(100vh - 200px);
+}
+
+.recent-query,
+.saved-query {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.recent-query:hover,
+.saved-query:hover {
+    background-color: #e5f2ff;
+}
+
+/* Code Editor Styles */
+.slds-textarea.code-editor {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    min-height: 200px;
+    background-color: #f9f9f9;
+}
+
+/* Table Enhancements */
+.slds-table thead th {
+    background-color: #f4f6f9;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.query-results {
+    max-height: 600px;
+    overflow: auto;
+}
+
+/* Button Group Spacing */
+.slds-button-group-row {
+    margin-bottom: 0.5rem;
+}
+
+.slds-button-group-row .slds-button {
+    margin: 0.125rem;
+}
+
+/* Operator Buttons */
+.operator-btn {
+    min-width: 3rem;
+}
+
+/* Messages/Alerts */
+.slds-notify_alert {
+    margin-bottom: 1rem;
+}
+
+/* Loading States */
+.loading-spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #dddbda;
+    border-top: 2px solid #0070d2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Results Info Box */
+.results-info {
+    background-color: #f4f6f9;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Badge Styles */
+.slds-badge.slds-badge_warning {
+    background-color: #fe9339;
+    color: #080707;
+}
+
+.slds-badge.slds-badge_success {
+    background-color: #04844b;
+    color: #fff;
+}
+
+/* Scrollable Containers */
+.slds-scrollable_y {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.slds-scrollable_x {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Form Element Spacing */
+.slds-form-element {
+    margin-bottom: 1rem;
+}
+
+/* Icon Adjustments */
+.slds-icon-text-default {
+    fill: #706e6b;
+}
+
+.slds-icon_xx-small {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+/* Utility Classes */
+.slds-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Footer */
+footer {
+    background-color: #f4f6f9;
+    border-top: 1px solid #dddbda;
+    margin-top: auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .query-sidebar {
+        min-height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .slds-global-header__item {
+        flex-wrap: wrap;
+    }
+
+    .slds-global-actions {
+        flex-direction: column;
+    }
+
+    .field-list {
+        max-height: 250px;
+    }
+}
+
+/* Dark Mode Support (Future Enhancement) */
+@media (prefers-color-scheme: dark) {
+    /* Dark mode styles can be added here */
+}
+
+/* Print Styles */
+@media print {
+    .slds-global-header_container,
+    .slds-context-bar,
+    .query-sidebar,
+    .query-builder-panel,
+    footer {
+        display: none !important;
+    }
+
+    .slds-card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Dropdown Menu Fix */
+.slds-dropdown {
+    position: absolute;
+    z-index: 7000;
+    min-width: 12rem;
+    max-width: 20rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.slds-dropdown-trigger_hover:hover .slds-dropdown,
+.slds-dropdown-trigger_click.slds-is-open .slds-dropdown {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Avatar Styles */
+.slds-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Custom Checkbox Styles */
+.field-checkbox {
+    margin-right: 0.5rem;
+}
+
+/* Query Helper Section */
+.query-helper-section {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: white;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+}
+
+/* Session Info Table */
+.session-info-table td:first-child {
+    font-weight: 600;
+    width: 30%;
+}
+
+/* JSON Viewer */
+.json-viewer {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 0.875rem;
+}
+
+/* Error States */
+.slds-has-error .slds-form-element__control {
+    border-color: #c23934;
+}
+
+.slds-form-element__help {
+    margin-top: 0.25rem;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    z-index: 8000;
+}
+
+/* Accessibility Improvements */
+.slds-assistive-text {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Focus States */
+.slds-button:focus,
+.slds-input:focus,
+.slds-textarea:focus,
+.slds-select:focus {
+    box-shadow: 0 0 3px #0070d2;
+    outline: 0;
+}
+
+/* Hover Effects */
+.slds-button:hover {
+    filter: brightness(0.95);
+}
+
+.slds-button_neutral:hover {
+    background-color: #f4f6f9;
+}
+
+/* Animation for Page Transitions */
+.slds-transition-show {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.slds-transition-hide {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}

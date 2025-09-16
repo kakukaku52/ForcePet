@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Salesforce Objects</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Test Salesforce Objects API</h1>
+
+    <button onclick="testAPI()">Test API Call</button>
+
+    <h2>Select Object:</h2>
+    <select id="object-selector">
+        <option value="">Loading...</option>
+    </select>
+
+    <h2>API Response:</h2>
+    <pre id="response"></pre>
+
+    <script>
+    function testAPI() {
+        console.log('Testing API...');
+        $('#response').text('Calling API...');
+
+        $.ajax({
+            url: '/query/api/objects/',
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) {
+                console.log('Success:', response);
+                $('#response').text(JSON.stringify(response, null, 2));
+
+                if (response.success && response.objects) {
+                    const selector = $('#object-selector');
+                    selector.empty();
+                    selector.append('<option value="">-- Select an Object --</option>');
+
+                    response.objects.forEach(function(obj) {
+                        selector.append('<option value="' + obj.name + '">' + obj.label + ' (' + obj.name + ')</option>');
+                    });
+
+                    alert('Loaded ' + response.objects.length + ' objects!');
+                } else {
+                    alert('No objects in response or error: ' + (response.error || 'Unknown error'));
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', status, error);
+                $('#response').text('Error: ' + status + ' - ' + error + '\n\nResponse: ' + xhr.responseText);
+                alert('API call failed: ' + error);
+            }
+        });
+    }
+
+    // Auto-call on page load
+    $(document).ready(function() {
+        testAPI();
+    });
+    </script>
+</body>
+</html>

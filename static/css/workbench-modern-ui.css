@@ -1,0 +1,712 @@
+/* Modern UI Design System for Django Workbench */
+
+:root {
+    /* Primary Color Palette - Deep Blue & Purple Gradient */
+    --primary-gradient-start: #5E72E4;
+    --primary-gradient-end: #825EE4;
+    --primary-dark: #4C63D2;
+    --primary-light: #8B9FFF;
+
+    /* Secondary Colors */
+    --secondary-teal: #11CDEF;
+    --secondary-green: #2DCE89;
+    --secondary-orange: #FB6340;
+    --secondary-yellow: #FFD600;
+
+    /* Neutral Colors */
+    --neutral-100: #F7F8FC;
+    --neutral-200: #E9ECEF;
+    --neutral-300: #DEE2E6;
+    --neutral-400: #CED4DA;
+    --neutral-500: #ADB5BD;
+    --neutral-600: #6C757D;
+    --neutral-700: #495057;
+    --neutral-800: #343A40;
+    --neutral-900: #212529;
+
+    /* Semantic Colors */
+    --success: #2DCE89;
+    --warning: #FB6340;
+    --danger: #F5365C;
+    --info: #11CDEF;
+
+    /* Shadows & Effects */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.15), 0 6px 10px rgba(0,0,0,0.08);
+    --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+    --shadow-colored: 0 14px 26px -12px rgba(94, 114, 228, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12);
+
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Transitions */
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Styles */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e0e5ec 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(130, 94, 228, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(17, 205, 239, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+/* Modern Navigation Bar */
+.navbar {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    transition: var(--transition-base);
+    position: relative;
+    z-index: 1030;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand i {
+    -webkit-text-fill-color: var(--primary-gradient-start);
+}
+
+/* Modern Navigation Items */
+.navbar-nav .nav-link {
+    color: var(--neutral-700);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    opacity: 0;
+    transition: var(--transition-fast);
+    z-index: -1;
+}
+
+.navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.navbar-nav .nav-link:hover::before {
+    opacity: 1;
+}
+
+.navbar-nav .dropdown-menu {
+    background: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    animation: slideDown 0.3s ease;
+    position: absolute !important;
+    z-index: 1050 !important;
+    display: none;
+}
+
+.navbar-nav .dropdown-menu.show {
+    display: block !important;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-item {
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    transition: var(--transition-fast);
+    margin: 0.25rem 0;
+}
+
+.dropdown-item:hover {
+    background: var(--neutral-100);
+    color: var(--primary-gradient-start);
+}
+
+.dropdown-item i {
+    width: 20px;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+/* Connection Info Bar */
+.connection-bar {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    box-shadow: 0 4px 15px rgba(94, 114, 228, 0.3);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.connection-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+/* Modern Cards */
+.card, .slds-card {
+    background: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition-base);
+    overflow: hidden;
+}
+
+.card:hover, .slds-card:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+.card-header, .slds-card__header {
+    background: linear-gradient(135deg, var(--neutral-100), var(--neutral-200));
+    border-bottom: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.card-header::after, .slds-card__header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+}
+
+/* Modern Form Elements */
+.form-control, .slds-input, .slds-select, .slds-textarea {
+    background: white !important;
+    border: 2px solid var(--neutral-300);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    transition: var(--transition-fast);
+    font-size: 0.95rem;
+    color: var(--neutral-900) !important;
+    min-height: 42px;
+    line-height: 1.5;
+}
+
+/* Specific fix for select elements to prevent text cutoff */
+.slds-select, select, #object-selector {
+    height: auto !important;
+    min-height: 44px !important;
+    padding-top: 0.625rem !important;
+    padding-bottom: 0.625rem !important;
+    line-height: 1.5 !important;
+    display: block !important;
+}
+
+.form-control:focus, .slds-input:focus, .slds-select:focus, .slds-textarea:focus {
+    background: white !important;
+    border-color: var(--primary-gradient-start);
+    box-shadow: 0 0 0 4px rgba(94, 114, 228, 0.1);
+    outline: none;
+    color: var(--neutral-900) !important;
+}
+
+/* Fix select option visibility - removed conflicting height styles */
+.slds-select:not([multiple]), select:not([multiple]), #object-selector:not([multiple]) {
+    background: white !important;
+    color: var(--neutral-900) !important;
+    /* Height is controlled by padding and line-height above */
+}
+
+/* Custom styling for select dropdown */
+#object-selector {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem !important;
+}
+
+.slds-select option, select option, #object-selector option {
+    background: white !important;
+    color: var(--neutral-900) !important;
+    padding: 0.75rem 1rem !important;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.slds-select option:hover, select option:hover, #object-selector option:hover {
+    background: var(--neutral-100) !important;
+    color: var(--primary-gradient-start) !important;
+}
+
+.slds-select option:checked, select option:checked, #object-selector option:checked {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end)) !important;
+    color: white !important;
+}
+
+/* Optgroup styling */
+.slds-select optgroup, select optgroup, #object-selector optgroup {
+    font-weight: bold;
+    color: var(--neutral-600) !important;
+    background: var(--neutral-100) !important;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0.75rem !important;
+}
+
+/* Ensure selected text is visible */
+.slds-select:not(:focus), select:not(:focus), #object-selector:not(:focus) {
+    color: var(--neutral-900) !important;
+    background: white !important;
+}
+
+/* Let browser handle dropdown size naturally */
+
+/* Custom scrollbar for select dropdown */
+#object-selector::-webkit-scrollbar {
+    width: 8px;
+}
+
+#object-selector::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+    border-radius: 4px;
+}
+
+#object-selector::-webkit-scrollbar-thumb {
+    background: var(--primary-gradient-start);
+    border-radius: 4px;
+}
+
+#object-selector::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Modern Buttons */
+.btn, .slds-button {
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary, .slds-button_brand {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    color: white;
+    box-shadow: var(--shadow-colored);
+}
+
+.btn-primary:hover, .slds-button_brand:hover {
+    box-shadow: 0 7px 14px rgba(94, 114, 228, 0.4), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-success, .slds-button_success {
+    background: linear-gradient(135deg, var(--success), #26c281);
+    color: white;
+    box-shadow: 0 4px 15px rgba(45, 206, 137, 0.3);
+}
+
+.btn-danger, .slds-button_destructive {
+    background: linear-gradient(135deg, var(--danger), #e91e63);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 54, 92, 0.3);
+}
+
+.btn-secondary, .slds-button_neutral {
+    background: linear-gradient(135deg, var(--neutral-100), var(--neutral-200));
+    color: var(--neutral-700);
+    border: 1px solid var(--neutral-300);
+}
+
+.btn-secondary:hover, .slds-button_neutral:hover {
+    background: linear-gradient(135deg, var(--neutral-200), var(--neutral-300));
+}
+
+/* Ripple Effect for Buttons */
+.btn::before, .slds-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before, .slds-button:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Modern Tables */
+.table, .slds-table {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.table thead, .slds-table thead {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    color: white;
+}
+
+.table th, .slds-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+    border: none;
+}
+
+.table tbody tr, .slds-table tbody tr {
+    transition: var(--transition-fast);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.table tbody tr:hover, .slds-table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(94, 114, 228, 0.05), rgba(130, 94, 228, 0.05));
+}
+
+.table td, .slds-table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* Query Builder Panel */
+.query-builder-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Field List Styling */
+.field-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--neutral-200);
+}
+
+.field-item {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    background: var(--neutral-100);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.field-item:hover {
+    background: linear-gradient(135deg, rgba(94, 114, 228, 0.1), rgba(130, 94, 228, 0.1));
+    box-shadow: var(--shadow-sm);
+}
+
+.field-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-gradient-start);
+}
+
+.field-item label {
+    cursor: pointer;
+    flex: 1;
+    margin: 0;
+    font-weight: 500;
+}
+
+.field-type {
+    font-size: 0.85rem;
+    color: var(--neutral-600);
+    font-weight: 400;
+    padding: 0.2rem 0.5rem;
+    background: var(--neutral-200);
+    border-radius: var(--radius-sm);
+}
+
+/* Operator Buttons */
+.operator-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--neutral-200);
+}
+
+.operator-btn {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, var(--neutral-100), var(--neutral-200));
+    border: 1px solid var(--neutral-300);
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.operator-btn:hover {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+/* Query Textarea */
+#id_query {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border: 2px solid var(--neutral-300);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    min-height: 150px;
+    transition: var(--transition-fast);
+}
+
+#id_query:focus {
+    background: white;
+    border-color: var(--primary-gradient-start);
+    box-shadow: 0 0 0 4px rgba(94, 114, 228, 0.1);
+}
+
+/* Loading Spinner */
+.slds-spinner {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Toast Notifications */
+.slds-notify {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Badges */
+.slds-badge, .badge {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.slds-badge_success, .badge-success {
+    background: linear-gradient(135deg, var(--success), #26c281);
+    color: white;
+}
+
+.slds-badge_warning, .badge-warning {
+    background: linear-gradient(135deg, var(--warning), #ff9f43);
+    color: white;
+}
+
+.slds-badge_error, .badge-danger {
+    background: linear-gradient(135deg, var(--danger), #e91e63);
+    color: white;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+    border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-gradient-end));
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+
+    .card, .slds-card {
+        border-radius: var(--radius-md);
+    }
+
+    .field-list {
+        max-height: 300px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+
+    .navbar {
+        background: rgba(26, 26, 46, 0.95);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .card, .slds-card {
+        background: rgba(26, 26, 46, 0.95);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-control, .slds-input, .slds-select, .slds-textarea {
+        background: rgba(16, 33, 62, 0.9);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .table, .slds-table {
+        background: rgba(26, 26, 46, 0.95);
+        color: white;
+    }
+}
+
+/* Glass Morphism Effect */
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-lg);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Icon Animations */
+.icon-hover {
+    transition: color var(--transition-fast);
+}
+
+.icon-hover:hover {
+    color: var(--primary-gradient-start);
+}

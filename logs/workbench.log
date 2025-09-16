@@ -1,0 +1,2163 @@
+Watching for file changes with StatReloader
+"HEAD / HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/client/default.py", line 670, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/middleware.py", line 59, in process_response
+    request.session.save()
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 56, in save
+    return self.create()
+           ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 42, in create
+    self._session_key = self._get_new_session_key()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/base.py", line 150, in _get_new_session_key
+    if not self.exists(session_key):
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 73, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py", line 299, in __contains__
+    return self.has_key(key)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/client/default.py", line 668, in has_key
+    return client.exists(key) == 1
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/commands/core.py", line 1736, in exists
+    return self.execute_command("EXISTS", *names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+"POST /auth/login/ HTTP/1.1" 500 131321
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /auth/login/ HTTP/1.1" 200 12742
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Not Found: /auth/auth/login/
+"GET /auth/auth/login/ HTTP/1.1" 404 4608
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+"POST /auth/login/ HTTP/1.1" 200 13816
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: 'SFType' object has no attribute 'split'
+"POST /auth/login/ HTTP/1.1" 200 13107
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: 'SFType' object has no attribute 'split'
+"POST /auth/login/ HTTP/1.1" 200 13107
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/client/default.py", line 670, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/middleware.py", line 59, in process_response
+    request.session.save()
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 56, in save
+    return self.create()
+           ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 42, in create
+    self._session_key = self._get_new_session_key()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/base.py", line 150, in _get_new_session_key
+    if not self.exists(session_key):
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 73, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py", line 299, in __contains__
+    return self.has_key(key)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/client/default.py", line 668, in has_key
+    return client.exists(key) == 1
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/commands/core.py", line 1736, in exists
+    return self.execute_command("EXISTS", *names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+"POST /auth/login/ HTTP/1.1" 500 131321
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/client/default.py", line 670, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/middleware.py", line 59, in process_response
+    request.session.save()
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 56, in save
+    return self.create()
+           ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 42, in create
+    self._session_key = self._get_new_session_key()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/base.py", line 150, in _get_new_session_key
+    if not self.exists(session_key):
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/sessions/backends/cache.py", line 73, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py", line 299, in __contains__
+    return self.has_key(key)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django_redis/client/default.py", line 668, in has_key
+    return client.exists(key) == 1
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/commands/core.py", line 1736, in exists
+    return self.execute_command("EXISTS", *names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/client.py", line 533, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/connection.py", line 1086, in get_connection
+    connection.connect()
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/redis/connection.py", line 270, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+"POST /auth/login/ HTTP/1.1" 500 131321
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+/Users/guohe/Documents/Project/WorkBench/django-workbench/workbench_project/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"HEAD /auth/login/ HTTP/1.1" 200 0
+Standard login failed: Authentication failed: 'SFType' object has no attribute 'split'
+"POST /auth/login/ HTTP/1.1" 200 13107
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13054
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /auth/login/ HTTP/1.1" 200 12742
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13054
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13054
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+"POST /auth/login/ HTTP/1.1" 200 13816
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: 'SFType' object has no attribute 'split'
+"POST /auth/login/ HTTP/1.1" 200 13107
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: 'SFType' object has no attribute 'split'
+"POST /auth/login/ HTTP/1.1" 200 13107
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13054
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+Standard login failed: Authentication failed: NOT NULL constraint failed: salesforce_connections.user_id
+"POST /auth/login/ HTTP/1.1" 200 13105
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13049
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 302 0
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/context_processors.py", line 18, in salesforce_context
+    'username': request.sf_connection.username,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SalesforceConnection' object has no attribute 'username'
+"GET /query/ HTTP/1.1" 500 112679
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/context_processors.py", line 18, in salesforce_context
+    'username': request.sf_connection.username,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SalesforceConnection' object has no attribute 'username'
+"GET /query/ HTTP/1.1" 500 112380
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/context_processors.py", line 18, in salesforce_context
+    'username': request.sf_connection.username,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SalesforceConnection' object has no attribute 'username'
+"GET /query/ HTTP/1.1" 500 112654
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 173, in render
+    with context.bind_template(self):
+  File "/usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/context.py", line 254, in bind_template
+    updates.update(processor(self.request))
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/context_processors.py", line 18, in salesforce_context
+    'username': request.sf_connection.username,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SalesforceConnection' object has no attribute 'username'
+"GET /query/ HTTP/1.1" 500 112380
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/context_processors.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'describe' not found. 'describe' is not a valid view function or pattern name.
+"GET /query/ HTTP/1.1" 500 175844
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'describe' not found. 'describe' is not a valid view function or pattern name.
+"GET /query/ HTTP/1.1" 500 175844
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 48, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'describe' not found. 'describe' is not a valid view function or pattern name.
+"GET /query/ HTTP/1.1" 500 175844
+"GET /query/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 15434
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 433, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 96253
+"POST /query/ HTTP/1.1" 200 15428
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 433, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 96253
+"GET /query/ HTTP/1.1" 200 15128
+SOQL query error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/query/?q=select+id%2Cfrom+account. Response content: [{'message': "\nselect id,from account\n         ^\nERROR at Row:1:Column:10\nunexpected token: 'from'", 'errorCode': 'MALFORMED_QUERY'}]
+Query execution failed: Query failed: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/query/?q=select+id%2Cfrom+account. Response content: [{'message': "\nselect id,from account\n         ^\nERROR at Row:1:Column:10\nunexpected token: 'from'", 'errorCode': 'MALFORMED_QUERY'}]
+"POST /query/ HTTP/1.1" 200 16017
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/salesforce_client.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /query/ HTTP/1.1" 200 15700
+"POST /query/ HTTP/1.1" 200 15700
+"POST /query/ HTTP/1.1" 200 15700
+"POST /query/ HTTP/1.1" 200 15700
+"GET /query/ HTTP/1.1" 200 15400
+"POST /query/ HTTP/1.1" 200 620261
+"GET /query/export/2/?format=csv HTTP/1.1" 200 74336
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/metadata/views.py", line 6, in metadata_home
+    return render(request, 'metadata/home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: metadata/home.html
+"GET /metadata/ HTTP/1.1" 500 89842
+Internal Server Error: /data/insert/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/data/views.py", line 88, in insert_view
+    return render(request, 'data/insert.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: data/insert.html
+"GET /data/insert/ HTTP/1.1" 500 91535
+"GET /query/ HTTP/1.1" 200 15762
+"POST /query/ HTTP/1.1" 200 620261
+"POST /query/ HTTP/1.1" 200 620261
+"POST /query/ HTTP/1.1" 200 733871
+"POST /query/ HTTP/1.1" 200 733871
+"POST /query/ HTTP/1.1" 200 733871
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 433, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 96760
+Internal Server Error: /query/saved/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 356, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/saved_queries.html
+"GET /query/saved/ HTTP/1.1" 500 97218
+"POST /query/ HTTP/1.1" 200 733871
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 17939
+"POST /query/ HTTP/1.1" 200 733871
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auth/settings/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py", line 378, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: authentication/settings.html
+"GET /auth/settings/ HTTP/1.1" 500 96598
+REST request error: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/services/data/limits/
+Error getting org limits: REST request failed: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/services/data/limits/
+Could not fetch additional session info: Failed to get org limits: REST request failed: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/services/data/limits/
+Internal Server Error: /auth/session/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py", line 322, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: authentication/session_info.html
+"GET /auth/session/ HTTP/1.1" 500 97570
+"POST /query/ HTTP/1.1" 200 653765
+"GET /query/ HTTP/1.1" 200 18776
+"POST /query/ HTTP/1.1" 200 553795
+Internal Server Error: /data/update/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/data/views.py", line 148, in update_view
+    return render(request, 'data/update.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: data/update.html
+"GET /data/update/ HTTP/1.1" 500 91543
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/metadata/views.py", line 6, in metadata_home
+    return render(request, 'metadata/home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: metadata/home.html
+"GET /metadata/ HTTP/1.1" 500 89842
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/metadata/views.py", line 6, in metadata_home
+    return render(request, 'metadata/home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: metadata/home.html
+"GET /metadata/ HTTP/1.1" 500 89842
+"POST /query/ HTTP/1.1" 200 553795
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /query/ HTTP/1.1" 200 18872
+"GET /query/ HTTP/1.1" 200 18873
+"GET /query/ HTTP/1.1" 200 18873
+Internal Server Error: /query/saved/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 364, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/saved_queries.html
+"GET /query/saved/ HTTP/1.1" 500 97218
+"POST /query/ HTTP/1.1" 200 553795
+"GET /query/ HTTP/1.1" 200 18866
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12747
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12747
+"GET /auth/login/ HTTP/1.1" 200 12747
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13059
+"GET /auth/login/ HTTP/1.1" 200 12747
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13059
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 37489
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=TestCusomSet__c HTTP/1.1" 200 19124
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 1196329
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=ApexTrigger HTTP/1.1" 200 6446
+"GET /query/api/fields/?object=Zip_Code__c HTTP/1.1" 200 21346
+"POST /query/ HTTP/1.1" 200 38233
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 38233
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 38233
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 38233
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=AIInsightAction HTTP/1.1" 200 4913
+Internal Server Error: /apex/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/apex/views.py", line 6, in apex_home
+    return render(request, 'apex/home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: apex/home.html
+"GET /apex/ HTTP/1.1" 500 89670
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Internal Server Error: /data/update/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/data/views.py", line 148, in update_view
+    return render(request, 'data/update.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: data/update.html
+"GET /data/update/ HTTP/1.1" 500 91543
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Internal Server Error: /query/saved/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 365, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/saved_queries.html
+"GET /query/saved/ HTTP/1.1" 500 97218
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 37323
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 37323
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 37323
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 37323
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 57642
+"GET /static/css/workbench-slds.css HTTP/1.1" 200 6494
+Not Found: /assets/icons/standard-sprite/svg/symbols.svg
+"GET /assets/icons/standard-sprite/svg/symbols.svg HTTP/1.1" 404 3540
+Not Found: /assets/icons/utility-sprite/svg/symbols.svg
+"GET /assets/icons/utility-sprite/svg/symbols.svg HTTP/1.1" 404 3537
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 442, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 98507
+"GET /query/ HTTP/1.1" 200 50602
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 50647
+"GET /static/css/workbench-modern.css HTTP/1.1" 200 14176
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=ContactRequestShare HTTP/1.1" 200 2560
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 50647
+"GET /static/css/workbench-modern.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 50647
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13041
+"GET /static/css/workbench-modern.css HTTP/1.1" 200 14176
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13041
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13046
+"GET /static/css/workbench-modern.css HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13041
+"GET /query/ HTTP/1.1" 200 50812
+"GET /static/css/workbench-minimal.css HTTP/1.1" 200 16459
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 50812
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 53561
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /static/css/workbench-minimal.css HTTP/1.1" 200 16459
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /query/ HTTP/1.1" 200 53561
+"GET /static/css/workbench-minimal.css HTTP/1.1" 200 18839
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 53561
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 50881
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 50881
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Standard login failed: Authentication failed: UNIQUE constraint failed: salesforce_connections.session_id
+"POST /auth/login/ HTTP/1.1" 200 13261
+"GET /static/css/workbench-minimal.css HTTP/1.1" 200 18839
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+Standard login failed: Authentication failed: UNIQUE constraint failed: salesforce_connections.session_id
+"POST /auth/login/ HTTP/1.1" 200 13261
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13191
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+Standard login failed: Authentication failed: UNIQUE constraint failed: salesforce_connections.session_id
+"POST /auth/login/ HTTP/1.1" 200 13261
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?error=invalid_request&error_description=missing+required+code+challenge HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13209
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+Standard login failed: Authentication failed: UNIQUE constraint failed: salesforce_connections.session_id
+"POST /auth/login/ HTTP/1.1" 200 13261
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/salesforce_client.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 51189
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /auth/login/ HTTP/1.1" 302 0
+OAuth callback failed: SalesforceConnection() got unexpected keyword arguments: 'username'
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zXoJtxvw0KjAsqD77eIVSSGQ8sHmFtXvREPgkZ9i_2NdagZ6lQ%3D%3D&state=a312a374-4a21-4cf8-b10f-c8bc55e4d123 HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13262
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"GET /query/api/fields/?object=AIInsightReason HTTP/1.1" 200 6500
+"POST /query/ HTTP/1.1" 200 50398
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Internal Server Error: /query/saved/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py", line 365, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/WorkBench/django-workbench/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/saved_queries.html
+"GET /query/saved/ HTTP/1.1" 500 97218
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13191
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"POST /auth/login/ HTTP/1.1" 302 0
+OAuth callback failed: SalesforceConnection() got unexpected keyword arguments: 'username'
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zVQ7e.p7c0s7LKJWZQNrAVxUy_HXlE0bpm4MmRhq1uaPeucEuA%3D%3D&state=46c95c1c-effa-4b77-9935-78f321c0c432 HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13262
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 51229
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/salesforce_client.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zV3xZh42AkP0enFLU0vuuYobwaxaKkSabKK1a6iPaVjwRQMDWw%3D%3D&state=de35b946-01fc-49ff-9735-8082b081fd0d HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 51238
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Token refresh failed: No refresh token available
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 39
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/authentication/salesforce_client.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+/Users/guohe/Documents/Project/WorkBench/django-workbench/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"HEAD / HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-minimal.css HTTP/1.1" 200 18839
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-minimal.css HTTP/1.1" 200 18839
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zeyv0tqVi0GDot7gOyjpiZMeEMz9qrKjlIHoiSzyiXbvsnf5WA%3D%3D&state=bcb34d66-5184-4610-b0c7-1ef494330b6d HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 51771
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 51465
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 51465
+"GET /query/ HTTP/1.1" 200 51465
+- Broken pipe from ('127.0.0.1', 57939)
+"GET /query/ HTTP/1.1" 200 51465
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+- Broken pipe from ('127.0.0.1', 57941)
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 51465
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13191
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zXbi5JiLQQcFp24GdAMOKBh5K_B2TavX9QBgFzcHyURWcFbeKg%3D%3D&state=8a920b44-01d7-49e1-87b6-2350fcdc88b9 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 51771
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 54362
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/record/Zip_Code__c/a0HJ2000001NRVpMAO/ HTTP/1.1" 200 22478
+"GET /query/ HTTP/1.1" 200 51488
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 1986067
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/record/Test__c/a00J2000001QVkwIAG/ HTTP/1.1" 200 34541
+Update error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Test__c/a00J2000001QVkwIAG. Response content: [{'message': 'ABCに設定できない\\n\nABCに設定できない\\n\nABCに設定できない\\n', 'errorCode': 'FIELD_CUSTOM_VALIDATION_EXCEPTION', 'fields': []}]
+Failed to update record: Update failed: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Test__c/a00J2000001QVkwIAG. Response content: [{'message': 'ABCに設定できない\\n\nABCに設定できない\\n\nABCに設定できない\\n', 'errorCode': 'FIELD_CUSTOM_VALIDATION_EXCEPTION', 'fields': []}]
+Internal Server Error: /query/record/Test__c/a00J2000001QVkwIAG/update/
+"POST /query/record/Test__c/a00J2000001QVkwIAG/update/ HTTP/1.1" 500 419
+Update error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Test__c/a00J2000001QVkwIAG. Response content: [{'message': 'ABCに設定できない\\n\nABCに設定できない\\n\nABCに設定できない\\n', 'errorCode': 'FIELD_CUSTOM_VALIDATION_EXCEPTION', 'fields': []}]
+Failed to update record: Update failed: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Test__c/a00J2000001QVkwIAG. Response content: [{'message': 'ABCに設定できない\\n\nABCに設定できない\\n\nABCに設定できない\\n', 'errorCode': 'FIELD_CUSTOM_VALIDATION_EXCEPTION', 'fields': []}]
+Internal Server Error: /query/record/Test__c/a00J2000001QVkwIAG/update/
+"POST /query/record/Test__c/a00J2000001QVkwIAG/update/ HTTP/1.1" 500 419
+"POST /query/record/Test__c/a00J2000001QVkwIAG/delete/ HTTP/1.1" 200 44
+"GET /query/ HTTP/1.1" 200 51794
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 1983083
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 173735
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/record/Chat__c/a07J2000005n58XIAQ/ HTTP/1.1" 200 41399
+Update error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Chat__c/a07J2000005n58XIAQ. Response content: [{'message': '承認者123456789: 不正な種別の ID 値: 3333', 'errorCode': 'MALFORMED_ID', 'fields': ['Field2__c']}]
+Failed to update record: Update failed: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Chat__c/a07J2000005n58XIAQ. Response content: [{'message': '承認者123456789: 不正な種別の ID 値: 3333', 'errorCode': 'MALFORMED_ID', 'fields': ['Field2__c']}]
+Internal Server Error: /query/record/Chat__c/a07J2000005n58XIAQ/update/
+"POST /query/record/Chat__c/a07J2000005n58XIAQ/update/ HTTP/1.1" 500 334
+"POST /query/record/Chat__c/a07J2000005n58XIAQ/update/ HTTP/1.1" 200 17
+"GET /query/record/Chat__c/a07J2000005n58XIAQ/ HTTP/1.1" 200 41779
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 200 12897
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTjSGSZ7eV7ciepFPJ5Xw60svPeZMcEY8KcbUw7zu.Vm6RymRw%3D%3D&state=f144bf78-f808-4aca-a718-1ecd5952e51c HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 51894
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 2342169
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 51588
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 173518
+"GET /static/css/workbench-minimal.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 181505
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/ HTTP/1.1" 200 59566
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"POST /query/ HTTP/1.1" 200 181505
+"GET /query/api/fields/?object=Coefficient__mdt HTTP/1.1" 200 3296
+"GET /query/api/fields/?object=Coefficient__mdt HTTP/1.1" 200 3296
+"POST /query/ HTTP/1.1" 200 199073
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12897
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13204
+"GET /query/ HTTP/1.1" 200 59569
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 15105
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Coefficient__mdt HTTP/1.1" 200 3296
+"GET /query/ HTTP/1.1" 200 59569
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Coefficient__mdt HTTP/1.1" 200 3296
+"POST /query/ HTTP/1.1" 200 181507
+"GET /query/record/Chat__c/a07J2000004TVpLIAW/ HTTP/1.1" 200 41338
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /query/ HTTP/1.1" 200 59559
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Coefficient__mdt HTTP/1.1" 200 3296
+"GET /query/api/fields/?object=TempRegistration__c HTTP/1.1" 200 22824
+"GET /query/api/fields/?object=TempRegistration__c HTTP/1.1" 200 22824
+"POST /query/ HTTP/1.1" 200 58862
+"GET /query/api/fields/?object=Product__c HTTP/1.1" 200 23302
+"GET /query/api/fields/?object=Product__c HTTP/1.1" 200 23302
+"POST /query/ HTTP/1.1" 200 58853
+"GET /query/api/fields/?object=Log__c HTTP/1.1" 200 22791
+"GET /query/api/fields/?object=Log__c HTTP/1.1" 200 22791
+"POST /query/ HTTP/1.1" 200 58849
+"GET /query/api/fields/?object=Zip_Code__c HTTP/1.1" 200 21346
+"GET /query/api/fields/?object=Zip_Code__c HTTP/1.1" 200 21346
+"POST /query/ HTTP/1.1" 200 60424
+"GET /query/record/Zip_Code__c/a0HJ2000001NRVpMAO/ HTTP/1.1" 200 22534
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59309
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 15614
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Zip_Code__c HTTP/1.1" 200 21346
+"GET /query/ HTTP/1.1" 200 59309
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Zip_Code__c HTTP/1.1" 200 21346
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 22160
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 22160
+"POST /query/ HTTP/1.1" 200 58856
+"GET /query/api/fields/?object=TestCusomSet__c HTTP/1.1" 200 19124
+"GET /query/api/fields/?object=TestCusomSet__c HTTP/1.1" 200 19124
+"POST /query/ HTTP/1.1" 200 58858
+"POST /query/ HTTP/1.1" 200 58858
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 807198
+"GET /query/record/Test__c/a005h00000sR3vqAAC/ HTTP/1.1" 200 39303
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59086
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /query/ HTTP/1.1" 200 59090
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 15700
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /query/ HTTP/1.1" 200 59090
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /query/ HTTP/1.1" 200 59090
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 16028
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 2381084
+"GET /query/record/Test__c/a00J200000Cc4pDIAR/ HTTP/1.1" 200 39329
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59149
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /query/ HTTP/1.1" 200 59162
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17701
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 12899
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17701
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13206
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"HEAD / HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13206
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17701
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13206
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59566
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13193
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13206
+/Users/guohe/Documents/Project/ForcePet/workbench_project/settings.py changed, reloading.
+/Users/guohe/Documents/Project/ForcePet/workbench_project/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /auth/login/ HTTP/1.1" 200 13009
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /auth/login/ HTTP/1.1" 200 13316
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+"POST /auth/login/ HTTP/1.1" 200 14083
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 200 13316
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59684
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=AIInsightValue HTTP/1.1" 200 12960
+"GET /query/api/fields/?object=AIInsightValue HTTP/1.1" 200 12960
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 13303
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+Standard login failed: Authentication failed: INVALID_LOGIN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。
+"POST /auth/login/ HTTP/1.1" 200 13455
+/Users/guohe/Documents/Project/ForcePet/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+Standard login failed: Authentication failed: INVALID_LOGIN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。
+"POST /auth/login/ HTTP/1.1" 200 22975
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+Standard login failed: Authentication failed: INVALID_LOGIN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。
+Unauthorized: /auth/login/
+"POST /auth/login/ HTTP/1.1" 401 138
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+Unauthorized: /auth/login/
+"POST /auth/login/ HTTP/1.1" 401 149
+Standard login failed: Authentication failed: INVALID_LOGIN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。
+Unauthorized: /auth/login/
+"POST /auth/login/ HTTP/1.1" 401 138
+"POST /auth/login/ HTTP/1.1" 200 104
+"GET /query/ HTTP/1.1" 200 59379
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=AIInsightValue HTTP/1.1" 200 12960
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 22823
+"GET /auth/login/ HTTP/1.1" 200 22529
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+Unauthorized: /auth/login/
+"POST /auth/login/ HTTP/1.1" 401 149
+"GET /auth/login/ HTTP/1.1" 200 22486
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+Unauthorized: /auth/login/
+"POST /auth/login/ HTTP/1.1" 401 149
+"POST /auth/login/ HTTP/1.1" 200 104
+"GET /query/ HTTP/1.1" 200 59377
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=AIInsightValue HTTP/1.1" 200 12960
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 22780
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 22793
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 24818
+"POST /auth/login/ HTTP/1.1" 302 0
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zVvL.JruWVedsqSJK6A7JR9163nf62TW02TclDU4eaeGNPkouw%3D%3D&state=af14cbcb-c62b-4c5e-8002-11654d54a0d5 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59689
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=AIInsightValue HTTP/1.1" 200 12960
+"GET /query/history/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zc972PcPCJ5RoBMlSOyMgEar5Ioe.FPg6PlGt9SfnATBuYaIfw%3D%3D&state=a985a999-ba88-404c-957d-39c90c56e29a HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 59639
+"GET /query/api/objects/ HTTP/1.1" 200 219236
+"GET /query/api/fields/?object=AIInsightValue HTTP/1.1" 200 12960
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 466, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 96455
+"POST /query/ HTTP/1.1" 200 58976
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 466, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 96455
+"POST /query/ HTTP/1.1" 200 59225
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 1374568
+"POST /query/ HTTP/1.1" 200 106778
+"POST /query/ HTTP/1.1" 200 130828
+"POST /query/ HTTP/1.1" 200 1374568
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /query/ HTTP/1.1" 200 61743
+"GET /query/ HTTP/1.1" 200 61743
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 61743
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 61743
+"GET /query/ HTTP/1.1" 200 61744
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zQ_L3DgC0Rewdpoi_rz6YkeTG_QSVA9JF51mQklX9v.sj3s3UQ%3D%3D&state=4e278eb2-6950-423b-b82a-75f1cf73d7b4 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 62050
+"GET /query/ HTTP/1.1" 200 61744
+REST request error: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/limits/
+Error getting org limits: REST request failed: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/limits/
+Could not fetch additional session info: Failed to get org limits: REST request failed: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/limits/
+Internal Server Error: /auth/session/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/views.py", line 426, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: authentication/session_info.html
+"GET /auth/session/ HTTP/1.1" 500 95321
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /auth/login/ HTTP/1.1" 200 24818
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbSqJRKtEY_r0gPV6cVBE6YmLMXhRMaGfcFABoo4.rndWUBreg%3D%3D&state=0bc74c1e-8f94-49de-b166-886999fa40c0 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 62051
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 61748
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+Standard login failed: Authentication failed: LOGIN_MUST_USE_SECURITY_TOKEN: ユーザー名、パスワード、セキュリティトークンが無効か、ユーザーがロックされています。新しい場所からログインしていますか? 貴社の信頼済みネットワーク外からデスクトップクライアントまたは API 経由で Salesforce へアクセスする場合、パスワードにセキュリティトークンを追加してログインする必要があります。新しいセキュリティトークンを取得するには、Salesforce にログインします。個人設定から、[クイック検索] ボックスに「私のセキュリティトークンのリセット」と入力し、[私のセキュリティトークンのリセット] を選択します。
+Unauthorized: /auth/login/
+"POST /auth/login/ HTTP/1.1" 401 149
+"POST /auth/login/ HTTP/1.1" 200 104
+"GET /query/ HTTP/1.1" 200 61748
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/api/objects/ HTTP/1.1" 302 0
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 63755
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zfGY.0h1wR0nXtNVfTrtk0UQ0O3zcCCdnXqwxu1Mp0sk6EoKSg%3D%3D&state=b863180b-7057-4e36-8cff-f9528c4c017b HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64061
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zcsQcZBOdlGnK94ftoHYMZsxYazeiPOfPPpCZJC0LHSH76i.OA%3D%3D&state=2bca84aa-1d95-4a60-a4f6-5e882c021d59 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64061
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 63755
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 63755
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zfHpJuenqDh66PsJjlpq6GX83D2eZRdpHZBgRYC9XLJYUwM1wg%3D%3D&state=60fdeff9-cd26-49a3-9ac9-bea65528bbc8 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64061
+"GET /query/ HTTP/1.1" 200 63755
+"GET /query/ HTTP/1.1" 200 63755
+"GET /query/ HTTP/1.1" 200 63755
+"GET /query/ HTTP/1.1" 200 63755
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 466, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 96602
+"GET /query/ HTTP/1.1" 200 63755
+"GET /query/ HTTP/1.1" 200 63755
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"HEAD /query/api/objects/ HTTP/1.1" 302 0
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 64222
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zT5mXdweVyMThTn0mUOZ7ts78iC772lSYVVUt35wYJpLpvEyWg%3D%3D&state=51d10e8c-be3c-4c06-8685-c153b620893f HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64528
+"GET /query/ HTTP/1.1" 200 64222
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+- Broken pipe from ('127.0.0.1', 50556)
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zaO92_UVjVckMM9Ai1uxqLaJ1P4qTYzPni.GsUubqzQ1tXkBHw%3D%3D&state=21b2d42b-8afb-444d-b8cf-8ca4870aee3e HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64528
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+/Users/guohe/Documents/Project/ForcePet/query/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 64189
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /auth/login/ HTTP/1.1" 200 24818
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zf8pylMa23SSfc4bSSuu10VPFBvbVdXVDCxPw9X8ZYMlkb2g5A%3D%3D&state=3419d070-f339-473f-bdf5-7d578a965a86 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64495
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTsXqFVUEo.p8HF7.4lyXrENLg4bb3Wv_Vq4C8tYx46D.zotEw%3D%3D&state=e8274f53-31d3-46dd-af05-d24fec91b53f HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64495
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 64189
+"GET /query/ HTTP/1.1" 200 64189
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zQxjHdLNPO_ZKo4U0Afi69MxThmSIwK7mo_F3Tku._GWn3LhYg%3D%3D&state=22348807-35df-427f-ba5d-7a9785b0654c HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64495
+"GET /query/api/objects/ HTTP/1.1" 302 0
+"GET /query/api/objects/ HTTP/1.1" 302 0
+/Users/guohe/Documents/Project/ForcePet/authentication/middleware.py changed, reloading.
+Watching for file changes with StatReloader
+Unexpected error in get_objects: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x112964910>>.
+Internal Server Error: /query/api/objects/
+"GET /query/api/objects/ HTTP/1.1" 500 183
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /query/api/objects/
+"GET /query/api/objects/ HTTP/1.1" 401 98
+/Users/guohe/Documents/Project/ForcePet/authentication/middleware.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 64189
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25112
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zcD5BUevc64qxO8y6XurysDjrFfZiprAeNPwbDHWbVGEJK8bew%3D%3D&state=d052b735-775c-449f-8033-442a0a1934f3 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64495
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zSfaEuHNa9QpqGfRyjC85S.2.rc6z.Xw2XQceGJNUDaY9dSmsA%3D%3D&state=2f20aa22-2b0f-4917-b0c3-6feca65ff4eb HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 64495
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 24818
+Token refresh failed: 400 Client Error: Bad Request for url: https://login.salesforce.com/services/oauth2/token
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 102
+"GET /query/ HTTP/1.1" 200 64211
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 403 2553
+"GET /query/ HTTP/1.1" 200 64243
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 24818
+Token refresh failed: 400 Client Error: Bad Request for url: https://login.salesforce.com/services/oauth2/token
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 102
+- Broken pipe from ('127.0.0.1', 50377)
