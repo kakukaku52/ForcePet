@@ -1,0 +1,19 @@
+# 在项目根目录执行
+printf ".env\n.env.*\n*.sqlite*\ndb.sqlite3\n*.pem\n*.key\n" >> .gitignore
+
+# 停止追踪已加入历史但应忽略的文件（不删本地文件）
+git rm --cached .env db.sqlite3 2>/dev/null || true
+git add .gitignore
+git commit -m "chore: ignore secrets (.env, db.sqlite3)"
+.env
+.env.*
+*.sqlite*
+db.sqlite3
+*.pem
+*.key
+.env
+.env.*
+*.sqlite*
+db.sqlite3
+*.pem
+*.key

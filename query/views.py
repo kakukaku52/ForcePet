@@ -36,13 +36,13 @@ class QueryIndexView(View):
         recent_queries = QueryHistory.objects.filter(
             connection__user=request.user
         )[:10]
-        
+
         # Get saved queries
         saved_queries = SavedQuery.objects.filter(
             user=request.user,
             query_type='soql'
         )[:10]
-        
+
         # Check if user has active Salesforce connection
         has_sf_connection = False
         if hasattr(request, 'sf_connection'):
@@ -55,11 +55,51 @@ class QueryIndexView(View):
             ).first()
             has_sf_connection = connection is not None
 
+        # Preload Salesforce objects for the selector when a connection is available.
+        available_objects = {
+            'standard': [],
+            'custom': [],
+        }
+        if has_sf_connection:
+            try:
+                connection = getattr(request, 'sf_connection', None)
+                if connection is None and request.user.is_authenticated:
+                    connection = SalesforceConnection.objects.filter(
+                        user=request.user,
+                        is_active=True
+                    ).order_by('-updated_at').first()
+
+                if connection:
+                    client = SalesforceClient(connection)
+                    describe_result = client.describe_global()
+
+                    for sobject in describe_result.get('sobjects', []):
+                        if not sobject.get('queryable'):
+                            continue
+
+                        obj_data = {
+                            'name': sobject.get('name'),
+                            'label': sobject.get('label'),
+                            'custom': sobject.get('custom', False),
+                        }
+
+                        if obj_data['custom']:
+                            available_objects['custom'].append(obj_data)
+                        else:
+                            available_objects['standard'].append(obj_data)
+
+                    available_objects['standard'].sort(key=lambda x: x['label'])
+                    available_objects['custom'].sort(key=lambda x: x['label'])
+            except SalesforceAPIError as exc:
+                logger.warning("Failed to preload Salesforce objects: %s", exc)
+
         context = {
             'form': form,
             'recent_queries': recent_queries,
             'saved_queries': saved_queries,
             'has_sf_connection': has_sf_connection,
+            'available_objects': available_objects,
+            'has_initial_objects': bool(available_objects['standard'] or available_objects['custom']),
         }
         return render(request, self.template_name, context)
     
@@ -483,14 +523,33 @@ class QueryHistoryView(View):
 def get_objects(request):
     """Get all Salesforce objects for the dropdown"""
     try:
-        # Check if user has an active Salesforce connection
-        if not hasattr(request, 'sf_connection'):
+        logger.info("Loading Salesforce objects for user=%s", request.user if request.user.is_authenticated else 'anonymous')
+        # Prefer middleware provided connection. If missing, try to recover from session/user.
+        connection = getattr(request, 'sf_connection', None)
+        if connection is None:
+            connection_id = request.session.get('sf_connection_id')
+            if connection_id:
+                connection = SalesforceConnection.objects.filter(
+                    id=connection_id,
+                    is_active=True
+                ).first()
+
+        if connection is None and request.user.is_authenticated:
+            connection = SalesforceConnection.objects.filter(
+                user=request.user,
+                is_active=True
+            ).order_by('-updated_at').first()
+
+        if connection is None:
             return JsonResponse({
                 'success': False,
                 'error': 'No active Salesforce connection found. Please log in to Salesforce.'
             }, status=401)
 
-        client = SalesforceClient(request.sf_connection)
+        # Attach for downstream use to keep behaviour consistent with middleware
+        request.sf_connection = connection
+
+        client = SalesforceClient(connection)
         describe_result = client.describe_global()
 
         # Extract object information
@@ -535,14 +594,31 @@ def get_object_fields(request):
         return JsonResponse({'error': 'Object name is required'}, status=400)
 
     try:
-        # Check if user has an active Salesforce connection
-        if not hasattr(request, 'sf_connection'):
+        logger.info("Loading fields for object=%s user=%s", object_name, request.user if request.user.is_authenticated else 'anonymous')
+        connection = getattr(request, 'sf_connection', None)
+        if connection is None:
+            connection_id = request.session.get('sf_connection_id')
+            if connection_id:
+                connection = SalesforceConnection.objects.filter(
+                    id=connection_id,
+                    is_active=True
+                ).first()
+
+        if connection is None and request.user.is_authenticated:
+            connection = SalesforceConnection.objects.filter(
+                user=request.user,
+                is_active=True
+            ).order_by('-updated_at').first()
+
+        if connection is None:
             return JsonResponse({
                 'success': False,
                 'error': 'No active Salesforce connection found. Please log in to Salesforce.'
             }, status=401)
 
-        client = SalesforceClient(request.sf_connection)
+        request.sf_connection = connection
+
+        client = SalesforceClient(connection)
         describe_result = client.describe_sobject(object_name)
 
         # Extract field information
@@ -574,6 +650,7 @@ def get_object_fields(request):
             'childRelationships': describe_result.get('childRelationships', []),
             'recordTypeInfos': describe_result.get('recordTypeInfos', [])
         })
+
 
     except SalesforceAPIError as e:
         logger.error(f"Failed to get fields for {object_name}: {e}")
