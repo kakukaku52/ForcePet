@@ -1,56 +1,67 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}SOQL Query - Django Workbench{% endblock %}
+{% block title %}SOQLクエリ - Django Workbench{% endblock %}
 
 {% block extra_css %}
 <!-- Salesforce Lightning Design System CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
 <style>
+    /* Figma Dashboard Style */
+    body {
+        background-color: #fafafb;
+    }
+
     .query-sidebar {
-        background-color: #f3f2f2;
-        border-right: 1px solid #d8dde6;
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
         min-height: calc(100vh - 200px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .recent-query {
         cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 0.25rem;
-        margin-bottom: 0.25rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
         font-size: 0.875rem;
+        background-color: #fafafb;
+        transition: all 0.2s ease;
     }
 
     .recent-query:hover {
-        background-color: #ecebea;
+        background-color: #f0f0f1;
+        transform: translateY(-1px);
     }
 
     .query-results {
         max-height: 600px;
         overflow: auto;
         background-color: white;
-        color: #080707 !important;
+        color: #030229 !important;
     }
 
     /* Ensure all text in results section is visible */
     #results-section * {
-        color: #080707 !important;
+        color: #030229 !important;
     }
 
     #results-section .slds-card__header {
-        background-color: #f3f2f2;
+        background-color: #ffffff;
+        border-bottom: 1px solid #f0f0f1;
     }
 
     #results-section table td,
     #results-section table th {
-        color: #080707 !important;
+        color: #030229 !important;
     }
 
     .query-builder-panel {
-        background-color: #f3f2f2;
-        border: 1px solid #d8dde6;
-        border-radius: 0.25rem;
-        padding: 1rem;
+        background-color: #fafafb;
+        border: none;
+        border-radius: 10px;
+        padding: 1.5rem;
         margin-bottom: 1rem;
     }
 
@@ -61,25 +72,26 @@
     .field-list {
         max-height: 300px;
         overflow-y: auto;
-        border: 1px solid #d8dde6;
-        border-radius: 0.25rem;
+        border: 1px solid #e8e8e9;
+        border-radius: 8px;
         padding: 0.75rem;
         background: white;
     }
 
     .field-item {
-        padding: 0.25rem;
+        padding: 0.5rem;
         cursor: pointer;
-        border-radius: 0.25rem;
+        border-radius: 8px;
         font-size: 0.875rem;
+        transition: background-color 0.2s ease;
     }
 
     .field-item:hover {
-        background-color: #e7f3ff;
+        background-color: rgba(96, 91, 255, 0.05);
     }
 
     .field-type {
-        color: #706e6b;
+        color: rgba(3, 2, 41, 0.5);
         font-size: 0.75rem;
         margin-left: 0.25rem;
     }
@@ -87,6 +99,7 @@
     .operator-btn {
         margin: 0.125rem;
         font-size: 0.875rem;
+        border-radius: 5px;
     }
 
     .query-helper-section {
@@ -94,28 +107,131 @@
     }
 
     .field-checkbox {
-        margin-right: 0.25rem;
+        margin-right: 0.5rem;
     }
 
     .slds-scope .slds-card {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .slds-scope .slds-card__header-title {
+        color: rgba(3, 2, 41, 0.7);
+        font-weight: 700;
+        font-size: 1.125rem;
     }
 
     /* SLDS overrides for better form integration */
     .slds-scope .form-control {
         background-color: white;
-        border: 1px solid #d8dde6;
-        border-radius: 0.25rem;
-        color: #080707;
+        border: 1px solid #e8e8e9;
+        border-radius: 8px;
+        color: #030229;
         font-size: 0.875rem;
-        padding: 0.5rem 0.75rem;
+        padding: 0.75rem;
         width: 100%;
+        transition: all 0.2s ease;
     }
 
     .slds-scope .form-control:focus {
-        border-color: #1589ee;
-        box-shadow: 0 0 3px #0176d3;
+        border-color: #605bff;
+        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
         outline: 0;
+    }
+
+    .slds-scope .slds-button_brand {
+        background-color: #605bff;
+        border-color: #605bff;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .slds-scope .slds-button_brand:hover {
+        background-color: #4e47cc;
+        border-color: #4e47cc;
+    }
+
+    .slds-scope .slds-button_outline-brand {
+        border-color: #605bff;
+        color: #605bff;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .slds-scope .slds-button_outline-brand:hover {
+        background-color: rgba(96, 91, 255, 0.05);
+    }
+
+    .slds-scope .slds-button_neutral {
+        border-radius: 8px;
+        background-color: #fafafb;
+        border-color: #e8e8e9;
+    }
+
+    .slds-scope .slds-button_neutral:hover {
+        background-color: #f0f0f1;
+    }
+
+    .slds-scope .slds-button_success {
+        background-color: #26c0e2;
+        border-color: #26c0e2;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .slds-scope .slds-button_success:hover {
+        background-color: #1fa8c7;
+    }
+
+    .slds-scope .slds-select,
+    .slds-scope .slds-input,
+    .slds-scope .slds-textarea {
+        background-color: white;
+        border: 1px solid #e8e8e9;
+        border-radius: 8px;
+        color: #030229;
+    }
+
+    .slds-scope .slds-select:focus,
+    .slds-scope .slds-input:focus,
+    .slds-scope .slds-textarea:focus {
+        border-color: #605bff;
+        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
+        outline: 0;
+    }
+
+    .slds-scope .slds-badge {
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .slds-scope .slds-badge_success {
+        background-color: rgba(38, 192, 226, 0.1);
+        color: #26c0e2;
+    }
+
+    .slds-scope .slds-badge_warning {
+        background-color: rgba(255, 165, 0, 0.1);
+        color: #ff8f00;
+    }
+
+    .slds-table thead th {
+        background: #fafafb;
+        color: #030229;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .slds-table tbody td {
+        color: #030229;
+        font-size: 0.875rem;
+    }
+
+    .slds-table tbody tr:hover {
+        background-color: rgba(96, 91, 255, 0.02);
     }
 </style>
 {% endblock %}
@@ -133,13 +249,13 @@
                                 <use xlink:href="#utility-search"></use>
                             </svg>
                         </span>
-                        SOQL Query
+                        SOQLクエリ
                     </h2>
                 </div>
                 <div class="slds-card__body slds-card__body_inner">
                     <!-- Recent Queries -->
                     <div class="slds-m-bottom_medium">
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">Recent Queries</h3>
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">最近のクエリ</h3>
                         {% for query in recent_queries %}
                             <div class="recent-query slds-box slds-box_xx-small" onclick="loadQuery('{{ query.query_text|escapejs }}')">
                                 <div class="slds-truncate">
@@ -148,13 +264,13 @@
                                 </div>
                             </div>
                         {% empty %}
-                            <p class="slds-text-color_weak slds-text-body_small">No recent queries</p>
+                            <p class="slds-text-color_weak slds-text-body_small">最近のクエリはありません</p>
                         {% endfor %}
                     </div>
 
                     <!-- Saved Queries -->
                     <div>
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">Saved Queries</h3>
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">保存済みクエリ</h3>
                         {% for query in saved_queries %}
                             <div class="recent-query slds-box slds-box_xx-small" onclick="loadQuery('{{ query.query_text|escapejs }}')">
                                 <div>
@@ -163,10 +279,10 @@
                                 </div>
                             </div>
                         {% empty %}
-                            <p class="slds-text-color_weak slds-text-body_small">No saved queries</p>
+                            <p class="slds-text-color_weak slds-text-body_small">保存されたクエリはありません</p>
                         {% endfor %}
                         <a href="{% url 'query:saved_queries' %}" class="slds-button slds-button_outline-brand slds-button_small slds-m-top_small">
-                            Manage Saved Queries
+                            保存クエリを管理
                         </a>
                     </div>
                 </div>
@@ -187,7 +303,7 @@
                         </div>
                         <div class="slds-media__body">
                             <h2 class="slds-card__header-title">
-                                <span>SOQL Query Editor</span>
+                                <span>SOQLクエリエディタ</span>
                             </h2>
                         </div>
                         <div class="slds-no-flex">
@@ -197,7 +313,7 @@
                                         <use xlink:href="#utility-history"></use>
                                     </svg>
                                 </span>
-                                Query History
+                                クエリ履歴
                             </a>
                         </div>
                     </div>
@@ -213,7 +329,7 @@
                                         <use xlink:href="#utility-settings"></use>
                                     </svg>
                                 </span>
-                                Query Builder
+                                クエリビルダー
                             </h3>
                         </div>
                         <div class="slds-card__body slds-card__body_inner">
@@ -221,7 +337,7 @@
                                 <!-- Object Selector -->
                                 <div class="slds-col slds-size_1-of-3">
                                     <div class="slds-form-element">
-                                        <label class="slds-form-element__label" for="object-selector">Select Object:</label>
+                                        <label class="slds-form-element__label" for="object-selector">オブジェクト選択:</label>
                                         <div class="slds-form-element__control">
                                             <div class="slds-select_container">
                                                 <select
@@ -231,16 +347,16 @@
                                                     size="1"
                                                     onchange="handleObjectSelection(this.value)"
                                                 >
-                                                    <option value="">-- Select an Object --</option>
+                                                    <option value="">-- オブジェクトを選択 --</option>
                                                     {% if available_objects.standard %}
-                                                        <optgroup label="Standard Objects">
+                                                        <optgroup label="標準オブジェクト">
                                                         {% for obj in available_objects.standard %}
                                                             <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
                                                         {% endfor %}
                                                         </optgroup>
                                                     {% endif %}
                                                     {% if available_objects.custom %}
-                                                        <optgroup label="Custom Objects">
+                                                        <optgroup label="カスタムオブジェクト">
                                                         {% for obj in available_objects.custom %}
                                                             <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
                                                         {% endfor %}
@@ -255,7 +371,7 @@
                                 <!-- Quick Actions -->
                                 <div class="slds-col slds-size_2-of-3">
                                     <div class="slds-form-element">
-                                        <label class="slds-form-element__label">Quick Actions:</label>
+                                        <label class="slds-form-element__label">クイックアクション:</label>
                                         <div class="slds-form-element__control">
                                             <div class="slds-button-group" role="group">
                                                 <button type="button" class="slds-button slds-button_outline-brand slds-button_small" onclick="selectAllFields()">
@@ -264,7 +380,7 @@
                                                             <use xlink:href="#utility-check"></use>
                                                         </svg>
                                                     </span>
-                                                    Select All Fields
+                                                    すべての項目を選択
                                                 </button>
                                                 <button type="button" class="slds-button slds-button_neutral slds-button_small" onclick="clearFieldSelection()">
                                                     <span class="slds-icon_container slds-icon-utility-clear slds-m-right_xx-small">
@@ -272,7 +388,7 @@
                                                             <use xlink:href="#utility-clear"></use>
                                                         </svg>
                                                     </span>
-                                                    Clear Fields
+                                                    選択をクリア
                                                 </button>
                                                 <button type="button" class="slds-button slds-button_success slds-button_small" onclick="buildQuery()">
                                                     <span class="slds-icon_container slds-icon-utility-builder slds-m-right_xx-small">
@@ -280,7 +396,7 @@
                                                             <use xlink:href="#utility-builder"></use>
                                                         </svg>
                                                     </span>
-                                                    Build Query
+                                                    クエリを生成
                                                 </button>
                                             </div>
                                         </div>
@@ -293,10 +409,10 @@
                                 <!-- Field List -->
                                 <div class="slds-col slds-size_1-of-2">
                                     <div class="slds-form-element">
-                                        <label class="slds-form-element__label">Available Fields:</label>
+                                        <label class="slds-form-element__label">利用可能な項目:</label>
                                         <div class="slds-form-element__control">
                                             <div class="field-list slds-scrollable_y" id="field-list">
-                                                <div class="slds-text-color_weak">Select an object to view fields</div>
+                                                <div class="slds-text-color_weak">項目を表示するにはオブジェクトを選択してください</div>
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +422,7 @@
                                 <div class="slds-col slds-size_1-of-2">
                                     <div class="query-helper-section">
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label">Operators:</label>
+                                            <label class="slds-form-element__label">演算子:</label>
                                             <div class="slds-form-element__control">
                                                 <div class="slds-button-group-row">
                                                     <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('AND')">
@@ -349,7 +465,7 @@
 
                                     <div class="query-helper-section">
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label">Clauses:</label>
+                                            <label class="slds-form-element__label">句:</label>
                                             <div class="slds-form-element__control">
                                                 <div class="slds-button-group-row">
                                                     <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('WHERE')">
@@ -377,7 +493,7 @@
 
                                     <div class="query-helper-section">
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label">Functions:</label>
+                                            <label class="slds-form-element__label">関数:</label>
                                             <div class="slds-form-element__control">
                                                 <div class="slds-button-group-row">
                                                     <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('COUNT()')">
@@ -410,7 +526,7 @@
                         <!-- Query Input -->
                         <div class="slds-form-element slds-m-bottom_medium">
                             <label class="slds-form-element__label" for="{{ form.query.id_for_label }}">
-                                SOQL Query:
+                                SOQLクエリ:
                             </label>
                             <div class="slds-form-element__control">
                                 {{ form.query }}
@@ -446,7 +562,7 @@
                                             <use xlink:href="#utility-check"></use>
                                         </svg>
                                     </span>
-                                    Validate Query
+                                    クエリを検証
                                 </button>
                             </div>
                         </div>
@@ -459,7 +575,7 @@
                                         <use xlink:href="#utility-play"></use>
                                     </svg>
                                 </span>
-                                Execute Query
+                                クエリを実行
                             </button>
                             <button type="button" class="slds-button slds-button_neutral" onclick="clearQuery()">
                                 <span class="slds-icon_container slds-icon-utility-clear slds-m-right_xx-small">
@@ -467,7 +583,7 @@
                                         <use xlink:href="#utility-clear"></use>
                                     </svg>
                                 </span>
-                                Clear
+                                クリア
                             </button>
                             <button type="button" class="slds-button slds-button_success" onclick="saveQuery()" {% if not query_executed %}disabled{% endif %}>
                                 <span class="slds-icon_container slds-icon-utility-save slds-m-right_xx-small">
@@ -475,7 +591,7 @@
                                         <use xlink:href="#utility-save"></use>
                                     </svg>
                                 </span>
-                                Save Query
+                                クエリを保存
                             </button>
                         </div>
                     </form>
@@ -497,7 +613,7 @@
                         </div>
                         <div class="slds-media__body">
                             <h2 class="slds-card__header-title">
-                                <span>Query Results</span>
+                                <span>クエリ結果</span>
                             </h2>
                         </div>
                         <div class="slds-no-flex">
@@ -530,24 +646,24 @@
                     <div class="slds-grid slds-gutters slds-m-bottom_medium">
                         <div class="slds-col slds-size_1-of-4">
                             <div class="slds-text-body_regular">
-                                <strong>Records Found:</strong> {{ results.totalSize|default:0 }}
+                                <strong>取得件数:</strong> {{ results.totalSize|default:0 }}
                             </div>
                         </div>
                         <div class="slds-col slds-size_1-of-4">
                             <div class="slds-text-body_regular">
-                                <strong>Execution Time:</strong> {{ results.execution_time|floatformat:3 }}s
+                                <strong>実行時間:</strong> {{ results.execution_time|floatformat:3 }}秒
                             </div>
                         </div>
                         <div class="slds-col slds-size_1-of-4">
                             <div class="slds-text-body_regular">
-                                <strong>Records Displayed:</strong> {{ results.records|length }}
+                                <strong>表示件数:</strong> {{ results.records|length }}
                             </div>
                         </div>
                         <div class="slds-col slds-size_1-of-4">
                             {% if not results.done %}
-                                <span class="slds-badge slds-badge_warning">More records available</span>
+                                <span class="slds-badge slds-badge_warning">さらにレコードがあります</span>
                             {% else %}
-                                <span class="slds-badge slds-badge_success">Complete</span>
+                                <span class="slds-badge slds-badge_success">取得完了</span>
                             {% endif %}
                         </div>
                     </div>
@@ -608,7 +724,7 @@
                                     <use xlink:href="#utility-download"></use>
                                 </svg>
                             </span>
-                            Load More Results
+                            さらに読み込む
                         </button>
                     </div>
                     {% endif %}
@@ -621,7 +737,7 @@
                                         <use xlink:href="#utility-info"></use>
                                     </svg>
                                 </span>
-                                <p class="slds-text-heading_medium">No records found.</p>
+                                <p class="slds-text-heading_medium">レコードが見つかりません。</p>
                             </div>
                         </div>
                     {% endif %}
@@ -707,12 +823,12 @@ function loadObjects() {
             if (response.success) {
                 const selector = $('#object-selector');
                 selector.empty();
-                selector.append('<option value="">-- Select an Object --</option>');
+                selector.append('<option value="">-- オブジェクトを選択 --</option>');
 
                 // Check if we have objects
                 if (!response.objects || response.objects.length === 0) {
                     console.warn('No objects returned from API');
-                    workbench.showToast('No Salesforce objects available. Please check your connection.', 'warning');
+                    workbench.showToast('利用可能な Salesforce オブジェクトがありません。接続を確認してください。', 'warning');
                     return;
                 }
 
@@ -724,7 +840,7 @@ function loadObjects() {
 
                 // Add standard objects
                 if (standardObjects.length > 0) {
-                    const standardGroup = $('<optgroup label="Standard Objects"></optgroup>');
+                    const standardGroup = $('<optgroup label="標準オブジェクト"></optgroup>');
                     standardObjects.forEach(obj => {
                         standardGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
                     });
@@ -733,7 +849,7 @@ function loadObjects() {
 
                 // Add custom objects
                 if (customObjects.length > 0) {
-                    const customGroup = $('<optgroup label="Custom Objects"></optgroup>');
+                    const customGroup = $('<optgroup label="カスタムオブジェクト"></optgroup>');
                     customObjects.forEach(obj => {
                         customGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
                     });
@@ -745,7 +861,7 @@ function loadObjects() {
                 console.log('Objects loaded successfully');
             } else {
                 console.error('Failed to load objects:', response.error);
-                workbench.showToast('Failed to load objects: ' + response.error, 'error');
+                workbench.showToast('オブジェクトの読み込みに失敗しました: ' + response.error, 'error');
 
                 // If authentication error, redirect to login
                 if (response.error && response.error.includes('No active Salesforce connection')) {
@@ -759,9 +875,9 @@ function loadObjects() {
             console.error('AJAX request failed:', status, error);
             console.error('Response:', xhr.responseText);
 
-            let errorMessage = 'Failed to load Salesforce objects';
+            let errorMessage = 'Salesforce オブジェクトの読み込みに失敗しました';
             if (xhr.status === 401) {
-                errorMessage = 'Not authenticated. Please log in to Salesforce.';
+                errorMessage = '認証されていません。Salesforce にログインしてください。';
                 setTimeout(function() {
                     window.location.href = '/auth/login/';
                 }, 3000);
@@ -769,10 +885,10 @@ function loadObjects() {
                 try {
                     const response = JSON.parse(xhr.responseText);
                     if (response.error) {
-                        errorMessage = 'Server error: ' + response.error;
+                        errorMessage = 'サーバーエラー: ' + response.error;
                     }
                 } catch (e) {
-                    errorMessage = 'Server error occurred while loading objects';
+                    errorMessage = 'オブジェクトの読み込み中にサーバーエラーが発生しました';
                 }
             }
 
@@ -803,11 +919,11 @@ function loadObjectFields(objectName) {
                 applyFieldsToQuery(orderSelectedFields());
                 console.log('Fields loaded for', objectName, response.fields.length, 'fields');
             } else {
-                workbench.showToast('Failed to load fields: ' + response.error, 'error');
+                workbench.showToast('項目の読み込みに失敗しました: ' + response.error, 'error');
             }
         })
         .fail(function() {
-            workbench.showToast('Failed to load object fields', 'error');
+            workbench.showToast('オブジェクト項目の読み込みに失敗しました', 'error');
         });
 }
 
@@ -824,7 +940,7 @@ function displayFields(fields) {
     fieldList.append(`
         <div class="slds-m-bottom_small">
             <input type="text" class="form-control slds-input" id="field-search"
-                   placeholder="Search fields..." onkeyup="filterFields()">
+                   placeholder="項目を検索..." onkeyup="filterFields()">
         </div>
     `);
 
@@ -833,7 +949,7 @@ function displayFields(fields) {
 
     // Standard fields
     if (standardFields.length > 0) {
-        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small">Standard Fields</div>');
+        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small">標準項目</div>');
         standardFields.forEach(field => {
             fieldContainer.append(createFieldItem(field));
         });
@@ -841,7 +957,7 @@ function displayFields(fields) {
 
     // Custom fields
     if (customFields.length > 0) {
-        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small slds-m-top_small">Custom Fields</div>');
+        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small slds-m-top_small">カスタム項目</div>');
         customFields.forEach(field => {
             fieldContainer.append(createFieldItem(field));
         });
@@ -920,7 +1036,7 @@ function clearFieldSelection() {
 // Build query from selected fields
 function buildQuery() {
     if (!currentObject) {
-        workbench.showToast('Please select an object first', 'warning');
+        workbench.showToast('先にオブジェクトを選択してください', 'warning');
         return;
     }
 
@@ -931,13 +1047,13 @@ function buildQuery() {
     });
 
     if (selectedFields.size === 0) {
-        workbench.showToast('Please select at least one field', 'warning');
+        workbench.showToast('少なくとも1つの項目を選択してください', 'warning');
         return;
     }
 
     const fieldArray = orderSelectedFields();
     applyFieldsToQuery(fieldArray);
-    workbench.showToast('Query built successfully', 'success');
+    workbench.showToast('クエリを生成しました', 'success');
 }
 
 function orderSelectedFields() {
@@ -1045,16 +1161,16 @@ function validateQuery() {
     const validation = workbench.validateSOQL(query);
 
     if (validation.isValid) {
-        workbench.showToast('Query syntax is valid', 'success');
+        workbench.showToast('クエリ構文は有効です', 'success');
     } else {
-        workbench.showToast('Query validation failed: ' + validation.errors.join(', '), 'error');
+        workbench.showToast('クエリ検証に失敗しました: ' + validation.errors.join(', '), 'error');
     }
 }
 
 function saveQuery() {
     const query = $('#id_query').val();
     if (!query.trim()) {
-        workbench.showToast('No query to save', 'warning');
+        workbench.showToast('保存するクエリがありません', 'warning');
         return;
     }
 
@@ -1064,7 +1180,7 @@ function saveQuery() {
 
     // This would normally be an AJAX call to save the query
     // For now, just show a message
-    workbench.showToast('Query saving functionality will be implemented via AJAX', 'info');
+    workbench.showToast('クエリ保存機能は今後 AJAX で実装されます', 'info');
 }
 
 // Handle load more results
@@ -1108,16 +1224,16 @@ $(document).on('click', '.load-more-results', function() {
                     button.hide();
                 } else {
                     button.data('next-url', response.nextRecordsUrl);
-                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
                 }
             } else {
-                workbench.showToast('Failed to load more results: ' + response.error, 'error');
-                button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+                workbench.showToast('追加結果の読み込みに失敗しました: ' + response.error, 'error');
+                button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
             }
         })
         .fail(function() {
-            workbench.showToast('Failed to load more results', 'error');
-            button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+            workbench.showToast('追加結果の読み込みに失敗しました', 'error');
+            button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
         });
 });
 
@@ -1129,7 +1245,7 @@ function executeQueryAjax(event) {
     const queryText = $('#id_query').val();
 
     if (!queryText.trim()) {
-        workbench.showToast('Please enter a query', 'warning');
+        workbench.showToast('クエリを入力してください', 'warning');
         return;
     }
 
@@ -1137,7 +1253,7 @@ function executeQueryAjax(event) {
     const selectedObject = $('#object-selector').val();
 
     // Show loading indicator
-    $('#results-section').html('<div class="slds-align_absolute-center slds-m-top_large"><div class="slds-spinner slds-spinner_medium" role="status"><span class="slds-assistive-text">Loading...</span><div class="slds-spinner__dot-a"></div><div class="slds-spinner__dot-b"></div></div></div>');
+    $('#results-section').html('<div class="slds-align_absolute-center slds-m-top_large"><div class="slds-spinner slds-spinner_medium" role="status"><span class="slds-assistive-text">読み込み中...</span><div class="slds-spinner__dot-a"></div><div class="slds-spinner__dot-b"></div></div></div>');
 
     $.ajax({
         url: '/query/',
@@ -1166,7 +1282,7 @@ function executeQueryAjax(event) {
                         return;
                     }
 
-                    button.html('<span class="loading-spinner"></span> Loading...');
+                    button.html('<span class="loading-spinner"></span> 読み込み中...');
 
                     $.get('/query/more/', {nextRecordsUrl: nextUrl})
                         .done(function(response) {
@@ -1198,26 +1314,26 @@ function executeQueryAjax(event) {
                                     button.hide();
                                 } else {
                                     button.data('next-url', response.nextRecordsUrl);
-                                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> Load More Results');
+                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
                                 }
                             } else {
-                                workbench.showToast('Failed to load more results: ' + response.error, 'error');
+                                workbench.showToast('追加結果の読み込みに失敗しました: ' + response.error, 'error');
                             }
                         })
                         .fail(function() {
-                            workbench.showToast('Failed to load more results', 'error');
+                            workbench.showToast('追加結果の読み込みに失敗しました', 'error');
                         });
                 });
 
-                workbench.showToast('Query executed successfully', 'success');
+                workbench.showToast('クエリの実行に成功しました', 'success');
             } else {
                 // If no results section, show the full response (might be an error page)
-                $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">No results returned from query</div>');
+                $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">クエリ結果が返されませんでした</div>');
             }
         },
         error: function(xhr, status, error) {
-            $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">Error executing query: ' + error + '</div>');
-            workbench.showToast('Query execution failed', 'error');
+            $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">クエリの実行エラー: ' + error + '</div>');
+            workbench.showToast('クエリの実行に失敗しました', 'error');
         }
     });
 }
@@ -1225,7 +1341,7 @@ function executeQueryAjax(event) {
 // Select all fields
 function selectAllFields() {
     if (!currentFields) {
-        workbench.showToast('Please select an object first', 'warning');
+        workbench.showToast('先にオブジェクトを選択してください', 'warning');
         return;
     }
 
@@ -1238,7 +1354,7 @@ function selectAllFields() {
 
     const fieldArray = orderSelectedFields();
     applyFieldsToQuery(fieldArray);
-    workbench.showToast('All fields selected', 'success');
+    workbench.showToast('すべての項目を選択しました', 'success');
 }
 
 // Clear field selection
@@ -1249,7 +1365,7 @@ function clearFieldSelection() {
 
     if (currentObject) {
         applyFieldsToQuery(orderSelectedFields());
-        workbench.showToast('Field selection cleared', 'info');
+        workbench.showToast('項目の選択をクリアしました', 'info');
     }
 }
 </script>

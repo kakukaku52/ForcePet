@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}メタデータ詳細 - Django Workbench{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
+<style>
+    /* Match query page style - simple and clean */
+    .metadata-detail-grid dt {
+        font-size: 0.75rem;
+        color: #706e6b;
+        margin-bottom: 0.25rem;
+    }
+
+    .metadata-detail-grid dd {
+        font-weight: 600;
+        margin: 0 0 1rem 0;
+        color: #080707;
+    }
+
+    .metadata-results-table {
+        max-height: 600px;
+        overflow: auto;
+        background-color: white;
+    }
+
+    .slds-scope .slds-card {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .slds-table thead th {
+        background: #f3f2f2;
+        color: #3e3e3c;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="slds-scope">
+    <!-- Breadcrumb Navigation -->
+    <nav class="slds-m-bottom_small" role="navigation" aria-label="Breadcrumbs">
+        <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+            <li class="slds-breadcrumb__item">
+                <a href="{{ return_url }}">メタデータ</a>
+            </li>
+            <li class="slds-breadcrumb__item">
+                <span>{{ metadata_type_label }}</span>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="slds-page-header slds-m-bottom_medium">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-record">
+                            <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+                                <use xlink:href="#standard-record"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate" title="{{ metadata_type_label }}">{{ metadata_type_label }}</span>
+                                </h1>
+                            </div>
+                        </div>
+                        {% if identifier %}
+                        <p class="slds-page-header__name-meta">識別子: <code>{{ identifier }}</code></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <a href="{{ return_url }}" class="slds-button slds-button_neutral">
+                            <span class="slds-icon_container slds-icon-utility-back slds-m-right_xx-small">
+                                <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                    <use xlink:href="#utility-back"></use>
+                                </svg>
+                            </span>
+                            戻る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="slds-grid slds-wrap slds-gutters">
+        <div class="slds-col slds-size_12-of-12">
+            {% if detail_error %}
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-bottom_medium" role="alert">
+                    <span class="slds-assistive-text">エラー</span>
+                    <h2>
+                        <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small">
+                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                <use xlink:href="#utility-error"></use>
+                            </svg>
+                        </span>
+                        {{ detail_error }}
+                    </h2>
+                </div>
+            {% endif %}
+
+            <!-- Metadata Attributes Card -->
+            <div class="slds-card">
+                <div class="slds-card__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-info">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="#utility-info"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>メタデータの属性</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    {% if record_items %}
+                        <dl class="metadata-detail-grid">
+                            {% for key, value in record_items %}
+                                <dt class="slds-text-color_weak">{{ key }}</dt>
+                                <dd>
+                                    {% if value is boolean %}
+                                        {{ value|yesno:"はい,いいえ" }}
+                                    {% elif value %}
+                                        {{ value }}
+                                    {% else %}
+                                        —
+                                    {% endif %}
+                                </dd>
+                            {% endfor %}
+                        </dl>
+                    {% else %}
+                        <div class="slds-align_absolute-center slds-p-around_medium">
+                            <div class="slds-text-color_weak slds-text-align_center">
+                                <span class="slds-icon_container slds-icon-utility-info">
+                                    <svg class="slds-icon slds-icon_large" aria-hidden="true">
+                                        <use xlink:href="#utility-info"></use>
+                                    </svg>
+                                </span>
+                                <p class="slds-text-body_regular">表示できる属性がありません。</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Object Information Card -->
+            {% if object_info %}
+            <div class="slds-card slds-m-top_medium">
+                <div class="slds-card__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-table">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="#utility-table"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>オブジェクト情報</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium">
+                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+                            <div class="slds-text-title_caps slds-text-color_weak" style="font-size: 0.75rem; margin-bottom: 0.25rem;">ラベル</div>
+                            <div class="slds-text-heading_small">{{ object_info.label|default:"—" }}</div>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+                            <div class="slds-text-title_caps slds-text-color_weak" style="font-size: 0.75rem; margin-bottom: 0.25rem;">API 名</div>
+                            <div class="slds-text-heading_small">{{ object_info.api_name|default:"—" }}</div>
+                        </div>
+                        {% if object_info.plural_label %}
+                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+                            <div class="slds-text-title_caps slds-text-color_weak" style="font-size: 0.75rem; margin-bottom: 0.25rem;">複数形</div>
+                            <div class="slds-text-heading_small">{{ object_info.plural_label }}</div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if object_fields %}
+                        <div class="slds-scrollable_x metadata-results-table">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col"><div class="slds-truncate" title="API 名">API 名</div></th>
+                                        <th scope="col"><div class="slds-truncate" title="表示ラベル">表示ラベル</div></th>
+                                        <th scope="col"><div class="slds-truncate" title="種別">種別</div></th>
+                                        <th scope="col"><div class="slds-truncate" title="必須">必須</div></th>
+                                        <th scope="col"><div class="slds-truncate" title="参照先">参照先</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for field in object_fields %}
+                                        <tr class="slds-hint-parent">
+                                            <td><div class="slds-truncate"><code>{{ field.name }}</code></div></td>
+                                            <td><div class="slds-truncate">{{ field.label|default:"—" }}</div></td>
+                                            <td><div class="slds-truncate">{{ field.type|default:"—" }}</div></td>
+                                            <td><div class="slds-truncate">{% if field.nillable %}いいえ{% else %}はい{% endif %}</div></td>
+                                            <td>
+                                                <div class="slds-truncate">
+                                                    {% if field.referenceTo %}
+                                                        {{ field.referenceTo|join:", " }}
+                                                    {% else %}
+                                                        —
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="slds-align_absolute-center slds-p-around_medium">
+                            <div class="slds-text-color_weak slds-text-align_center">
+                                <span class="slds-icon_container slds-icon-utility-info">
+                                    <svg class="slds-icon slds-icon_large" aria-hidden="true">
+                                        <use xlink:href="#utility-info"></use>
+                                    </svg>
+                                </span>
+                                <p class="slds-text-body_regular">表示できる項目情報がありません。</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

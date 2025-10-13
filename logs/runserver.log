@@ -1,0 +1,1161 @@
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zUjBgTo3CC.rgyNyz5pcrrJAL4O1JX355xhD.NL77P_xUq9wQw%3D%3D&state=0345300b-427d-4270-a1ba-6f569d1df663 HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25124
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 25125
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zfgxzyWr0Ytn2cWK06_rRfPwxQBP70Ssd8Qfp6Q8tI2NI37Cag%3D%3D&state=04ac1e82-2fa5-4086-af9a-5cafbcfdc7da HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402578
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"POST /query/ HTTP/1.1" 200 4687529
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"GET /query/ HTTP/1.1" 200 402785
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402785
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 30787
+"GET /auth/login/ HTTP/1.1" 200 30493
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTVDLf0JNP7kNQxADZvJccvowVu4INDQLzZu1g_dnYX0ZQTaJA%3D%3D&state=5fe9fe88-ec43-41ab-8f23-20f41edc34b0 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 403091
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 402785
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+- Broken pipe from ('127.0.0.1', 51490)
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 35689
+"GET /auth/login/ HTTP/1.1" 200 35395
+"GET /auth/login/ HTTP/1.1" 200 35395
+"GET /auth/login/ HTTP/1.1" 200 36011
+"GET /auth/login/ HTTP/1.1" 200 36011
+"GET /auth/login/ HTTP/1.1" 200 36011
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36318
+"GET /auth/login/ HTTP/1.1" 200 36012
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /auth/login/ HTTP/1.1" 200 36038
+"GET /static/images/login-illustration.svg HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 200 36038
+"GET /auth/login/ HTTP/1.1" 200 36038
+"GET /auth/login/ HTTP/1.1" 200 36038
+"GET /auth/login/ HTTP/1.1" 200 36038
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /static/images/login-illustration.svg HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zaiH1cYvXNcB5x8c.FmJoRXmbtQvvfveMyV.7YInAOmKISLKSA%3D%3D&state=d10848e5-32f8-44e6-b213-60976a35a952 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 403092
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 6, in metadata_home
+    return render(request, 'metadata/home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: metadata/home.html
+"GET /metadata/ HTTP/1.1" 500 88646
+/Users/guohe/Documents/Project/ForcePet/metadata/views.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 13:35:16
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:20:03
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/metadata/views.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:20:10
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 179, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'record[column]'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 230, in metadata_home
+    return render(request, 'metadata/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 952, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 885, in __init__
+    super().__init__(*args, **kwargs)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 170, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 181, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 888, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[column]' from 'record[column]'
+"GET /metadata/ HTTP/1.1" 500 359347
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 179, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'record[column]'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 230, in metadata_home
+    return render(request, 'metadata/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 952, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 885, in __init__
+    super().__init__(*args, **kwargs)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 170, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 181, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 888, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[column]' from 'record[column]'
+"GET /metadata/ HTTP/1.1" 500 359484
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402786
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 179, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'record[column]'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 230, in metadata_home
+    return render(request, 'metadata/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 952, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 885, in __init__
+    super().__init__(*args, **kwargs)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 170, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 181, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 888, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[column]' from 'record[column]'
+"GET /metadata/ HTTP/1.1" 500 359347
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 179, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'record[column]'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 230, in metadata_home
+    return render(request, 'metadata/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 952, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 885, in __init__
+    super().__init__(*args, **kwargs)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 170, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 181, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 888, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[column]' from 'record[column]'
+"GET /metadata/ HTTP/1.1" 500 359347
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zSO5zgTnmbqBITIqvzNhng6Qj1RNzKpttvcXLKdrI9EmUT2Jrg%3D%3D&state=f47d31d8-e70a-4e8b-9041-fbd7915a05b8 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 403092
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 179, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'record[column]'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 230, in metadata_home
+    return render(request, 'metadata/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 952, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 885, in __init__
+    super().__init__(*args, **kwargs)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 170, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 181, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 888, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[column]' from 'record[column]'
+"GET /metadata/ HTTP/1.1" 500 359347
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 179, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'record[column]'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 230, in metadata_home
+    return render(request, 'metadata/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 952, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 885, in __init__
+    super().__init__(*args, **kwargs)
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 170, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/smartif.py", line 181, in translate_token
+    return self.create_var(token)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 888, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[column]' from 'record[column]'
+"GET /metadata/ HTTP/1.1" 500 359347
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+/Users/guohe/Documents/Project/ForcePet/metadata/views.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:21:31
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/metadata/views.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:28:58
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+- Broken pipe from ('127.0.0.1', 56346)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 402786
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /metadata/ HTTP/1.1" 200 25928
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"POST /metadata/ HTTP/1.1" 200 63084
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"POST /metadata/ HTTP/1.1" 200 95140
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 176, in metadata_home
+    metadata_payload = client.list_metadata(metadata_selected_type, limit=limit)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py", line 323, in list_metadata
+    response.raise_for_status()
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/query/?q=SELECT+Id%2C+DeveloperName%2C+MasterLabel%2C+NamespacePrefix%2C+CreatedDate+FROM+CustomObject+ORDER+BY+CreatedDate+DESC+LIMIT+50
+"POST /metadata/ HTTP/1.1" 500 124761
+"POST /metadata/ HTTP/1.1" 200 95140
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 176, in metadata_home
+    metadata_payload = client.list_metadata(metadata_selected_type, limit=limit)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py", line 323, in list_metadata
+    response.raise_for_status()
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/query/?q=SELECT+Id%2C+DeveloperName%2C+MasterLabel%2C+NamespacePrefix%2C+CreatedDate+FROM+CustomObject+ORDER+BY+CreatedDate+DESC+LIMIT+50
+"POST /metadata/ HTTP/1.1" 500 124761
+"POST /metadata/ HTTP/1.1" 200 63084
+"POST /metadata/ HTTP/1.1" 200 63084
+"GET /metadata/ HTTP/1.1" 200 25928
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 176, in metadata_home
+    metadata_payload = client.list_metadata(metadata_selected_type, limit=limit)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py", line 323, in list_metadata
+    response.raise_for_status()
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/query/?q=SELECT+Id%2C+DeveloperName%2C+TableEnumOrId%2C+Type%2C+Length+FROM+CustomField+ORDER+BY+DeveloperName+LIMIT+50
+"POST /metadata/ HTTP/1.1" 500 124632
+"POST /metadata/ HTTP/1.1" 200 35559
+"GET /query/ HTTP/1.1" 200 402786
+Loading fields for object=Test__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Test__c HTTP/1.1" 200 28713
+"GET /metadata/ HTTP/1.1" 200 25928
+Describe sObject error: Resource ChatList Not Found. Response content: [{'errorCode': 'NOT_FOUND', 'message': 'The requested resource does not exist'}]
+"POST /metadata/ HTTP/1.1" 200 26311
+"POST /metadata/ HTTP/1.1" 200 42767
+"POST /metadata/ HTTP/1.1" 200 95140
+Internal Server Error: /metadata/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/metadata/views.py", line 176, in metadata_home
+    metadata_payload = client.list_metadata(metadata_selected_type, limit=limit)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py", line 323, in list_metadata
+    response.raise_for_status()
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/query/?q=SELECT+Id%2C+DeveloperName%2C+MasterLabel%2C+NamespacePrefix%2C+CreatedDate+FROM+CustomObject+ORDER+BY+CreatedDate+DESC+LIMIT+50
+"POST /metadata/ HTTP/1.1" 500 124761
+/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:29:01
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:45:05
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/metadata/views.py changed, reloading.
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:45:33
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+"POST /metadata/ HTTP/1.1" 200 111653
+"POST /metadata/ HTTP/1.1" 200 111642
+"POST /metadata/ HTTP/1.1" 200 29187
+"POST /metadata/ HTTP/1.1" 200 29187
+"POST /metadata/ HTTP/1.1" 200 29184
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /static/images/login-illustration.svg HTTP/1.1" 304 0
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/images/login-illustration.svg HTTP/1.1" 304 0
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Warning: Redis not available, using database for sessions and cache
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 01, 2025 - 15:45:39
+Django version 4.2.7, using settings 'workbench_project.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Warning: Redis not available, using database for sessions and cache
