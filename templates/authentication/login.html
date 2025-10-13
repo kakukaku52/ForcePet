@@ -5,105 +5,261 @@
 
 {% block extra_css %}
 <style>
-    .login-container {
-        max-width: 600px;
-        margin: 50px auto;
-    }
-    .login-card {
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        border: none;
-        overflow: hidden;
-    }
-
-    /* Redesigned Header */
-    .login-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2.5rem 1.5rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .login-header::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        animation: pulse 4s ease-in-out infinite;
-    }
-
-    .login-header::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 100px;
-        background: linear-gradient(to top, rgba(255,255,255,0.1), transparent);
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 0.8; }
-        50% { transform: scale(1.1); opacity: 0.3; }
-    }
-
-    .login-header-content {
-        position: relative;
-        z-index: 1;
-    }
-
-    .login-header h3 {
-        color: white;
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        letter-spacing: -0.5px;
-    }
-
-    .login-header h3 i {
-        font-size: 1.8rem;
-        margin-right: 0.5rem;
-        color: #ffd700;
-        text-shadow: 0 0 20px rgba(255,215,0,0.5);
-        animation: glow 2s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
-    .login-header p {
-        color: rgba(255,255,255,0.95);
-        font-size: 1.1rem;
-        font-weight: 400;
+    /* Full screen layout */
+    body {
         margin: 0;
-        letter-spacing: 0.5px;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
     }
 
-    .login-header-badge {
-        display: inline-block;
-        background: rgba(255,255,255,0.2);
+    .login-wrapper {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+    }
+
+    /* Left panel - Form */
+    .login-left-panel {
+        width: 448px;
+        background: #F8F9FA;
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        overflow-y: auto;
+    }
+
+    /* Right panel - Illustration */
+    .login-right-panel {
+        flex: 1;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .illustration-container {
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .illustration-image {
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+    }
+
+    /* Logo and title */
+    .login-logo {
+        width: 92px;
+        height: 92px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .login-logo i {
+        font-size: 48px;
         color: white;
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .login-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #2D3748;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    /* Social login buttons */
+    .social-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .btn-social {
+        flex: 1;
+        height: 50px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 500;
+        color: #4A5568;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-social:hover {
+        background: #F7FAFC;
+        border-color: #CBD5E0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .btn-social i {
+        font-size: 18px;
+    }
+
+    /* Divider */
+    .login-divider {
+        display: flex;
+        align-items: center;
+        margin: 25px 0;
+        color: #A0AEC0;
+        font-size: 14px;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #E2E8F0;
+    }
+
+    .login-divider span {
+        padding: 0 15px;
+    }
+
+    /* Form fields */
+    .form-group-modern {
+        margin-bottom: 25px;
+    }
+
+    .form-group-modern label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #2D3748;
+        margin-bottom: 8px;
+    }
+
+    .form-group-modern .form-control {
+        height: 50px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+        background: white;
+        padding: 0 15px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .form-group-modern .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        outline: none;
+    }
+
+    .form-group-modern .form-control::placeholder {
+        color: #A0AEC0;
+    }
+
+    /* Remember me and reset password */
+    .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+    .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #4A5568;
+    }
+
+    .remember-me input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .reset-password-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .reset-password-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Login button */
+    .btn-login {
+        width: 100%;
+        height: 50px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Sign up link */
+    .signup-link {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 14px;
+        color: #4A5568;
+    }
+
+    .signup-link a {
+        color: #667eea;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .signup-link a:hover {
+        text-decoration: underline;
+    }
+
+    /* Tabs styling - keeping existing functionality */
+    .login-tabs {
+        margin-bottom: 30px;
+        border-bottom: 2px solid #E2E8F0;
     }
 
     .login-tabs .nav-link {
         font-weight: 500;
         transition: all 0.3s ease;
-    }
-    .login-tabs .nav-link.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
+        color: #718096;
         border: none;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
+        padding: 12px 20px;
+    }
+
+    .login-tabs .nav-link:hover {
+        color: #667eea;
+    }
+
+    .login-tabs .nav-link.active {
+        background: transparent;
+        color: #667eea;
+        border-bottom: 2px solid #667eea;
     }
 
     /* Error Alert Styles */
@@ -232,23 +388,84 @@
         border-radius: 10px;
         box-shadow: 0 4px 15px rgba(45, 206, 137, 0.3);
     }
+
+    /* Responsive design */
+    @media (max-width: 992px) {
+        .login-wrapper {
+            flex-direction: column;
+        }
+
+        .login-left-panel {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .login-right-panel {
+            display: none;
+        }
+    }
+
+    /* Hide base.html container */
+    .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* Update form control styling for Django forms */
+    .form-group-modern .form-control,
+    .form-group-modern input[type="text"],
+    .form-group-modern input[type="password"],
+    .form-group-modern select {
+        height: 50px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+        background: white;
+        padding: 0 15px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .form-text {
+        font-size: 12px;
+        color: #A0AEC0;
+        margin-top: 5px;
+    }
+
+    /* OAuth form styling */
+    .row {
+        margin-bottom: 0;
+    }
+
+    .col-form-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #2D3748;
+    }
+
+    /* Adjust tab content padding */
+    .tab-content {
+        padding: 0;
+    }
+
+    .tab-pane {
+        padding: 0;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="login-container">
-    <div class="card login-card">
-        <div class="login-header text-center">
-            <div class="login-header-content">
-                <h3><i class="fas fa-tools"></i> Django Workbench</h3>
-                <p>Salesforce Developer Tool</p>
-                <span class="login-header-badge">
-                    <i class="fas fa-shield-alt"></i> Secure Authentication
-                </span>
-            </div>
+<div class="login-wrapper">
+    <!-- Left Panel - Login Form -->
+    <div class="login-left-panel">
+        <!-- Logo and Title -->
+        <div class="login-logo">
+            <i class="fas fa-tools"></i>
         </div>
+        <h1 class="login-title">Log in</h1>
 
-        <div class="card-body">
+        <div class="login-form-content">
             <!-- Global Error Alert -->
             <div id="global-error-alert" class="error-alert">
                 <div class="alert alert-danger-modern d-flex align-items-center">
@@ -268,13 +485,25 @@
                 </div>
             </div>
 
-            <!-- Login Type Tabs -->
-            <ul class="nav nav-tabs login-tabs mb-4" id="loginTabs" role="tablist">
+            <!-- Social Login Buttons (Tabs disguised as social buttons) -->
+            <div class="social-buttons">
+                {% if oauth_enabled %}
+                <button class="btn-social" id="oauth-tab-btn" data-bs-toggle="tab" data-bs-target="#oauth" type="button" role="tab">
+                    <i class="fab fa-salesforce"></i> Salesforce
+                </button>
+                {% endif %}
+                <button class="btn-social" id="standard-tab-btn" data-bs-toggle="tab" data-bs-target="#standard" type="button" role="tab">
+                    <i class="fas fa-key"></i> Standard
+                </button>
+            </div>
+
+            <!-- Login Type Tabs (hidden, for functionality) -->
+            <ul class="nav nav-tabs login-tabs" id="loginTabs" role="tablist" style="display: none;">
                 {% if oauth_enabled %}
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="oauth-tab" data-bs-toggle="tab" data-bs-target="#oauth"
                             type="button" role="tab" aria-controls="oauth" aria-selected="true">
-                        <i class="fab fa-salesforce"></i> OAuth Login
+                        OAuth Login
                     </button>
                 </li>
                 {% endif %}
@@ -282,10 +511,15 @@
                     <button class="nav-link {% if not oauth_enabled %}active{% endif %}" id="standard-tab" data-bs-toggle="tab"
                             data-bs-target="#standard" type="button" role="tab" aria-controls="standard"
                             aria-selected="{% if not oauth_enabled %}true{% else %}false{% endif %}">
-                        <i class="fas fa-key"></i> Username/Password
+                        Username/Password
                     </button>
                 </li>
             </ul>
+
+            <!-- Divider -->
+            <div class="login-divider">
+                <span>Or</span>
+            </div>
 
             <div class="tab-content" id="loginTabContent">
                 <!-- OAuth Login Tab -->
@@ -295,36 +529,32 @@
                         {% csrf_token %}
                         <input type="hidden" name="login_type" value="oauth">
 
-                        <div class="row mb-3">
-                            <label for="id_environment" class="col-sm-3 col-form-label">Environment:</label>
-                            <div class="col-sm-9">
-                                {{ oauth_form.environment }}
-                                <div class="form-text">Choose your Salesforce environment</div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_environment">Environment</label>
+                            {{ oauth_form.environment }}
+                            <small class="form-text">Choose your Salesforce environment</small>
                         </div>
 
-                        <div class="row mb-3" id="custom-domain-row" style="display: none;">
-                            <label for="id_custom_domain" class="col-sm-3 col-form-label">Custom Domain:</label>
-                            <div class="col-sm-9">
-                                {{ oauth_form.custom_domain }}
-                                <div class="form-text">Enter your custom Salesforce domain</div>
-                            </div>
+                        <div class="form-group-modern" id="custom-domain-row" style="display: none;">
+                            <label for="id_custom_domain">Custom Domain</label>
+                            {{ oauth_form.custom_domain }}
+                            <small class="form-text">Enter your custom Salesforce domain</small>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="id_api_version" class="col-sm-3 col-form-label">API Version:</label>
-                            <div class="col-sm-9">
-                                {{ oauth_form.api_version }}
-                                <div class="form-text">Salesforce API version to use</div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_api_version">API Version</label>
+                            {{ oauth_form.api_version }}
+                            <small class="form-text">Salesforce API version to use</small>
                         </div>
 
                         {{ oauth_form.state }}
 
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fab fa-salesforce"></i> Login with Salesforce
-                            </button>
+                        <button type="submit" class="btn-login">
+                            <i class="fab fa-salesforce"></i> Login with Salesforce
+                        </button>
+
+                        <div class="signup-link">
+                            Securely connect via OAuth 2.0
                         </div>
                     </form>
                 </div>
@@ -336,112 +566,212 @@
                         {% csrf_token %}
                         <input type="hidden" name="login_type" value="standard">
 
-                        <div class="row mb-3">
-                            <label for="id_username" class="col-sm-3 col-form-label">Username:</label>
-                            <div class="col-sm-9">
-                                {{ standard_form.username }}
-                                <div class="field-error" id="username-error"></div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_username">Username</label>
+                            {{ standard_form.username }}
+                            <div class="field-error" id="username-error"></div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="id_password" class="col-sm-3 col-form-label">Password:</label>
-                            <div class="col-sm-9">
-                                {{ standard_form.password }}
-                                <div class="field-error" id="password-error"></div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_password">Password</label>
+                            {{ standard_form.password }}
+                            <div class="field-error" id="password-error"></div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="id_security_token" class="col-sm-3 col-form-label">Security Token:</label>
-                            <div class="col-sm-9">
-                                {{ standard_form.security_token }}
-                                <div class="form-text">{{ standard_form.security_token.help_text }}</div>
-                                <div class="field-error" id="security_token-error"></div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_security_token">Security Token</label>
+                            {{ standard_form.security_token }}
+                            <small class="form-text text-muted">{{ standard_form.security_token.help_text }}</small>
+                            <div class="field-error" id="security_token-error"></div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="id_environment_standard" class="col-sm-3 col-form-label">Environment:</label>
-                            <div class="col-sm-9">
-                                <select name="environment" class="form-control" id="id_environment_standard">
-                                    <option value="production">Production</option>
-                                    <option value="sandbox">Sandbox</option>
-                                    <option value="custom">Custom Domain</option>
-                                </select>
-                                <div class="field-error" id="environment-error"></div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_environment_standard">Environment</label>
+                            <select name="environment" class="form-control" id="id_environment_standard">
+                                <option value="production">Production</option>
+                                <option value="sandbox">Sandbox</option>
+                                <option value="custom">Custom Domain</option>
+                            </select>
+                            <div class="field-error" id="environment-error"></div>
                         </div>
 
-                        <div class="row mb-3" id="standard-custom-domain-row" style="display: none;">
-                            <label for="id_custom_domain_standard" class="col-sm-3 col-form-label">Custom Domain:</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="custom_domain" class="form-control" id="id_custom_domain_standard" placeholder="https://mydomain.my.salesforce.com">
-                                <div class="form-text">Enter your custom Salesforce domain</div>
-                                <div class="field-error" id="custom_domain-error"></div>
-                            </div>
+                        <div class="form-group-modern" id="standard-custom-domain-row" style="display: none;">
+                            <label for="id_custom_domain_standard">Custom Domain</label>
+                            <input type="text" name="custom_domain" class="form-control" id="id_custom_domain_standard" placeholder="https://mydomain.my.salesforce.com">
+                            <small class="form-text text-muted">Enter your custom Salesforce domain</small>
+                            <div class="field-error" id="custom_domain-error"></div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="id_api_version_standard" class="col-sm-3 col-form-label">API Version:</label>
-                            <div class="col-sm-9">
-                                <select name="api_version" class="form-control" id="id_api_version_standard">
-                                    <option value="62.0">62.0</option>
-                                    <option value="61.0">61.0</option>
-                                    <option value="60.0">60.0</option>
-                                    <option value="59.0">59.0</option>
-                                    <option value="58.0">58.0</option>
-                                </select>
-                                <div class="field-error" id="api_version-error"></div>
-                            </div>
+                        <div class="form-group-modern">
+                            <label for="id_api_version_standard">API Version</label>
+                            <select name="api_version" class="form-control" id="id_api_version_standard">
+                                <option value="62.0">62.0</option>
+                                <option value="61.0">61.0</option>
+                                <option value="60.0">60.0</option>
+                                <option value="59.0">59.0</option>
+                                <option value="58.0">58.0</option>
+                            </select>
+                            <div class="field-error" id="api_version-error"></div>
                         </div>
 
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg" id="standard-submit-btn">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </button>
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" name="remember_me">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="reset-password-link">Reset Password?</a>
+                        </div>
+
+                        <button type="submit" class="btn-login" id="standard-submit-btn">
+                            Log in
+                        </button>
+
+                        <div class="signup-link">
+                            Don't have account yet? <a href="#">New Account</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-        <div class="card-footer text-center text-muted">
-            <small>
-                Securely connect to your Salesforce organization<br>
-                Your credentials are encrypted and not stored permanently
-            </small>
-        </div>
     </div>
 
-    <!-- Information Cards -->
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <i class="fas fa-shield-alt fa-2x text-success mb-2"></i>
-                    <h6>Secure</h6>
-                    <small class="text-muted">OAuth 2.0 authentication with encrypted token storage</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <i class="fas fa-tools fa-2x text-primary mb-2"></i>
-                    <h6>Powerful</h6>
-                    <small class="text-muted">Complete Salesforce API access for development</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <i class="fas fa-code fa-2x text-info mb-2"></i>
-                    <h6>Developer-Friendly</h6>
-                    <small class="text-muted">Built for Salesforce developers and admins</small>
-                </div>
-            </div>
+    <!-- Right Panel - Illustration -->
+    <div class="login-right-panel">
+        <div class="illustration-container">
+            <!-- TODO: Replace with your Figma exported image -->
+            <!-- Method 1: Use static file (after exporting from Figma) -->
+            <img src="{% static 'images/login-illustration.svg' %}" alt="Working illustration" class="illustration-image" style="max-width: 2000px;"> 
+
+            <!-- Method 2: Temporary online illustration (replace with Figma export) -->
+            <!-- <img src="https://illustrations.popsy.co/amber/remote-work.svg" alt="Working illustration" class="illustration-image" style="max-width: 500px;"> -->
+
+            <!-- Method 3: Embedded SVG based on Figma design (currently commented out) -->
+            <!-- <svg class="illustration-image" viewBox="0 0 647 602" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Shadow/Ground -->
+                <ellipse cx="323.5" cy="571" rx="323.5" ry="30" fill="#E2E8F0" opacity="0.5"/>
+
+                <!-- Clock on wall -->
+                <g transform="translate(480, 50)">
+                    <circle cx="0" cy="0" r="35" fill="#FF6B6B"/>
+                    <circle cx="0" cy="0" r="28" fill="white"/>
+                    <line x1="0" y1="0" x2="12" y2="-15" stroke="#2D3748" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="0" y1="0" x2="8" y2="8" stroke="#2D3748" stroke-width="2" stroke-linecap="round"/>
+                </g>
+
+                <!-- Monitor on desk -->
+                <g transform="translate(220, 260)">
+                    <rect x="0" y="0" width="15" height="80" rx="3" fill="#2D3748"/>
+                    <rect x="-40" y="0" width="95" height="70" rx="5" fill="#2D3748"/>
+                    <rect x="-35" y="5" width="85" height="60" rx="3" fill="#4ECDC4" opacity="0.3"/>
+                </g>
+
+                <!-- Desk -->
+                <g transform="translate(100, 340)">
+                    <rect x="0" y="0" width="450" height="8" rx="4" fill="#FF7B54"/>
+                    <rect x="20" y="8" width="6" height="180" fill="#FF7B54" opacity="0.8"/>
+                    <rect x="424" y="8" width="6" height="180" fill="#FF7B54" opacity="0.8"/>
+                </g>
+
+                <!-- Notebook on desk left -->
+                <g transform="translate(120, 380)">
+                    <rect x="0" y="0" width="70" height="90" rx="3" fill="#4ECDC4"/>
+                    <rect x="0" y="0" width="70" height="90" rx="3" fill="#2D3748" opacity="0.1"/>
+                    <line x1="65" y1="10" x2="65" y2="80" stroke="#2D3748" stroke-width="2" opacity="0.3"/>
+                    <!-- Spiral binding -->
+                    <circle cx="10" cy="20" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
+                    <circle cx="10" cy="35" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
+                    <circle cx="10" cy="50" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
+                    <circle cx="10" cy="65" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
+                </g>
+
+                <!-- Person sitting -->
+                <g transform="translate(310, 180)">
+                    <!-- Head -->
+                    <ellipse cx="0" cy="0" rx="28" ry="32" fill="#FFC4A3"/>
+                    <!-- Hair -->
+                    <path d="M-25,-15 Q-28,-25 -20,-30 Q-10,-35 0,-35 Q10,-35 20,-30 Q28,-25 25,-15 L25,5 Q20,0 10,0 Q0,5 -10,0 Q-20,0 -25,5 Z" fill="#1A202C"/>
+                    <!-- Eyes -->
+                    <circle cx="-8" cy="2" r="2" fill="#2D3748"/>
+                    <circle cx="8" cy="2" r="2" fill="#2D3748"/>
+                    <!-- Smile -->
+                    <path d="M-10,12 Q0,18 10,12" stroke="#E8A788" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                    <!-- Body/Shirt -->
+                    <ellipse cx="0" cy="65" rx="45" ry="50" fill="#667eea"/>
+                    <!-- Collar lines -->
+                    <path d="M-20,35 L-10,45" stroke="#5568D3" stroke-width="2"/>
+                    <path d="M20,35 L10,45" stroke="#5568D3" stroke-width="2"/>
+                    <line x1="-10" y1="45" x2="10" y2="45" stroke="#5568D3" stroke-width="2"/>
+
+                    <!-- Arms -->
+                    <ellipse cx="-35" cy="70" rx="12" ry="35" fill="#667eea" transform="rotate(-20 -35 70)"/>
+                    <ellipse cx="35" cy="70" rx="12" ry="35" fill="#667eea" transform="rotate(20 35 70)"/>
+
+                    <!-- Hands on laptop -->
+                    <ellipse cx="-25" cy="95" rx="10" ry="8" fill="#FFC4A3"/>
+                    <ellipse cx="25" cy="95" rx="10" ry="8" fill="#FFC4A3"/>
+                </g>
+
+                <!-- Laptop -->
+                <g transform="translate(250, 300)">
+                    <!-- Laptop base -->
+                    <path d="M0,20 L10,0 L110,0 L120,20 Z" fill="#4ECDC4"/>
+                    <path d="M5,20 L15,5 L105,5 L115,20 Z" fill="#95E1D3"/>
+                    <!-- Screen -->
+                    <rect x="15" y="-50" width="90" height="70" rx="3" fill="#2D3748"/>
+                    <rect x="20" y="-45" width="80" height="60" rx="2" fill="#95E1D3"/>
+                    <!-- Screen content -->
+                    <circle cx="60" cy="-25" r="3" fill="white" opacity="0.8"/>
+                </g>
+
+                <!-- Pen holder on desk -->
+                <g transform="translate(460, 330)">
+                    <rect x="0" y="20" width="35" height="45" rx="3" fill="#E74C3C"/>
+                    <!-- Pens -->
+                    <line x1="8" y1="10" x2="8" y2="25" stroke="#FFD93D" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="17" y1="5" x2="17" y2="25" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="26" y1="12" x2="26" y2="25" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
+                </g>
+
+                <!-- Plant -->
+                <g transform="translate(510, 380)">
+                    <!-- Pot -->
+                    <path d="M0,30 L5,50 L35,50 L40,30 Z" fill="#F6E05E"/>
+                    <path d="M5,50 L35,50 L35,55 L5,55 Z" fill="#ECC94B"/>
+                    <!-- Wave pattern on pot -->
+                    <path d="M8,40 Q12,42 16,40 Q20,38 24,40 Q28,42 32,40" stroke="#D69E2E" stroke-width="1.5" fill="none"/>
+                    <!-- Leaves -->
+                    <ellipse cx="15" cy="15" rx="12" ry="20" fill="#52B788" transform="rotate(-25 15 15)"/>
+                    <ellipse cx="25" cy="10" rx="10" ry="18" fill="#52B788" transform="rotate(15 25 10)"/>
+                    <ellipse cx="20" cy="20" rx="13" ry="22" fill="#40916C"/>
+                </g>
+
+                <!-- Chair -->
+                <g transform="translate(280, 380)">
+                    <!-- Seat -->
+                    <ellipse cx="20" cy="0" rx="40" ry="12" fill="#F6E05E"/>
+                    <rect x="-20" y="-5" width="80" height="10" rx="5" fill="#F6E05E"/>
+                    <!-- Back -->
+                    <rect x="10" y="-60" width="20" height="65" rx="8" fill="#F6E05E"/>
+                    <!-- Legs -->
+                    <line x1="5" y1="10" x2="0" y2="70" stroke="#F6E05E" stroke-width="6"/>
+                    <line x1="35" y1="10" x2="40" y2="70" stroke="#F6E05E" stroke-width="6"/>
+                    <!-- Wheels -->
+                    <circle cx="0" cy="75" r="8" fill="#E8A788"/>
+                    <circle cx="40" cy="75" r="8" fill="#E8A788"/>
+                </g>
+
+                <!-- Pants/Legs -->
+                <g transform="translate(310, 300)">
+                    <rect x="-25" y="0" width="23" height="110" rx="8" fill="#1A202C"/>
+                    <rect x="2" y="0" width="23" height="110" rx="8" fill="#1A202C"/>
+                    <!-- Shoes -->
+                    <ellipse cx="-13" cy="115" rx="15" ry="10" fill="#FF1493"/>
+                    <ellipse cx="13" cy="115" rx="15" ry="10" fill="#FF1493"/>
+                    <ellipse cx="-18" cy="115" rx="8" ry="6" fill="#FF69B4"/>
+                    <ellipse cx="8" cy="115" rx="8" ry="6" fill="#FF69B4"/>
+                </g>
+            </svg> -->
         </div>
     </div>
 </div>
@@ -450,6 +780,15 @@
 {% block extra_js %}
 <script>
 $(document).ready(function() {
+    // Handle social button clicks (trigger tab change)
+    $('#oauth-tab-btn').click(function() {
+        $('#oauth-tab').click();
+    });
+
+    $('#standard-tab-btn').click(function() {
+        $('#standard-tab').click();
+    });
+
     // Handle environment selection for OAuth
     $('#id_environment').change(function() {
         if ($(this).val() === 'custom') {

@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}SOSL検索 - Django Workbench{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
+<style>
+    body {
+        background-color: #fafafb;
+    }
+
+    .search-sidebar {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        min-height: calc(100vh - 200px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .search-snippet {
+        cursor: pointer;
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        background-color: #fafafb;
+        transition: all 0.2s ease;
+    }
+
+    .search-snippet:hover {
+        background-color: #f0f0f1;
+        transform: translateY(-1px);
+    }
+
+    .search-main-card {
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .code-editor {
+        font-family: "Source Code Pro", monospace;
+        min-height: 180px;
+        resize: vertical;
+    }
+
+    .slds-scope .slds-button_brand {
+        background-color: #605bff;
+        border-color: #605bff;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .slds-scope .slds-button_brand:hover {
+        background-color: #4e47cc;
+        border-color: #4e47cc;
+    }
+
+    .slds-scope .slds-button_neutral,
+    .slds-scope .slds-button_outline-brand {
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .sample-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(96, 91, 255, 0.08);
+        color: #3532a7;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 0.25rem 0.35rem 0.25rem 0;
+    }
+
+    .sample-chip:hover {
+        background: rgba(96, 91, 255, 0.16);
+    }
+
+    .search-summary {
+        background: #f3f2ff;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .slds-table thead th {
+        background: #fafafb;
+        color: #030229;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .slds-table tbody td {
+        color: #030229;
+        font-size: 0.875rem;
+    }
+
+    .result-card {
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        margin-bottom: 1.5rem;
+    }
+
+    .result-card__header {
+        border-bottom: 1px solid #f0f0f1;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .no-results {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px dashed #d8dde6;
+        padding: 2rem;
+        text-align: center;
+        color: #706e6b;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="slds-scope">
+    <div class="slds-grid slds-gutters">
+        <!-- Sidebar -->
+        <aside class="slds-col slds-size_3-of-12">
+            <div class="slds-card search-sidebar">
+                <div class="slds-card__header slds-card__header_link">
+                    <h2 class="slds-card__header-title slds-text-heading_small">
+                        <span class="slds-icon_container slds-icon-utility-search slds-m-right_xx-small">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                <use xlink:href="#utility-search"></use>
+                            </svg>
+                        </span>
+                        SOSL検索
+                    </h2>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <section class="slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">最近の検索</h3>
+                        {% for query in recent_searches %}
+                            <div class="search-snippet" onclick="loadSearchQuery('{{ query.query_text|escapejs }}')">
+                                <div class="slds-truncate">
+                                    <div class="slds-text-color_weak slds-text-body_small">{{ query.executed_at|timesince }} ago</div>
+                                    <code class="slds-text-body_small">{{ query.query_text|truncatechars:60 }}</code>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p class="slds-text-color_weak slds-text-body_small">最近のSOSL検索はありません。</p>
+                        {% endfor %}
+                    </section>
+
+                    <section class="slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">保存済み検索</h3>
+                        {% for saved in saved_searches %}
+                            <div class="search-snippet" onclick="loadSearchQuery('{{ saved.query_text|escapejs }}')">
+                                <div class="slds-text-title slds-text-body_small">{{ saved.name }}</div>
+                                <code class="slds-text-body_small slds-text-color_weak">{{ saved.query_text|truncatechars:60 }}</code>
+                            </div>
+                        {% empty %}
+                            <p class="slds-text-color_weak slds-text-body_small">保存されたSOSL検索はありません。</p>
+                        {% endfor %}
+                        <a href="{% url 'query:saved_queries' %}" class="slds-button slds-button_outline-brand slds-button_small slds-m-top_small">
+                            保存クエリを管理
+                        </a>
+                    </section>
+
+                    <section>
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">サンプルクエリ</h3>
+                        {% for sample in sample_queries %}
+                            <span class="sample-chip" onclick="loadSearchQuery('{{ sample|escapejs }}', true)">
+                                <i class="fas fa-lightbulb"></i> サンプル {{ forloop.counter }}
+                            </span>
+                        {% endfor %}
+                    </section>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="slds-col slds-size_9-of-12">
+            <div class="slds-card search-main-card">
+                <div class="slds-card__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-code">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="#utility-code"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title slds-truncate">
+                                SOSL検索コンソール
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                            <a href="{% url 'query:history' %}" class="slds-button slds-button_neutral slds-button_small">
+                                <span class="slds-icon_container slds-icon-utility-history slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-history"></use>
+                                    </svg>
+                                </span>
+                                履歴を表示
+                            </a>
+                            {% if search_summary and search_summary.history_id %}
+                                <a href="{% url 'query:export' search_summary.history_id %}" class="slds-button slds-button_outline-brand slds-button_small slds-m-left_small">
+                                    <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-download"></use>
+                                        </svg>
+                                    </span>
+                                    結果をエクスポート
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body slds-card__body_inner">
+                    <form method="post" id="sosl-form" class="slds-m-bottom_large">
+                        {% csrf_token %}
+                        <div class="slds-form-element {% if form.search_query.errors %}slds-has-error{% endif %}">
+                            <label class="slds-form-element__label" for="id_search_query">
+                                検索クエリ
+                                <span class="slds-text-color_weak slds-text-body_small">FIND ... RETURNING ...</span>
+                            </label>
+                            <div class="slds-form-element__control">
+                                {{ form.search_query }}
+                            </div>
+                            {% if form.search_query.help_text %}
+                                <div class="slds-form-element__help">{{ form.search_query.help_text }}</div>
+                            {% endif %}
+                            {% if form.search_query.errors %}
+                                <div class="slds-form-element__help slds-text-color_error">
+                                    {{ form.search_query.errors|join:', ' }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="slds-m-top_small">
+                            <div class="slds-button-group" role="group">
+                                <button type="submit" class="slds-button slds-button_brand">
+                                    <span class="slds-icon_container slds-icon-utility-search slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-search"></use>
+                                        </svg>
+                                    </span>
+                                    検索を実行
+                                </button>
+                                <button type="button" class="slds-button slds-button_neutral" onclick="clearSearchQuery()">
+                                    <span class="slds-icon_container slds-icon-utility-undo slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-undo"></use>
+                                        </svg>
+                                    </span>
+                                    クリア
+                                </button>
+                                <button type="button" class="slds-button slds-button_outline-brand" onclick="copySearchQuery()">
+                                    <span class="slds-icon_container slds-icon-utility-copy slds-m-right_xx-small">
+                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                            <use xlink:href="#utility-copy"></use>
+                                        </svg>
+                                    </span>
+                                    クエリをコピー
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% if search_executed %}
+                        {% if search_summary %}
+                            <section class="search-summary">
+                                <div>
+                                    <div class="slds-text-title_caps slds-text-color_weak">総ヒット件数</div>
+                                    <div class="slds-text-heading_large slds-text-color_success">{{ search_summary.total_records }}</div>
+                                </div>
+                                <div>
+                                    <div class="slds-text-title_caps slds-text-color_weak">実行時間</div>
+                                    <div class="slds-text-heading_large">{{ search_summary.execution_time|floatformat:2 }}秒</div>
+                                </div>
+                                <div class="slds-text-align_right slds-text-body_small slds-text-color_weak slds-truncate">
+                                    {{ search_summary.query_text|truncatechars:120 }}
+                                </div>
+                            </section>
+                        {% endif %}
+
+                        {% if grouped_results %}
+                            {% for group in grouped_results %}
+                                <section class="result-card slds-card slds-card_boundary">
+                                    <div class="slds-card__header result-card__header">
+                                        <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                            <div class="slds-media__figure">
+                                                <span class="slds-icon_container slds-icon-utility-database slds-m-right_xx-small">
+                                                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                                        <use xlink:href="#utility-database"></use>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="slds-media__body">
+                                                <h3 class="slds-card__header-title slds-truncate">
+                                                    {{ group.object_type }} <span class="slds-badge slds-badge_success slds-m-left_small">{{ group.count }} 件</span>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-card__body slds-card__body_inner">
+                                        {% if group.field_names %}
+                                            <div class="slds-table_header-fixed_container slds-scrollable_x">
+                                                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                                    <thead>
+                                                        <tr class="slds-line-height_reset">
+                                                            {% for field in group.field_names %}
+                                                                <th scope="col"><div class="slds-truncate" title="{{ field }}">{{ field }}</div></th>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for row in group.rows %}
+                                                            <tr class="slds-hint-parent">
+                                                                {% for cell in row.cells %}
+                                                                    <td>
+                                                                        <div class="slds-truncate" title="{{ cell.value }}">
+                                                                            {% if cell.link and instance_url %}
+                                                                                <a href="{{ instance_url }}{{ cell.link }}" target="_blank" rel="noopener">
+                                                                                    {{ cell.value|default:'—' }}
+                                                                                </a>
+                                                                            {% else %}
+                                                                                {{ cell.value|default:'—' }}
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    </td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        {% else %}
+                                            <p class="slds-text-color_weak">{{ group.object_type }} に返された項目はありません。</p>
+                                        {% endif %}
+                                    </div>
+                                </section>
+                            {% endfor %}
+                        {% else %}
+                            <div class="no-results">
+                                <i class="fas fa-info-circle slds-m-right_xx-small"></i>
+                                検索条件に一致するレコードが見つかりませんでした。
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="no-results">
+                            <i class="fas fa-lightbulb slds-m-right_xx-small"></i>
+                            SOSL クエリを入力して<strong>検索を実行</strong>すると結果が表示されます。
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function loadSearchQuery(queryText, execute = false) {
+        const textarea = document.getElementById('id_search_query');
+        textarea.value = queryText;
+        textarea.focus();
+        if (execute) {
+            setTimeout(() => {
+                document.getElementById('sosl-form').requestSubmit();
+            }, 100);
+        }
+    }
+
+    function clearSearchQuery() {
+        const textarea = document.getElementById('id_search_query');
+        textarea.value = '';
+        textarea.focus();
+    }
+
+    function copySearchQuery() {
+        const textarea = document.getElementById('id_search_query');
+        const value = textarea.value;
+        if (!value.trim()) {
+            workbench.showToast('コピーするクエリがありません', 'warning');
+            return;
+        }
+        navigator.clipboard.writeText(value).then(() => {
+            workbench.showToast('クエリをクリップボードにコピーしました', 'success');
+        }).catch(() => {
+            workbench.showToast('クエリをコピーできませんでした', 'error');
+        });
+    }
+</script>
+{% endblock %}

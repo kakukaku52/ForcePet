@@ -13,50 +13,51 @@ class QueryForm(forms.Form):
             'data-mode': 'soql',
             'data-line-numbers': 'true'
         }),
-        help_text='Enter your SOQL query here'
+        help_text='SOQL クエリを入力してください'
     )
     
     include_deleted = forms.BooleanField(
         required=False,
+        label='削除済みレコードを含める',
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        help_text='Include deleted records (uses queryAll)'
+        help_text='削除済みレコードを含める場合は queryAll を使用します'
     )
     
     def clean_query(self):
         query = self.cleaned_data.get('query', '').strip()
 
         if not query:
-            raise forms.ValidationError('Query cannot be empty.')
+            raise forms.ValidationError('クエリを入力してください。')
 
         # Basic SOQL validation
         query_upper = query.upper()
         if not query_upper.startswith('SELECT'):
-            raise forms.ValidationError('Query must start with SELECT.')
+            raise forms.ValidationError('クエリは SELECT で開始する必要があります。')
 
         if ' FROM ' not in query_upper:
-            raise forms.ValidationError('Query must include FROM clause with proper spacing.')
+            raise forms.ValidationError('クエリには正しいスペース付きの FROM 句が必要です。')
 
         # Check for common syntax errors
         # Check if there's a comma right before FROM
         import re
         if re.search(r',\s*FROM\s', query, re.IGNORECASE):
-            raise forms.ValidationError('Invalid syntax: Remove the comma before FROM keyword.')
+            raise forms.ValidationError('構文エラー: FROM の前のカンマを削除してください。')
 
         # Check for SELECT without any fields
         select_from_pattern = re.search(r'SELECT\s+FROM\s', query, re.IGNORECASE)
         if select_from_pattern:
-            raise forms.ValidationError('You must specify at least one field to select.')
+            raise forms.ValidationError('SELECT には少なくとも1つの項目を指定してください。')
 
         # Check for unbalanced parentheses
         open_parens = query.count('(')
         close_parens = query.count(')')
         if open_parens != close_parens:
-            raise forms.ValidationError(f'Unbalanced parentheses: {open_parens} opening, {close_parens} closing.')
+            raise forms.ValidationError(f'括弧が一致しません: 開き {open_parens}、閉じ {close_parens}。')
 
         # Check for unbalanced quotes
         single_quotes = query.count("'")
         if single_quotes % 2 != 0:
-            raise forms.ValidationError('Unbalanced single quotes in query.')
+            raise forms.ValidationError('単一引用符の数が一致しません。')
 
         return query
 
@@ -66,28 +67,28 @@ class SearchForm(forms.Form):
     
     search_query = forms.CharField(
         widget=forms.Textarea(attrs={
-            'class': 'form-control code-editor',
+            'class': 'form-control code-editor slds-textarea',
             'rows': 6,
             'placeholder': 'FIND {searchterm} IN ALL FIELDS RETURNING Account(Id, Name), Contact(Id, Name)',
             'data-mode': 'sosl',
             'data-line-numbers': 'true'
         }),
-        help_text='Enter your SOSL search query here'
+        help_text='SOSL 検索クエリを入力してください'
     )
     
     def clean_search_query(self):
         query = self.cleaned_data.get('search_query', '').strip()
         
         if not query:
-            raise forms.ValidationError('Search query cannot be empty.')
+            raise forms.ValidationError('検索クエリを入力してください。')
         
         # Basic SOSL validation
         if not query.upper().startswith('FIND'):
-            raise forms.ValidationError('Search query must start with FIND.')
+            raise forms.ValidationError('検索クエリは FIND で開始する必要があります。')
         
         if 'IN ALL FIELDS' not in query.upper() and 'IN NAME FIELDS' not in query.upper() and \
            'IN EMAIL FIELDS' not in query.upper() and 'IN PHONE FIELDS' not in query.upper():
-            raise forms.ValidationError('Search query must include an IN clause (ALL FIELDS, NAME FIELDS, etc.).')
+            raise forms.ValidationError('検索クエリには IN 句（ALL FIELDS、NAME FIELDS など）が必要です。')
         
         return query
 
@@ -127,8 +128,8 @@ class QueryBuilderForm(forms.Form):
     """Visual query builder form"""
     
     SELECT_CHOICES = [
-        ('*', 'All Fields'),
-        ('custom', 'Select Fields'),
+        ('*', '全項目'),
+        ('custom', '項目を指定'),
     ]
     
     # Object selection
@@ -138,7 +139,7 @@ class QueryBuilderForm(forms.Form):
             'placeholder': 'Account',
             'list': 'sobject-list'
         }),
-        help_text='Select the object to query'
+        help_text='クエリ対象のオブジェクトを選択してください'
     )
     
     # Field selection
@@ -154,7 +155,7 @@ class QueryBuilderForm(forms.Form):
             'class': 'form-control',
             'placeholder': 'Id, Name, CreatedDate'
         }),
-        help_text='Comma-separated list of fields'
+        help_text='項目名をカンマ区切りで入力してください'
     )
     
     # WHERE clause
@@ -165,7 +166,7 @@ class QueryBuilderForm(forms.Form):
             'rows': 2,
             'placeholder': "Name LIKE 'A%'"
         }),
-        help_text='WHERE conditions (without WHERE keyword)'
+        help_text='WHERE キーワードを除いた条件を入力してください'
     )
     
     # ORDER BY
@@ -175,7 +176,7 @@ class QueryBuilderForm(forms.Form):
             'class': 'form-control',
             'placeholder': 'Name ASC'
         }),
-        help_text='ORDER BY clause (without ORDER BY keyword)'
+        help_text='ORDER BY キーワードを除いた並び替え条件を入力してください'
     )
     
     # LIMIT
@@ -187,17 +188,17 @@ class QueryBuilderForm(forms.Form):
             'min': '1',
             'max': '50000'
         }),
-        help_text='Maximum number of records to return'
+        help_text='取得する最大件数'
     )
     
     def clean_sobject(self):
         sobject = self.cleaned_data.get('sobject', '').strip()
         if not sobject:
-            raise forms.ValidationError('Object name is required.')
+            raise forms.ValidationError('オブジェクト名は必須です。')
         
         # Basic validation - should be a valid identifier
         if not sobject.replace('_', '').replace('__c', '').replace('__r', '').isalnum():
-            raise forms.ValidationError('Invalid object name.')
+            raise forms.ValidationError('オブジェクト名が不正です。')
         
         return sobject
     

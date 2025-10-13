@@ -1,0 +1,643 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}メタデータ - Django Workbench{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
+<style>
+    /* Figma Dashboard Style */
+    body {
+        background-color: #fafafb;
+    }
+
+    .metadata-sidebar {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        min-height: calc(100vh - 200px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    #metadata-explorer {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #metadata-explorer .slds-card__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #metadata-explorer .slds-card__body > div:last-child {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .quick-action-item {
+        cursor: pointer;
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        background-color: #fafafb;
+        border: none;
+        transition: all 0.2s ease;
+    }
+
+    .quick-action-item:hover:not(.quick-action-item--disabled) {
+        background-color: #f0f0f1;
+        transform: translateY(-1px);
+    }
+
+    .quick-action-item--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .metadata-metric-box {
+        background: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .metadata-metric-box__value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #030229;
+    }
+
+    .metadata-metric-box__label {
+        font-size: 0.75rem;
+        color: rgba(3, 2, 41, 0.5);
+        margin-top: 0.25rem;
+    }
+
+    .metadata-pill {
+        background: rgba(96, 91, 255, 0.1);
+        color: #605bff;
+        border-radius: 8px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        display: inline-block;
+        font-weight: 600;
+    }
+
+    .metadata-pill--standard {
+        background: rgba(38, 192, 226, 0.1);
+        color: #26c0e2;
+    }
+
+    .metadata-results-table {
+        max-height: calc(100vh - 460px);
+        overflow: auto;
+        background-color: white;
+    }
+
+    .slds-table tbody td {
+        color: #030229;
+    }
+
+    .metadata-tree-wrapper {
+        background: #fff;
+        border: 1px solid #e8e8e9;
+        border-radius: 10px;
+        padding: 0;
+        max-height: calc(100vh - 460px);
+        overflow: auto;
+    }
+
+    .metadata-tree {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .metadata-tree__object {
+        border-bottom: 1px solid #e8e8e9;
+    }
+
+    .metadata-tree__object:last-child {
+        border-bottom: none;
+    }
+
+    .metadata-tree__object summary {
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #030229;
+        padding: 0.75rem 1rem;
+        background: #fafafb;
+        transition: background-color 0.2s;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .metadata-tree__object summary:hover {
+        background: #f0f0f1;
+    }
+
+    .metadata-tree__object[open] summary {
+        background: #fff;
+        border-bottom: 1px solid #e8e8e9;
+        border-radius: 0;
+    }
+
+    .metadata-tree__object summary::before {
+        content: '▶';
+        display: inline-block;
+        margin-right: 0.5rem;
+        font-size: 0.625rem;
+        color: #605bff;
+        transition: transform 0.2s;
+    }
+
+    .metadata-tree__object[open] summary::before {
+        transform: rotate(90deg);
+    }
+
+    .metadata-tree__fields {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+
+    .metadata-tree__fields li {
+        border-bottom: 1px solid #f0f0f1;
+    }
+
+    .metadata-tree__fields li:last-child {
+        border-bottom: none;
+    }
+
+    .metadata-tree__field-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #605bff;
+        text-decoration: none;
+        font-size: 0.875rem;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        transition: all 0.2s ease;
+    }
+
+    .metadata-tree__field-link:hover {
+        background: rgba(96, 91, 255, 0.05);
+        text-decoration: underline;
+    }
+
+    .metadata-tree__field-link i {
+        color: rgba(3, 2, 41, 0.5);
+        font-size: 0.75rem;
+    }
+
+    .metadata-tree__meta {
+        font-size: 0.75rem;
+        color: rgba(3, 2, 41, 0.5);
+    }
+
+    .metadata-tree__object summary .metadata-tree__meta {
+        background: rgba(38, 192, 226, 0.1);
+        color: #26c0e2;
+        border: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .metadata-label-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: #605bff;
+        background: transparent;
+        border: none;
+        font-weight: 600;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .metadata-label-button:hover,
+    .metadata-label-button:focus {
+        text-decoration: underline;
+    }
+
+    .metadata-notice {
+        border-left: 4px solid #d11a2a;
+        background: rgba(209, 26, 42, 0.05);
+        border-radius: 8px;
+        padding: 1rem;
+        color: #d11a2a;
+    }
+
+    .slds-scope .slds-card {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .slds-scope .slds-card__header-title {
+        color: rgba(3, 2, 41, 0.7);
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+
+    .slds-table thead th {
+        background: #fafafb;
+        color: #030229;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .slds-table tbody tr:hover {
+        background-color: rgba(96, 91, 255, 0.02);
+    }
+
+    .slds-scope .slds-select,
+    .slds-scope .slds-input,
+    .slds-scope .slds-textarea {
+        background-color: white;
+        border: 1px solid #e8e8e9;
+        border-radius: 8px;
+        color: #030229;
+    }
+
+    .slds-scope .slds-select:focus,
+    .slds-scope .slds-input:focus,
+    .slds-scope .slds-textarea:focus {
+        border-color: #605bff;
+        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
+        outline: 0;
+    }
+
+    .slds-scope .slds-button_brand {
+        background-color: #605bff;
+        border-color: #605bff;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .slds-scope .slds-button_brand:hover {
+        background-color: #4e47cc;
+        border-color: #4e47cc;
+    }
+
+    .slds-scope .slds-button_neutral {
+        border-radius: 8px;
+        background-color: #fafafb;
+        border-color: #e8e8e9;
+    }
+
+    .slds-scope .slds-button_neutral:hover {
+        background-color: #f0f0f1;
+    }
+
+    .slds-scope .slds-badge {
+        border-radius: 8px;
+        font-weight: 600;
+        background-color: rgba(38, 192, 226, 0.1);
+        color: #26c0e2;
+    }
+
+    .metadata-result-badge {
+        background: rgba(38, 192, 226, 0.1);
+        color: #26c0e2;
+        border-radius: 8px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="slds-scope">
+    <div class="slds-grid slds-gutters">
+        <!-- Sidebar -->
+        <div class="slds-col slds-size_3-of-12">
+            <div class="slds-card metadata-sidebar">
+                <div class="slds-card__header">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-icon_container slds-icon-utility-database">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                <use xlink:href="#utility-database"></use>
+                            </svg>
+                        </span>
+                        メタデータ
+                    </h2>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <!-- Quick Actions -->
+                    <div class="slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">クイックアクション</h3>
+                        {% for action in quick_actions %}
+                            <div class="quick-action-item {% if action.disabled %}quick-action-item--disabled{% endif %}"
+                                 {% if action.target and not action.disabled %}onclick="window.location.href='{{ action.target }}'"{% endif %}>
+                                <div class="slds-text-body_small" style="font-weight: 600;">
+                                    <i class="fas {{ action.icon }} slds-m-right_xx-small" style="color: #0176d3;"></i>
+                                    {{ action.title }}
+                                </div>
+                                <div class="slds-text-color_weak" style="font-size: 0.75rem; margin-top: 0.125rem;">
+                                    {{ action.description|truncatechars:40 }}
+                                </div>
+                                {% if action.badge %}
+                                    <span class="slds-badge slds-badge_lightest slds-m-top_xx-small" style="font-size: 0.7rem;">{{ action.badge }}</span>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Organization Summary -->
+                    {% if org_summary %}
+                    <div>
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">組織概要</h3>
+                        <div class="slds-grid slds-wrap slds-gutters_x-small">
+                            <div class="slds-col slds-size_6-of-12">
+                                <div class="metadata-metric-box">
+                                    <div class="metadata-metric-box__value">{{ org_summary.total_objects }}</div>
+                                    <div class="metadata-metric-box__label">総オブジェクト</div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12">
+                                <div class="metadata-metric-box">
+                                    <div class="metadata-metric-box__value">{{ org_summary.custom_objects }}</div>
+                                    <div class="metadata-metric-box__label">カスタム</div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 slds-m-top_x-small">
+                                <div class="metadata-metric-box">
+                                    <div class="metadata-metric-box__value">{{ org_summary.queryable_objects }}</div>
+                                    <div class="metadata-metric-box__label">SOQL可</div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 slds-m-top_x-small">
+                                <div class="metadata-metric-box">
+                                    <div class="metadata-metric-box__value">{{ org_summary.searchable_objects }}</div>
+                                    <div class="metadata-metric-box__label">検索可</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-m-top_small">
+                            <div class="slds-text-title_caps slds-text-color_weak" style="font-size: 0.75rem; margin-bottom: 0.25rem;">注目オブジェクト</div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.25rem;">
+                                {% for obj in custom_objects_preview %}
+                                    <span class="metadata-pill">{{ obj.label|default:obj.name|truncatechars:12 }}</span>
+                                {% endfor %}
+                                {% for obj in standard_objects_preview %}
+                                    <span class="metadata-pill metadata-pill--standard">{{ obj.label|default:obj.name|truncatechars:12 }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="slds-col slds-size_9-of-12">
+
+        {% if needs_connection %}
+            <div class="metadata-notice">
+                <h2 class="slds-text-heading_small slds-m-bottom_small">
+                    <span class="slds-icon_container slds-icon-utility-link slds-m-right_xx-small">
+                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                            <use xlink:href="#utility-link"></use>
+                        </svg>
+                    </span>
+                    Salesforce への接続が必要です
+                </h2>
+                <p class="slds-text-body_regular">このページを利用するには Salesforce にサインインしてください。接続が確立されると、メタデータの検索と詳細確認が利用可能になります。</p>
+            </div>
+        {% else %}
+            <div class="slds-card" id="metadata-explorer">
+                <div class="slds-card__header">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-utility-list">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="#utility-list"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>メタデータエクスプローラ</span>
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                            <span class="slds-badge">Tooling API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-card__body slds-card__body_inner">
+                    <form method="post" class="slds-form slds-grid slds-wrap slds-gutters_small">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="list">
+                        <div class="slds-form-element slds-size_12-of-12 slds-large-size_5-of-12">
+                            <label class="slds-form-element__label" for="{{ list_form.metadata_type.id_for_label }}">
+                                {{ list_form.metadata_type.label }}
+                            </label>
+                            <div class="slds-form-element__control">
+                                {{ list_form.metadata_type }}
+                            </div>
+                            {% if list_form.metadata_type.errors %}
+                                <div class="slds-form-element__help slds-text-color_error">
+                                    {{ list_form.metadata_type.errors|join:', ' }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="slds-form-element slds-size_12-of-12 slds-large-size_5-of-12">
+                            <label class="slds-form-element__label" for="{{ list_form.name_filter.id_for_label }}">
+                                {{ list_form.name_filter.label }}
+                            </label>
+                            <div class="slds-form-element__control">
+                                {{ list_form.name_filter }}
+                            </div>
+                            {% if list_form.name_filter.help_text %}
+                                <div class="slds-form-element__help">{{ list_form.name_filter.help_text }}</div>
+                            {% endif %}
+                            {% if list_form.name_filter.errors %}
+                                <div class="slds-form-element__help slds-text-color_error">
+                                    {{ list_form.name_filter.errors|join:', ' }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-large-size_2-of-12 slds-align_absolute-center">
+                            <button type="submit" class="slds-button slds-button_brand slds-button_stretch slds-m-top_small">
+                                <span class="slds-icon_container slds-icon-utility-search slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-search"></use>
+                                    </svg>
+                                </span>
+                                取得
+                            </button>
+                        </div>
+                    </form>
+
+                    {% if metadata_error %}
+                        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-top_medium" role="alert">
+                            <span class="slds-assistive-text">エラー</span>
+                            <h3 class="slds-text-heading_small">
+                                <span class="slds-icon_container slds-icon-utility-error slds-m-right_xx-small">
+                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                                        <use xlink:href="#utility-error"></use>
+                                    </svg>
+                                </span>
+                                {{ metadata_error }}
+                            </h3>
+                        </div>
+                    {% endif %}
+
+                    <div class="slds-m-top_medium">
+                        {% if metadata_selected_type == 'CustomField' %}
+                            <div class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_small">
+                                <div class="slds-col slds-size_12-of-12 slds-large-size_6-of-12">
+                                    <div class="slds-text-heading_small">カスタム項目ツリー</div>
+                                </div>
+                                {% if metadata_result_info %}
+                                    <div class="slds-col slds-size_12-of-12 slds-large-size_6-of-12 slds-text-align_right">
+                                        <span class="metadata-result-badge">
+                                            {{ metadata_result_info.size_returned }} 件表示
+                                        </span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% if metadata_tree %}
+                                <div class="metadata-tree-wrapper">
+                                    <ul class="metadata-tree">
+                                        {% for node in metadata_tree %}
+                                            <li>
+                                                <details class="metadata-tree__object" {% if forloop.first %}open{% endif %}>
+                                                    <summary>
+                                                        <span style="display: flex; align-items: center;">
+                                                            <span>{{ node.object_label }}</span>
+                                                        </span>
+                                                        <span class="metadata-tree__meta">{{ node.fields|length }} 項目</span>
+                                                    </summary>
+                                                    <ul class="metadata-tree__fields">
+                                                        {% for field in node.fields %}
+                                                            <li>
+                                                                <a href="{{ field.detail_url }}" class="metadata-tree__field-link">
+                                                                    <i class="fas fa-sitemap"></i>
+                                                                    <span style="flex: 1; min-width: 0;">{{ field.label|default:field.name }}</span>
+                                                                    <span class="metadata-tree__meta">{{ field.type|default:'—' }}</span>
+                                                                    <span class="metadata-tree__meta" style="opacity: 0.8;">{{ field.name }}</span>
+                                                                </a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </details>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div class="slds-align_absolute-center slds-m-top_large slds-p-around_medium">
+                                    <div class="slds-text-color_weak slds-text-align_center">
+                                        <span class="slds-icon_container slds-icon-utility-info">
+                                            <svg class="slds-icon slds-icon_large" aria-hidden="true">
+                                                <use xlink:href="#utility-info"></use>
+                                            </svg>
+                                        </span>
+                                        <p class="slds-text-body_regular">条件に一致するカスタム項目が見つかりませんでした。</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% elif metadata_table_rows %}
+                            <div class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_small">
+                                <div class="slds-col slds-size_12-of-12 slds-large-size_6-of-12">
+                                    <div class="slds-text-heading_small">検索結果</div>
+                                </div>
+                                {% if metadata_result_info %}
+                                    <div class="slds-col slds-size_12-of-12 slds-large-size_6-of-12 slds-text-align_right">
+                                        <span class="slds-badge">
+                                            {{ metadata_result_info.size_returned }} / {{ metadata_result_info.total_size }} 件表示
+                                            {% if not metadata_result_info.done %}（追加取得可能）{% endif %}
+                                        </span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="slds-scrollable_x metadata-results-table">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            {% for column_label in metadata_column_labels|default:metadata_columns %}
+                                                <th scope="col"><div class="slds-truncate" title="{{ column_label }}">{{ column_label }}</div></th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in metadata_table_rows %}
+                                            <tr class="slds-hint-parent">
+                                                {% for value in row.values %}
+                                                    {% if forloop.first %}
+                                                        <td>
+                                                            <div class="slds-truncate">
+                                                                <a href="{{ row.detail_url }}" class="metadata-label-button">
+                                                                    <i class="fas fa-info-circle"></i>
+                                                                    {{ value|default:'—' }}
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    {% else %}
+                                                        <td>
+                                                            <div class="slds-truncate">
+                                                                {% if value is boolean %}
+                                                                    {{ value|yesno:"はい,いいえ" }}
+                                                                {% else %}
+                                                                    {{ value|default:'—' }}
+                                                                {% endif %}
+                                                            </div>
+                                                        </td>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% elif metadata_selected_type %}
+                            <div class="slds-align_absolute-center slds-m-top_large slds-p-around_medium">
+                                <div class="slds-text-color_weak slds-text-align_center">
+                                    <span class="slds-icon_container slds-icon-utility-info">
+                                        <svg class="slds-icon slds-icon_large" aria-hidden="true">
+                                            <use xlink:href="#utility-info"></use>
+                                        </svg>
+                                    </span>
+                                    <p class="slds-text-body_regular">条件に一致するメタデータは見つかりませんでした。</p>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="slds-align_absolute-center slds-m-top_large slds-p-around_medium">
+                                <div class="slds-text-color_weak slds-text-align_center">
+                                    <span class="slds-icon_container slds-icon-utility-prompt">
+                                        <svg class="slds-icon slds-icon_large" aria-hidden="true">
+                                            <use xlink:href="#utility-prompt"></use>
+                                        </svg>
+                                    </span>
+                                    <p class="slds-text-body_regular">メタデータ種別を選択して「取得」を押してください。</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

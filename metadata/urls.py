@@ -5,5 +5,5 @@ app_name = 'metadata'
 
 urlpatterns = [
     path('', views.metadata_home, name='home'),
-    # Add more URLs as needed
+    path('detail/<str:metadata_type>/<str:identifier>/', views.metadata_detail_page, name='detail'),
 ]
