@@ -5,7 +5,8 @@ app_name = 'data'
 
 urlpatterns = [
     path('', views.data_home, name='home'),
-    path('insert/', views.insert_view, name='insert'),
+    path('insert/', views.create_record_view, name='insert'),
+    path('insert/legacy/', views.insert_view, name='insert_legacy'),
     path('update/', views.update_view, name='update'),
     path('delete/', views.delete_view, name='delete'),
     path('upsert/', views.upsert_view, name='upsert'),
