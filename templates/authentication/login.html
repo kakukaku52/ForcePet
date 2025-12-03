@@ -19,106 +19,152 @@
         width: 100%;
     }
 
-    /* Left panel - Form */
+    /* Left panel - Brand & Illustration */
     .login-left-panel {
-        width: 448px;
-        background: #F8F9FA;
-        display: flex;
-        flex-direction: column;
-        padding: 50px;
-        overflow-y: auto;
-    }
-
-    /* Right panel - Illustration */
-    .login-right-panel {
         flex: 1;
-        background: #FFFFFF;
+        background: linear-gradient(135deg, #E8F4F8 0%, #D6E9F5 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         overflow: hidden;
+        padding: 50px;
+    }
+
+    /* Right panel - Login Form */
+    .login-right-panel {
+        width: 550px;
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 60px;
+        overflow-y: auto;
+    }
+
+    /* Brand showcase - left panel */
+    .brand-showcase {
+        max-width: 450px;
+        width: 100%;
+    }
+
+    .brand-header {
+        margin-bottom: 30px;
+    }
+
+    .brand-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1A365D;
+        margin-bottom: 15px;
+    }
+
+    .brand-description {
+        color: #2D3748;
+        line-height: 1.8;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .brand-description i {
+        color: #48BB78;
+        font-size: 18px;
     }
 
     .illustration-container {
-        max-width: 600px;
-        width: 100%;
+        margin-top: 40px;
         text-align: center;
     }
 
     .illustration-image {
         width: 100%;
         height: auto;
-        max-width: 500px;
+        max-width: 400px;
     }
 
-    /* Logo and title */
+    /* Logo and title - right panel */
     .login-logo {
-        width: 92px;
-        height: 92px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        background: #4299E1;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 20px;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        margin-bottom: 20px;
     }
 
     .login-logo i {
-        font-size: 48px;
+        font-size: 32px;
         color: white;
     }
 
     .login-title {
-        font-size: 28px;
+        font-size: 32px;
         font-weight: 700;
-        color: #2D3748;
-        margin-bottom: 40px;
-        text-align: center;
+        color: #1A202C;
+        margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+        font-size: 15px;
+        color: #718096;
+        margin-bottom: 35px;
     }
 
     /* Social login buttons */
     .social-buttons {
         display: flex;
         gap: 12px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     .btn-social {
         flex: 1;
-        height: 50px;
-        border-radius: 8px;
-        border: 1px solid #E2E8F0;
+        height: 52px;
+        border-radius: 10px;
+        border: 1.5px solid #E2E8F0;
         background: white;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 10px;
         font-weight: 500;
-        color: #4A5568;
-        transition: all 0.3s ease;
+        font-size: 15px;
+        color: #2D3748;
+        transition: all 0.2s ease;
         cursor: pointer;
     }
 
     .btn-social:hover {
         background: #F7FAFC;
-        border-color: #CBD5E0;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border-color: #4299E1;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(66, 153, 225, 0.15);
     }
 
     .btn-social i {
-        font-size: 18px;
+        font-size: 20px;
+    }
+
+    .btn-social.google i {
+        color: #DB4437;
+    }
+
+    .btn-social.salesforce i {
+        color: #00A1E0;
     }
 
     /* Divider */
     .login-divider {
         display: flex;
         align-items: center;
-        margin: 25px 0;
+        margin: 20px 0;
         color: #A0AEC0;
-        font-size: 14px;
+        font-size: 13px;
+        text-transform: lowercase;
     }
 
     .login-divider::before,
@@ -135,35 +181,57 @@
 
     /* Form fields */
     .form-group-modern {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     .form-group-modern label {
         display: block;
-        font-size: 14px;
-        font-weight: 500;
+        font-size: 13px;
+        font-weight: 600;
         color: #2D3748;
         margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .input-with-icon {
+        position: relative;
+    }
+
+    .input-with-icon i {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #A0AEC0;
+        font-size: 16px;
+        pointer-events: none;
+    }
+
+    .input-with-icon .form-control {
+        padding-left: 45px;
     }
 
     .form-group-modern .form-control {
-        height: 50px;
-        border-radius: 8px;
-        border: 1px solid #E2E8F0;
-        background: white;
-        padding: 0 15px;
-        font-size: 14px;
-        transition: all 0.3s ease;
+        height: 52px;
+        border-radius: 10px;
+        border: 1.5px solid #E2E8F0;
+        background: #F7FAFC;
+        padding: 0 16px;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        width: 100%;
     }
 
     .form-group-modern .form-control:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-color: #4299E1;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
         outline: none;
     }
 
     .form-group-modern .form-control::placeholder {
-        color: #A0AEC0;
+        color: #CBD5E0;
     }
 
     /* Remember me and reset password */
@@ -180,42 +248,50 @@
         align-items: center;
         gap: 8px;
         color: #4A5568;
+        cursor: pointer;
     }
 
     .remember-me input[type="checkbox"] {
         width: 18px;
         height: 18px;
         cursor: pointer;
+        accent-color: #4299E1;
     }
 
     .reset-password-link {
-        color: #667eea;
+        color: #4299E1;
         text-decoration: none;
         font-weight: 500;
+        transition: color 0.2s;
     }
 
     .reset-password-link:hover {
-        text-decoration: underline;
+        color: #2B6CB0;
     }
 
     /* Login button */
     .btn-login {
         width: 100%;
-        height: 50px;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        height: 52px;
+        border-radius: 10px;
+        background: #4299E1;
         border: none;
         color: white;
         font-size: 16px;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         cursor: pointer;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
     }
 
     .btn-login:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        background: #3182CE;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
+    }
+
+    .btn-login:active {
+        transform: translateY(0);
     }
 
     /* Sign up link */
@@ -223,17 +299,18 @@
         text-align: center;
         margin-top: 25px;
         font-size: 14px;
-        color: #4A5568;
+        color: #718096;
     }
 
     .signup-link a {
-        color: #667eea;
+        color: #4299E1;
         font-weight: 600;
         text-decoration: none;
+        transition: color 0.2s;
     }
 
     .signup-link a:hover {
-        text-decoration: underline;
+        color: #2B6CB0;
     }
 
     /* Tabs styling - keeping existing functionality */
@@ -396,12 +473,27 @@
         }
 
         .login-left-panel {
-            width: 100%;
-            min-height: 100vh;
+            display: none;
         }
 
         .login-right-panel {
-            display: none;
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 30px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .login-right-panel {
+            padding: 30px 20px;
+        }
+
+        .login-title {
+            font-size: 28px;
+        }
+
+        .social-buttons {
+            flex-direction: column;
         }
     }
 
@@ -457,13 +549,38 @@
 
 {% block content %}
 <div class="login-wrapper">
-    <!-- Left Panel - Login Form -->
+    <!-- Left Panel - Brand Showcase -->
     <div class="login-left-panel">
+        <div class="brand-showcase">
+            <div class="brand-header">
+                <h2 class="brand-title">ForcePet Authentication</h2>
+                <p class="brand-description">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Fast</span>
+                </p>
+                <p class="brand-description">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Simple</span>
+                </p>
+                <p class="brand-description">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Secure</span>
+                </p>
+            </div>
+            <div class="illustration-container">
+                <img src="{% static 'images/login-illustration.svg' %}" alt="Login illustration" class="illustration-image" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel - Login Form -->
+    <div class="login-right-panel">
         <!-- Logo and Title -->
         <div class="login-logo">
-            <i class="fas fa-tools"></i>
+            <i class="fas fa-cloud"></i>
         </div>
-        <h1 class="login-title">Log in</h1>
+        <h1 class="login-title">Sign In</h1>
+        <p class="login-subtitle">Get access to your Salesforce account</p>
 
         <div class="login-form-content">
             <!-- Global Error Alert -->
@@ -488,12 +605,14 @@
             <!-- Social Login Buttons (Tabs disguised as social buttons) -->
             <div class="social-buttons">
                 {% if oauth_enabled %}
-                <button class="btn-social" id="oauth-tab-btn" data-bs-toggle="tab" data-bs-target="#oauth" type="button" role="tab">
-                    <i class="fab fa-salesforce"></i> Salesforce
+                <button class="btn-social salesforce" id="oauth-tab-btn" data-bs-toggle="tab" data-bs-target="#oauth" type="button" role="tab">
+                    <i class="fab fa-salesforce"></i>
+                    <span>Sign in with Salesforce</span>
                 </button>
                 {% endif %}
                 <button class="btn-social" id="standard-tab-btn" data-bs-toggle="tab" data-bs-target="#standard" type="button" role="tab">
-                    <i class="fas fa-key"></i> Standard
+                    <i class="fas fa-envelope"></i>
+                    <span>Sign in with Email</span>
                 </button>
             </div>
 
@@ -567,14 +686,20 @@
                         <input type="hidden" name="login_type" value="standard">
 
                         <div class="form-group-modern">
-                            <label for="id_username">Username</label>
-                            {{ standard_form.username }}
+                            <label for="id_username">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                {{ standard_form.username }}
+                            </div>
                             <div class="field-error" id="username-error"></div>
                         </div>
 
                         <div class="form-group-modern">
                             <label for="id_password">Password</label>
-                            {{ standard_form.password }}
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                {{ standard_form.password }}
+                            </div>
                             <div class="field-error" id="password-error"></div>
                         </div>
 
@@ -632,146 +757,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Right Panel - Illustration -->
-    <div class="login-right-panel">
-        <div class="illustration-container">
-            <!-- TODO: Replace with your Figma exported image -->
-            <!-- Method 1: Use static file (after exporting from Figma) -->
-            <img src="{% static 'images/login-illustration.svg' %}" alt="Working illustration" class="illustration-image" style="max-width: 2000px;"> 
-
-            <!-- Method 2: Temporary online illustration (replace with Figma export) -->
-            <!-- <img src="https://illustrations.popsy.co/amber/remote-work.svg" alt="Working illustration" class="illustration-image" style="max-width: 500px;"> -->
-
-            <!-- Method 3: Embedded SVG based on Figma design (currently commented out) -->
-            <!-- <svg class="illustration-image" viewBox="0 0 647 602" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Shadow/Ground -->
-                <ellipse cx="323.5" cy="571" rx="323.5" ry="30" fill="#E2E8F0" opacity="0.5"/>
-
-                <!-- Clock on wall -->
-                <g transform="translate(480, 50)">
-                    <circle cx="0" cy="0" r="35" fill="#FF6B6B"/>
-                    <circle cx="0" cy="0" r="28" fill="white"/>
-                    <line x1="0" y1="0" x2="12" y2="-15" stroke="#2D3748" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="0" y1="0" x2="8" y2="8" stroke="#2D3748" stroke-width="2" stroke-linecap="round"/>
-                </g>
-
-                <!-- Monitor on desk -->
-                <g transform="translate(220, 260)">
-                    <rect x="0" y="0" width="15" height="80" rx="3" fill="#2D3748"/>
-                    <rect x="-40" y="0" width="95" height="70" rx="5" fill="#2D3748"/>
-                    <rect x="-35" y="5" width="85" height="60" rx="3" fill="#4ECDC4" opacity="0.3"/>
-                </g>
-
-                <!-- Desk -->
-                <g transform="translate(100, 340)">
-                    <rect x="0" y="0" width="450" height="8" rx="4" fill="#FF7B54"/>
-                    <rect x="20" y="8" width="6" height="180" fill="#FF7B54" opacity="0.8"/>
-                    <rect x="424" y="8" width="6" height="180" fill="#FF7B54" opacity="0.8"/>
-                </g>
-
-                <!-- Notebook on desk left -->
-                <g transform="translate(120, 380)">
-                    <rect x="0" y="0" width="70" height="90" rx="3" fill="#4ECDC4"/>
-                    <rect x="0" y="0" width="70" height="90" rx="3" fill="#2D3748" opacity="0.1"/>
-                    <line x1="65" y1="10" x2="65" y2="80" stroke="#2D3748" stroke-width="2" opacity="0.3"/>
-                    <!-- Spiral binding -->
-                    <circle cx="10" cy="20" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
-                    <circle cx="10" cy="35" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
-                    <circle cx="10" cy="50" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
-                    <circle cx="10" cy="65" r="3" fill="none" stroke="#2D3748" stroke-width="1" opacity="0.3"/>
-                </g>
-
-                <!-- Person sitting -->
-                <g transform="translate(310, 180)">
-                    <!-- Head -->
-                    <ellipse cx="0" cy="0" rx="28" ry="32" fill="#FFC4A3"/>
-                    <!-- Hair -->
-                    <path d="M-25,-15 Q-28,-25 -20,-30 Q-10,-35 0,-35 Q10,-35 20,-30 Q28,-25 25,-15 L25,5 Q20,0 10,0 Q0,5 -10,0 Q-20,0 -25,5 Z" fill="#1A202C"/>
-                    <!-- Eyes -->
-                    <circle cx="-8" cy="2" r="2" fill="#2D3748"/>
-                    <circle cx="8" cy="2" r="2" fill="#2D3748"/>
-                    <!-- Smile -->
-                    <path d="M-10,12 Q0,18 10,12" stroke="#E8A788" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-                    <!-- Body/Shirt -->
-                    <ellipse cx="0" cy="65" rx="45" ry="50" fill="#667eea"/>
-                    <!-- Collar lines -->
-                    <path d="M-20,35 L-10,45" stroke="#5568D3" stroke-width="2"/>
-                    <path d="M20,35 L10,45" stroke="#5568D3" stroke-width="2"/>
-                    <line x1="-10" y1="45" x2="10" y2="45" stroke="#5568D3" stroke-width="2"/>
-
-                    <!-- Arms -->
-                    <ellipse cx="-35" cy="70" rx="12" ry="35" fill="#667eea" transform="rotate(-20 -35 70)"/>
-                    <ellipse cx="35" cy="70" rx="12" ry="35" fill="#667eea" transform="rotate(20 35 70)"/>
-
-                    <!-- Hands on laptop -->
-                    <ellipse cx="-25" cy="95" rx="10" ry="8" fill="#FFC4A3"/>
-                    <ellipse cx="25" cy="95" rx="10" ry="8" fill="#FFC4A3"/>
-                </g>
-
-                <!-- Laptop -->
-                <g transform="translate(250, 300)">
-                    <!-- Laptop base -->
-                    <path d="M0,20 L10,0 L110,0 L120,20 Z" fill="#4ECDC4"/>
-                    <path d="M5,20 L15,5 L105,5 L115,20 Z" fill="#95E1D3"/>
-                    <!-- Screen -->
-                    <rect x="15" y="-50" width="90" height="70" rx="3" fill="#2D3748"/>
-                    <rect x="20" y="-45" width="80" height="60" rx="2" fill="#95E1D3"/>
-                    <!-- Screen content -->
-                    <circle cx="60" cy="-25" r="3" fill="white" opacity="0.8"/>
-                </g>
-
-                <!-- Pen holder on desk -->
-                <g transform="translate(460, 330)">
-                    <rect x="0" y="20" width="35" height="45" rx="3" fill="#E74C3C"/>
-                    <!-- Pens -->
-                    <line x1="8" y1="10" x2="8" y2="25" stroke="#FFD93D" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="17" y1="5" x2="17" y2="25" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="26" y1="12" x2="26" y2="25" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
-                </g>
-
-                <!-- Plant -->
-                <g transform="translate(510, 380)">
-                    <!-- Pot -->
-                    <path d="M0,30 L5,50 L35,50 L40,30 Z" fill="#F6E05E"/>
-                    <path d="M5,50 L35,50 L35,55 L5,55 Z" fill="#ECC94B"/>
-                    <!-- Wave pattern on pot -->
-                    <path d="M8,40 Q12,42 16,40 Q20,38 24,40 Q28,42 32,40" stroke="#D69E2E" stroke-width="1.5" fill="none"/>
-                    <!-- Leaves -->
-                    <ellipse cx="15" cy="15" rx="12" ry="20" fill="#52B788" transform="rotate(-25 15 15)"/>
-                    <ellipse cx="25" cy="10" rx="10" ry="18" fill="#52B788" transform="rotate(15 25 10)"/>
-                    <ellipse cx="20" cy="20" rx="13" ry="22" fill="#40916C"/>
-                </g>
-
-                <!-- Chair -->
-                <g transform="translate(280, 380)">
-                    <!-- Seat -->
-                    <ellipse cx="20" cy="0" rx="40" ry="12" fill="#F6E05E"/>
-                    <rect x="-20" y="-5" width="80" height="10" rx="5" fill="#F6E05E"/>
-                    <!-- Back -->
-                    <rect x="10" y="-60" width="20" height="65" rx="8" fill="#F6E05E"/>
-                    <!-- Legs -->
-                    <line x1="5" y1="10" x2="0" y2="70" stroke="#F6E05E" stroke-width="6"/>
-                    <line x1="35" y1="10" x2="40" y2="70" stroke="#F6E05E" stroke-width="6"/>
-                    <!-- Wheels -->
-                    <circle cx="0" cy="75" r="8" fill="#E8A788"/>
-                    <circle cx="40" cy="75" r="8" fill="#E8A788"/>
-                </g>
-
-                <!-- Pants/Legs -->
-                <g transform="translate(310, 300)">
-                    <rect x="-25" y="0" width="23" height="110" rx="8" fill="#1A202C"/>
-                    <rect x="2" y="0" width="23" height="110" rx="8" fill="#1A202C"/>
-                    <!-- Shoes -->
-                    <ellipse cx="-13" cy="115" rx="15" ry="10" fill="#FF1493"/>
-                    <ellipse cx="13" cy="115" rx="15" ry="10" fill="#FF1493"/>
-                    <ellipse cx="-18" cy="115" rx="8" ry="6" fill="#FF69B4"/>
-                    <ellipse cx="8" cy="115" rx="8" ry="6" fill="#FF69B4"/>
-                </g>
-            </svg> -->
         </div>
     </div>
 </div>
