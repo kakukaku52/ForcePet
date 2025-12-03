@@ -34,34 +34,41 @@ class CreateRecordViewTests(TestCase):
         session['sf_connection_id'] = self.connection.id
         session.save()
 
-    @patch('data.views.get_salesforce_client')
-    def test_get_renders_sobject_list(self, mock_client):
+    @patch('data.views.SalesforceClient')
+    @patch('data.views.get_salesforce_connection')
+    def test_get_renders_sobject_list(self, mock_get_connection, mock_client_cls):
+        mock_get_connection.return_value = self.connection
+
         mock_sf = MagicMock()
-        mock_sf.describe.return_value = {
+        mock_sf.describe_global.return_value = {
             'sobjects': [
                 {'name': 'Account', 'label': 'Account', 'labelPlural': 'Accounts', 'createable': True},
                 {'name': 'Contact', 'label': 'Contact', 'labelPlural': 'Contacts', 'createable': True},
                 {'name': 'Forbidden', 'label': 'Forbidden', 'labelPlural': 'Forbidden', 'createable': False},
             ]
         }
-        mock_client.return_value = mock_sf
+        mock_client_cls.return_value = mock_sf
 
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Account (Account)')
-        self.assertContains(response, 'Contact (Contact)')
-        # ensure non-createable objects are filtered
-        self.assertNotContains(response, 'Forbidden')
-        mock_sf.describe.assert_called_once()
+        content = response.content.decode('utf-8')
+        self.assertIn('"name": "Account"', content)
+        self.assertIn('"label": "Account"', content)
+        self.assertIn('"name": "Contact"', content)
+        self.assertIn('"name": "Forbidden"', content)
+        self.assertContains(response, 'id="sobject-filter-input"')
+        self.assertContains(response, 'id="sobject-toggle"')
+        self.assertContains(response, 'id="sobject-options-data"')
+        mock_sf.describe_global.assert_called_once()
 
-    @patch('data.views.get_salesforce_client')
-    def test_single_record_insert_success(self, mock_client):
+    @patch('data.views.SalesforceClient')
+    @patch('data.views.get_salesforce_connection')
+    def test_single_record_insert_success(self, mock_get_connection, mock_client_cls):
+        mock_get_connection.return_value = self.connection
         mock_sf = MagicMock()
-        mock_sobject = MagicMock()
-        mock_sobject.create.return_value = {'id': '001000000000AAA', 'success': True, 'errors': []}
-        mock_sf.sobject.return_value = mock_sobject
-        mock_client.return_value = mock_sf
+        mock_sf.insert.return_value = {'id': '001000000000AAA', 'success': True, 'errors': []}
+        mock_client_cls.return_value = mock_sf
 
         payload = {
             'mode': 'single',
@@ -85,16 +92,16 @@ class CreateRecordViewTests(TestCase):
         self.assertEqual(operation.success_count, 1)
         self.assertEqual(operation.error_count, 0)
 
-    @patch('data.views.get_salesforce_client')
-    def test_csv_insert_creates_operations(self, mock_client):
+    @patch('data.views.SalesforceClient')
+    @patch('data.views.get_salesforce_connection')
+    def test_csv_insert_creates_operations(self, mock_get_connection, mock_client_cls):
+        mock_get_connection.return_value = self.connection
         mock_sf = MagicMock()
-        mock_sobject = MagicMock()
-        mock_sobject.create.side_effect = [
+        mock_sf.insert.side_effect = [
             {'id': '001000000000AAA', 'success': True, 'errors': []},
             {'id': '001000000000AAB', 'success': True, 'errors': []},
         ]
-        mock_sf.sobject.return_value = mock_sobject
-        mock_client.return_value = mock_sf
+        mock_client_cls.return_value = mock_sf
 
         csv_content = 'Name,Phone\nAcme,123456\nBeta,987654\n'
         csv_file = SimpleUploadedFile('records.csv', csv_content.encode('utf-8'), content_type='text/csv')
@@ -119,10 +126,12 @@ class CreateRecordViewTests(TestCase):
         self.assertEqual(operation.success_count, 2)
         self.assertEqual(operation.error_count, 0)
 
-    @patch('data.views.get_salesforce_client')
-    def test_single_record_requires_field_values(self, mock_client):
+    @patch('data.views.SalesforceClient')
+    @patch('data.views.get_salesforce_connection')
+    def test_single_record_requires_field_values(self, mock_get_connection, mock_client_cls):
+        mock_get_connection.return_value = self.connection
         mock_sf = MagicMock()
-        mock_client.return_value = mock_sf
+        mock_client_cls.return_value = mock_sf
 
         payload = {
             'mode': 'single',

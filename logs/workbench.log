@@ -7097,3 +7097,2117 @@ django.template.exceptions.TemplateDoesNotExist: data/update.html
 "GET /query/ HTTP/1.1" 200 412329
 Loading fields for object=PreScoring__c user=tatuzawa0502@gmail.com
 "GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 84162
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/login/ HTTP/1.1" 302 0
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zalxBlLorFvWdHG0ofSW1bhdBFJeg4WeB3c29picQAs_OC.g6w%3D%3D&state=fdf63d36-169e-4910-914f-9d86a45d03c8 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Loading fields for object=PreScoring__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 84162
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+/Users/guohe/Documents/Project/ForcePet/authentication/utils.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/utils.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zQ.EHOvpzJaSYebdXwUvGuabrMp9l.IQ3DbAnR3umPNJCqdMmA%3D%3D&state=ac71c4a1-4905-4fe6-a7ce-aa9ebc55d468 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Loading fields for object=PreScoring__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 84162
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zVeXb1Nn_oNyo0aRxUk_bCrhQYuDrb7Y2zfUcLpwXFC2xYxcKQ%3D%3D&state=7f326573-f9d9-4bb5-9dde-234c5b50b7aa HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=PreScoring__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 84162
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zc5E_FLe_oN4AMFbQY7p_bwtQkB2YdEQsbsqPrtIcKjzexxuOQ%3D%3D&state=96571aad-6799-41fe-8e5f-65ab768d3531 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=PreScoring__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=PreScoring__c HTTP/1.1" 200 84162
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zVIDrK30nsUwuF4vyT1S3PsIrUGLse_xQ2aOAz3un1OtFUpSYQ%3D%3D&state=67296182-41ea-4ff0-99dc-42a7bb27ade4 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+- Broken pipe from ('127.0.0.1', 58661)
+/Users/guohe/Documents/Project/ForcePet/authentication/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zWTvk369VgOZC1h5V26j.x.jMv8z5FjnmTfLxNxzs381ELT5yQ%3D%3D&state=fb129f93-3dc6-4fdb-ad1b-d96763da8a5c HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbYUzdpIiV6TTYdPMpFzirgPjE7fe2qXH90uBjvnxFwT2qMmJw%3D%3D&state=4b783458-4807-42d6-8622-05a7d1745439 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+Internal Server Error: /data/update/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/data/views.py", line 326, in update_view
+    return render(request, 'data/update.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: data/update.html
+"GET /data/update/ HTTP/1.1" 500 90472
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zerZPYcaFrgtDK2E6XU3ubSigwWGKalW3yrdUmx_4djL2b1n_A%3D%3D&state=7c9c9808-a420-4d86-858f-46949167360a HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 412397
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=Pool__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Pool__c HTTP/1.1" 200 22322
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+Internal Server Error: /query/history/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 588, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: query/history.html
+"GET /query/history/ HTTP/1.1" 500 97596
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 14055
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /data/insert/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0ze7VUyabIqnv2F8hFhoaz6N451czajO7Znne2KYeiFiwaov8Gw%3D%3D&state=5ef146a5-8b52-4ff6-af09-883291d32a73 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412703
+"GET /data/insert/ HTTP/1.1" 200 14055
+"GET /query/ HTTP/1.1" 200 412397
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+/Users/guohe/Documents/Project/ForcePet/authentication/utils.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+- Broken pipe from ('127.0.0.1', 63684)
+"GET /query/ HTTP/1.1" 200 412397
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 333497
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17466
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /data/api/sobject-fields/
+"GET /data/api/sobject-fields/?sobject=Period HTTP/1.1" 500 44
+Internal Server Error: /data/api/sobject-fields/
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 500 44
+/Users/guohe/Documents/Project/ForcePet/authentication/utils.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /data/insert/
+/Users/guohe/Documents/Project/ForcePet/data/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /data/insert/ HTTP/1.1" 200 333497
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17729
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=ApexClass HTTP/1.1" 200 1993
+"GET /data/api/sobject-fields/?sobject=Chat__c HTTP/1.1" 200 7295
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+Insert error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Account/. Response content: [{'message': 'VALUE_STRING 値 aaaa から boolean のインスタンスを並列化できないか、要求に必須項目がない可能性があります at [line:1, column:2]', 'errorCode': 'JSON_PARSER_ERROR'}]
+Bad Request: /data/insert/
+"POST /data/insert/ HTTP/1.1" 400 525
+Insert error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Account/. Response content: [{'message': 'VALUE_STRING 値 aaaa から boolean のインスタンスを並列化できないか、要求に必須項目がない可能性があります at [line:1, column:2]', 'errorCode': 'JSON_PARSER_ERROR'}]
+Bad Request: /data/insert/
+"POST /data/insert/ HTTP/1.1" 400 525
+"GET /data/insert/ HTTP/1.1" 200 333497
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=ApexClass HTTP/1.1" 200 1993
+Insert error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/ApexClass/. Response content: [{'message': 'VALUE_STRING 値 // から double のインスタンスを並列化できないか、要求に必須項目がない可能性があります at [line:1, column:40]', 'errorCode': 'JSON_PARSER_ERROR'}]
+Bad Request: /data/insert/
+"POST /data/insert/ HTTP/1.1" 400 525
+"GET /data/api/sobject-fields/?sobject=Test__c HTTP/1.1" 200 5510
+Insert error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/Test__c/. Response content: [{'message': 'ABCに設定できない\\n\nABCに設定できない\\n\nABCに設定できない\\n', 'errorCode': 'FIELD_CUSTOM_VALIDATION_EXCEPTION', 'fields': []}]
+Bad Request: /data/insert/
+"POST /data/insert/ HTTP/1.1" 400 433
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /data/insert/ HTTP/1.1" 200 168
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zYlpEGpUQrZU0xKqQNSWEcMtqzHza3s39s7q3LC0iQXxnW13Tg%3D%3D&state=4f82c422-171b-433e-9587-538d361d99d9 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 333497
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 333497
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 17729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Bad Request: /data/insert/
+"GET /data/insert/ HTTP/1.1" 200 333956
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 20848
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zWTmHOvC3o0h.VahbLKsl.Fkte4UH2aRX2zpWz2dg14qvCI4Ag%3D%3D&state=0540e621-777b-4ff4-9c74-04c83a83a158 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 333956
+"GET /static/js/data_create_record.js HTTP/1.1" 200 20848
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Bad Request: /data/insert/
+"GET /data/insert/ HTTP/1.1" 200 335144
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 27826
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 335144
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/data_create_record.js HTTP/1.1" 200 27826
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTCAZnoHQaNFzIx9NpmguU9Ch0KfguflYSM2b.cAAFi3n.hnNg%3D%3D&state=a2eaa268-997e-4b92-945d-0403e19e0bf4 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 335144
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zSsOt2V40TxM_.sYX6x5.Rd1vSa6snsqatSFvWWp3m1QgNkubQ%3D%3D&state=af20cbad-a0bb-4e00-a4ee-e809977dd788 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 335144
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Bad Request: /data/insert/
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /data/insert/ HTTP/1.1" 200 335969
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 27826
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 335969
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 27826
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 335969
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/data_create_record.js HTTP/1.1" 200 27826
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 335969
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 27826
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zaZV8GYYB_fQc_r.n4Z9I9gFZxQ4RdwtzjSNftV5sN7l0_vdcg%3D%3D&state=98f41e8d-0646-42f9-a3fb-7c483ba42046 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 335969
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=AIApplication HTTP/1.1" 200 1940
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+Bad Request: /data/insert/
+Bad Request: /data/insert/
+"GET /data/insert/ HTTP/1.1" 200 435867
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 28359
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=ApexClass HTTP/1.1" 200 1993
+"GET /data/api/sobject-fields/?sobject=PartnerNetworkConnection HTTP/1.1" 200 1660
+"GET /data/api/sobject-fields/?sobject=ConnectedApplication HTTP/1.1" 200 3459
+"GET /data/api/sobject-fields/?sobject=ApprovalSubmission HTTP/1.1" 200 2477
+"GET /data/api/sobject-fields/?sobject=PaymentMethod HTTP/1.1" 200 4209
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Bad Request: /data/insert/
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"GET /data/insert/ HTTP/1.1" 200 436960
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/data_create_record.js HTTP/1.1" 200 31400
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"POST /data/insert/ HTTP/1.1" 200 168
+Internal Server Error: /data/delete/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/data/views.py", line 417, in delete_view
+    return render(request, 'data/delete.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: data/delete.html
+"GET /data/delete/ HTTP/1.1" 500 90446
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /metadata/ HTTP/1.1" 200 52909
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+- Broken pipe from ('127.0.0.1', 65365)
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+- Broken pipe from ('127.0.0.1', 53021)
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+- Broken pipe from ('127.0.0.1', 51969)
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+- Broken pipe from ('127.0.0.1', 49759)
+"GET /auth/login/ HTTP/1.1" 200 36039
+- Broken pipe from ('127.0.0.1', 49776)
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+- Broken pipe from ('127.0.0.1', 57013)
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+- Broken pipe from ('127.0.0.1', 64879)
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zWNILspE5lGTuLezO3_1XY13AGhFqELcTdoyWeCeFfSORmbCUw%3D%3D&state=8be68893-ec7e-40c3-8044-6e2129f6f5a4 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zQWZsejVtq3gUdcmLeJuyWoDDoKZiqillBx31CtCvXiHU7ZTfw%3D%3D&state=9d46337e-7e9b-44f6-8fb9-3d0f21b1d931 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 436960
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"POST /data/insert/ HTTP/1.1" 200 161
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+Bad Request: /data/insert/
+"GET /data/insert/ HTTP/1.1" 200 441296
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"POST /data/insert/ HTTP/1.1" 200 168
+"GET /data/insert/ HTTP/1.1" 200 441296
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /auth/login/ HTTP/1.1" 200 36039
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTafggtO1eltgoiIFjUkfXY0YMRN5qv1o4wh0I9hmv3deLZJ8w%3D%3D&state=255d99a3-cfe2-4480-8a1b-c1be8e8f8160 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 441296
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"POST /data/insert/ HTTP/1.1" 200 168
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36039
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zeYQKBETs0Ln2iPajPZ7i16GVN7CT23tMMwCa2TN95wIPXBgbQ%3D%3D&state=041c2ce7-1730-44cd-8cf6-87e1104ac6fa HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+"GET /data/insert/ HTTP/1.1" 200 444967
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+"GET /data/insert/ HTTP/1.1" 200 444967
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 412407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 444967
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"GET /query/ HTTP/1.1" 200 412407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 444967
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 453796
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"GET /data/insert/ HTTP/1.1" 200 453796
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 461066
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 461066
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"GET /data/insert/ HTTP/1.1" 200 461066
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=Idea HTTP/1.1" 200 4804
+"GET /query/ HTTP/1.1" 200 412407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /query/ HTTP/1.1" 200 412407
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 461066
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"GET /data/insert/ HTTP/1.1" 200 466922
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=AccountApplicant__c HTTP/1.1" 200 4189
+"GET /data/insert/ HTTP/1.1" 200 466922
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zY6a88FwHQ.8GDTmu2yc2UBOYoQDqL4h4fGeeYwEcSqNYT8rBg%3D%3D&state=e9b82939-9ab8-4e27-981a-755f98e4b20b HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 466922
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=ExternalAIModel HTTP/1.1" 200 2231
+"GET /data/api/sobject-fields/?sobject=LiveAgentSession HTTP/1.1" 200 4501
+"GET /data/insert/ HTTP/1.1" 200 465321
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/insert/ HTTP/1.1" 200 465321
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=AccountApplicant__c HTTP/1.1" 200 4189
+"POST /data/insert/ HTTP/1.1" 200 168
+"GET /query/ HTTP/1.1" 200 412407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /query/ HTTP/1.1" 200 412407
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /metadata/ HTTP/1.1" 200 52909
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 465321
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=MLModel HTTP/1.1" 200 2437
+"GET /data/api/sobject-fields/?sobject=Position__c HTTP/1.1" 200 4203
+"GET /data/insert/ HTTP/1.1" 200 463407
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /data/api/sobject-fields/?sobject=AccountApplicant__c HTTP/1.1" 200 4189
+"GET /query/ HTTP/1.1" 200 412407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 463407
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=LiveChatButton HTTP/1.1" 200 7357
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36333
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 36346
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zdwhML.8QniPw_T8zcWqwfkkSokm9X0XNcd600G6cZt1tNfD0w%3D%3D&state=45b9e59e-9c53-4f8f-b0f9-f4a8c98a8721 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 412713
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 463407
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 469393
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418393
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 469393
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /metadata/ HTTP/1.1" 200 58895
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /data/update/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/data/views.py", line 363, in update_view
+    return render(request, 'data/update.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: data/update.html
+"GET /data/update/ HTTP/1.1" 500 90475
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/search/ HTTP/1.1" 200 30164
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 418393
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /query/search/ HTTP/1.1" 200 30164
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /query/ HTTP/1.1" 200 418393
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 469393
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+REST request error: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/User/2
+Error getting user info: REST request failed: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/User/2
+Could not fetch additional session info: Failed to get user info: REST request failed: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/User/2
+Internal Server Error: /auth/session/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/views.py", line 426, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: authentication/session_info.html
+"GET /auth/session/ HTTP/1.1" 500 96470
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Internal Server Error: /auth/settings/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/authentication/views.py", line 482, in get
+    return render(request, self.template_name, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: authentication/settings.html
+"GET /auth/settings/ HTTP/1.1" 500 95497
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zedOMtzFz3j_LAdKGspkedGkkX6ltJVUcHpmPIrTyUxPS3dT1w%3D%3D&state=6c069dad-c522-4e73-bc6d-d734708a273a HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418699
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /query/ HTTP/1.1" 200 418393
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 469393
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Token refresh failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Internal Server Error: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 500 105
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET /static/images/login-illustration.svg HTTP/1.1" 304 0
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET /static/css/select-fix.css HTTP/1.1" 304 0
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /static/css/workbench.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbThchinKne2eTTJokiRCnv.8Jku4w9mXFfd8QBOSTsrmdPvqw%3D%3D&state=aa84ca95-72bc-4037-b05a-5a4fd6a7f778 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418699
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 469393
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=MlIntentUtteranceSuggestion HTTP/1.1" 200 2046
+"GET /data/api/sobject-fields/?sobject=CartTax HTTP/1.1" 200 2621
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /data/insert/ HTTP/1.1" 200 52850
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47921
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zV82xb._a7xG0EVW9T1sGKUydPPyT8i.LaoZkLFskQte_epnmA%3D%3D&state=5ffe1fc1-597e-4319-9c0d-f3f735e5be41 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418699
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 472173
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Account HTTP/1.1" 200 35642
+"GET /data/api/sobject-fields/?sobject=UserProvMockTarget HTTP/1.1" 200 1998
+"GET /metadata/ HTTP/1.1" 200 58895
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/insert/ HTTP/1.1" 200 472173
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=ServiceCrewHistory HTTP/1.1" 200 1313
+"GET /data/api/sobject-fields/?sobject=ServiceChannel HTTP/1.1" 200 4742
+Insert error: Malformed request https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects/ServiceChannel/. Response content: [{'message': '値を入力してください: [MasterLabel, RelatedEntity]', 'errorCode': 'REQUIRED_FIELD_MISSING', 'fields': ['MasterLabel', 'RelatedEntity']}]
+Bad Request: /data/insert/
+"POST /data/insert/ HTTP/1.1" 400 393
+"GET /data/insert/ HTTP/1.1" 200 472173
+"GET /static/js/data_create_record.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=Review__c HTTP/1.1" 200 3488
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /data/insert/ HTTP/1.1" 200 53085
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/data_create_record.js HTTP/1.1" 200 47921
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/login/ HTTP/1.1" 302 0
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to preload Salesforce objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+"GET /query/ HTTP/1.1" 200 79471
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading Salesforce objects for user=tatuzawa0502@gmail.com
+Describe global error: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+Failed to get objects: Describe global failed: Expired session for https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/sobjects. Response content: [{'message': 'Session expired or invalid', 'errorCode': 'INVALID_SESSION_ID'}]
+Internal Server Error: /query/api/objects/
+"GET /query/api/objects/ HTTP/1.1" 500 244
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTF8liqJ92ITeTvqd3r3jyzmRdwei7bPRhf9qUAd0VLwhX3foA%3D%3D&state=e0acea6f-e535-435b-83fa-1bf8c035c451 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418699
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /data/insert/ HTTP/1.1" 200 472408
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /data/api/sobject-fields/?sobject=FixedPhrase__mdt HTTP/1.1" 200 1628
+"GET /data/api/sobject-fields/?sobject=QualitativeExam__c HTTP/1.1" 200 2092
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+Watching for file changes with StatReloader
+Not Found: /auth/
+"GET /auth/ HTTP/1.1" 404 4575
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /favicon.ico HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zVqycLda7B7BN2bD8t5gFLveBDvduBIbJ.9a8Pu.tz0vWoSizA%3D%3D&state=332fe3e2-020a-4086-89e2-13c4e7f94b1f HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+Watching for file changes with StatReloader
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zaezMHoVfwux_W7TMHbaR2gPuVoCksSRs2qIUvkr0Qhbgi7yUg%3D%3D&state=a2000348-3b80-44ba-bb2a-7eddf53e06c1 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/js/workbench.js HTTP/1.1" 200 12240
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbjxfLsSQcG80TJZIdYKnhrw8g5Fuq8Q3AdZkU8HR7Qs_ynhdQ%3D%3D&state=a4198960-6d53-43b6-80e4-5bc8d11c230f HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zeTJkQ9fW.Vv9tAy4qJjXUECSQn26YeaaED_N_ykEVu7E53qWg%3D%3D&state=88a99dfd-fd6d-4bb7-a369-bd41cbdb6886 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+/Users/guohe/Documents/Project/ForcePet/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zfd.F4UDs8ZcH_xdql1yOMbCPyqoBIOu05M_1UEY4G7uBamHUA%3D%3D&state=f5691fab-34fb-494c-9943-d358c6be189a HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zY.JfGDuejGvFi5w9xn2NhOdwTwYE4FqqxBd12q6RL1G.UNJyg%3D%3D&state=307a10f2-e10d-403f-90a7-df3211734432 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+Not Found: /login/
+"GET /login/ HTTP/1.1" 404 3426
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418403
+Not Found: /auth/
+"GET /auth/ HTTP/1.1" 404 4575
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zYzMopVGdlX1uWyFLozRCEFccdfoqMrY88OsnccWWWsl_flGdw%3D%3D&state=e67a0627-0cff-4879-9a5a-4b74c48edfd2 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/login/ HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418403
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41451
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zSMM_iSI4net6IBzStHFkr4EKSojlVFOVevwD.ax723ic4FH_Q%3D%3D&state=dd7e4493-e115-4146-ba74-0e6f2a509f78 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /metadata/ HTTP/1.1" 200 58895
+"POST /metadata/ HTTP/1.1" 200 764487
+"GET /metadata/detail/ApexClass/01pJ2000000xnhmIAA/?initial_type=ApexClass&apiName=test HTTP/1.1" 200 25873
+REST request error: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/sobjects/Community/describe
+"POST /metadata/ HTTP/1.1" 200 59764
+REST request error: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/sobjects/Settings/describe
+"POST /metadata/ HTTP/1.1" 200 60029
+REST request error: 404 Client Error: Not Found for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/tooling/sobjects/Workflow/describe
+"POST /metadata/ HTTP/1.1" 200 60029
+"POST /metadata/ HTTP/1.1" 200 59903
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+/Users/guohe/Documents/Project/ForcePet/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"GET /auth/logout/ HTTP/1.1" 200 9440
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zUXtksytfm9JAnW24QaK6.CK4su2GEG3LWU_g6s4M4rXlCatAg%3D%3D&state=c2d655fc-1dc4-4c2a-bb1f-aebb1c1ee4eb HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 200 9440
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zS4AQ_w7U2.RyFoh4LWLp6lvqvtk3Nhy6ZMfBvzp9zySzB984g%3D%3D&state=896ea84f-ade8-40dc-ae75-a0767cb718f6 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 200 9440
+"GET /auth/logout/ HTTP/1.1" 200 9210
+"GET /auth/logout/ HTTP/1.1" 200 9210
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbYxjKGJBGVuh_DXXRwP8O.h_BDzlodlBFI4fjmLejdv4bBHwA%3D%3D&state=dce64671-f0fd-4fdc-b00d-3446aa4d0d3f HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 200 9440
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbcnheDTBl.IAz0q_RZcs7VKZS1i4qkd8kVPPlkUyT7a7ESk2g%3D%3D&state=59c0e5b2-fc2e-42fb-9179-0a750321ec5c HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 200 9440
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zTsUJa3rudwLk.ad0jOBjw9rQkz720qCs4uypoTMZ27.xHSI2w%3D%3D&state=7568f768-a85c-4c8c-8324-f4465706c056 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zQxVbSkrjsXq8uB82z.rkZAxYXteWyrBh4Bz8etoQ0LCIloWiA%3D%3D&state=edd71758-7347-41ee-8d41-8236d2a20c38 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+"GET /auth/logout/ HTTP/1.1" 200 9440
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zbkc7xu3y9LV3i5uULmoOUF4u62jvflTxZYC5VYbYHL9.Uebqw%3D%3D&state=fb63715d-ff01-4eba-aca8-2f298316928d HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41464
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 41157
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zeopwmJRvyx8lupzOtcluHHjkNrYolEjbVRlE0RA1qCL921LCg%3D%3D&state=fef501ba-5474-4b2d-ac78-f169ac804f9e HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 418709
+Loading fields for object=RegistrationSetting__mdt user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=RegistrationSetting__mdt HTTP/1.1" 200 3442
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /auth/login/ HTTP/1.1" 200 41157
+"GET /auth/login/ HTTP/1.1" 200 41157

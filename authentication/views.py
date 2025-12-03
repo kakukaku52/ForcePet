@@ -201,13 +201,14 @@ class LoginView(View):
     def _create_standard_connection(self, request, form_data):
         """Create connection using username/password"""
         from simple_salesforce import Salesforce
+        import uuid
         
         # Determine login URL based on environment
         environment = form_data['environment']
         if environment == 'sandbox':
             domain = 'test'
         elif environment == 'custom':
-            domain = form_data['custom_domain'].replace('https://', '').replace('http://', '')
+            domain = form_data['custom_domain'].replace('https://', '').replace('http://', '').rstrip('/')
         else:
             domain = None
         
@@ -222,38 +223,47 @@ class LoginView(View):
             )
             
             # Get user info using the identity URL
-            user_info = {}
-            org_id = ""
+            # Note: simple-salesforce doesn't automatically fetch identity for password auth
+            # We need to query for it or use a workaround
+            
             user_id = ""
-            org_name = ""
-
+            org_id = ""
+            org_name = "Unknown Org"
+            
             try:
-                # Get organization name and user info
+                # Get organization name and ID
                 org_query = sf.query("SELECT Name, Id FROM Organization LIMIT 1")
                 if org_query['records']:
                     org_name = org_query['records'][0]['Name']
                     org_id = org_query['records'][0]['Id']
 
                 # Get current user info
+                # We use the username we just logged in with
                 user_query = sf.query(f"SELECT Id, Email FROM User WHERE Username = '{form_data['username']}' LIMIT 1")
                 if user_query['records']:
                     user_id = user_query['records'][0]['Id']
             except Exception as e:
-                # If we can't get user info, continue with basic info
-                print(f"Could not fetch user/org info: {e}")
+                logger.warning(f"Could not fetch additional user/org info: {e}")
 
-            # Check if connection already exists for this user and update it
-            # or create a new one with a unique session_id
-            import uuid
-            unique_session_id = f"{sf.session_id}_{uuid.uuid4().hex[:8]}"
+            # Connection Management Logic:
+            # 1. Find if there is already a Django user for this Salesforce username
+            # 2. If so, check if they have an existing connection profile
+            # 3. Update or Create accordingly
 
-            # Try to find existing connection for this user and update it
+            sf_username = form_data['username']
+            
+            # Try to find existing Django user
+            user = User.objects.filter(username=sf_username).first()
+            
             connection = None
-            if request.user.is_authenticated:
+            if user:
+                # User exists, look for their connection
                 connection = SalesforceConnection.objects.filter(
-                    user=request.user,
-                    salesforce_username=form_data['username']
+                    user=user,
+                    salesforce_username=sf_username
                 ).first()
+            
+            unique_session_id = f"{sf.session_id}_{uuid.uuid4().hex[:8]}"
 
             if connection:
                 # Update existing connection
@@ -268,13 +278,13 @@ class LoginView(View):
                 connection.is_active = True
                 connection.set_access_token(sf.session_id)
             else:
-                # Create new connection
+                # Create new connection (and user will be linked later in the view)
                 connection = SalesforceConnection(
-                    user=request.user if request.user.is_authenticated else None,
+                    user=user,  # Might be None if user doesn't exist yet
                     session_id=unique_session_id,
                     server_url=sf.base_url,
                     instance_url=sf.base_url,
-                    salesforce_username=form_data['username'],
+                    salesforce_username=sf_username,
                     salesforce_user_id=user_id,
                     organization_id=org_id,
                     organization_name=org_name,
@@ -371,11 +381,18 @@ class LogoutView(View):
     
     def post(self, request):
         """Handle logout"""
-        # Get current connection
+        sf_logout_url = None
+
+        # Get current connection to determine Salesforce logout URL
         connection_id = request.session.get('sf_connection_id')
         if connection_id:
             try:
                 connection = SalesforceConnection.objects.get(id=connection_id)
+                # Construct Salesforce logout URL if instance_url is available
+                if connection.instance_url:
+                    sf_logout_url = f"{connection.instance_url}/secur/logout.jsp"
+                
+                # Deactivate connection
                 connection.is_active = False
                 connection.save()
             except SalesforceConnection.DoesNotExist:
@@ -387,8 +404,10 @@ class LogoutView(View):
         # Logout Django user
         logout(request)
         
-        messages.success(request, 'Successfully logged out.')
-        return redirect('authentication:login')
+        # Render logout page with hidden iframe for Salesforce logout
+        return render(request, 'authentication/logout.html', {
+            'sf_logout_url': sf_logout_url
+        })
 
 
 class SessionInfoView(View):

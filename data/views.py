@@ -9,8 +9,8 @@ from django.urls import reverse
 import json
 import csv
 import io
-from authentication.models import SalesforceConnection
-from authentication.utils import get_salesforce_client
+from authentication.utils import get_salesforce_client, get_salesforce_connection
+from authentication.salesforce_client import SalesforceClient, SalesforceAPIError
 from .models import DataOperation
 from .forms import (
     InsertForm, UpdateForm, DeleteForm, 
@@ -34,29 +34,49 @@ def data_home(request):
 @require_http_methods(['GET', 'POST'])
 def create_record_view(request):
     """Wizard-style view for creating Salesforce records."""
-    try:
-        client = get_salesforce_client(request.user)
-    except Exception as exc:
-        client = None
-        messages.error(request, f"无法连接 Salesforce：{exc}")
+    connection_error = None
+    connection = getattr(request, 'sf_connection', None)
+    if connection is None:
+        try:
+            connection = get_salesforce_connection(request.user)
+        except Exception as exc:
+            connection = None
+            connection_error = exc
+
+    sf_client = None
+    if connection:
+        try:
+            sf_client = SalesforceClient(connection)
+        except Exception as exc:
+            sf_client = None
+            connection_error = exc
 
     if request.method == 'GET':
         sobjects = []
-        if client:
+        if sf_client:
             try:
-                describe = client.describe()
-                sobjects = [
-                    {
-                        'name': obj['name'],
-                        'label': obj.get('label') or obj['name'],
-                        'label_plural': obj.get('labelPlural') or obj.get('label') or obj['name'],
-                    }
-                    for obj in describe.get('sobjects', [])
-                    if obj.get('createable')
-                ]
-                sobjects.sort(key=lambda item: item['label'].lower())
+                describe = sf_client.describe_global()
+                for obj in describe.get('sobjects', []):
+                    api_name = obj.get('name')
+                    if not api_name:
+                        continue
+
+                    sobjects.append({
+                        'name': api_name,
+                        'label': obj.get('label') or api_name,
+                        'label_plural': obj.get('labelPlural') or obj.get('label') or api_name,
+                        'custom': bool(obj.get('custom')),
+                        'createable': obj.get('createable', False),
+                    })
+
+                sobjects.sort(key=lambda item: (item['label'] or item['name']).lower())
+            except SalesforceAPIError as exc:
+                messages.error(request, f"加载 Salesforce 对象失败：{exc}")
             except Exception as exc:
                 messages.error(request, f"加载 Salesforce 对象失败：{exc}")
+        elif connection_error:
+            messages.error(request, f"无法连接 Salesforce：{connection_error}")
+
         context = {
             'sobjects': sobjects,
             'fields_api_url': reverse('data:api_sobject_fields'),
@@ -64,8 +84,11 @@ def create_record_view(request):
         }
         return render(request, 'data/create_record.html', context)
 
-    if not client:
-        return JsonResponse({'success': False, 'message': 'Salesforce 会话不可用，请重新登录。'}, status=400)
+    if not sf_client:
+        message = 'Salesforce 会话不可用，请重新登录。'
+        if connection_error:
+            message = f"Salesforce 会话不可用：{connection_error}"
+        return JsonResponse({'success': False, 'message': message}, status=400)
 
     content_type = request.META.get('CONTENT_TYPE', '')
     if content_type.startswith('application/json'):
@@ -95,7 +118,7 @@ def create_record_view(request):
 
         operation_details = {'record': record}
         try:
-            result = client.sobject(sobject).create(record)
+            result = sf_client.insert(sobject, record)
             operation_details['result'] = result
             DataOperation.objects.create(
                 user=request.user,
@@ -106,6 +129,18 @@ def create_record_view(request):
                 error_count=0 if result.get('success', True) else 1,
                 details=operation_details,
             )
+        except SalesforceAPIError as exc:
+            operation_details['error'] = str(exc)
+            DataOperation.objects.create(
+                user=request.user,
+                operation_type='INSERT',
+                sobject=sobject,
+                record_count=1,
+                success_count=0,
+                error_count=1,
+                details=operation_details,
+            )
+            return JsonResponse({'success': False, 'message': f'插入失败：{exc}'}, status=400)
         except Exception as exc:
             operation_details['error'] = str(exc)
             DataOperation.objects.create(
@@ -168,8 +203,10 @@ def create_record_view(request):
     errors = []
     for record in records:
         try:
-            result = client.sobject(sobject).create(record)
+            result = sf_client.insert(sobject, record)
             results.append(result)
+        except SalesforceAPIError as exc:
+            errors.append({'record': record, 'error': str(exc)})
         except Exception as exc:
             errors.append({'record': record, 'error': str(exc)})
 
@@ -513,24 +550,32 @@ def get_sobject_fields(request):
     sobject = request.GET.get('sobject')
     if not sobject:
         return JsonResponse({'error': 'No sobject specified'}, status=400)
-    
+
+    connection = getattr(request, 'sf_connection', None)
+    if connection is None:
+        try:
+            connection = get_salesforce_connection(request.user)
+        except Exception as exc:
+            return JsonResponse({'error': f'Salesforce 会话不可用：{exc}'}, status=401)
+
     try:
-        client = get_salesforce_client(request.user)
-        describe = client.sobject(sobject).describe()
-        
-        fields = [
-            {
-                'name': field['name'],
-                'label': field['label'],
-                'type': field['type'],
-                'createable': field['createable'],
-                'updateable': field['updateable'],
-                'required': not field['nillable'] and field['createable']
-            }
-            for field in describe['fields']
-        ]
-        
+        client = SalesforceClient(connection)
+        describe = client.describe_sobject(sobject)
+
+        fields = []
+        for field in describe.get('fields', []):
+            fields.append({
+                'name': field.get('name'),
+                'label': field.get('label'),
+                'type': field.get('type'),
+                'createable': field.get('createable', False),
+                'updateable': field.get('updateable', False),
+                'required': not field.get('nillable', True) and field.get('createable', False)
+            })
+
         return JsonResponse({'fields': fields})
-        
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+
+    except SalesforceAPIError as exc:
+        return JsonResponse({'error': str(exc)}, status=400)
+    except Exception as exc:
+        return JsonResponse({'error': str(exc)}, status=500)
