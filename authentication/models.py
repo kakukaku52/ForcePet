@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 from django.conf import settings
 import json
 import base64
@@ -56,25 +56,61 @@ class SalesforceConnection(models.Model):
     def __str__(self):
         return f"{self.salesforce_username}@{self.organization_name} ({self.environment})"
     
-    def get_encryption_key(self):
-        """Generate or get encryption key for this connection"""
-        # Use a combination of secret key and connection ID for encryption
-        key_material = f"{settings.SECRET_KEY}_{self.id}".encode()
+    def _encryption_salts(self):
+        """Return candidate salts used to derive encryption keys."""
+        salts = []
+        if self.session_id:
+            salts.append(str(self.session_id))
+        if self.id is not None:
+            salts.append(str(self.id))
+        salts.append('None')
+        seen = set()
+        ordered = []
+        for salt in salts:
+            if salt is None:
+                continue
+            if salt not in seen:
+                seen.add(salt)
+                ordered.append(salt)
+        return ordered
+
+    def _build_encryption_key(self, salt):
+        """Derive a Fernet-compatible key from SECRET_KEY and provided salt."""
+        if salt is None:
+            salt = 'default'
+        key_material = f"{settings.SECRET_KEY}_{salt}".encode()
         return base64.urlsafe_b64encode(key_material[:32])
+
+    def get_encryption_key(self):
+        """Get primary encryption key for this connection."""
+        salts = self._encryption_salts()
+        primary_salt = salts[0] if salts else 'default'
+        return self._build_encryption_key(primary_salt)
     
     def encrypt_token(self, token):
         """Encrypt a token for storage"""
         if not token:
             return None
-        f = Fernet(self.get_encryption_key())
+        salts = self._encryption_salts()
+        primary_salt = salts[0] if salts else 'default'
+        f = Fernet(self._build_encryption_key(primary_salt))
         return f.encrypt(token.encode()).decode()
-    
+
     def decrypt_token(self, encrypted_token):
         """Decrypt a stored token"""
         if not encrypted_token:
             return None
-        f = Fernet(self.get_encryption_key())
-        return f.decrypt(encrypted_token.encode()).decode()
+        last_error = None
+        for salt in (self._encryption_salts() or ['default']):
+            try:
+                f = Fernet(self._build_encryption_key(salt))
+                return f.decrypt(encrypted_token.encode()).decode()
+            except InvalidToken as exc:
+                last_error = exc
+                continue
+        if last_error:
+            raise last_error
+        raise InvalidToken("Unable to decrypt token with known keys.")
     
     def set_access_token(self, token):
         """Set encrypted access token"""
