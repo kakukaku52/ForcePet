@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load query_extras %}
 
 {% block title %}SOQL查询 - Django Workbench{% endblock %}
 
@@ -1288,7 +1289,7 @@
                                 <table class="slds-table slds-table_cell-buffer slds-table_bordered">
                                     <thead>
                                         <tr>
-                                            {% for key in results.records.0.keys %}
+                                            {% for key in results.columns %}
                                             {% if key != 'attributes' %}
                                             <th scope="col" class="sortable-header" onclick="sortTable({{ forloop.counter0 }})" style="cursor: pointer; user-select: none;">
                                                 <div class="slds-truncate" title="{{ key }}" style="display: flex; align-items: center; gap: 0.25rem;">
@@ -1303,22 +1304,24 @@
                                     <tbody id="results-tbody">
                                         {% for record in results.records %}
                                         <tr>
-                                            {% for key, value in record.items %}
+                                            {% for key in results.columns %}
                                             {% if key != 'attributes' %}
                                             <td data-label="{{ key }}">
                                                 <div class="slds-truncate">
-                                                    {% if key|upper == 'ID' and value and results.object_type %}
-                                                    <a href="{% url 'query:record_detail' results.object_type value %}"
-                                                       style="color: #3B82F6; text-decoration: underline;">
+                                                    {% with value=record|get_item:key %}
+                                                        {% if key|upper == 'ID' and value and results.object_type %}
+                                                        <a href="{% url 'query:record_detail' results.object_type value %}"
+                                                           style="color: #3B82F6; text-decoration: underline;">
+                                                            {{ value }}
+                                                        </a>
+                                                        {% elif value == None %}
+                                                        <span style="color: #9CA3AF;">null</span>
+                                                        {% elif value|length > 100 %}
+                                                        <span title="{{ value }}">{{ value|truncatechars:100 }}</span>
+                                                        {% else %}
                                                         {{ value }}
-                                                    </a>
-                                                    {% elif value == None %}
-                                                    <span style="color: #9CA3AF;">null</span>
-                                                    {% elif value|length > 100 %}
-                                                    <span title="{{ value }}">{{ value|truncatechars:100 }}</span>
-                                                    {% else %}
-                                                    {{ value }}
-                                                    {% endif %}
+                                                        {% endif %}
+                                                    {% endwith %}
                                                 </div>
                                             </td>
                                             {% endif %}
@@ -1911,19 +1914,114 @@ function displayFields(fields) {
 }
 
 // 创建字段项 HTML
-function createFieldItem(field) {
-    const checked = selectedFields.has(field.name) ? 'checked' : '';
+function createFieldItem(field, parentPath = '') {
+    const fullPath = parentPath ? `${parentPath}.${field.name}` : field.name;
+    // 替换点号以便用作 ID，避免 jQuery 选择器问题
+    const fieldId = `field-${fullPath.replace(/\./g, '-')}`;
+    const checked = selectedFields.has(fullPath) ? 'checked' : '';
+    
+    // 处理引用字段
+    let expandBtn = '';
+    let childContainer = '';
+    const isReference = field.type === 'reference' && field.referenceTo && field.referenceTo.length > 0;
+    
+    if (isReference) {
+        // 使用 relationshipName (例如 AccountId -> Account)
+        // 注意：有些多态字段(Polymorphic)可能没有 relationshipName 或者有多个 referenceTo
+        const relName = field.relationshipName;
+        const refObj = field.referenceTo[0]; // 暂时只处理第一个引用对象 (简单化)
+        
+        if (relName && refObj) {
+            expandBtn = `
+                <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-left_x-small expand-btn"
+                        title="展开关联对象字段"
+                        data-rel-name="${relName}"
+                        data-ref-obj="${refObj}"
+                        data-container-id="child-${fieldId}"
+                        onclick="toggleRelationFields(this)">
+                    <i class="fas fa-plus" style="font-size: 0.75rem;"></i>
+                </button>
+            `;
+            childContainer = `<div id="child-${fieldId}" class="child-fields-container" style="display:none; margin-left: 1.5rem; border-left: 1px solid #E5E7EB; padding-left: 0.5rem;"></div>`;
+        }
+    }
+
     return `
-        <div class="field-item" data-field-name="${field.name}">
-            <input type="checkbox" class="field-checkbox" id="field-${field.name}"
-                   value="${field.name}" ${checked}
-                   onchange="toggleFieldAndUpdateQuery(this, '${field.name}')">
-            <label for="field-${field.name}" style="cursor: pointer; flex: 1; margin: 0;">
-                ${field.label}
-                <span class="field-type">(${field.type})</span>
-            </label>
+        <div class="field-wrapper">
+            <div class="field-item" data-field-name="${fullPath}">
+                <input type="checkbox" class="field-checkbox" id="${fieldId}"
+                       value="${fullPath}" ${checked}
+                       onchange="toggleFieldAndUpdateQuery(this, '${fullPath}')">
+                <label for="${fieldId}" style="cursor: pointer; flex: 1; margin: 0; display: flex; align-items: center;">
+                    <span class="slds-truncate" title="${field.label}">${field.label}</span>
+                    <span class="field-type" style="margin-left: auto;">${field.type}</span>
+                </label>
+                ${expandBtn}
+            </div>
+            ${childContainer}
         </div>
     `;
+}
+
+// 切换关联对象字段的展开/折叠
+function toggleRelationFields(btn) {
+    const $btn = $(btn);
+    const relName = $btn.data('rel-name');
+    const refObj = $btn.data('ref-obj');
+    const containerId = $btn.data('container-id');
+    const $container = $(`#${containerId}`);
+    const icon = $btn.find('i');
+
+    // 如果已经展开，则折叠
+    if (!$container.is(':hidden') && $container.html().trim() !== '') {
+        $container.hide();
+        icon.removeClass('fa-minus').addClass('fa-plus');
+        return;
+    }
+
+    // 切换图标为加载中
+    icon.removeClass('fa-plus').addClass('fa-spinner fa-spin');
+
+    // 加载字段
+    $.ajax({
+        url: '/query/api/fields/',
+        method: 'GET',
+        data: { object: refObj },
+        xhrFields: { withCredentials: true },
+        credentials: 'same-origin'
+    })
+    .done(function(response) {
+        if (response.success) {
+            $container.empty();
+            
+            // 渲染子字段 (只渲染标准字段和常用字段，避免列表过长)
+            // 并且递归传入 parentPath
+            const fields = response.fields;
+            
+            // 简单的排序：Id 第一，Name 第二，其他按字母
+            fields.sort((a, b) => {
+                if (a.name === 'Id') return -1;
+                if (b.name === 'Id') return 1;
+                if (a.name === 'Name') return -1;
+                if (b.name === 'Name') return 1;
+                return a.label.localeCompare(b.label);
+            });
+
+            fields.forEach(field => {
+                $container.append(createFieldItem(field, relName));
+            });
+
+            $container.show();
+            icon.removeClass('fa-spinner fa-spin').addClass('fa-minus');
+        } else {
+            workbench.showToast('加载关联字段失败: ' + response.error, 'error');
+            icon.removeClass('fa-spinner fa-spin').addClass('fa-plus');
+        }
+    })
+    .fail(function() {
+        workbench.showToast('加载关联字段失败', 'error');
+        icon.removeClass('fa-spinner fa-spin').addClass('fa-plus');
+    });
 }
 
 // 根据搜索过滤字段
@@ -1938,10 +2036,37 @@ function filterFields() {
 
 // 切换字段选择并更新查询
 function toggleFieldAndUpdateQuery(checkbox, fieldName) {
-    if (checkbox.checked) {
+    const isChecked = checkbox.checked;
+
+    // 1. 更新当前字段状态
+    if (isChecked) {
         selectedFields.add(fieldName);
     } else {
         selectedFields.delete(fieldName);
+    }
+
+    // 2. 级联处理子字段 (向下级联)
+    // 根据 createFieldItem 中的 ID 规则构建子容器 ID
+    const safeId = fieldName.replace(/\./g, '-');
+    const fieldId = `field-${safeId}`;
+    const childContainerId = `child-${fieldId}`;
+    const $childContainer = $(`#${childContainerId}`);
+
+    if ($childContainer.length > 0) {
+        // 找到所有子复选框
+        $childContainer.find('.field-checkbox').each(function() {
+            const childCheckbox = this;
+            const childFieldName = $(childCheckbox).val();
+            
+            if (childCheckbox.checked !== isChecked) {
+                childCheckbox.checked = isChecked;
+                if (isChecked) {
+                    selectedFields.add(childFieldName);
+                } else {
+                    selectedFields.delete(childFieldName);
+                }
+            }
+        });
     }
 
     if (!currentObject) return;
