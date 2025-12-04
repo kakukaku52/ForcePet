@@ -853,6 +853,53 @@ def delete_record(request, object_type, record_id):
 
 
 @login_required
+@require_http_methods(["POST"])
+def explain_query_view(request):
+    """
+    Get query execution plan (explain)
+    """
+    try:
+        query = request.POST.get('query')
+        if not query:
+            return JsonResponse({'success': False, 'error': 'Query is required'}, status=400)
+        
+        # Clean the query (similar to execute)
+        execution_query = query.replace('\n', ' ').replace('\r', ' ').strip()
+        
+        connection = getattr(request, 'sf_connection', None)
+        if connection is None:
+            connection_id = request.session.get('sf_connection_id')
+            if connection_id:
+                connection = SalesforceConnection.objects.filter(
+                    id=connection_id,
+                    is_active=True
+                ).first()
+
+        if connection is None and request.user.is_authenticated:
+            connection = SalesforceConnection.objects.filter(
+                user=request.user,
+                is_active=True
+            ).order_by('-updated_at').first()
+            
+        if not connection:
+             return JsonResponse({'success': False, 'error': 'No active Salesforce connection'}, status=401)
+             
+        client = SalesforceClient(connection)
+        plans = client.explain_query(execution_query)
+        
+        return JsonResponse({
+            'success': True,
+            'plans': plans
+        })
+        
+    except SalesforceAPIError as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+    except Exception as e:
+        logger.error(f"Explain view error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+
+@login_required
 def test_objects_view(request):
     """Test view for debugging Salesforce objects loading"""
     return render(request, 'query/test_objects.html')

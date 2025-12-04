@@ -374,6 +374,26 @@ class SalesforceClient:
                     raise SalesforceAPIError(f"Malformed query:\n{error_detail}")
             raise SalesforceAPIError(f"Query failed: {e}")
     
+    def explain_query(self, soql):
+        """
+        Get query plan (explain) for a SOQL query
+        """
+        try:
+            # Explain API endpoint: /services/data/vXX.0/query/?explain=SOQL
+            # Note: simple-salesforce doesn't have a direct explain method, so we use rest_request
+            
+            # URL encode the query
+            encoded_query = quote(soql)
+            endpoint = f"query/?explain={encoded_query}"
+            
+            return self.rest_request('GET', endpoint)
+        except SalesforceAPIError as e:
+            # Pass through SalesforceAPIError directly
+            raise e
+        except Exception as e:
+            logger.error(f"Explain query error: {e}")
+            raise SalesforceAPIError(f"Explain failed: {str(e)}")
+
     def query_more(self, next_records_url):
         """
         Get more query results using nextRecordsUrl

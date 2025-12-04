@@ -1192,9 +1192,9 @@
                                         格式化
                                     </button>
                                     <button type="button" class="slds-button slds-button_outline-brand slds-button_small"
-                                            onclick="validateQuery()">
-                                        <i class="fas fa-check-circle"></i>
-                                        验证查询
+                                            onclick="explainQuery()">
+                                        <i class="fas fa-search-plus"></i>
+                                        查询计划 (Explain)
                                     </button>
                                 </div>
                             </div>
@@ -1353,6 +1353,64 @@
             </div>
         </div>
     </main>
+</div>
+
+<!-- Hidden trigger button for Explain Modal (Bypassing JS API issues) -->
+<button id="explain-modal-trigger" type="button" style="display: none;" data-bs-toggle="modal" data-bs-target="#explainModal"></button>
+
+<!-- Query Plan Modal -->
+<div class="modal fade" id="explainModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 8px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+            <div class="modal-header" style="background: #F9FAFB; border-bottom: 1px solid #E5E7EB; padding: 1rem 1.5rem;">
+                <h5 class="modal-title" style="font-weight: 600; color: #111827; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-tachometer-alt" style="color: #3B82F6;"></i>
+                    查询执行计划 (Query Explain Plan)
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <div id="explain-loading" style="text-align: center; padding: 2rem; display: none;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #3B82F6;"></i>
+                    <p style="margin-top: 1rem; color: #6B7280;">正在分析查询性能...</p>
+                </div>
+                
+                <div id="explain-error" style="display: none; padding: 1rem; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 6px; color: #991B1B;">
+                </div>
+
+                <div id="explain-results" style="display: none;">
+                    <div class="table-responsive">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col"><div class="slds-truncate" title="Cardinality">基数 (Cardinality)</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Cost">相对开销 (Cost)</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Operation">操作类型</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Object Type">对象</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Fields">索引字段</div></th>
+                                </tr>
+                            </thead>
+                            <tbody id="explain-table-body">
+                                <!-- Rows inserted via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: #F3F4F6; border-radius: 6px; font-size: 0.875rem;">
+                        <h6 style="font-weight: 600; margin-bottom: 0.5rem;">性能指标说明:</h6>
+                        <ul style="list-style-type: disc; padding-left: 1.5rem; color: #4B5563; margin-bottom: 0;">
+                            <li><strong>基数 (Cardinality):</strong> 预计扫描的记录数。</li>
+                            <li><strong>开销 (Cost):</strong> 小于 1.0 为高效查询；大于 1.0 表示非选择性查询，可能导致性能问题。</li>
+                            <li><strong>TableScan:</strong> 全表扫描，应尽量避免。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #E5E7EB; padding: 1rem 1.5rem;">
+                <button type="button" class="slds-button slds-button_neutral" data-bs-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
@@ -2073,6 +2131,126 @@ function validateQuery() {
     } else {
         workbench.showToast('查询验证失败: ' + validation.errors.join(', '), 'error');
     }
+}
+
+function explainQuery() {
+    // 1. 获取查询内容
+    let query;
+    if (soqlEditor) {
+        query = soqlEditor.getValue();
+        $('#id_query').val(query);
+    } else {
+        query = $('#id_query').val();
+    }
+    
+    if (!query.trim()) {
+        workbench.showToast('请输入查询语句', 'warning');
+        return;
+    }
+
+    // 2. 显示模态框 (纯原生 JS 手动实现，不依赖 Bootstrap JS)
+    const modalEl = document.getElementById('explainModal');
+    
+    // 显示模态框
+    modalEl.classList.add('show');
+    modalEl.style.display = 'block';
+    modalEl.style.backgroundColor = 'rgba(0,0,0,0.5)'; // 手动添加半透明背景
+    modalEl.setAttribute('aria-modal', 'true');
+    modalEl.setAttribute('role', 'dialog');
+    document.body.classList.add('modal-open'); // 防止背景滚动
+    
+    // 定义关闭函数
+    const closeModal = () => {
+        modalEl.classList.remove('show');
+        modalEl.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    };
+    
+    // 绑定关闭按钮事件 (右上角 X 和 底部关闭按钮)
+    const closeBtns = modalEl.querySelectorAll('[data-bs-dismiss="modal"]');
+    closeBtns.forEach(btn => {
+        // 移除可能存在的旧监听器 (虽然 cloneNode 是更好的做法，但这里简单处理)
+        btn.onclick = closeModal;
+    });
+    
+    // 点击模态框外部也可以关闭
+    modalEl.onclick = (e) => {
+        if (e.target === modalEl) {
+            closeModal();
+        }
+    };
+    
+    $('#explain-loading').show();
+    $('#explain-results').hide();
+    $('#explain-error').hide();
+    
+    // 3. 发送请求
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    $.ajax({
+        url: '{% url "query:explain_query" %}',
+        type: 'POST',
+        data: {
+            'query': query,
+            'csrfmiddlewaretoken': csrfToken
+        },
+        success: function(response) {
+            $('#explain-loading').hide();
+            
+            if (response.success && response.plans && response.plans.plans) {
+                const plans = response.plans.plans;
+                const tbody = $('#explain-table-body');
+                tbody.empty();
+                
+                plans.forEach(plan => {
+                    // Determine badge color for cost
+                    let costBadge = '';
+                    if (plan.relativeCost < 1.0) {
+                        costBadge = `<span class="slds-badge slds-badge_success">${plan.relativeCost}</span>`;
+                    } else {
+                        costBadge = `<span class="slds-badge slds-badge_warning" style="background: #FEE2E2; color: #991B1B; border-color: #FCA5A5;">${plan.relativeCost}</span>`;
+                    }
+                    
+                    // Operation icon
+                    let opIcon = '<i class="fas fa-database"></i>';
+                    if (plan.leadingOperationType === 'TableScan') {
+                        opIcon = '<i class="fas fa-search" style="color: #DC2626;"></i>';
+                    } else if (plan.leadingOperationType === 'Index') {
+                        opIcon = '<i class="fas fa-key" style="color: #059669;"></i>';
+                    }
+                    
+                    // Fields
+                    let fieldsHtml = '-';
+                    if (plan.fields && plan.fields.length > 0) {
+                        fieldsHtml = plan.fields.map(f => `<span style="font-family: monospace; background: #F3F4F6; padding: 2px 4px; border-radius: 4px;">${f}</span>`).join(', ');
+                    }
+
+                    const row = `
+                        <tr>
+                            <td style="font-weight: 600;">${plan.cardinality}</td>
+                            <td>${costBadge}</td>
+                            <td>${opIcon} ${plan.leadingOperationType}</td>
+                            <td>${plan.sobjectType}</td>
+                            <td>${fieldsHtml}</td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                });
+                
+                $('#explain-results').show();
+            } else {
+                $('#explain-error').html('<i class="fas fa-exclamation-circle"></i> 无法获取查询计划，请重试。').show();
+            }
+        },
+        error: function(xhr) {
+            $('#explain-loading').hide();
+            let errorMsg = '发生未知错误';
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+                errorMsg = xhr.responseJSON.error;
+            }
+            $('#explain-error').html(`<i class="fas fa-exclamation-triangle"></i> ${errorMsg}`).show();
+        }
+    });
 }
 
 function saveQuery() {
