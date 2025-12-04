@@ -1,789 +1,1135 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}SOQLクエリ - Django Workbench{% endblock %}
+{% block title %}SOQL查询 - Django Workbench{% endblock %}
 
 {% block extra_css %}
 <!-- Salesforce Lightning Design System CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
 <style>
-    /* Figma Dashboard Style */
+    /* ===== Phoenix Inbox 风格布局 ===== */
+
+    /* 深色顶部导航栏覆盖 */
+    .modern-navbar {
+        background: #1F2937 !important;
+        border-bottom: 1px solid #374151 !important;
+    }
+
+    .modern-navbar-brand {
+        color: #F9FAFB !important;
+    }
+
+    .modern-navbar-brand:hover {
+        color: #60A5FA !important;
+    }
+
+    .modern-navbar-brand i {
+        color: #60A5FA !important;
+    }
+
+    .modern-nav-link {
+        color: #D1D5DB !important;
+    }
+
+    .modern-nav-link:hover {
+        background-color: #374151 !important;
+        color: #F9FAFB !important;
+    }
+
+    .modern-nav-item.active .modern-nav-link {
+        background-color: #374151 !important;
+        color: #F9FAFB !important;
+    }
+
+    /* 连接信息栏 - 匹配深色主题 */
+    .connection-bar {
+        background: #111827 !important;
+        border-bottom: 1px solid #374151 !important;
+        color: #D1D5DB !important;
+    }
+
+    .connection-bar strong {
+        color: #F9FAFB !important;
+    }
+
+    .connection-bar i {
+        color: #60A5FA !important;
+    }
+
+    /* 全局样式 */
     body {
-        background-color: #fafafb;
-    }
-
-    .query-sidebar {
-        background-color: #ffffff;
-        border: none;
-        border-radius: 10px;
-        min-height: calc(100vh - 200px);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .recent-query {
-        cursor: pointer;
-        padding: 0.75rem;
-        border-radius: 8px;
-        margin-bottom: 0.5rem;
-        font-size: 0.875rem;
-        background-color: #fafafb;
-        transition: all 0.2s ease;
-    }
-
-    .recent-query:hover {
-        background-color: #f0f0f1;
-        transform: translateY(-1px);
-    }
-
-    .query-results {
-        max-height: 600px;
-        overflow: auto;
-        background-color: white;
-        color: #030229 !important;
-    }
-
-    /* Ensure all text in results section is visible */
-    #results-section * {
-        color: #030229 !important;
-    }
-
-    #results-section .slds-card__header {
-        background-color: #ffffff;
-        border-bottom: 1px solid #f0f0f1;
-    }
-
-    #results-section table td,
-    #results-section table th {
-        color: #030229 !important;
-    }
-
-    .query-builder-panel {
-        background-color: #fafafb;
-        border: none;
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .hidden {
-        display: none !important;
-    }
-
-    .field-list {
-        max-height: 300px;
+        background-color: #F9FAFB;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         overflow-y: auto;
-        border: 1px solid #e8e8e9;
-        border-radius: 8px;
-        padding: 0.75rem;
-        background: white;
+        overflow-x: hidden;
+        color: #111827;
+        margin: 0;
+        padding: 0;
     }
 
-    .field-item {
-        padding: 0.5rem;
-        cursor: pointer;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        transition: background-color 0.2s ease;
+    /* 主容器布局 */
+    .query-page-container {
+        display: flex;
+        min-height: calc(100vh - 60px);
+        background-color: #F9FAFB;
     }
 
-    .field-item:hover {
-        background-color: rgba(96, 91, 255, 0.05);
+    /* 侧边栏 - Phoenix Inbox 风格 */
+    .query-sidebar {
+        width: 260px;
+        background: #FFFFFF;
+        border-right: 1px solid #E5E7EB;
+        height: calc(100vh - 60px);
+        position: sticky;
+        top: 60px;
+        overflow-y: auto;
+        flex-shrink: 0;
+        padding: 1.5rem 1rem;
     }
 
-    .field-type {
-        color: rgba(3, 2, 41, 0.5);
+    .query-sidebar-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #F3F4F6;
+    }
+
+    .query-sidebar-title {
         font-size: 0.75rem;
-        margin-left: 0.25rem;
-    }
-
-    .operator-btn {
-        margin: 0.125rem;
-        font-size: 0.875rem;
-        border-radius: 5px;
-    }
-
-    .query-helper-section {
-        margin-bottom: 0.75rem;
-    }
-
-    .field-checkbox {
-        margin-right: 0.5rem;
-    }
-
-    .slds-scope .slds-card {
-        background-color: #ffffff;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .slds-scope .slds-card__header-title {
-        color: rgba(3, 2, 41, 0.7);
         font-weight: 700;
+        color: #6B7280;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        margin-bottom: 0;
+        padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .sidebar-section {
+        margin-bottom: 2rem;
+    }
+
+    .sidebar-section-title {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        color: #9CA3AF;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        margin-bottom: 0.875rem;
+        padding: 0 0.5rem;
+    }
+
+    .sidebar-query-item {
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-bottom: 0.375rem;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+        border: 1px solid transparent;
+    }
+
+    .sidebar-query-item:hover {
+        background: #F9FAFB;
+        border-color: #E5E7EB;
+        transform: translateX(2px);
+    }
+
+    .sidebar-query-item:active {
+        transform: translateX(0);
+    }
+
+    .sidebar-query-time {
+        font-size: 0.6875rem;
+        color: #9CA3AF;
+        margin-bottom: 0.375rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        font-weight: 600;
+    }
+
+    .sidebar-query-text {
+        font-size: 0.8125rem;
+        color: #374151;
+        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    /* 主内容区域 */
+    .query-main-content {
+        flex: 1;
+        background: #F9FAFB;
+        min-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+
+    .query-content-header {
+        padding: 2rem 2rem 1.5rem;
+        background: #F9FAFB;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .query-content-header h1 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #111827;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .query-content-body {
+        padding: 0 2rem 2rem;
+    }
+
+    /* 简洁的卡片样式 - 去除浮雕效果 */
+    .query-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    .query-card-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #E5E7EB;
+        background: #FFFFFF;
+    }
+
+    .query-card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #111827;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        letter-spacing: -0.01em;
+    }
+
+    .query-card-title i {
         font-size: 1.125rem;
     }
 
-    /* SLDS overrides for better form integration */
-    .slds-scope .form-control {
-        background-color: white;
-        border: 1px solid #e8e8e9;
+    .query-card-body {
+        padding: 1.5rem;
+        background: #FFFFFF;
+    }
+
+    /* 查询构建器 */
+    .query-builder-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .field-list {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 1px solid #E5E7EB;
         border-radius: 8px;
-        color: #030229;
-        font-size: 0.875rem;
         padding: 0.75rem;
-        width: 100%;
-        transition: all 0.2s ease;
+        background: #FFFFFF;
     }
 
-    .slds-scope .form-control:focus {
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
-        outline: 0;
+    .field-item {
+        padding: 0.625rem 0.75rem;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        border: 1px solid transparent;
+        margin-bottom: 0.25rem;
     }
 
-    .slds-scope .slds-button_brand {
-        background-color: #605bff;
-        border-color: #605bff;
-        border-radius: 8px;
+    .field-item:hover {
+        background: #EFF6FF;
+        border-color: #BFDBFE;
+        transform: translateX(2px);
+    }
+
+    .field-item:active {
+        transform: translateX(0);
+    }
+
+    .field-checkbox {
+        margin: 0;
+        accent-color: #3B82F6;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .field-type {
+        color: #9CA3AF;
+        font-size: 0.75rem;
+        margin-left: 0.25rem;
+        font-weight: 500;
+        background: #F3F4F6;
+        padding: 0.125rem 0.375rem;
+        border-radius: 4px;
+    }
+
+    /* 表单元素 */
+    .slds-scope .slds-form-element__label {
         font-weight: 600;
-    }
-
-    .slds-scope .slds-button_brand:hover {
-        background-color: #4e47cc;
-        border-color: #4e47cc;
-    }
-
-    .slds-scope .slds-button_outline-brand {
-        border-color: #605bff;
-        color: #605bff;
-        border-radius: 8px;
-        font-weight: 600;
-    }
-
-    .slds-scope .slds-button_outline-brand:hover {
-        background-color: rgba(96, 91, 255, 0.05);
-    }
-
-    .slds-scope .slds-button_neutral {
-        border-radius: 8px;
-        background-color: #fafafb;
-        border-color: #e8e8e9;
-    }
-
-    .slds-scope .slds-button_neutral:hover {
-        background-color: #f0f0f1;
-    }
-
-    .slds-scope .slds-button_success {
-        background-color: #26c0e2;
-        border-color: #26c0e2;
-        border-radius: 8px;
-        font-weight: 600;
-    }
-
-    .slds-scope .slds-button_success:hover {
-        background-color: #1fa8c7;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        letter-spacing: -0.01em;
     }
 
     .slds-scope .slds-select,
     .slds-scope .slds-input,
     .slds-scope .slds-textarea {
-        background-color: white;
-        border: 1px solid #e8e8e9;
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
         border-radius: 8px;
-        color: #030229;
+        color: #111827;
+        font-size: 0.875rem;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slds-scope .slds-select:hover,
+    .slds-scope .slds-input:hover,
+    .slds-scope .slds-textarea:hover {
+        border-color: #D1D5DB;
     }
 
     .slds-scope .slds-select:focus,
     .slds-scope .slds-input:focus,
     .slds-scope .slds-textarea:focus {
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
+        border-color: #3B82F6;
+        background: #FFFFFF;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         outline: 0;
     }
 
-    .slds-scope .slds-badge {
+    /* ===== Phoenix 精致按钮样式 ===== */
+    .slds-button {
+        border-radius: 6px !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        font-weight: 500 !important;
+        font-size: 0.875rem !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        border: 1px solid transparent !important;
+        cursor: pointer !important;
+        letter-spacing: 0.01em !important;
+    }
+
+    .slds-button:active {
+        transform: translateY(0) !important;
+    }
+
+    /* Primary 按钮 - 蓝色主色调 */
+    .slds-scope .slds-button_brand {
+        background: #3B82F6 !important;
+        border: 1px solid #3B82F6 !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+
+    .slds-scope .slds-button_brand:hover {
+        background: #2563EB !important;
+        border-color: #2563EB !important;
+    }
+
+    .slds-scope .slds-button_brand:active {
+        background: #1D4ED8 !important;
+        border-color: #1D4ED8 !important;
+    }
+
+    /* Outline Primary 按钮 - 边框样式 */
+    .slds-scope .slds-button_outline-brand {
+        background-color: white !important;
+        border: 1px solid #3B82F6 !important;
+        color: #3B82F6 !important;
+        font-weight: 600 !important;
+        min-height: 38px !important;
+    }
+
+    .slds-scope .slds-button_outline-brand:hover {
+        background-color: #3B82F6 !important;
+        border-color: #3B82F6 !important;
+        color: white !important;
+    }
+
+    .slds-scope .slds-button_outline-brand:active {
+        background-color: #2563EB !important;
+        border-color: #2563EB !important;
+    }
+
+    /* Outline Danger 按钮 - 红色边框样式 */
+    .slds-scope .slds-button_outline-danger {
+        background-color: white !important;
+        border: 1px solid #EF4444 !important;
+        color: #EF4444 !important;
+        font-weight: 600 !important;
+        min-height: 38px !important;
+    }
+
+    .slds-scope .slds-button_outline-danger:hover {
+        background-color: #EF4444 !important;
+        border-color: #EF4444 !important;
+        color: white !important;
+    }
+
+    .slds-scope .slds-button_outline-danger:active {
+        background-color: #DC2626 !important;
+        border-color: #DC2626 !important;
+    }
+
+    /* Neutral 按钮 - 中性灰色 */
+    .slds-scope .slds-button_neutral {
+        background: #FFFFFF !important;
+        border: 1px solid #E5E7EB !important;
+        color: #374151 !important;
+        font-weight: 500 !important;
+    }
+
+    .slds-scope .slds-button_neutral:hover {
+        background: #F9FAFB !important;
+        border-color: #D1D5DB !important;
+        color: #1F2937 !important;
+    }
+
+    .slds-scope .slds-button_neutral:active {
+        background: #F3F4F6 !important;
+    }
+
+    /* Success 按钮 - 绿色 */
+    .slds-scope .slds-button_success {
+        background: #10B981 !important;
+        border: 1px solid #10B981 !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+
+    .slds-scope .slds-button_success:hover {
+        background: #059669 !important;
+        border-color: #059669 !important;
+    }
+
+    .slds-scope .slds-button_success:active {
+        background: #047857 !important;
+        border-color: #047857 !important;
+    }
+
+    /* Danger/Destructive 按钮 - 红色 */
+    .slds-scope .slds-button_destructive {
+        background: #EF4444 !important;
+        border: 1px solid #EF4444 !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+
+    .slds-scope .slds-button_destructive:hover {
+        background: #DC2626 !important;
+        border-color: #DC2626 !important;
+    }
+
+    .slds-scope .slds-button_destructive:active {
+        background: #B91C1C !important;
+        border-color: #B91C1C !important;
+    }
+
+    /* Small 按钮尺寸 */
+    .slds-scope .slds-button_small {
+        padding: 0.375rem 0.875rem !important;
+        font-size: 0.8125rem !important;
+        min-height: 32px !important;
+    }
+
+    /* 禁用状态 */
+    .slds-button:disabled,
+    .slds-button[disabled] {
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .slds-button:disabled:hover,
+    .slds-button[disabled]:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 按钮组 */
+    .slds-button-group {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .slds-button-group-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    /* 操作符按钮 */
+    .operator-btn {
+        min-width: 70px !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+
+    /* 表格样式 */
+    .slds-table {
+        border-collapse: separate;
+        border-spacing: 0;
         border-radius: 8px;
-        font-weight: 600;
-    }
-
-    .slds-scope .slds-badge_success {
-        background-color: rgba(38, 192, 226, 0.1);
-        color: #26c0e2;
-    }
-
-    .slds-scope .slds-badge_warning {
-        background-color: rgba(255, 165, 0, 0.1);
-        color: #ff8f00;
+        overflow: hidden;
     }
 
     .slds-table thead th {
-        background: #fafafb;
-        color: #030229;
-        font-weight: 600;
-        font-size: 0.75rem;
+        background: #F9FAFB;
+        color: #374151;
+        font-weight: 700;
+        font-size: 0.6875rem;
         text-transform: uppercase;
+        letter-spacing: 0.075em;
+        border-bottom: 1px solid #E5E7EB;
+        padding: 1rem 0.75rem;
+        white-space: nowrap;
     }
 
     .slds-table tbody td {
-        color: #030229;
+        color: #111827;
         font-size: 0.875rem;
+        padding: 1rem 0.75rem;
+        border-bottom: 1px solid #F3F4F6;
+        transition: background-color 0.15s ease;
+    }
+
+    .slds-table tbody tr {
+        transition: all 0.15s ease;
     }
 
     .slds-table tbody tr:hover {
-        background-color: rgba(96, 91, 255, 0.02);
+        background: #F9FAFB;
+    }
+
+    /* 徽章样式 */
+    .slds-scope .slds-badge {
+        border-radius: 12px;
+        font-weight: 600;
+        padding: 0.375rem 0.875rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.025em;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        border: 1px solid transparent;
+    }
+
+    .slds-scope .slds-badge_success {
+        background: #D1FAE5;
+        color: #065F46;
+        border-color: #A7F3D0;
+    }
+
+    .slds-scope .slds-badge_warning {
+        background: #FEF3C7;
+        color: #92400E;
+        border-color: #FDE68A;
+    }
+
+    /* 查询结果 */
+    .query-results {
+        max-height: 600px;
+        overflow: auto;
+        background-color: white;
+    }
+
+    /* 隐藏元素 */
+    .hidden {
+        display: none !important;
+    }
+
+    /* 简洁的滚动条样式 */
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #F9FAFB;
+        border-radius: 5px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: #D1D5DB;
+        border-radius: 5px;
+        border: 2px solid #F9FAFB;
+        transition: all 0.15s ease;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: #9CA3AF;
+    }
+
+    *::-webkit-scrollbar-thumb:active {
+        background: #6B7280;
+    }
+
+    /* 主内容区域的滚动条 */
+    .query-main-content::-webkit-scrollbar-track {
+        background: #F9FAFB;
+    }
+
+    .query-sidebar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .query-sidebar::-webkit-scrollbar-thumb {
+        background: #E5E7EB;
+        border: none;
+    }
+
+    .query-sidebar::-webkit-scrollbar-thumb:hover {
+        background: #D1D5DB;
+    }
+
+    /* 加载动画 */
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .fa-spinner {
+        animation: spin 1s linear infinite;
+    }
+
+    /* 淡入动画 */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .query-card {
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    /* 链接样式 */
+    a {
+        transition: all 0.15s ease;
+    }
+
+    a:hover {
+        opacity: 0.85;
+    }
+
+    /* 图标动画 */
+    .query-card-title i {
+        transition: transform 0.15s ease;
+    }
+
+    .query-card:hover .query-card-title i {
+        transform: scale(1.1);
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+        .query-sidebar {
+            width: 220px;
+        }
+
+        .query-content-header h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .query-page-container {
+            flex-direction: column;
+        }
+
+        .query-sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            border-right: none;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .query-content-header {
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .query-content-header h1 {
+            font-size: 1.25rem;
+        }
+
+        .query-content-body {
+            padding: 0 1rem 1rem;
+        }
+
+        .query-card-body {
+            padding: 1rem;
+        }
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="slds-scope">
-    <div class="slds-grid slds-gutters">
-        <!-- Sidebar -->
-        <div class="slds-col slds-size_3-of-12">
-            <div class="slds-card query-sidebar">
-                <div class="slds-card__header">
-                    <h2 class="slds-card__header-title">
-                        <span class="slds-icon_container slds-icon-utility-search">
-                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                                <use xlink:href="#utility-search"></use>
-                            </svg>
-                        </span>
-                        SOQLクエリ
-                    </h2>
-                </div>
-                <div class="slds-card__body slds-card__body_inner">
-                    <!-- Recent Queries -->
-                    <div class="slds-m-bottom_medium">
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">最近のクエリ</h3>
-                        {% for query in recent_queries %}
-                            <div class="recent-query slds-box slds-box_xx-small" onclick="loadQuery('{{ query.query_text|escapejs }}')">
-                                <div class="slds-truncate">
-                                    <div class="slds-text-color_weak slds-text-body_small">{{ query.executed_at|timesince }} ago</div>
-                                    <code class="slds-text-body_small">{{ query.query_text|truncatechars:50 }}</code>
-                                </div>
-                            </div>
-                        {% empty %}
-                            <p class="slds-text-color_weak slds-text-body_small">最近のクエリはありません</p>
-                        {% endfor %}
-                    </div>
-
-                    <!-- Saved Queries -->
-                    <div>
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">保存済みクエリ</h3>
-                        {% for query in saved_queries %}
-                            <div class="recent-query slds-box slds-box_xx-small" onclick="loadQuery('{{ query.query_text|escapejs }}')">
-                                <div>
-                                    <div class="slds-text-body_small slds-text-title">{{ query.name }}</div>
-                                    <code class="slds-text-body_small slds-text-color_weak">{{ query.query_text|truncatechars:40 }}</code>
-                                </div>
-                            </div>
-                        {% empty %}
-                            <p class="slds-text-color_weak slds-text-body_small">保存されたクエリはありません</p>
-                        {% endfor %}
-                        <a href="{% url 'query:saved_queries' %}" class="slds-button slds-button_outline-brand slds-button_small slds-m-top_small">
-                            保存クエリを管理
-                        </a>
-                    </div>
-                </div>
-            </div>
+<div class="query-page-container">
+    <!-- 侧边栏 -->
+    <aside class="query-sidebar">
+        <div class="query-sidebar-header">
+            <h2 class="query-sidebar-title">
+                <i class="fas fa-history" style="color: #3B82F6;"></i>
+                查询历史
+            </h2>
         </div>
 
-        <!-- Main Content -->
-        <div class="slds-col slds-size_9-of-12">
-            <div class="slds-card">
-                <div class="slds-card__header">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__figure">
-                            <span class="slds-icon_container slds-icon-utility-code">
-                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                                    <use xlink:href="#utility-code"></use>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>SOQLクエリエディタ</span>
-                            </h2>
-                        </div>
-                        <div class="slds-no-flex">
-                            <a href="{% url 'query:history' %}" class="slds-button slds-button_neutral slds-button_small">
-                                <span class="slds-icon_container slds-icon-utility-history slds-m-right_xx-small">
-                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                        <use xlink:href="#utility-history"></use>
-                                    </svg>
-                                </span>
-                                クエリ履歴
-                            </a>
-                        </div>
-                    </div>
+        <!-- 最近的查询 -->
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">最近查询</div>
+            {% for query in recent_queries %}
+            <div class="sidebar-query-item" onclick="loadQuery('{{ query.query_text|escapejs }}')">
+                <div class="sidebar-query-time">{{ query.executed_at|timesince }}前</div>
+                <div class="sidebar-query-text">{{ query.query_text|truncatechars:45 }}</div>
+            </div>
+            {% empty %}
+            <p style="font-size: 0.875rem; color: #9CA3AF; padding: 0.5rem; text-align: center;">
+                暂无查询记录
+            </p>
+            {% endfor %}
+        </div>
+
+        <!-- 保存的查询 -->
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">已保存查询</div>
+            {% for query in saved_queries %}
+            <div class="sidebar-query-item" onclick="loadQuery('{{ query.query_text|escapejs }}')">
+                <div style="font-size: 0.8125rem; font-weight: 600; color: #374151; margin-bottom: 0.25rem;">
+                    {{ query.name }}
                 </div>
+                <div class="sidebar-query-text">{{ query.query_text|truncatechars:40 }}</div>
+            </div>
+            {% empty %}
+            <p style="font-size: 0.875rem; color: #9CA3AF; padding: 0.5rem; text-align: center;">
+                暂无保存的查询
+            </p>
+            {% endfor %}
+        </div>
 
-                <div class="slds-card__body slds-card__body_inner">
-                    <!-- Query Builder Panel -->
-                    <div class="query-builder-panel slds-card slds-card_boundary">
-                        <div class="slds-card__header">
-                            <h3 class="slds-card__header-title">
-                                <span class="slds-icon_container slds-icon-utility-settings slds-m-right_xx-small">
-                                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                                        <use xlink:href="#utility-settings"></use>
-                                    </svg>
-                                </span>
-                                クエリビルダー
-                            </h3>
-                        </div>
-                        <div class="slds-card__body slds-card__body_inner">
-                            <div class="slds-grid slds-gutters">
-                                <!-- Object Selector -->
-                                <div class="slds-col slds-size_1-of-3">
-                                    <div class="slds-form-element">
-                                        <label class="slds-form-element__label" for="object-selector">オブジェクト選択:</label>
-                                        <div class="slds-form-element__control">
-                                            <div class="slds-select_container">
-                                                <select
-                                                    id="object-selector"
-                                                    class="slds-select"
-                                                    data-has-initial="{{ has_initial_objects|yesno:'true,false' }}"
-                                                    size="1"
-                                                    onchange="handleObjectSelection(this.value)"
-                                                >
-                                                    <option value="">-- オブジェクトを選択 --</option>
-                                                    {% if available_objects.standard %}
-                                                        <optgroup label="標準オブジェクト">
-                                                        {% for obj in available_objects.standard %}
-                                                            <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
-                                                        {% endfor %}
-                                                        </optgroup>
-                                                    {% endif %}
-                                                    {% if available_objects.custom %}
-                                                        <optgroup label="カスタムオブジェクト">
-                                                        {% for obj in available_objects.custom %}
-                                                            <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
-                                                        {% endfor %}
-                                                        </optgroup>
-                                                    {% endif %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        <!-- 快速链接 -->
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #E5E7EB;">
+            <a href="{% url 'query:saved_queries' %}"
+               class="slds-button slds-button_outline-brand slds-button_small"
+               style="width: 100%; justify-content: center;">
+                <i class="fas fa-folder-open"></i>
+                管理所有查询
+            </a>
+        </div>
+    </aside>
 
-                                <!-- Quick Actions -->
-                                <div class="slds-col slds-size_2-of-3">
-                                    <div class="slds-form-element">
-                                        <label class="slds-form-element__label">クイックアクション:</label>
-                                        <div class="slds-form-element__control">
-                                            <div class="slds-button-group" role="group">
-                                                <button type="button" class="slds-button slds-button_outline-brand slds-button_small" onclick="selectAllFields()">
-                                                    <span class="slds-icon_container slds-icon-utility-check slds-m-right_xx-small">
-                                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                                            <use xlink:href="#utility-check"></use>
-                                                        </svg>
-                                                    </span>
-                                                    すべての項目を選択
-                                                </button>
-                                                <button type="button" class="slds-button slds-button_neutral slds-button_small" onclick="clearFieldSelection()">
-                                                    <span class="slds-icon_container slds-icon-utility-clear slds-m-right_xx-small">
-                                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                                            <use xlink:href="#utility-clear"></use>
-                                                        </svg>
-                                                    </span>
-                                                    選択をクリア
-                                                </button>
-                                                <button type="button" class="slds-button slds-button_success slds-button_small" onclick="buildQuery()">
-                                                    <span class="slds-icon_container slds-icon-utility-builder slds-m-right_xx-small">
-                                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                                            <use xlink:href="#utility-builder"></use>
-                                                        </svg>
-                                                    </span>
-                                                    クエリを生成
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <!-- 主内容 -->
+    <main class="query-main-content">
+        <div class="query-content-header">
+            <h1>SOQL 查询编辑器</h1>
+        </div>
 
-                            <!-- Fields and Operators -->
-                            <div class="slds-grid slds-gutters slds-m-top_medium hidden" id="query-builder-details">
-                                <!-- Field List -->
-                                <div class="slds-col slds-size_1-of-2">
-                                    <div class="slds-form-element">
-                                        <label class="slds-form-element__label">利用可能な項目:</label>
-                                        <div class="slds-form-element__control">
-                                            <div class="field-list slds-scrollable_y" id="field-list">
-                                                <div class="slds-text-color_weak">項目を表示するにはオブジェクトを選択してください</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Operators and Helpers -->
-                                <div class="slds-col slds-size_1-of-2">
-                                    <div class="query-helper-section">
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label">演算子:</label>
-                                            <div class="slds-form-element__control">
-                                                <div class="slds-button-group-row">
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('AND')">
-                                                        AND
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('OR')">
-                                                        OR
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('NOT')">
-                                                        NOT
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('IN')">
-                                                        IN
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('LIKE')">
-                                                        LIKE
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('=')">
-                                                        =
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('!=')">
-                                                        !=
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('<')">
-                                                        &lt;
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('>')">
-                                                        &gt;
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('<=')">
-                                                        &lt;=
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_neutral slds-button_small operator-btn" onclick="insertOperator('>=')">
-                                                        &gt;=
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="query-helper-section">
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label">句:</label>
-                                            <div class="slds-form-element__control">
-                                                <div class="slds-button-group-row">
-                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('WHERE')">
-                                                        WHERE
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('ORDER BY')">
-                                                        ORDER BY
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('GROUP BY')">
-                                                        GROUP BY
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('HAVING')">
-                                                        HAVING
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('LIMIT')">
-                                                        LIMIT
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small operator-btn" onclick="insertClause('OFFSET')">
-                                                        OFFSET
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="query-helper-section">
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label">関数:</label>
-                                            <div class="slds-form-element__control">
-                                                <div class="slds-button-group-row">
-                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('COUNT()')">
-                                                        COUNT()
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('SUM()')">
-                                                        SUM()
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('AVG()')">
-                                                        AVG()
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('MIN()')">
-                                                        MIN()
-                                                    </button>
-                                                    <button type="button" class="slds-button slds-button_destructive slds-button_small operator-btn" onclick="insertFunction('MAX()')">
-                                                        MAX()
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="query-content-body">
+            <div class="slds-scope">
+                <!-- 查询构建器 -->
+                <div class="query-card">
+                    <div class="query-card-header">
+                        <h3 class="query-card-title">
+                            <i class="fas fa-tools" style="color: #3B82F6;"></i>
+                            查询构建器
+                        </h3>
                     </div>
-
-                    <form method="post" id="query-form" onsubmit="executeQueryAjax(event); return false;">
-                        {% csrf_token %}
-
-                        <!-- Query Input -->
-                        <div class="slds-form-element slds-m-bottom_medium">
-                            <label class="slds-form-element__label" for="{{ form.query.id_for_label }}">
-                                SOQLクエリ:
-                            </label>
-                            <div class="slds-form-element__control">
-                                {{ form.query }}
-                                {% if form.query.errors %}
-                                    <div class="slds-form-element__help slds-text-color_error">
-                                        {{ form.query.errors.0 }}
+                    <div class="query-card-body">
+                        <div class="slds-grid slds-gutters">
+                            <!-- 对象选择器 -->
+                            <div class="slds-col slds-size_1-of-3">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="object-selector">选择对象:</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select id="object-selector" class="slds-select"
+                                                    data-has-initial="{{ has_initial_objects|yesno:'true,false' }}"
+                                                    onchange="handleObjectSelection(this.value)">
+                                                <option value="">-- 选择对象 --</option>
+                                                {% if available_objects.standard %}
+                                                <optgroup label="标准对象">
+                                                    {% for obj in available_objects.standard %}
+                                                    <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
+                                                    {% endfor %}
+                                                </optgroup>
+                                                {% endif %}
+                                                {% if available_objects.custom %}
+                                                <optgroup label="自定义对象">
+                                                    {% for obj in available_objects.custom %}
+                                                    <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
+                                                    {% endfor %}
+                                                </optgroup>
+                                                {% endif %}
+                                            </select>
+                                        </div>
                                     </div>
-                                {% endif %}
-                                <div class="slds-form-element__help">{{ form.query.help_text }}</div>
+                                </div>
+                            </div>
+
+                            <!-- 快速操作 -->
+                            <div class="slds-col slds-size_2-of-3">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label">快速操作:</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-button-group">
+                                            <button type="button" class="slds-button slds-button_outline-brand"
+                                                    onclick="selectAllFields()">
+                                                <i class="fas fa-check"></i>
+                                                选择全部字段
+                                            </button>
+                                            <button type="button" class="slds-button slds-button_outline-danger"
+                                                    onclick="clearFieldSelection()">
+                                                <i class="fas fa-times"></i>
+                                                清除选择
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Options -->
-                        <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                        <!-- 字段和操作符 -->
+                        <div class="slds-grid slds-gutters slds-m-top_medium hidden" id="query-builder-details">
+                            <!-- 字段列表 -->
                             <div class="slds-col slds-size_1-of-2">
                                 <div class="slds-form-element">
+                                    <label class="slds-form-element__label">可用字段:</label>
                                     <div class="slds-form-element__control">
-                                        <div class="slds-checkbox">
-                                            {{ form.include_deleted }}
-                                            <label class="slds-checkbox__label" for="{{ form.include_deleted.id_for_label }}">
-                                                <span class="slds-checkbox_faux"></span>
-                                                <span class="slds-form-element__label">{{ form.include_deleted.label }}</span>
-                                            </label>
+                                        <div class="field-list" id="field-list">
+                                            <div style="color: #9CA3AF;">请先选择对象以显示字段</div>
                                         </div>
-                                        <div class="slds-form-element__help">{{ form.include_deleted.help_text }}</div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- 操作符和帮助器 -->
                             <div class="slds-col slds-size_1-of-2">
-                                <button type="button" class="slds-button slds-button_outline-brand slds-button_small" onclick="validateQuery()">
-                                    <span class="slds-icon_container slds-icon-utility-check slds-m-right_xx-small">
-                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                            <use xlink:href="#utility-check"></use>
-                                        </svg>
-                                    </span>
-                                    クエリを検証
-                                </button>
-                            </div>
-                        </div>
+                                <div class="query-builder-section">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">运算符:</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-button-group-row">
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('AND')">AND</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('OR')">OR</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('NOT')">NOT</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('IN')">IN</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('LIKE')">LIKE</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('=')">  =  </button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('!=')"> != </button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('<')"> &lt; </button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertOperator('>')"> &gt; </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <!-- Submit Button -->
-                        <div class="slds-button-group" role="group">
-                            <button type="submit" class="slds-button slds-button_brand">
-                                <span class="slds-icon_container slds-icon-utility-play slds-m-right_xx-small">
-                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                        <use xlink:href="#utility-play"></use>
-                                    </svg>
-                                </span>
-                                クエリを実行
-                            </button>
-                            <button type="button" class="slds-button slds-button_neutral" onclick="clearQuery()">
-                                <span class="slds-icon_container slds-icon-utility-clear slds-m-right_xx-small">
-                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                        <use xlink:href="#utility-clear"></use>
-                                    </svg>
-                                </span>
-                                クリア
-                            </button>
-                            <button type="button" class="slds-button slds-button_success" onclick="saveQuery()" {% if not query_executed %}disabled{% endif %}>
-                                <span class="slds-icon_container slds-icon-utility-save slds-m-right_xx-small">
-                                    <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                        <use xlink:href="#utility-save"></use>
-                                    </svg>
-                                </span>
-                                クエリを保存
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                                <div class="query-builder-section">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">子句:</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-button-group-row">
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertClause('WHERE')">WHERE</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertClause('ORDER BY')">ORDER BY</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertClause('GROUP BY')">GROUP BY</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertClause('LIMIT')">LIMIT</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <!-- Query Results -->
-            <div id="results-section">
-            {% if query_executed and results %}
-            <div class="slds-card slds-m-top_medium">
-                <div class="slds-card__header">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__figure">
-                            <span class="slds-icon_container slds-icon-utility-table">
-                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                                    <use xlink:href="#utility-table"></use>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>クエリ結果</span>
-                            </h2>
-                        </div>
-                        <div class="slds-no-flex">
-                            <div class="slds-button-group" role="group">
-                                <a href="{% url 'query:export' results.history_id %}?format=csv"
-                                   class="slds-button slds-button_outline-brand slds-button_small">
-                                    <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
-                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                            <use xlink:href="#utility-download"></use>
-                                        </svg>
-                                    </span>
-                                    CSV
-                                </a>
-                                <a href="{% url 'query:export' results.history_id %}?format=json"
-                                   class="slds-button slds-button_outline-brand slds-button_small">
-                                    <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
-                                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                            <use xlink:href="#utility-download"></use>
-                                        </svg>
-                                    </span>
-                                    JSON
-                                </a>
+                                <div class="query-builder-section">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">函数:</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-button-group-row">
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertFunction('COUNT()')">COUNT()</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertFunction('SUM()')">SUM()</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertFunction('AVG()')">AVG()</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertFunction('MIN()')">MIN()</button>
+                                                <button type="button" class="slds-button slds-button_brand slds-button_small operator-btn"
+                                                        onclick="insertFunction('MAX()')">MAX()</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="slds-card__body slds-card__body_inner">
-                    <!-- Results Info -->
-                    <div class="slds-grid slds-gutters slds-m-bottom_medium">
-                        <div class="slds-col slds-size_1-of-4">
-                            <div class="slds-text-body_regular">
-                                <strong>取得件数:</strong> {{ results.totalSize|default:0 }}
+                <!-- 查询表单 -->
+                <div class="query-card">
+                    <div class="query-card-header">
+                        <h3 class="query-card-title">
+                            <i class="fas fa-code" style="color: #3B82F6;"></i>
+                            SOQL 查询
+                        </h3>
+                    </div>
+                    <div class="query-card-body">
+                        <form method="post" id="query-form" onsubmit="executeQueryAjax(event); return false;">
+                            {% csrf_token %}
+
+                            <!-- 查询输入 -->
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label" for="{{ form.query.id_for_label }}">
+                                    SOQL 查询语句:
+                                </label>
+                                <div class="slds-form-element__control">
+                                    {{ form.query }}
+                                    {% if form.query.errors %}
+                                    <div class="slds-form-element__help" style="color: #DC2626;">
+                                        {{ form.query.errors.0 }}
+                                    </div>
+                                    {% endif %}
+                                    <div class="slds-form-element__help" style="color: #6B7280;">
+                                        {{ form.query.help_text }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 选项 -->
+                            <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                {{ form.include_deleted }}
+                                                <label class="slds-checkbox__label" for="{{ form.include_deleted.id_for_label }}">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">{{ form.include_deleted.label }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <button type="button" class="slds-button slds-button_outline-brand slds-button_small"
+                                            onclick="validateQuery()">
+                                        <i class="fas fa-check-circle"></i>
+                                        验证查询
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 提交按钮 -->
+                            <div class="slds-button-group">
+                                <button type="submit" class="slds-button slds-button_brand">
+                                    <i class="fas fa-play"></i>
+                                    执行查询
+                                </button>
+                                <button type="button" class="slds-button slds-button_neutral" onclick="clearQuery()">
+                                    <i class="fas fa-eraser"></i>
+                                    清空
+                                </button>
+                                <button type="button" class="slds-button slds-button_success" onclick="saveQuery()"
+                                        {% if not query_executed %}disabled{% endif %}>
+                                    <i class="fas fa-save"></i>
+                                    保存查询
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 查询结果 -->
+                <div id="results-section">
+                    {% if query_executed and results %}
+                    <div class="query-card">
+                        <div class="query-card-header">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <h3 class="query-card-title">
+                                    <i class="fas fa-table" style="color: #3B82F6;"></i>
+                                    查询结果
+                                </h3>
+                                <div class="slds-button-group">
+                                    <a href="{% url 'query:export' results.history_id %}?format=csv"
+                                       class="slds-button slds-button_outline-brand slds-button_small">
+                                        <i class="fas fa-download"></i> CSV
+                                    </a>
+                                    <a href="{% url 'query:export' results.history_id %}?format=json"
+                                       class="slds-button slds-button_outline-brand slds-button_small">
+                                        <i class="fas fa-download"></i> JSON
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="slds-col slds-size_1-of-4">
-                            <div class="slds-text-body_regular">
-                                <strong>実行時間:</strong> {{ results.execution_time|floatformat:3 }}秒
+
+                        <div class="query-card-body">
+                            <!-- 结果信息 -->
+                            <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                                <div class="slds-col slds-size_1-of-4">
+                                    <div style="font-size: 0.875rem; color: #6B7280;">
+                                        <strong style="color: #111827;">总记录数:</strong> {{ results.totalSize|default:0 }}
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-4">
+                                    <div style="font-size: 0.875rem; color: #6B7280;">
+                                        <strong style="color: #111827;">执行时间:</strong> {{ results.execution_time|floatformat:3 }}秒
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-4">
+                                    <div style="font-size: 0.875rem; color: #6B7280;">
+                                        <strong style="color: #111827;">显示记录:</strong> {{ results.records|length }}
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-4">
+                                    {% if not results.done %}
+                                    <span class="slds-badge slds-badge_warning">还有更多记录</span>
+                                    {% else %}
+                                    <span class="slds-badge slds-badge_success">已获取全部</span>
+                                    {% endif %}
+                                </div>
                             </div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-4">
-                            <div class="slds-text-body_regular">
-                                <strong>表示件数:</strong> {{ results.records|length }}
+
+                            <!-- 结果表格 -->
+                            {% if results.records %}
+                            <div class="query-results" style="overflow-x: auto;">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                    <thead>
+                                        <tr>
+                                            {% for key in results.records.0.keys %}
+                                            {% if key != 'attributes' %}
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="{{ key }}">{{ key }}</div>
+                                            </th>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody id="results-tbody">
+                                        {% for record in results.records %}
+                                        <tr>
+                                            {% for key, value in record.items %}
+                                            {% if key != 'attributes' %}
+                                            <td data-label="{{ key }}">
+                                                <div class="slds-truncate">
+                                                    {% if key|upper == 'ID' and value and results.object_type %}
+                                                    <a href="{% url 'query:record_detail' results.object_type value %}"
+                                                       style="color: #3B82F6; text-decoration: underline;">
+                                                        {{ value }}
+                                                    </a>
+                                                    {% elif value == None %}
+                                                    <span style="color: #9CA3AF;">null</span>
+                                                    {% elif value|length > 100 %}
+                                                    <span title="{{ value }}">{{ value|truncatechars:100 }}</span>
+                                                    {% else %}
+                                                    {{ value }}
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-4">
-                            {% if not results.done %}
-                                <span class="slds-badge slds-badge_warning">さらにレコードがあります</span>
+
+                            <!-- 加载更多按钮 -->
+                            {% if not results.done and results.nextRecordsUrl %}
+                            <div style="text-align: center; margin-top: 1.5rem;">
+                                <button class="slds-button slds-button_outline-brand load-more-results"
+                                        data-next-url="{{ results.nextRecordsUrl }}">
+                                    <i class="fas fa-arrow-down"></i>
+                                    加载更多
+                                </button>
+                            </div>
+                            {% endif %}
+
                             {% else %}
-                                <span class="slds-badge slds-badge_success">取得完了</span>
+                            <div style="text-align: center; padding: 3rem; color: #9CA3AF;">
+                                <i class="fas fa-info-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <p style="font-size: 1.125rem; font-weight: 500; color: #6B7280;">未找到任何记录</p>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
-
-                    <!-- Results Table -->
-                    {% if results.records %}
-                    <div class="slds-scrollable_x query-results">
-                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
-                            <thead>
-                                <tr class="slds-line-height_reset">
-                                    {% for key in results.records.0.keys %}
-                                        {% if key != 'attributes' %}
-                                            <th class="slds-text-title_caps" scope="col">
-                                                <div class="slds-truncate" title="{{ key }}">{{ key }}</div>
-                                            </th>
-                                        {% endif %}
-                                    {% endfor %}
-                                </tr>
-                            </thead>
-                            <tbody id="results-tbody">
-                                {% for record in results.records %}
-                                    <tr class="slds-hint-parent">
-                                        {% for key, value in record.items %}
-                                            {% if key != 'attributes' %}
-                                                <td data-label="{{ key }}">
-                                                    <div class="slds-truncate">
-                                                        {% if key|upper == 'ID' and value and results.object_type %}
-                                                            <a href="{% url 'query:record_detail' results.object_type value %}"
-                                                               class="text-primary" style="text-decoration: underline;">
-                                                                {{ value }}
-                                                            </a>
-                                                        {% elif value == None %}
-                                                            <span class="slds-text-color_weak">null</span>
-                                                        {% elif value|length > 100 %}
-                                                            <span title="{{ value }}">
-                                                                {{ value|truncatechars:100 }}
-                                                            </span>
-                                                        {% else %}
-                                                            {{ value }}
-                                                        {% endif %}
-                                                    </div>
-                                                </td>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Load More Button -->
-                    {% if not results.done and results.nextRecordsUrl %}
-                    <div class="slds-align_absolute-center slds-m-top_medium">
-                        <button class="slds-button slds-button_outline-brand load-more-results"
-                                data-next-url="{{ results.nextRecordsUrl }}">
-                            <span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small">
-                                <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
-                                    <use xlink:href="#utility-download"></use>
-                                </svg>
-                            </span>
-                            さらに読み込む
-                        </button>
-                    </div>
-                    {% endif %}
-
-                    {% else %}
-                        <div class="slds-align_absolute-center slds-m-top_large">
-                            <div class="slds-text-color_weak slds-text-align_center">
-                                <span class="slds-icon_container slds-icon-utility-info">
-                                    <svg class="slds-icon slds-icon_large" aria-hidden="true">
-                                        <use xlink:href="#utility-info"></use>
-                                    </svg>
-                                </span>
-                                <p class="slds-text-heading_medium">レコードが見つかりません。</p>
-                            </div>
-                        </div>
                     {% endif %}
                 </div>
             </div>
-            {% endif %}
-            </div> <!-- End of results-section -->
         </div>
-    </div>
+    </main>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-// Global variables for query builder
+// 全局变量
 let currentObject = null;
 let currentFields = [];
 let selectedFields = new Set();
 
-// Initialize on page load
+// 页面加载时初始化
 $(document).ready(function() {
     const selector = $('#object-selector');
     const hasInitialObjects = selector.data('has-initial') === true || selector.data('has-initial') === 'true';
 
     if (hasInitialObjects) {
-        console.log('Using server-rendered Salesforce object list');
+        console.log('使用服务器渲染的 Salesforce 对象列表');
         restoreLastSelectedObject();
     } else {
-        console.log('Page loaded, attempting to load Salesforce objects...');
+        console.log('页面已加载，正在尝试加载 Salesforce 对象...');
         loadObjects();
     }
 });
 
-// Handle object selection
+// 处理对象选择
 window.handleObjectSelection = function(objectName) {
     if (objectName) {
         currentObject = objectName;
         selectedFields = new Set(['Id']);
-        // Save selection to localStorage
         localStorage.setItem('lastSelectedObject', objectName);
         loadObjectFields(objectName);
-
         $('#id_query').val(`SELECT Id FROM ${objectName}`);
     } else {
         localStorage.removeItem('lastSelectedObject');
-        $('#query-builder-details').addClass('hidden').hide();
+        $('#query-builder-details').addClass('hidden');
         currentObject = null;
         currentFields = [];
         selectedFields.clear();
@@ -793,9 +1139,7 @@ window.handleObjectSelection = function(objectName) {
 
 function restoreLastSelectedObject() {
     const lastSelectedObject = localStorage.getItem('lastSelectedObject');
-    if (!lastSelectedObject) {
-        return;
-    }
+    if (!lastSelectedObject) return;
 
     const selector = $('#object-selector');
     const optionExists = selector.find(`option[value="${lastSelectedObject}"]`).length > 0;
@@ -805,175 +1149,127 @@ function restoreLastSelectedObject() {
     }
 }
 
-// Load all Salesforce objects
+// 加载所有 Salesforce 对象
 function loadObjects() {
-    console.log('Loading Salesforce objects...');
-
     $.ajax({
         url: '/query/api/objects/',
         method: 'GET',
-        xhrFields: {
-            withCredentials: true
-        },
+        xhrFields: { withCredentials: true },
         credentials: 'same-origin'
     })
-        .done(function(response) {
-            console.log('Objects API response:', response);
+    .done(function(response) {
+        if (response.success) {
+            const selector = $('#object-selector');
+            selector.empty();
+            selector.append('<option value="">-- 选择对象 --</option>');
 
-            if (response.success) {
-                const selector = $('#object-selector');
-                selector.empty();
-                selector.append('<option value="">-- オブジェクトを選択 --</option>');
-
-                // Check if we have objects
-                if (!response.objects || response.objects.length === 0) {
-                    console.warn('No objects returned from API');
-                    workbench.showToast('利用可能な Salesforce オブジェクトがありません。接続を確認してください。', 'warning');
-                    return;
-                }
-
-                // Group objects by standard vs custom
-                const standardObjects = response.objects.filter(obj => !obj.custom);
-                const customObjects = response.objects.filter(obj => obj.custom);
-
-                console.log(`Found ${standardObjects.length} standard objects and ${customObjects.length} custom objects`);
-
-                // Add standard objects
-                if (standardObjects.length > 0) {
-                    const standardGroup = $('<optgroup label="標準オブジェクト"></optgroup>');
-                    standardObjects.forEach(obj => {
-                        standardGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
-                    });
-                    selector.append(standardGroup);
-                }
-
-                // Add custom objects
-                if (customObjects.length > 0) {
-                    const customGroup = $('<optgroup label="カスタムオブジェクト"></optgroup>');
-                    customObjects.forEach(obj => {
-                        customGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
-                    });
-                    selector.append(customGroup);
-                }
-
-                restoreLastSelectedObject();
-
-                console.log('Objects loaded successfully');
-            } else {
-                console.error('Failed to load objects:', response.error);
-                workbench.showToast('オブジェクトの読み込みに失敗しました: ' + response.error, 'error');
-
-                // If authentication error, redirect to login
-                if (response.error && response.error.includes('No active Salesforce connection')) {
-                    setTimeout(function() {
-                        window.location.href = '/auth/login/';
-                    }, 3000);
-                }
-            }
-        })
-        .fail(function(xhr, status, error) {
-            console.error('AJAX request failed:', status, error);
-            console.error('Response:', xhr.responseText);
-
-            let errorMessage = 'Salesforce オブジェクトの読み込みに失敗しました';
-            if (xhr.status === 401) {
-                errorMessage = '認証されていません。Salesforce にログインしてください。';
-                setTimeout(function() {
-                    window.location.href = '/auth/login/';
-                }, 3000);
-            } else if (xhr.status === 500) {
-                try {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.error) {
-                        errorMessage = 'サーバーエラー: ' + response.error;
-                    }
-                } catch (e) {
-                    errorMessage = 'オブジェクトの読み込み中にサーバーエラーが発生しました';
-                }
+            if (!response.objects || response.objects.length === 0) {
+                workbench.showToast('没有可用的 Salesforce 对象，请检查连接', 'warning');
+                return;
             }
 
-            workbench.showToast(errorMessage, 'error');
-        });
+            const standardObjects = response.objects.filter(obj => !obj.custom);
+            const customObjects = response.objects.filter(obj => obj.custom);
+
+            if (standardObjects.length > 0) {
+                const standardGroup = $('<optgroup label="标准对象"></optgroup>');
+                standardObjects.forEach(obj => {
+                    standardGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
+                });
+                selector.append(standardGroup);
+            }
+
+            if (customObjects.length > 0) {
+                const customGroup = $('<optgroup label="自定义对象"></optgroup>');
+                customObjects.forEach(obj => {
+                    customGroup.append(`<option value="${obj.name}">${obj.label} (${obj.name})</option>`);
+                });
+                selector.append(customGroup);
+            }
+
+            restoreLastSelectedObject();
+        } else {
+            workbench.showToast('对象加载失败: ' + response.error, 'error');
+        }
+    })
+    .fail(function(xhr) {
+        let errorMessage = 'Salesforce 对象加载失败';
+        if (xhr.status === 401) {
+            errorMessage = '未认证，请登录到 Salesforce';
+            setTimeout(() => window.location.href = '/auth/login/', 3000);
+        }
+        workbench.showToast(errorMessage, 'error');
+    });
 }
 
-// Load fields for selected object
+// 加载选定对象的字段
 function loadObjectFields(objectName) {
     $.ajax({
         url: '/query/api/fields/',
         method: 'GET',
-        data: {object: objectName},
-        xhrFields: {
-            withCredentials: true
-        },
+        data: { object: objectName },
+        xhrFields: { withCredentials: true },
         credentials: 'same-origin'
     })
-        .done(function(response) {
-            if (response.success) {
-                currentObject = objectName;
-                currentFields = response.fields;
-                selectedFields = new Set(['Id']);
+    .done(function(response) {
+        if (response.success) {
+            currentObject = objectName;
+            currentFields = response.fields;
+            selectedFields = new Set(['Id']);
 
-                displayFields(response.fields);
-                $('#field-Id').prop('checked', true);
-                $('#query-builder-details').removeClass('hidden').show();
-                applyFieldsToQuery(orderSelectedFields());
-                console.log('Fields loaded for', objectName, response.fields.length, 'fields');
-            } else {
-                workbench.showToast('項目の読み込みに失敗しました: ' + response.error, 'error');
-            }
-        })
-        .fail(function() {
-            workbench.showToast('オブジェクト項目の読み込みに失敗しました', 'error');
-        });
+            displayFields(response.fields);
+            $('#field-Id').prop('checked', true);
+            $('#query-builder-details').removeClass('hidden');
+            applyFieldsToQuery(orderSelectedFields());
+        } else {
+            workbench.showToast('字段加载失败: ' + response.error, 'error');
+        }
+    })
+    .fail(function() {
+        workbench.showToast('对象字段加载失败', 'error');
+    });
 }
 
-// Display fields in the field list
+// 在字段列表中显示字段
 function displayFields(fields) {
     const fieldList = $('#field-list');
     fieldList.empty();
 
-    // Group fields by type
     const standardFields = fields.filter(f => !f.custom);
     const customFields = fields.filter(f => f.custom);
 
-    // Add search box
+    // 添加搜索框
     fieldList.append(`
-        <div class="slds-m-bottom_small">
-            <input type="text" class="form-control slds-input" id="field-search"
-                   placeholder="項目を検索..." onkeyup="filterFields()">
+        <div style="margin-bottom: 0.75rem;">
+            <input type="text" class="slds-input" id="field-search"
+                   placeholder="搜索字段..." onkeyup="filterFields()" style="font-size: 0.875rem;">
         </div>
     `);
 
-    // Add field items
     const fieldContainer = $('<div id="field-items"></div>');
 
-    // Standard fields
     if (standardFields.length > 0) {
-        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small">標準項目</div>');
-        standardFields.forEach(field => {
-            fieldContainer.append(createFieldItem(field));
-        });
+        fieldContainer.append('<div style="font-size: 0.6875rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; margin: 0.5rem 0;">标准字段</div>');
+        standardFields.forEach(field => fieldContainer.append(createFieldItem(field)));
     }
 
-    // Custom fields
     if (customFields.length > 0) {
-        fieldContainer.append('<div class="slds-text-title_caps slds-text-color_weak slds-text-body_small slds-m-top_small">カスタム項目</div>');
-        customFields.forEach(field => {
-            fieldContainer.append(createFieldItem(field));
-        });
+        fieldContainer.append('<div style="font-size: 0.6875rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; margin: 1rem 0 0.5rem;">自定义字段</div>');
+        customFields.forEach(field => fieldContainer.append(createFieldItem(field)));
     }
 
     fieldList.append(fieldContainer);
 }
 
-// Create field item HTML
+// 创建字段项 HTML
 function createFieldItem(field) {
     const checked = selectedFields.has(field.name) ? 'checked' : '';
     return `
         <div class="field-item" data-field-name="${field.name}">
-            <input type="checkbox" class="field-checkbox" id="field-${field.name}" value="${field.name}" ${checked}
+            <input type="checkbox" class="field-checkbox" id="field-${field.name}"
+                   value="${field.name}" ${checked}
                    onchange="toggleFieldAndUpdateQuery(this, '${field.name}')">
-            <label for="field-${field.name}" style="cursor: pointer; display: inline-block; width: 100%;">
+            <label for="field-${field.name}" style="cursor: pointer; flex: 1; margin: 0;">
                 ${field.label}
                 <span class="field-type">(${field.type})</span>
             </label>
@@ -981,21 +1277,17 @@ function createFieldItem(field) {
     `;
 }
 
-// Filter fields based on search
+// 根据搜索过滤字段
 function filterFields() {
     const searchTerm = $('#field-search').val().toLowerCase();
     $('.field-item').each(function() {
         const fieldName = $(this).data('field-name').toLowerCase();
         const fieldText = $(this).text().toLowerCase();
-        if (fieldName.includes(searchTerm) || fieldText.includes(searchTerm)) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
+        $(this).toggle(fieldName.includes(searchTerm) || fieldText.includes(searchTerm));
     });
 }
 
-// Toggle field selection and update query
+// 切换字段选择并更新查询
 function toggleFieldAndUpdateQuery(checkbox, fieldName) {
     if (checkbox.checked) {
         selectedFields.add(fieldName);
@@ -1003,12 +1295,9 @@ function toggleFieldAndUpdateQuery(checkbox, fieldName) {
         selectedFields.delete(fieldName);
     }
 
-    if (!currentObject) {
-        return;
-    }
+    if (!currentObject) return;
 
     const fieldArray = orderSelectedFields();
-
     if (fieldArray.length === 0) {
         $('#id_query').val('');
         return;
@@ -1017,43 +1306,16 @@ function toggleFieldAndUpdateQuery(checkbox, fieldName) {
     applyFieldsToQuery(fieldArray);
 }
 
-// Insert field into query (deprecated - now handled by toggleFieldAndUpdateQuery)
-function insertField(fieldName) {
-    // This function is no longer used
-    // Field insertion is now handled by toggleFieldAndUpdateQuery
-}
-
-// Note: selectAllFields function is defined below with ID-first ordering
-
-// Clear field selection
+// 清除字段选择
 function clearFieldSelection() {
     selectedFields.clear();
-    selectedFields.add('Id'); // Keep Id selected
+    selectedFields.add('Id');
     $('.field-checkbox').prop('checked', false);
     $('.field-checkbox[value="Id"]').prop('checked', true);
-}
-
-// Build query from selected fields
-function buildQuery() {
-    if (!currentObject) {
-        workbench.showToast('先にオブジェクトを選択してください', 'warning');
-        return;
+    if (currentObject) {
+        applyFieldsToQuery(orderSelectedFields());
+        workbench.showToast('已清除字段选择', 'info');
     }
-
-    // Sync selectedFields with current checkbox states to ensure accuracy
-    selectedFields = new Set();
-    $('#field-items .field-checkbox:checked').each(function() {
-        selectedFields.add($(this).val());
-    });
-
-    if (selectedFields.size === 0) {
-        workbench.showToast('少なくとも1つの項目を選択してください', 'warning');
-        return;
-    }
-
-    const fieldArray = orderSelectedFields();
-    applyFieldsToQuery(fieldArray);
-    workbench.showToast('クエリを生成しました', 'success');
 }
 
 function orderSelectedFields() {
@@ -1066,9 +1328,7 @@ function orderSelectedFields() {
 }
 
 function applyFieldsToQuery(fieldArray) {
-    if (!currentObject || fieldArray.length === 0) {
-        return;
-    }
+    if (!currentObject || fieldArray.length === 0) return;
 
     const fields = fieldArray.join(', ');
     let query = $('#id_query').val().trim();
@@ -1076,9 +1336,7 @@ function applyFieldsToQuery(fieldArray) {
     const upperQuery = query.toUpperCase();
     const expectedFrom = fromClause.toUpperCase();
 
-    if (!query) {
-        query = `SELECT ${fields} ${fromClause}`;
-    } else if (!/select\s+/i.test(query) || !upperQuery.includes(expectedFrom)) {
+    if (!query || !/select\s+/i.test(query) || !upperQuery.includes(expectedFrom)) {
         query = `SELECT ${fields} ${fromClause}`;
     } else {
         query = query.replace(/SELECT\s+([\s\S]*?)\s+FROM/i, `SELECT ${fields} FROM`);
@@ -1087,66 +1345,51 @@ function applyFieldsToQuery(fieldArray) {
     $('#id_query').val(query.trim());
 }
 
-// Insert operator into query
+// 将运算符插入查询
 function insertOperator(operator) {
     const queryTextarea = $('#id_query')[0];
     const start = queryTextarea.selectionStart;
     const end = queryTextarea.selectionEnd;
     const text = queryTextarea.value;
 
-    const before = text.substring(0, start);
-    const after = text.substring(end);
-
-    // Add spaces around operator
     const insertion = ` ${operator} `;
-
-    queryTextarea.value = before + insertion + after;
+    queryTextarea.value = text.substring(0, start) + insertion + text.substring(end);
     queryTextarea.selectionStart = queryTextarea.selectionEnd = start + insertion.length;
     queryTextarea.focus();
 }
 
-// Insert clause into query
+// 将子句插入查询
 function insertClause(clause) {
     const queryTextarea = $('#id_query')[0];
     const text = queryTextarea.value;
 
-    // Add clause at the end with proper formatting
-    let insertion = '';
-    if (clause === 'WHERE') {
-        insertion = `\nWHERE `;
-    } else if (clause === 'ORDER BY') {
-        insertion = `\nORDER BY `;
-    } else if (clause === 'GROUP BY') {
-        insertion = `\nGROUP BY `;
-    } else if (clause === 'HAVING') {
-        insertion = `\nHAVING `;
-    } else if (clause === 'LIMIT') {
-        insertion = `\nLIMIT 100`;
-    } else if (clause === 'OFFSET') {
-        insertion = `\nOFFSET 0`;
-    }
+    const clauses = {
+        'WHERE': '\nWHERE ',
+        'ORDER BY': '\nORDER BY ',
+        'GROUP BY': '\nGROUP BY ',
+        'LIMIT': '\nLIMIT 100',
+        'OFFSET': '\nOFFSET 0'
+    };
 
+    const insertion = clauses[clause] || '';
     queryTextarea.value = text + insertion;
     queryTextarea.selectionStart = queryTextarea.selectionEnd = queryTextarea.value.length;
     queryTextarea.focus();
 }
 
-// Insert function into query
+// 将函数插入查询
 function insertFunction(func) {
     const queryTextarea = $('#id_query')[0];
     const start = queryTextarea.selectionStart;
     const end = queryTextarea.selectionEnd;
     const text = queryTextarea.value;
 
-    const before = text.substring(0, start);
-    const after = text.substring(end);
-
-    queryTextarea.value = before + func + after;
-    queryTextarea.selectionStart = queryTextarea.selectionEnd = start + func.length - 1; // Position cursor inside parentheses
+    queryTextarea.value = text.substring(0, start) + func + text.substring(end);
+    queryTextarea.selectionStart = queryTextarea.selectionEnd = start + func.length - 1;
     queryTextarea.focus();
 }
 
-// Original functions
+// 原始函数
 function loadQuery(queryText) {
     $('#id_query').val(queryText);
 }
@@ -1161,83 +1404,76 @@ function validateQuery() {
     const validation = workbench.validateSOQL(query);
 
     if (validation.isValid) {
-        workbench.showToast('クエリ構文は有効です', 'success');
+        workbench.showToast('查询语法有效', 'success');
     } else {
-        workbench.showToast('クエリ検証に失敗しました: ' + validation.errors.join(', '), 'error');
+        workbench.showToast('查询验证失败: ' + validation.errors.join(', '), 'error');
     }
 }
 
 function saveQuery() {
     const query = $('#id_query').val();
     if (!query.trim()) {
-        workbench.showToast('保存するクエリがありません', 'warning');
+        workbench.showToast('没有可保存的查询', 'warning');
         return;
     }
 
-    // Create a simple save dialog
-    const name = prompt('Enter a name for this query:');
+    const name = prompt('输入此查询的名称:');
     if (!name) return;
 
-    // This would normally be an AJAX call to save the query
-    // For now, just show a message
-    workbench.showToast('クエリ保存機能は今後 AJAX で実装されます', 'info');
+    workbench.showToast('查询保存功能将在未来通过 AJAX 实现', 'info');
 }
 
-// Handle load more results
+// 处理加载更多结果
 $(document).on('click', '.load-more-results', function() {
     const button = $(this);
     const nextUrl = button.data('next-url');
 
-    button.html('<span class="loading-spinner"></span> Loading...');
+    button.html('<i class="fas fa-spinner fa-spin"></i> 加载中...');
 
-    $.get('/query/more/', {nextRecordsUrl: nextUrl})
+    $.get('/query/more/', { nextRecordsUrl: nextUrl })
         .done(function(response) {
             if (response.success) {
-                // Add new rows to table
                 const tbody = $('#results-tbody');
                 const objectType = response.object_type;
                 response.records.forEach(function(record) {
-                    let row = '<tr class="slds-hint-parent">';
+                    let row = '<tr>';
                     for (const [key, value] of Object.entries(record)) {
-                        // Skip attributes field
                         if (key === 'attributes') continue;
 
                         let displayValue;
                         if (key.toUpperCase() === 'ID' && value && objectType) {
-                            // Make ID a clickable link
-                            displayValue = '<a href="/query/record/' + objectType + '/' + value + '/" class="text-primary" style="text-decoration: underline;">' + value + '</a>';
+                            displayValue = `<a href="/query/record/${objectType}/${value}/" style="color: #3B82F6; text-decoration: underline;">${value}</a>`;
                         } else if (value === null) {
-                            displayValue = '<span class="slds-text-color_weak">null</span>';
+                            displayValue = '<span style="color: #9CA3AF;">null</span>';
                         } else if (String(value).length > 100) {
-                            displayValue = '<span title="' + value + '">' + String(value).substring(0, 100) + '...</span>';
+                            displayValue = `<span title="${value}">${String(value).substring(0, 100)}...</span>`;
                         } else {
                             displayValue = value;
                         }
-                        row += '<td data-label="' + key + '"><div class="slds-truncate">' + displayValue + '</div></td>';
+                        row += `<td><div class="slds-truncate">${displayValue}</div></td>`;
                     }
                     row += '</tr>';
                     tbody.append(row);
                 });
 
-                // Update button or hide if done
                 if (response.done || !response.nextRecordsUrl) {
                     button.hide();
                 } else {
                     button.data('next-url', response.nextRecordsUrl);
-                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
+                    button.html('<i class="fas fa-arrow-down"></i> 加载更多');
                 }
             } else {
-                workbench.showToast('追加結果の読み込みに失敗しました: ' + response.error, 'error');
-                button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
+                workbench.showToast('加载额外结果失败: ' + response.error, 'error');
+                button.html('<i class="fas fa-arrow-down"></i> 加载更多');
             }
         })
         .fail(function() {
-            workbench.showToast('追加結果の読み込みに失敗しました', 'error');
-            button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
+            workbench.showToast('加载额外结果失败', 'error');
+            button.html('<i class="fas fa-arrow-down"></i> 加载更多');
         });
 });
 
-// Execute query via Ajax
+// 通过 Ajax 执行查询
 function executeQueryAjax(event) {
     event.preventDefault();
 
@@ -1245,15 +1481,13 @@ function executeQueryAjax(event) {
     const queryText = $('#id_query').val();
 
     if (!queryText.trim()) {
-        workbench.showToast('クエリを入力してください', 'warning');
+        workbench.showToast('请输入查询', 'warning');
         return;
     }
 
-    // Save current object selection
     const selectedObject = $('#object-selector').val();
 
-    // Show loading indicator
-    $('#results-section').html('<div class="slds-align_absolute-center slds-m-top_large"><div class="slds-spinner slds-spinner_medium" role="status"><span class="slds-assistive-text">読み込み中...</span><div class="slds-spinner__dot-a"></div><div class="slds-spinner__dot-b"></div></div></div>');
+    $('#results-section').html('<div style="text-align: center; padding: 3rem;"><i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #3B82F6;"></i><p style="margin-top: 1rem; color: #6B7280;">加载中...</p></div>');
 
     $.ajax({
         url: '/query/',
@@ -1262,86 +1496,31 @@ function executeQueryAjax(event) {
         processData: false,
         contentType: false,
         success: function(response) {
-            // Parse the HTML response and extract the results section
             const newContent = $(response).find('#results-section').html();
             if (newContent) {
                 $('#results-section').html(newContent);
 
-                // Restore object selection
                 if (selectedObject) {
                     $('#object-selector').val(selectedObject);
                     localStorage.setItem('lastSelectedObject', selectedObject);
                 }
 
-                // Re-bind event handlers for load more button
-                $('.load-more-results').off('click').on('click', function() {
-                    const button = $(this);
-                    const nextUrl = button.data('next-url');
-
-                    if (!nextUrl) {
-                        return;
-                    }
-
-                    button.html('<span class="loading-spinner"></span> 読み込み中...');
-
-                    $.get('/query/more/', {nextRecordsUrl: nextUrl})
-                        .done(function(response) {
-                            if (response.success) {
-                                const tbody = $('#results-tbody');
-                                const objectType = response.object_type;
-                                response.records.forEach(function(record) {
-                                    let row = '<tr class="slds-hint-parent">';
-                                    for (const [key, value] of Object.entries(record)) {
-                                        if (key === 'attributes') continue;
-
-                                        let displayValue;
-                                        if (key.toUpperCase() === 'ID' && value && objectType) {
-                                            displayValue = '<a href="/query/record/' + objectType + '/' + value + '/" class="text-primary" style="text-decoration: underline;">' + value + '</a>';
-                                        } else if (value === null) {
-                                            displayValue = '<span class="slds-text-color_weak">null</span>';
-                                        } else if (String(value).length > 100) {
-                                            displayValue = '<span title="' + value + '">' + String(value).substring(0, 100) + '...</span>';
-                                        } else {
-                                            displayValue = value;
-                                        }
-                                        row += '<td data-label="' + key + '"><div class="slds-truncate">' + displayValue + '</div></td>';
-                                    }
-                                    row += '</tr>';
-                                    tbody.append(row);
-                                });
-
-                                if (response.done || !response.nextRecordsUrl) {
-                                    button.hide();
-                                } else {
-                                    button.data('next-url', response.nextRecordsUrl);
-                    button.html('<span class="slds-icon_container slds-icon-utility-download slds-m-right_xx-small"><svg class="slds-icon slds-icon_xx-small" aria-hidden="true"><use xlink:href="#utility-download"></use></svg></span> さらに読み込む');
-                                }
-                            } else {
-                                workbench.showToast('追加結果の読み込みに失敗しました: ' + response.error, 'error');
-                            }
-                        })
-                        .fail(function() {
-                            workbench.showToast('追加結果の読み込みに失敗しました', 'error');
-                        });
-                });
-
-                workbench.showToast('クエリの実行に成功しました', 'success');
+                workbench.showToast('查询执行成功', 'success');
             } else {
-                // If no results section, show the full response (might be an error page)
-                $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">クエリ結果が返されませんでした</div>');
+                $('#results-section').html('<div style="padding: 2rem; text-align: center; color: #DC2626;">未返回查询结果</div>');
             }
         },
         error: function(xhr, status, error) {
-            $('#results-section').html('<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">クエリの実行エラー: ' + error + '</div>');
-            workbench.showToast('クエリの実行に失敗しました', 'error');
+            $('#results-section').html('<div style="padding: 2rem; text-align: center; color: #DC2626;">查询执行错误: ' + error + '</div>');
+            workbench.showToast('查询执行失败', 'error');
         }
     });
 }
 
-// Select all fields
+// 选择所有字段
 function selectAllFields() {
     if (!currentFields) {
-        workbench.showToast('先にオブジェクトを選択してください', 'warning');
+        workbench.showToast('请先选择一个对象', 'warning');
         return;
     }
 
@@ -1350,23 +1529,10 @@ function selectAllFields() {
     if (!selectedFields.has('Id')) {
         selectedFields.add('Id');
     }
-    $('#field-Id').prop('checked', true);
 
     const fieldArray = orderSelectedFields();
     applyFieldsToQuery(fieldArray);
-    workbench.showToast('すべての項目を選択しました', 'success');
-}
-
-// Clear field selection
-function clearFieldSelection() {
-    $('#field-items .field-checkbox').prop('checked', false);
-    selectedFields = new Set(['Id']);
-    $('#field-Id').prop('checked', true);
-
-    if (currentObject) {
-        applyFieldsToQuery(orderSelectedFields());
-        workbench.showToast('項目の選択をクリアしました', 'info');
-    }
+    workbench.showToast('已选择所有字段', 'success');
 }
 </script>
 {% endblock %}
