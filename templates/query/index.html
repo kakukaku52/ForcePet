@@ -905,7 +905,22 @@
             padding: 1rem;
         }
     }
+
+    /* Monaco Editor 样式调整 */
+    #monaco-editor-container {
+        border: 1px solid #D1D5DB;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    #monaco-editor-container:focus-within {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
 </style>
+<!-- Monaco Editor Loader -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -1136,7 +1151,14 @@
                                     SOQL 查询语句:
                                 </label>
                                 <div class="slds-form-element__control">
-                                    {{ form.query }}
+                                    <!-- Monaco Editor 容器 -->
+                                    <div id="monaco-editor-container" style="height: 250px;"></div>
+                                    
+                                    <!-- 隐藏原始 Textarea，用于表单提交 -->
+                                    <div style="display: none;">
+                                        {{ form.query }}
+                                    </div>
+                                    
                                     {% if form.query.errors %}
                                     <div class="slds-form-element__help" style="color: #DC2626;">
                                         {{ form.query.errors.0 }}
@@ -1163,7 +1185,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-col slds-size_1-of-2" style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                                    <button type="button" class="slds-button slds-button_neutral slds-button_small"
+                                            onclick="formatQuery()">
+                                        <i class="fas fa-align-left"></i>
+                                        格式化
+                                    </button>
                                     <button type="button" class="slds-button slds-button_outline-brand slds-button_small"
                                             onclick="validateQuery()">
                                         <i class="fas fa-check-circle"></i>
@@ -1202,15 +1229,28 @@
                                     <i class="fas fa-table" style="color: #3B82F6;"></i>
                                     查询结果
                                 </h3>
-                                <div class="slds-button-group">
-                                    <a href="{% url 'query:export' results.history_id %}?format=csv"
-                                       class="slds-button slds-button_outline-brand slds-button_small">
-                                        <i class="fas fa-download"></i> CSV
-                                    </a>
-                                    <a href="{% url 'query:export' results.history_id %}?format=json"
-                                       class="slds-button slds-button_outline-brand slds-button_small">
-                                        <i class="fas fa-download"></i> JSON
-                                    </a>
+                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                    <!-- 客户端过滤输入框 -->
+                                    <div class="slds-form-element" style="margin-bottom: 0;">
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                                            <i class="fas fa-search slds-input__icon slds-input__icon_left" style="color: #9CA3AF; top: 12px;"></i>
+                                            <input type="text" id="result-filter-input" class="slds-input" 
+                                                   placeholder="在结果中过滤..." 
+                                                   style="height: 32px; font-size: 0.8125rem; width: 200px;"
+                                                   onkeyup="filterTableResults()">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="slds-button-group">
+                                        <a href="{% url 'query:export' results.history_id %}?format=csv"
+                                           class="slds-button slds-button_outline-brand slds-button_small">
+                                            <i class="fas fa-download"></i> CSV
+                                        </a>
+                                        <a href="{% url 'query:export' results.history_id %}?format=json"
+                                           class="slds-button slds-button_outline-brand slds-button_small">
+                                            <i class="fas fa-download"></i> JSON
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1250,8 +1290,11 @@
                                         <tr>
                                             {% for key in results.records.0.keys %}
                                             {% if key != 'attributes' %}
-                                            <th scope="col">
-                                                <div class="slds-truncate" title="{{ key }}">{{ key }}</div>
+                                            <th scope="col" class="sortable-header" onclick="sortTable({{ forloop.counter0 }})" style="cursor: pointer; user-select: none;">
+                                                <div class="slds-truncate" title="{{ key }}" style="display: flex; align-items: center; gap: 0.25rem;">
+                                                    {{ key }}
+                                                    <i class="fas fa-sort" style="color: #D1D5DB; font-size: 0.75rem;"></i>
+                                                </div>
                                             </th>
                                             {% endif %}
                                             {% endfor %}
@@ -1319,6 +1362,123 @@
 let currentObject = null;
 let currentFields = [];
 let selectedFields = new Set();
+let allObjectsList = []; // 存储所有对象用于补全
+let soqlEditor = null; // Monaco Editor 实例
+
+// Monaco Editor 初始化配置
+require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
+
+require(['vs/editor/editor.main'], function() {
+    // 定义 SOQL 语言 (扩展 SQL)
+    monaco.languages.register({ id: 'soql' });
+    
+    // SOQL 关键字
+    const keywords = [
+        'SELECT', 'FROM', 'WHERE', 'LIMIT', 'ORDER BY', 'GROUP BY', 'HAVING', 'OFFSET',
+        'AND', 'OR', 'NOT', 'IN', 'LIKE', 'NULL', 'TRUE', 'FALSE', 'ASC', 'DESC', 'NULLS FIRST', 'NULLS LAST',
+        'COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'TYPEOF', 'END', 'THEN', 'ELSE', 'WHEN'
+    ];
+
+    // 注册补全提供者
+    monaco.languages.registerCompletionItemProvider('soql', {
+        provideCompletionItems: function(model, position) {
+            const word = model.getWordUntilPosition(position);
+            const range = {
+                startLineNumber: position.lineNumber,
+                endLineNumber: position.lineNumber,
+                startColumn: word.startColumn,
+                endColumn: word.endColumn
+            };
+
+            const suggestions = [];
+            const textUntilPosition = model.getValueInRange({
+                startLineNumber: 1,
+                startColumn: 1,
+                endLineNumber: position.lineNumber,
+                endColumn: position.column
+            });
+            
+            // 1. 关键字补全
+            keywords.forEach(kw => {
+                suggestions.push({
+                    label: kw,
+                    kind: monaco.languages.CompletionItemKind.Keyword,
+                    insertText: kw,
+                    range: range,
+                    sortText: '0000' + kw // 优先级较低
+                });
+            });
+
+            // 2. 对象补全 (在 FROM 之后)
+            // 简单判断：如果当前行包含 FROM 或者正在输入 FROM 的位置
+            if (allObjectsList.length > 0) {
+                allObjectsList.forEach(obj => {
+                    suggestions.push({
+                        label: obj.label,
+                        kind: monaco.languages.CompletionItemKind.Class,
+                        insertText: obj.name,
+                        detail: obj.name + (obj.custom ? ' (Custom)' : ' (Standard)'),
+                        range: range,
+                        sortText: '000' + obj.label // 优先级较高
+                    });
+                });
+            }
+
+            // 3. 字段补全 (如果有当前选中的对象)
+            if (currentFields.length > 0) {
+                currentFields.forEach(field => {
+                    suggestions.push({
+                        label: field.name,
+                        kind: monaco.languages.CompletionItemKind.Field,
+                        insertText: field.name,
+                        detail: field.label + ' (' + field.type + ')',
+                        range: range,
+                        sortText: '00' + field.name // 优先级最高
+                    });
+                });
+            }
+
+            return { suggestions: suggestions };
+        }
+    });
+
+    // 注册格式化提供者
+    monaco.languages.registerDocumentFormattingEditProvider('soql', {
+        provideDocumentFormattingEdits: function(model, options, token) {
+            const text = model.getValue();
+            const formatted = formatSOQL(text);
+            return [
+                {
+                    range: model.getFullModelRange(),
+                    text: formatted,
+                },
+            ];
+        }
+    });
+
+    // 初始化编辑器
+    soqlEditor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
+        value: document.getElementById('id_query').value,
+        language: 'soql',
+        theme: 'vs', // 使用浅色主题匹配原有风格
+        minimap: { enabled: false },
+        lineNumbers: 'on',
+        scrollBeyondLastLine: false,
+        fontSize: 14,
+        fontFamily: "'Monaco', 'Menlo', 'Consolas', monospace",
+        automaticLayout: true
+    });
+
+    // 同步内容到隐藏的 textarea
+    soqlEditor.onDidChangeModelContent(() => {
+        document.getElementById('id_query').value = soqlEditor.getValue();
+    });
+    
+    // 监听窗口大小变化，调整编辑器布局
+    window.addEventListener('resize', () => {
+        soqlEditor.layout();
+    });
+});
 
 // Phoenix 风格自定义 Select 初始化
 function initCustomSelect(selectElement) {
@@ -1507,12 +1667,31 @@ $(document).ready(function() {
 
     if (hasInitialObjects) {
         console.log('使用服务器渲染的 Salesforce 对象列表');
+        // 提取对象列表用于补全
+        extractObjectsFromDOM();
         restoreLastSelectedObject();
     } else {
         console.log('页面已加载，正在尝试加载 Salesforce 对象...');
         loadObjects();
     }
 });
+
+// 从 DOM 中提取对象列表 (用于补全)
+function extractObjectsFromDOM() {
+    allObjectsList = [];
+    $('#object-selector option').each(function() {
+        const val = $(this).val();
+        const text = $(this).text();
+        if (val) {
+            const parentLabel = $(this).parent().attr('label');
+            allObjectsList.push({
+                name: val,
+                label: text.split(' (')[0],
+                custom: parentLabel === '自定义对象'
+            });
+        }
+    });
+}
 
 // 处理对象选择
 window.handleObjectSelection = function(objectName) {
@@ -1521,14 +1700,23 @@ window.handleObjectSelection = function(objectName) {
         selectedFields = new Set(['Id']);
         localStorage.setItem('lastSelectedObject', objectName);
         loadObjectFields(objectName);
-        $('#id_query').val(`SELECT Id FROM ${objectName}`);
+        // 使用 Monaco API 设置值
+        if (soqlEditor) {
+            soqlEditor.setValue(`SELECT Id FROM ${objectName}`);
+        } else {
+            $('#id_query').val(`SELECT Id FROM ${objectName}`);
+        }
     } else {
         localStorage.removeItem('lastSelectedObject');
         $('#query-builder-details').addClass('hidden');
         currentObject = null;
         currentFields = [];
         selectedFields.clear();
-        $('#id_query').val('');
+        if (soqlEditor) {
+            soqlEditor.setValue('');
+        } else {
+            $('#id_query').val('');
+        }
     }
 }
 
@@ -1555,6 +1743,9 @@ function loadObjects() {
     })
     .done(function(response) {
         if (response.success) {
+            // 保存对象列表用于补全
+            allObjectsList = response.objects || [];
+            
             const selector = $('#object-selector');
             selector.empty();
             selector.append('<option value="">-- 选择对象 --</option>');
@@ -1699,7 +1890,8 @@ function toggleFieldAndUpdateQuery(checkbox, fieldName) {
 
     const fieldArray = orderSelectedFields();
     if (fieldArray.length === 0) {
-        $('#id_query').val('');
+        if (soqlEditor) soqlEditor.setValue('');
+        else $('#id_query').val('');
         return;
     }
 
@@ -1731,7 +1923,15 @@ function applyFieldsToQuery(fieldArray) {
     if (!currentObject || fieldArray.length === 0) return;
 
     const fields = fieldArray.join(', ');
-    let query = $('#id_query').val().trim();
+    
+    // 获取当前查询
+    let query = '';
+    if (soqlEditor) {
+        query = soqlEditor.getValue().trim();
+    } else {
+        query = $('#id_query').val().trim();
+    }
+    
     const fromClause = `FROM ${currentObject}`;
     const upperQuery = query.toUpperCase();
     const expectedFrom = fromClause.toUpperCase();
@@ -1742,27 +1942,45 @@ function applyFieldsToQuery(fieldArray) {
         query = query.replace(/SELECT\s+([\s\S]*?)\s+FROM/i, `SELECT ${fields} FROM`);
     }
 
-    $('#id_query').val(query.trim());
+    // 设置回编辑器
+    if (soqlEditor) {
+        soqlEditor.setValue(query.trim());
+    } else {
+        $('#id_query').val(query.trim());
+    }
 }
 
-// 将运算符插入查询
+// 将运算符插入查询 (适配 Monaco)
 function insertOperator(operator) {
-    const queryTextarea = $('#id_query')[0];
-    const start = queryTextarea.selectionStart;
-    const end = queryTextarea.selectionEnd;
-    const text = queryTextarea.value;
+    if (soqlEditor) {
+        const position = soqlEditor.getPosition();
+        const text = ` ${operator} `;
+        soqlEditor.executeEdits("", [{
+            range: {
+                startLineNumber: position.lineNumber,
+                startColumn: position.column,
+                endLineNumber: position.lineNumber,
+                endColumn: position.column
+            },
+            text: text
+        }]);
+        soqlEditor.focus();
+    } else {
+        // Fallback
+        const queryTextarea = $('#id_query')[0];
+        const start = queryTextarea.selectionStart;
+        const end = queryTextarea.selectionEnd;
+        const text = queryTextarea.value;
 
-    const insertion = ` ${operator} `;
-    queryTextarea.value = text.substring(0, start) + insertion + text.substring(end);
-    queryTextarea.selectionStart = queryTextarea.selectionEnd = start + insertion.length;
-    queryTextarea.focus();
+        const insertion = ` ${operator} `;
+        queryTextarea.value = text.substring(0, start) + insertion + text.substring(end);
+        queryTextarea.selectionStart = queryTextarea.selectionEnd = start + insertion.length;
+        queryTextarea.focus();
+    }
 }
 
-// 将子句插入查询
+// 将子句插入查询 (适配 Monaco)
 function insertClause(clause) {
-    const queryTextarea = $('#id_query')[0];
-    const text = queryTextarea.value;
-
     const clauses = {
         'WHERE': '\nWHERE ',
         'ORDER BY': '\nORDER BY ',
@@ -1770,37 +1988,84 @@ function insertClause(clause) {
         'LIMIT': '\nLIMIT 100',
         'OFFSET': '\nOFFSET 0'
     };
-
     const insertion = clauses[clause] || '';
-    queryTextarea.value = text + insertion;
-    queryTextarea.selectionStart = queryTextarea.selectionEnd = queryTextarea.value.length;
-    queryTextarea.focus();
+
+    if (soqlEditor) {
+        const value = soqlEditor.getValue();
+        soqlEditor.setValue(value + insertion);
+        // 移动光标到最后
+        const lineCount = soqlEditor.getModel().getLineCount();
+        const lastLineLength = soqlEditor.getModel().getLineMaxColumn(lineCount);
+        soqlEditor.setPosition({lineNumber: lineCount, column: lastLineLength});
+        soqlEditor.focus();
+    } else {
+        const queryTextarea = $('#id_query')[0];
+        const text = queryTextarea.value;
+        queryTextarea.value = text + insertion;
+        queryTextarea.selectionStart = queryTextarea.selectionEnd = queryTextarea.value.length;
+        queryTextarea.focus();
+    }
 }
 
-// 将函数插入查询
+// 将函数插入查询 (适配 Monaco)
 function insertFunction(func) {
-    const queryTextarea = $('#id_query')[0];
-    const start = queryTextarea.selectionStart;
-    const end = queryTextarea.selectionEnd;
-    const text = queryTextarea.value;
+    if (soqlEditor) {
+        const position = soqlEditor.getPosition();
+        soqlEditor.executeEdits("", [{
+            range: {
+                startLineNumber: position.lineNumber,
+                startColumn: position.column,
+                endLineNumber: position.lineNumber,
+                endColumn: position.column
+            },
+            text: func
+        }]);
+        // 稍微调整光标位置到括号内
+        soqlEditor.setPosition({
+            lineNumber: position.lineNumber, 
+            column: position.column + func.length - 1
+        });
+        soqlEditor.focus();
+    } else {
+        const queryTextarea = $('#id_query')[0];
+        const start = queryTextarea.selectionStart;
+        const end = queryTextarea.selectionEnd;
+        const text = queryTextarea.value;
 
-    queryTextarea.value = text.substring(0, start) + func + text.substring(end);
-    queryTextarea.selectionStart = queryTextarea.selectionEnd = start + func.length - 1;
-    queryTextarea.focus();
+        queryTextarea.value = text.substring(0, start) + func + text.substring(end);
+        queryTextarea.selectionStart = queryTextarea.selectionEnd = start + func.length - 1;
+        queryTextarea.focus();
+    }
 }
 
 // 原始函数
 function loadQuery(queryText) {
-    $('#id_query').val(queryText);
+    if (soqlEditor) {
+        soqlEditor.setValue(queryText);
+    } else {
+        $('#id_query').val(queryText);
+    }
 }
 
 function clearQuery() {
-    $('#id_query').val('');
+    if (soqlEditor) {
+        soqlEditor.setValue('');
+    } else {
+        $('#id_query').val('');
+    }
     $('#id_include_deleted').prop('checked', false);
 }
 
 function validateQuery() {
-    const query = $('#id_query').val();
+    // 优先使用编辑器内容，并同步到 textarea (便于统一逻辑)
+    let query;
+    if (soqlEditor) {
+        query = soqlEditor.getValue();
+        $('#id_query').val(query);
+    } else {
+        query = $('#id_query').val();
+    }
+    
     const validation = workbench.validateSOQL(query);
 
     if (validation.isValid) {
@@ -1811,7 +2076,15 @@ function validateQuery() {
 }
 
 function saveQuery() {
-    const query = $('#id_query').val();
+    // 优先使用编辑器内容
+    let query;
+    if (soqlEditor) {
+        query = soqlEditor.getValue();
+        $('#id_query').val(query);
+    } else {
+        query = $('#id_query').val();
+    }
+
     if (!query.trim()) {
         workbench.showToast('没有可保存的查询', 'warning');
         return;
@@ -1877,13 +2150,19 @@ $(document).on('click', '.load-more-results', function() {
 function executeQueryAjax(event) {
     event.preventDefault();
 
+    // 关键修正：提交前强制同步编辑器内容到隐藏域
+    if (soqlEditor) {
+        $('#id_query').val(soqlEditor.getValue());
+    }
+
     const formData = new FormData(document.getElementById('query-form'));
-    const queryText = $('#id_query').val();
+    const queryText = $('#id_query').val(); // 现在获取的一定是最新的
 
     if (!queryText.trim()) {
         workbench.showToast('请输入查询', 'warning');
         return;
     }
+
 
     const selectedObject = $('#object-selector').val();
 
@@ -1933,6 +2212,150 @@ function selectAllFields() {
     const fieldArray = orderSelectedFields();
     applyFieldsToQuery(fieldArray);
     workbench.showToast('已选择所有字段', 'success');
+}
+
+// SOQL 格式化逻辑
+function formatSOQL(query) {
+    if (!query) return '';
+    
+    // 1. 压缩多余空白，但保留字符串内的空格（简单处理：假设字符串用单引号）
+    let formatted = query.replace(/\s+/g, ' ').trim();
+    
+    // 2. 关键字前换行
+    // 主从句
+    const mainClauses = ['FROM', 'WHERE', 'ORDER BY', 'GROUP BY', 'LIMIT', 'OFFSET', 'HAVING', 'WITH', 'FOR UPDATE', 'FOR VIEW', 'FOR REFERENCE'];
+    // 连接词 (缩进)
+    const subClauses = ['AND', 'OR'];
+    
+    // 处理主从句
+    mainClauses.forEach(kw => {
+        const regex = new RegExp(`\\b(${kw})\\b`, 'gi');
+        formatted = formatted.replace(regex, ' \n$1 '); // Ensure spaces around keywords
+    });
+    
+    // 处理连接词
+    subClauses.forEach(kw => {
+        const regex = new RegExp(`\\b(${kw})\\b`, 'gi');
+        formatted = formatted.replace(regex, ' \n  $1 '); // Ensure spaces around keywords
+    });
+    
+    // 3. 处理 SELECT 字段换行
+    formatted = formatted.replace(/^SELECT\s+/i, 'SELECT ');
+    
+    return formatted.trim();
+}
+
+// 触发格式化按钮
+function formatQuery() {
+    if (soqlEditor) {
+        soqlEditor.getAction('editor.action.formatDocument').run();
+    } else {
+        const textarea = $('#id_query');
+        textarea.val(formatSOQL(textarea.val()));
+    }
+}
+
+// 客户端结果过滤
+function filterTableResults() {
+    const input = document.getElementById('result-filter-input');
+    if (!input) return;
+    
+    const filter = input.value.toUpperCase();
+    const table = document.querySelector('.query-results table');
+    if (!table) return;
+    
+    const tr = table.getElementsByTagName('tr');
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (let i = 1; i < tr.length; i++) { // Start from 1 to skip header
+        let displayed = false;
+        const tds = tr[i].getElementsByTagName('td');
+        
+        for (let j = 0; j < tds.length; j++) {
+            const txtValue = tds[j].textContent || tds[j].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                displayed = true;
+                break;
+            }
+        }
+        
+        tr[i].style.display = displayed ? "" : "none";
+    }
+}
+
+// 客户端表格排序
+let sortDirection = 1; // 1 for asc, -1 for desc
+let lastSortedColumn = -1;
+
+function sortTable(n) {
+    const table = document.querySelector('.query-results table');
+    if (!table) return;
+    
+    let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    switching = true;
+    dir = "asc"; 
+    
+    // Reset icons
+    const headers = table.querySelectorAll('th i');
+    headers.forEach(icon => {
+        icon.className = 'fas fa-sort';
+        icon.style.color = '#D1D5DB';
+    });
+    
+    // Set current icon
+    const currentIcon = table.rows[0].getElementsByTagName("TH")[n].querySelector('i');
+    
+    // Check if already sorted by this column
+    if (lastSortedColumn === n) {
+        sortDirection = -sortDirection;
+        dir = sortDirection === 1 ? "asc" : "desc";
+    } else {
+        sortDirection = 1;
+        lastSortedColumn = n;
+    }
+    
+    currentIcon.className = dir === "asc" ? 'fas fa-sort-up' : 'fas fa-sort-down';
+    currentIcon.style.color = '#3B82F6';
+
+    rows = table.rows;
+    
+    /* Make a loop that will continue until
+    no switching has been done: */
+    while (switching) {
+        switching = false;
+        // Loop through all table rows (except the first, which contains table headers):
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            
+            let xVal = x.textContent.toLowerCase();
+            let yVal = y.textContent.toLowerCase();
+            
+            // Try numeric sort
+            if (!isNaN(parseFloat(xVal)) && isFinite(xVal) && !isNaN(parseFloat(yVal)) && isFinite(yVal)) {
+                xVal = parseFloat(xVal);
+                yVal = parseFloat(yVal);
+            }
+            
+            if (dir == "asc") {
+                if (xVal > yVal) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (xVal < yVal) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++; 
+        }
+    }
 }
 </script>
 {% endblock %}

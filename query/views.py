@@ -115,18 +115,23 @@ class QueryIndexView(View):
         try:
             client = SalesforceClient(request.sf_connection)
             query_text = form.cleaned_data['query']
+            
+            # Remove newlines and extra spaces for execution to avoid SOQL parsing errors
+            # But keep the original query_text for history/display if needed (optional)
+            execution_query = query_text.replace('\n', ' ').replace('\r', ' ')
+            
             include_deleted = form.cleaned_data.get('include_deleted', False)
             
             # Start timing
             start_time = time.time()
             
             # Execute query
-            result = client.query(query_text, include_deleted=include_deleted)
+            result = client.query(execution_query, include_deleted=include_deleted)
             
             # Calculate execution time
             execution_time = time.time() - start_time
             
-            # Save to history
+            # Save to history (save the ORIGINAL formatted text)
             history = QueryHistory.objects.create(
                 connection=request.sf_connection,
                 query_text=query_text,

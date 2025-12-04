@@ -34,12 +34,13 @@ class QueryForm(forms.Form):
         if not query_upper.startswith('SELECT'):
             raise forms.ValidationError('クエリは SELECT で開始する必要があります。')
 
-        if ' FROM ' not in query_upper:
-            raise forms.ValidationError('クエリには正しいスペース付きの FROM 句が必要です。')
+        # Improved validation: Allow FROM to be preceded/followed by any whitespace (including newlines)
+        import re
+        if not re.search(r'\s+FROM\s+', query, re.IGNORECASE):
+            raise forms.ValidationError('クエリには正しいスペース或者换行付きの FROM 句が必要です。')
 
         # Check for common syntax errors
         # Check if there's a comma right before FROM
-        import re
         if re.search(r',\s*FROM\s', query, re.IGNORECASE):
             raise forms.ValidationError('構文エラー: FROM の前のカンマを削除してください。')
 
