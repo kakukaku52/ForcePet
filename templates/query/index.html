@@ -290,29 +290,243 @@
         letter-spacing: -0.01em;
     }
 
-    .slds-scope .slds-select,
+    /* Phoenix 风格自定义 Select 下拉菜单 */
+    .custom-select-wrapper {
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+
+    /* 完全隐藏原生 select */
+    .custom-select-wrapper .slds-select {
+        position: absolute !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        z-index: -1 !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    /* 自定义 select 触发按钮 - 精确匹配按钮高度 */
+    .custom-select-trigger {
+        background: #FFFFFF !important;
+        border: 1px solid #D1D5DB !important;
+        border-radius: 6px !important;
+        color: #1F2937 !important;
+        font-size: 0.875rem !important;
+        font-weight: 400 !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        padding: 0.5rem 2.5rem 0.5rem 1rem !important;
+        min-height: 38px !important;
+        height: 38px !important;
+        line-height: 1.5 !important;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        cursor: pointer !important;
+        width: 100%;
+        text-align: left;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        user-select: none;
+        position: relative;
+        box-sizing: border-box !important;
+        vertical-align: middle;
+        letter-spacing: 0.01em !important;
+    }
+
+    .custom-select-trigger:hover {
+        border-color: #9CA3AF;
+        background-color: #FFFFFF;
+    }
+
+    .custom-select-trigger.active {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .custom-select-trigger-text {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #6B7280;
+    }
+
+    .custom-select-trigger-text.has-value {
+        color: #1F2937;
+    }
+
+    /* 下拉箭头 */
+    .custom-select-arrow {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s ease;
+        pointer-events: none;
+    }
+
+    .custom-select-arrow svg {
+        width: 100%;
+        height: 100%;
+        fill: #9CA3AF;
+    }
+
+    .custom-select-trigger.active .custom-select-arrow {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* 下拉菜单容器 */
+    .custom-select-dropdown {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        border: 1px solid #D1D5DB;
+        border-radius: 6px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        max-height: 320px;
+        overflow-y: auto;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+    }
+
+    .custom-select-dropdown.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* 下拉菜单滚动条 */
+    .custom-select-dropdown::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-select-dropdown::-webkit-scrollbar-track {
+        background: #F9FAFB;
+        border-radius: 4px;
+    }
+
+    .custom-select-dropdown::-webkit-scrollbar-thumb {
+        background: #D1D5DB;
+        border-radius: 4px;
+    }
+
+    .custom-select-dropdown::-webkit-scrollbar-thumb:hover {
+        background: #9CA3AF;
+    }
+
+    /* Optgroup 标题 */
+    .custom-select-optgroup-label {
+        padding: 0.625rem 0.875rem 0.375rem;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        color: #6B7280;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: #F9FAFB;
+        border-top: 1px solid #E5E7EB;
+    }
+
+    .custom-select-optgroup-label:first-child {
+        border-top: none;
+    }
+
+    /* Option 选项 */
+    .custom-select-option {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.875rem;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .custom-select-option:hover {
+        background: #F3F4F6;
+        color: #1F2937;
+    }
+
+    .custom-select-option.selected {
+        background: #EFF6FF;
+        color: #3B82F6;
+        font-weight: 500;
+    }
+
+    .custom-select-option.selected::before {
+        content: '✓';
+        font-weight: 700;
+        color: #3B82F6;
+        margin-right: 0.25rem;
+    }
+
+    /* 空状态占位符 */
+    .custom-select-option.placeholder {
+        color: #9CA3AF;
+        font-style: italic;
+        cursor: default;
+    }
+
+    .custom-select-option.placeholder:hover {
+        background: transparent;
+    }
+
+    /* Select 容器优化 */
+    .slds-select_container {
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+
+    /* 确保容器内的原生 select 完全隐藏 */
+    .custom-select-wrapper + * {
+        display: none;
+    }
+
+    /* 移除 SLDS select 容器的默认样式 */
+    .slds-select_container::after {
+        display: none !important;
+    }
+
+    .slds-select_container .custom-select-wrapper {
+        width: 100%;
+    }
+
+    /* Input 和 Textarea 样式 */
     .slds-scope .slds-input,
     .slds-scope .slds-textarea {
         background: #FFFFFF;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
-        color: #111827;
-        font-size: 0.875rem;
-        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #D1D5DB;
+        border-radius: 6px;
+        color: #374151;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        padding: 0.5625rem 0.875rem;
+        transition: all 0.15s ease-in-out;
     }
 
-    .slds-scope .slds-select:hover,
     .slds-scope .slds-input:hover,
     .slds-scope .slds-textarea:hover {
-        border-color: #D1D5DB;
+        border-color: #9CA3AF;
     }
 
-    .slds-scope .slds-select:focus,
     .slds-scope .slds-input:focus,
     .slds-scope .slds-textarea:focus {
         border-color: #3B82F6;
         background: #FFFFFF;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
         outline: 0;
     }
 
@@ -476,6 +690,7 @@
         display: flex;
         gap: 0.75rem;
         flex-wrap: wrap;
+        align-items: center;
     }
 
     .slds-button-group-row {
@@ -1105,9 +1320,189 @@ let currentObject = null;
 let currentFields = [];
 let selectedFields = new Set();
 
+// Phoenix 风格自定义 Select 初始化
+function initCustomSelect(selectElement) {
+    const $select = $(selectElement);
+    if ($select.parent().hasClass('custom-select-wrapper')) {
+        return; // 已经初始化过了
+    }
+
+    // 包装原生 select
+    $select.wrap('<div class="custom-select-wrapper"></div>');
+    const $wrapper = $select.parent();
+
+    // 创建自定义 UI 元素
+    const placeholder = $select.find('option[value=""]').text() || '请选择';
+    const selectedOption = $select.find('option:selected');
+    const selectedText = selectedOption.val() ? selectedOption.text() : placeholder;
+
+    const customHTML = `
+        <div class="custom-select-trigger">
+            <span class="custom-select-trigger-text ${selectedOption.val() ? 'has-value' : ''}">${selectedText}</span>
+            <span class="custom-select-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M4.427 5.927l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 5.5H4.604a.25.25 0 00-.177.427z"/>
+                </svg>
+            </span>
+        </div>
+        <div class="custom-select-dropdown"></div>
+    `;
+
+    $wrapper.append(customHTML);
+
+    // 构建下拉选项
+    buildCustomOptions($select, $wrapper);
+
+    // 绑定事件
+    bindCustomSelectEvents($wrapper, $select);
+}
+
+function buildCustomOptions($select, $wrapper) {
+    const $dropdown = $wrapper.find('.custom-select-dropdown');
+    $dropdown.empty();
+
+    const selectedValue = $select.val();
+
+    $select.children().each(function() {
+        if ($(this).is('optgroup')) {
+            // 处理 optgroup
+            const label = $(this).attr('label');
+            $dropdown.append(`<div class="custom-select-optgroup-label">${label}</div>`);
+
+            $(this).children('option').each(function() {
+                const value = $(this).val();
+                const text = $(this).text();
+                const isSelected = value === selectedValue;
+
+                if (value) {
+                    $dropdown.append(`
+                        <div class="custom-select-option ${isSelected ? 'selected' : ''}" data-value="${value}">
+                            ${text}
+                        </div>
+                    `);
+                }
+            });
+        } else if ($(this).is('option')) {
+            // 处理独立 option
+            const value = $(this).val();
+            const text = $(this).text();
+            const isSelected = value === selectedValue;
+
+            if (value) {
+                $dropdown.append(`
+                    <div class="custom-select-option ${isSelected ? 'selected' : ''}" data-value="${value}">
+                        ${text}
+                    </div>
+                `);
+            } else {
+                // 占位符选项
+                $dropdown.append(`
+                    <div class="custom-select-option placeholder" data-value="">
+                        ${text}
+                    </div>
+                `);
+            }
+        }
+    });
+}
+
+function bindCustomSelectEvents($wrapper, $select) {
+    const $trigger = $wrapper.find('.custom-select-trigger');
+    const $dropdown = $wrapper.find('.custom-select-dropdown');
+
+    // 点击触发器切换下拉菜单
+    $trigger.on('click', function(e) {
+        e.stopPropagation();
+
+        // 关闭其他打开的下拉菜单
+        $('.custom-select-trigger.active').not($trigger).each(function() {
+            $(this).removeClass('active');
+            $(this).siblings('.custom-select-dropdown').removeClass('active');
+        });
+
+        // 切换当前下拉菜单
+        $trigger.toggleClass('active');
+        $dropdown.toggleClass('active');
+    });
+
+    // 点击选项
+    $dropdown.on('click', '.custom-select-option', function(e) {
+        e.stopPropagation();
+
+        if ($(this).hasClass('placeholder')) {
+            return;
+        }
+
+        const value = $(this).data('value');
+        const text = $(this).text().trim();
+
+        // 更新原生 select
+        $select.val(value).trigger('change');
+
+        // 更新自定义 UI
+        const $triggerText = $trigger.find('.custom-select-trigger-text');
+        $triggerText.text(text).addClass('has-value');
+
+        // 更新选中状态
+        $dropdown.find('.custom-select-option').removeClass('selected');
+        $(this).addClass('selected');
+
+        // 关闭下拉菜单
+        $trigger.removeClass('active');
+        $dropdown.removeClass('active');
+    });
+
+    // 点击外部关闭下拉菜单
+    $(document).on('click', function(e) {
+        if (!$wrapper.is(e.target) && $wrapper.has(e.target).length === 0) {
+            $trigger.removeClass('active');
+            $dropdown.removeClass('active');
+        }
+    });
+
+    // 键盘导航支持
+    $trigger.on('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            $trigger.click();
+        } else if (e.key === 'Escape') {
+            $trigger.removeClass('active');
+            $dropdown.removeClass('active');
+        }
+    });
+
+    // 使触发器可聚焦
+    $trigger.attr('tabindex', '0');
+}
+
+// 更新自定义 select（当选项改变时）
+function updateCustomSelect($select) {
+    const $wrapper = $select.closest('.custom-select-wrapper');
+    if ($wrapper.length === 0) return;
+
+    buildCustomOptions($select, $wrapper);
+
+    // 更新触发器文本
+    const selectedOption = $select.find('option:selected');
+    const placeholder = $select.find('option[value=""]').text() || '请选择';
+    const selectedText = selectedOption.val() ? selectedOption.text() : placeholder;
+
+    const $triggerText = $wrapper.find('.custom-select-trigger-text');
+    $triggerText.text(selectedText);
+
+    if (selectedOption.val()) {
+        $triggerText.addClass('has-value');
+    } else {
+        $triggerText.removeClass('has-value');
+    }
+}
+
 // 页面加载时初始化
 $(document).ready(function() {
+    // 初始化对象选择器的自定义下拉菜单
     const selector = $('#object-selector');
+    initCustomSelect(selector[0]);
+
     const hasInitialObjects = selector.data('has-initial') === true || selector.data('has-initial') === 'true';
 
     if (hasInitialObjects) {
@@ -1145,6 +1540,7 @@ function restoreLastSelectedObject() {
     const optionExists = selector.find(`option[value="${lastSelectedObject}"]`).length > 0;
     if (optionExists) {
         selector.val(lastSelectedObject);
+        updateCustomSelect(selector);
         handleObjectSelection(lastSelectedObject);
     }
 }
@@ -1165,6 +1561,7 @@ function loadObjects() {
 
             if (!response.objects || response.objects.length === 0) {
                 workbench.showToast('没有可用的 Salesforce 对象，请检查连接', 'warning');
+                updateCustomSelect(selector);
                 return;
             }
 
@@ -1186,6 +1583,9 @@ function loadObjects() {
                 });
                 selector.append(customGroup);
             }
+
+            // 更新自定义下拉菜单
+            updateCustomSelect(selector);
 
             restoreLastSelectedObject();
         } else {
