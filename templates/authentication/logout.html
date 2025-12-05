@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Logged Out - Django Workbench{% endblock %}
+{% block title %}ログアウト - Django Workbench{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -87,18 +87,18 @@
         <i class="fas fa-sign-out-alt"></i>
     </div>
     
-    <h1 class="logout-title">Successfully Logged Out</h1>
+    <h1 class="logout-title">正常にログアウトしました</h1>
     
     <p class="logout-message">
-        You have been securely logged out of Workbench.<br>
+        Workbench から安全にログアウトされました。<br>
         {% if sf_logout_url %}
-        Attempting to sign out of Salesforce...
+        Salesforce からもログアウトを試行しています...
         {% endif %}
     </p>
 
     <a href="{% url 'authentication:login' %}" class="btn-return">
         <i class="fas fa-arrow-left"></i>
-        Return to Login
+        ログインページに戻る
     </a>
 
     {% if sf_logout_url %}

@@ -32,6 +32,17 @@ def flatten_record(record, separator='.'):
     
     def recurse(data, prefix=''):
         if isinstance(data, dict):
+            # Check if this is a subquery result (Salesforce returns {totalSize, done, records})
+            if 'records' in data and 'done' in data:
+                # This is a subquery result! Don't flatten it.
+                # Store it as a special object for the frontend to handle
+                flat_record[prefix] = {
+                    '_is_subquery': True,
+                    'count': data.get('totalSize', 0),
+                    'records': data.get('records', [])
+                }
+                return
+
             for key, value in data.items():
                 if key == 'attributes':
                     continue
@@ -585,12 +596,16 @@ class ExportResultsView(View):
             # Filter record to only include fieldnames (exclude attributes)
             clean_record = {k: v for k, v in record.items() if k in fieldnames}
             
-            # Handle None values
+            # Handle None values and Subquery objects
             for k in clean_record:
-                if clean_record[k] is None:
+                val = clean_record[k]
+                if val is None:
                     clean_record[k] = ''
+                elif isinstance(val, dict) and val.get('_is_subquery'):
+                    # For CSV, just export the raw records list as JSON
+                    clean_record[k] = json.dumps(val.get('records', []))
                 else:
-                    clean_record[k] = str(clean_record[k])
+                    clean_record[k] = str(val)
             
             writer.writerow(clean_record)
         

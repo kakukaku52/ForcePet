@@ -10,64 +10,6 @@
 <style>
     /* ===== Phoenix Inbox 风格布局 ===== */
 
-    /* 深色顶部导航栏覆盖 */
-    .modern-navbar {
-        background: #1F2937 !important;
-        border-bottom: 1px solid #374151 !important;
-    }
-
-    .modern-navbar-brand {
-        color: #F9FAFB !important;
-    }
-
-    .modern-navbar-brand:hover {
-        color: #60A5FA !important;
-    }
-
-    .modern-navbar-brand i {
-        color: #60A5FA !important;
-    }
-
-    .modern-nav-link {
-        color: #D1D5DB !important;
-    }
-
-    .modern-nav-link:hover {
-        background-color: #374151 !important;
-        color: #F9FAFB !important;
-    }
-
-    .modern-nav-item.active .modern-nav-link {
-        background-color: #374151 !important;
-        color: #F9FAFB !important;
-    }
-
-    /* 连接信息栏 - 匹配深色主题 */
-    .connection-bar {
-        background: #111827 !important;
-        border-bottom: 1px solid #374151 !important;
-        color: #D1D5DB !important;
-    }
-
-    .connection-bar strong {
-        color: #F9FAFB !important;
-    }
-
-    .connection-bar i {
-        color: #60A5FA !important;
-    }
-
-    /* 全局样式 */
-    body {
-        background-color: #F9FAFB;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        overflow-y: auto;
-        overflow-x: hidden;
-        color: #111827;
-        margin: 0;
-        padding: 0;
-    }
-
     /* 主容器布局 */
     .query-page-container {
         display: flex;
@@ -1309,7 +1251,17 @@
                                             <td data-label="{{ key }}">
                                                 <div class="slds-truncate">
                                                     {% with value=record|get_item:key %}
-                                                        {% if key|upper == 'ID' and value and results.object_type %}
+                                                        {% if value|is_subquery %}
+                                                            <!-- Use Django's json_script with a custom filter to generate ID -->
+                                                            {% with unique_id=forloop.parentloop.counter|make_subquery_id:forloop.counter %}
+                                                                {{ value.records|json_script:unique_id }}
+                                                                <button class="slds-badge slds-theme_info subquery-badge-btn" 
+                                                                        style="border: none; cursor: pointer;"
+                                                                        data-record-id="{{ unique_id }}">
+                                                                    {{ value.count }} records
+                                                                </button>
+                                                            {% endwith %}
+                                                        {% elif key|upper == 'ID' and value and results.object_type %}
                                                         <a href="{% url 'query:record_detail' results.object_type value %}"
                                                            style="color: #3B82F6; text-decoration: underline;">
                                                             {{ value }}
@@ -1410,6 +1362,34 @@
                 </div>
             </div>
             <div class="modal-footer" style="border-top: 1px solid #E5E7EB; padding: 1rem 1.5rem;">
+                <button type="button" class="slds-button slds-button_neutral" data-bs-dismiss="modal">关闭</button>
+<!-- Hidden trigger button for Subquery Modal -->
+<button id="subquery-modal-trigger" type="button" style="display: none;" data-bs-toggle="modal" data-bs-target="#subqueryModal"></button>
+
+<!-- Subquery Results Modal -->
+<div class="modal fade" id="subqueryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="border-radius: 8px; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+            <div class="modal-header" style="background: #F9FAFB; border-bottom: 1px solid #E5E7EB; padding: 1rem 1.5rem;">
+                <h5 class="modal-title" style="font-weight: 600; color: #111827;">
+                    <i class="fas fa-list-ul" style="color: #3B82F6; margin-right: 0.5rem;"></i>
+                    子查询结果 (Subquery Results)
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 0;">
+                <div class="table-responsive">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped" style="border: none;">
+                        <thead id="subquery-thead">
+                            <!-- Headers injected via JS -->
+                        </thead>
+                        <tbody id="subquery-tbody">
+                            <!-- Rows injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #E5E7EB; padding: 0.75rem 1.5rem;">
                 <button type="button" class="slds-button slds-button_neutral" data-bs-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -1735,6 +1715,24 @@ $(document).ready(function() {
         console.log('页面已加载，正在尝试加载 Salesforce 对象...');
         loadObjects();
     }
+
+    // 子查询徽章点击事件 (事件委托)
+    $(document).on('click', '.subquery-badge-btn', function(e) {
+        e.preventDefault();
+        try {
+            const recordId = $(this).data('record-id');
+            const scriptEl = document.getElementById(recordId);
+            if (!scriptEl) {
+                throw new Error('Data script element not found for ID: ' + recordId);
+            }
+            
+            const records = JSON.parse(scriptEl.textContent);
+            showSubqueryRecords(records);
+        } catch (err) {
+            console.error('Failed to parse subquery records:', err);
+            workbench.showToast('无法加载子记录数据', 'error');
+        }
+    });
 });
 
 // 从 DOM 中提取对象列表 (用于补全)
@@ -1869,7 +1867,7 @@ function loadObjectFields(objectName) {
             currentFields = response.fields;
             selectedFields = new Set(['Id']);
 
-            displayFields(response.fields);
+            displayFields(response.fields, response.childRelationships);
             $('#field-Id').prop('checked', true);
             $('#query-builder-details').removeClass('hidden');
             applyFieldsToQuery(orderSelectedFields());
@@ -1883,7 +1881,7 @@ function loadObjectFields(objectName) {
 }
 
 // 在字段列表中显示字段
-function displayFields(fields) {
+function displayFields(fields, childRelationships = []) {
     const fieldList = $('#field-list');
     fieldList.empty();
 
@@ -1909,8 +1907,53 @@ function displayFields(fields) {
         fieldContainer.append('<div style="font-size: 0.6875rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; margin: 1rem 0 0.5rem;">自定义字段</div>');
         customFields.forEach(field => fieldContainer.append(createFieldItem(field)));
     }
+    
+    // Child Relationships
+    if (childRelationships && childRelationships.length > 0) {
+        fieldContainer.append('<div style="font-size: 0.6875rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; margin: 1rem 0 0.5rem;">子关系 (Child Relationships)</div>');
+        // Sort by relationship name
+        childRelationships.sort((a, b) => (a.relationshipName || '').localeCompare(b.relationshipName || ''));
+        
+        childRelationships.forEach(rel => {
+            if (rel.relationshipName) {
+                fieldContainer.append(createChildRelationItem(rel));
+            }
+        });
+    }
 
     fieldList.append(fieldContainer);
+}
+
+// 创建子关系项 HTML
+function createChildRelationItem(rel) {
+    // relationshipName is unique enough for ID
+    const relName = rel.relationshipName;
+    const childObject = rel.childSObject;
+    const fieldId = `child-rel-${relName}`;
+    const childContainerId = `child-rel-container-${relName}`;
+    
+    // 类似 Reference 字段的展开按钮
+    // 注意：子关系项本身没有复选框，因为你不能 "select" 一个关系，只能 select 关系下的字段
+    return `
+        <div class="field-wrapper">
+            <div class="field-item" data-field-name="${relName}">
+                <div style="flex: 1; display: flex; align-items: center; padding-left: 1.5rem;">
+                    <span class="slds-truncate" title="${relName}">${relName}</span>
+                    <span class="field-type" style="margin-left: auto;">${childObject}</span>
+                </div>
+                <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-m-left_x-small expand-btn"
+                        title="展开子对象字段"
+                        data-rel-name="${relName}"
+                        data-ref-obj="${childObject}"
+                        data-container-id="${childContainerId}"
+                        data-is-subquery="true"
+                        onclick="toggleRelationFields(this)">
+                    <i class="fas fa-plus" style="font-size: 0.75rem;"></i>
+                </button>
+            </div>
+            <div id="${childContainerId}" class="child-fields-container" style="display:none; margin-left: 1.5rem; border-left: 1px solid #E5E7EB; padding-left: 0.5rem;"></div>
+        </div>
+    `;
 }
 
 // 创建字段项 HTML
@@ -1969,6 +2012,8 @@ function toggleRelationFields(btn) {
     const relName = $btn.data('rel-name');
     const refObj = $btn.data('ref-obj');
     const containerId = $btn.data('container-id');
+    const isSubquery = $btn.data('is-subquery') === true;
+    
     const $container = $(`#${containerId}`);
     const icon = $btn.find('i');
 
@@ -1994,11 +2039,8 @@ function toggleRelationFields(btn) {
         if (response.success) {
             $container.empty();
             
-            // 渲染子字段 (只渲染标准字段和常用字段，避免列表过长)
-            // 并且递归传入 parentPath
             const fields = response.fields;
             
-            // 简单的排序：Id 第一，Name 第二，其他按字母
             fields.sort((a, b) => {
                 if (a.name === 'Id') return -1;
                 if (b.name === 'Id') return 1;
@@ -2008,7 +2050,10 @@ function toggleRelationFields(btn) {
             });
 
             fields.forEach(field => {
-                $container.append(createFieldItem(field, relName));
+                // 如果是子查询，使用特殊前缀构建 parentPath
+                // 格式: SUBQUERY:RelationshipName
+                const parentPrefix = isSubquery ? `SUBQUERY:${relName}` : relName;
+                $container.append(createFieldItem(field, parentPrefix));
             });
 
             $container.show();
@@ -2105,9 +2150,42 @@ function orderSelectedFields() {
 function applyFieldsToQuery(fieldArray) {
     if (!currentObject || fieldArray.length === 0) return;
 
-    const fields = fieldArray.join(', ');
+    const standardFields = [];
+    const subqueryFieldsMap = {}; // Map<RelationName, Array<FieldName>>
+
+    fieldArray.forEach(f => {
+        if (f.startsWith('SUBQUERY:')) {
+            // Format: SUBQUERY:RelationName.FieldName
+            // We need to split carefully. The part after SUBQUERY: is "RelationName.FieldName"
+            const parts = f.substring(9).split('.');
+            const relName = parts[0];
+            // The rest is the field name (could be nested potentially, but let's assume simple level for now)
+            const fieldName = parts.slice(1).join('.');
+            
+            if (!subqueryFieldsMap[relName]) {
+                subqueryFieldsMap[relName] = [];
+            }
+            subqueryFieldsMap[relName].push(fieldName);
+        } else {
+            standardFields.push(f);
+        }
+    });
+
+    // Build subqueries
+    const subqueries = [];
+    for (const [relName, fields] of Object.entries(subqueryFieldsMap)) {
+        const subFields = fields.join(', ');
+        subqueries.push(`(SELECT ${subFields} FROM ${relName})`);
+    }
+
+    // Combine all fields
+    const allFields = [...standardFields, ...subqueries];
     
-    // 获取当前查询
+    // If nothing left (e.g. only subquery partials that were filtered out?), fallback
+    if (allFields.length === 0) return;
+
+    const fieldsStr = allFields.join(', ');
+    
     let query = '';
     if (soqlEditor) {
         query = soqlEditor.getValue().trim();
@@ -2120,14 +2198,20 @@ function applyFieldsToQuery(fieldArray) {
     const expectedFrom = fromClause.toUpperCase();
 
     if (!query || !/select\s+/i.test(query) || !upperQuery.includes(expectedFrom)) {
-        query = `SELECT ${fields} ${fromClause}`;
+        query = `SELECT ${fieldsStr} ${fromClause}`;
     } else {
-        query = query.replace(/SELECT\s+([\s\S]*?)\s+FROM/i, `SELECT ${fields} FROM`);
+        // Regex to replace content between SELECT and FROM
+        // This is tricky with nested SELECTs in existing query. 
+        // For simplicity, we replace everything up to the first FROM that matches our main object
+        // But safely, let's just rebuild if it's too complex, or try a simple replace
+        query = query.replace(/SELECT\s+([\s\S]*?)\s+FROM/i, `SELECT ${fieldsStr} FROM`);
     }
 
     // 设置回编辑器
     if (soqlEditor) {
         soqlEditor.setValue(query.trim());
+        // Optional: Format immediately for readability
+        setTimeout(() => soqlEditor.getAction('editor.action.formatDocument').run(), 100);
     } else {
         $('#id_query').val(query.trim());
     }
@@ -2376,6 +2460,96 @@ function explainQuery() {
             $('#explain-error').html(`<i class="fas fa-exclamation-triangle"></i> ${errorMsg}`).show();
         }
     });
+}
+
+// 显示子查询结果
+function showSubqueryRecords(records) {
+    console.log('showSubqueryRecords called with:', records);
+    if (!records || records.length === 0) {
+        workbench.showToast('没有子记录可显示', 'info');
+        return;
+    }
+
+    // 1. 收集所有列名
+    const columns = new Set();
+    records.forEach(rec => {
+        Object.keys(rec).forEach(key => {
+            if (key !== 'attributes') columns.add(key);
+        });
+    });
+    const colsArray = Array.from(columns);
+
+    // 2. 生成表头
+    let theadHtml = '<tr>';
+    colsArray.forEach(col => {
+        theadHtml += `<th scope="col"><div class="slds-truncate" title="${col}">${col}</div></th>`;
+    });
+    theadHtml += '</tr>';
+    $('#subquery-thead').html(theadHtml);
+
+    // 3. 生成表体
+    let tbodyHtml = '';
+    records.forEach(rec => {
+        tbodyHtml += '<tr>';
+        colsArray.forEach(col => {
+            let val = rec[col];
+            if (val === null || val === undefined) val = '';
+            else if (typeof val === 'object') val = JSON.stringify(val); // Handle nested objects in subquery
+            
+            tbodyHtml += `<td><div class="slds-truncate" title="${val}">${val}</div></td>`;
+        });
+        tbodyHtml += '</tr>';
+    });
+    $('#subquery-tbody').html(tbodyHtml);
+
+    // 4. 显示模态框 (纯原生 JS 手动实现)
+    const modalEl = document.getElementById('subqueryModal');
+    
+    if (!modalEl) {
+        console.error('ERROR: Modal element #subqueryModal not found in DOM!');
+        alert('Error: Subquery modal not found.');
+        return;
+    }
+    
+    // Move modal to body to ensure it's not clipped by parent containers
+    document.body.appendChild(modalEl);
+    
+    console.log('Showing modal...', modalEl);
+    
+    // 移除 fade 类以防万一，确保直接显示
+    modalEl.classList.remove('fade');
+    modalEl.classList.add('show');
+    
+    // 强制样式
+    modalEl.style.display = 'block';
+    modalEl.style.opacity = '1';
+    modalEl.style.visibility = 'visible';
+    modalEl.style.backgroundColor = 'rgba(0,0,0,0.5)'; // Backdrop
+    modalEl.style.zIndex = '10550'; // Ultra high z-index
+    
+    modalEl.setAttribute('aria-modal', 'true');
+    modalEl.setAttribute('role', 'dialog');
+    document.body.classList.add('modal-open');
+    
+    console.log('Modal display style:', modalEl.style.display);
+    
+    const closeModal = () => {
+        modalEl.classList.remove('show');
+        modalEl.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    };
+    
+    // Close handlers
+    const closeBtns = modalEl.querySelectorAll('[data-bs-dismiss="modal"]');
+    closeBtns.forEach(btn => {
+        btn.onclick = closeModal;
+    });
+    
+    modalEl.onclick = (e) => {
+        if (e.target === modalEl) {
+            closeModal();
+        }
+    };
 }
 
 function saveQuery() {
