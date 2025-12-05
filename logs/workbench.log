@@ -9211,3 +9211,354 @@ Unauthorized: /auth/refresh-token/
 "GET /auth/login/ HTTP/1.1" 200 41157
 "GET /auth/login/ HTTP/1.1" 200 41157
 "GET /auth/login/ HTTP/1.1" 200 41157
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 407936
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=OauthToken user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=OauthToken HTTP/1.1" 200 3005
+"POST /query/ HTTP/1.1" 200 408259
+"POST /query/ HTTP/1.1" 200 466170
+"POST /query/ HTTP/1.1" 200 408113
+/Users/guohe/Documents/Project/ForcePet/query/forms.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 407797
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=OauthToken user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=OauthToken HTTP/1.1" 200 3005
+"POST /query/ HTTP/1.1" 200 466169
+"POST /query/ HTTP/1.1" 200 466190
+Loading fields for object=MessagingChannelSkill user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MessagingChannelSkill HTTP/1.1" 200 2686
+"GET /query/ HTTP/1.1" 200 410969
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=MessagingChannelSkill user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MessagingChannelSkill HTTP/1.1" 200 2686
+"POST /query/ HTTP/1.1" 200 92652
+Loading fields for object=FlowRecord user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FlowRecord HTTP/1.1" 200 17613
+"POST /query/ HTTP/1.1" 200 2846633
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36101
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+/Users/guohe/Documents/Project/ForcePet/authentication/salesforce_client.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 419056
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=FlowRecord user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FlowRecord HTTP/1.1" 200 17613
+"GET /query/ HTTP/1.1" 200 420145
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=FlowRecord user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FlowRecord HTTP/1.1" 200 17613
+"GET /query/ HTTP/1.1" 200 420103
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=FlowRecord user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FlowRecord HTTP/1.1" 200 17613
+"GET /query/ HTTP/1.1" 200 420103
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=FlowRecord user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FlowRecord HTTP/1.1" 200 17613
+"GET /query/ HTTP/1.1" 200 420002
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=FlowRecord user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FlowRecord HTTP/1.1" 200 17613
+"POST /query/explain/ HTTP/1.1" 200 261
+"POST /query/explain/ HTTP/1.1" 200 261
+"POST /query/explain/ HTTP/1.1" 200 261
+Loading fields for object=AIApplicationConfig user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=AIApplicationConfig HTTP/1.1" 200 3245
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 405
+"POST /query/explain/ HTTP/1.1" 200 264
+"POST /query/explain/ HTTP/1.1" 200 261
+"POST /query/explain/ HTTP/1.1" 200 264
+"POST /query/explain/ HTTP/1.1" 200 264
+"POST /query/explain/ HTTP/1.1" 200 264
+"POST /query/explain/ HTTP/1.1" 200 264
+"POST /query/explain/ HTTP/1.1" 200 264
+"GET /query/ HTTP/1.1" 200 420269
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=AIApplicationConfig user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=AIApplicationConfig HTTP/1.1" 200 3245
+"POST /query/explain/ HTTP/1.1" 200 405
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/explain/ HTTP/1.1" 200 5665
+"POST /query/explain/ HTTP/1.1" 200 5574
+"POST /query/explain/ HTTP/1.1" 200 5518
+"POST /query/explain/ HTTP/1.1" 200 247
+Loading fields for object=PricebookEntry user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=PricebookEntry HTTP/1.1" 200 8600
+"POST /query/explain/ HTTP/1.1" 200 605
+Loading fields for object=WarrantyTerm user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=WarrantyTerm HTTP/1.1" 200 19526
+Loading fields for object=Payment user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Payment HTTP/1.1" 200 22654
+"POST /query/explain/ HTTP/1.1" 200 1015
+Loading fields for object=Receive_Child__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Receive_Child__c HTTP/1.1" 200 23059
+"POST /query/explain/ HTTP/1.1" 200 640
+Loading fields for object=AIApplication user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=AIApplication HTTP/1.1" 200 4539
+"POST /query/explain/ HTTP/1.1" 200 407
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+"POST /query/explain/ HTTP/1.1" 200 472
+"POST /query/explain/ HTTP/1.1" 200 472
+"POST /query/explain/ HTTP/1.1" 200 472
+"GET /query/ HTTP/1.1" 200 420291
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+"POST /query/explain/ HTTP/1.1" 200 267
+"POST /query/explain/ HTTP/1.1" 200 267
+"GET /query/ HTTP/1.1" 200 420291
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+"GET /query/ HTTP/1.1" 200 420291
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+"POST /query/explain/ HTTP/1.1" 200 472
+"GET /query/ HTTP/1.1" 200 420291
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 420291
+"GET /static/css/workbench.css HTTP/1.1" 200 5514
+"GET /static/css/select-fix.css HTTP/1.1" 200 2729
+"GET /static/css/workbench-modern-ui.css HTTP/1.1" 200 17876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+- Broken pipe from ('127.0.0.1', 52662)
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"POST /query/explain/ HTTP/1.1" 200 472
+REST request error: 400 Client Error: Bad Request for url: https://tatsuzawa-dev-ed.my.salesforce.com/services/data/v62.0/query/?explain=AND%20%20AND%20%20AND%20%20AND%20SELECT%20Id%2C%20ApplicationId%2C%20Status%2C%20Type%2C%20SystemModstamp%2C%20PushbackField%2C%20Language%2C%20PredictionField%2C%20CreatedDate%2C%20CreatedById%2C%20IsDeleted%2C%20DeveloperName%2C%20NamespacePrefix%2C%20LastModifiedDate%2C%20LastModifiedById%2C%20MasterLabel%20FROM%20MLPredictionDefinition
+Bad Request: /query/explain/
+"POST /query/explain/ HTTP/1.1" 400 510
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36059
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /query/ HTTP/1.1" 200 424218
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=MLPredictionDefinition user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=MLPredictionDefinition HTTP/1.1" 200 5154
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=PartnerNetworkConnection user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=PartnerNetworkConnection HTTP/1.1" 200 77910
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+"POST /query/ HTTP/1.1" 200 115405
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+Loading fields for object=Account user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Account HTTP/1.1" 200 131585
+"POST /query/ HTTP/1.1" 200 119087
+"POST /query/ HTTP/1.1" 200 119087
+Loading fields for object=Account user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Account HTTP/1.1" 200 131585
+"POST /query/ HTTP/1.1" 200 122807
+"POST /query/ HTTP/1.1" 200 122826
+"GET /query/export/113/?format=csv HTTP/1.1" 200 147
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/ HTTP/1.1" 200 116738
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 424371
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/ HTTP/1.1" 200 115283
+"POST /query/ HTTP/1.1" 200 115290
+"POST /query/ HTTP/1.1" 200 115266
+"POST /query/ HTTP/1.1" 200 115283
+"POST /query/ HTTP/1.1" 200 115288
+"GET /query/export/119/?format=csv HTTP/1.1" 200 1104
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 423533
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/ HTTP/1.1" 200 126059
+"GET /query/export/120/?format=csv HTTP/1.1" 200 367
+"GET /query/export/120/?format=json HTTP/1.1" 200 1964
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 423574
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/ HTTP/1.1" 200 120119
+"GET /query/ HTTP/1.1" 200 423546
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/ HTTP/1.1" 200 423546
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+"POST /query/ HTTP/1.1" 200 116122
+"GET /query/ HTTP/1.1" 200 424421
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+"POST /query/ HTTP/1.1" 200 123499
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 36059
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/ HTTP/1.1" 200 983341
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"GET /query/record/Contact/003J200000FfkmYIAR/ HTTP/1.1" 200 83913
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/ HTTP/1.1" 200 434690
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 434690
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+"POST /query/ HTTP/1.1" 200 460493
+"GET /query/export/125/?format=csv HTTP/1.1" 200 142
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 436776
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+Loading fields for object=Contact user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Contact HTTP/1.1" 200 55184
+"POST /query/ HTTP/1.1" 200 436337
+"GET /query/export/126/?format=csv HTTP/1.1" 200 3268

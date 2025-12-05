@@ -23,6 +23,33 @@ from .forms import QueryForm, SavedQueryForm, SearchForm
 
 logger = logging.getLogger('workbench')
 
+def flatten_record(record, separator='.'):
+    """
+    Recursively flatten a Salesforce record dictionary.
+    Example: {'Name': 'A', 'Parent': {'Name': 'B'}} -> {'Name': 'A', 'Parent.Name': 'B'}
+    """
+    flat_record = OrderedDict()
+    
+    def recurse(data, prefix=''):
+        if isinstance(data, dict):
+            for key, value in data.items():
+                if key == 'attributes':
+                    continue
+                
+                new_key = f"{prefix}{key}" if prefix else key
+                
+                if isinstance(value, dict):
+                    # Recurse into nested object
+                    recurse(value, f"{new_key}{separator}")
+                else:
+                    flat_record[new_key] = value
+        else:
+            # Should not happen for a record, but handle gracefully
+            flat_record[prefix] = data
+
+    recurse(record)
+    return flat_record
+
 
 class QueryIndexView(View):
     """
@@ -115,18 +142,23 @@ class QueryIndexView(View):
         try:
             client = SalesforceClient(request.sf_connection)
             query_text = form.cleaned_data['query']
+            
+            # Remove newlines and extra spaces for execution to avoid SOQL parsing errors
+            # But keep the original query_text for history/display if needed (optional)
+            execution_query = query_text.replace('\n', ' ').replace('\r', ' ')
+            
             include_deleted = form.cleaned_data.get('include_deleted', False)
             
             # Start timing
             start_time = time.time()
             
             # Execute query
-            result = client.query(query_text, include_deleted=include_deleted)
+            result = client.query(execution_query, include_deleted=include_deleted)
             
             # Calculate execution time
             execution_time = time.time() - start_time
             
-            # Save to history
+            # Save to history (save the ORIGINAL formatted text)
             history = QueryHistory.objects.create(
                 connection=request.sf_connection,
                 query_text=query_text,
@@ -152,6 +184,63 @@ class QueryIndexView(View):
                     if match:
                         object_type = match.group(1)
 
+                # --- NEW LOGIC: Deep Flatten for Display ---
+                processed_records = []
+                for record in result['records']:
+                    # Flatten the record
+                    flat = flatten_record(record)
+                    # Restore top-level attributes for template logic (like ID linking)
+                    if 'attributes' in record:
+                        flat['attributes'] = record['attributes']
+                    processed_records.append(flat)
+                result['records'] = processed_records
+                # --- END NEW LOGIC ---
+
+                # --- Generate all unique columns for the header ---
+                all_columns = []
+                seen_columns = set()
+                
+                # 1. Parse fields from SOQL to ensure requested columns are shown even if data is null
+                try:
+                    # Simple regex to capture content between SELECT and FROM
+                    import re
+                    # Use DOTALL flag to handle newlines
+                    select_match = re.search(r'^\s*SELECT\s+(.+?)\s+FROM\s+', query_text, re.IGNORECASE | re.DOTALL)
+                    
+                    if select_match:
+                        fields_str = select_match.group(1)
+                        # Split by comma, handling simple cases (ignoring nested parens for now for simplicity)
+                        # A more robust parser would balance parentheses for subqueries
+                        raw_fields = [f.strip() for f in fields_str.split(',')]
+                        
+                        for field in raw_fields:
+                            # Handle functions/aliases roughly (e.g., "count(id)" -> "count(id)")
+                            # For simple fields like "Account.Name", just use it
+                            # Skip subqueries "(SELECT ...)" as they are complex to display in flat table
+                            if not field.upper().startswith('(SELECT'):
+                                # Remove potential aliases like "Name n" -> "n" (simplified)
+                                parts = field.split()
+                                col_name = parts[-1] if len(parts) > 1 and parts[-1].upper() not in ['AS'] else field
+                                
+                                all_columns.append(col_name)
+                                seen_columns.add(col_name)
+                except Exception as e:
+                    logger.warning(f"Failed to parse SOQL columns: {e}")
+
+                # 2. Ensure 'Id' is first if present (and not added by parser)
+                if processed_records and 'Id' in processed_records[0] and 'Id' not in seen_columns:
+                    all_columns.insert(0, 'Id')
+                    seen_columns.add('Id')
+                
+                # 3. Collect any other dynamic keys from actual data (e.g. toType fields or unparsed ones)
+                for record in processed_records:
+                    for key in record.keys():
+                        if key != 'attributes' and key not in seen_columns:
+                            all_columns.append(key)
+                            seen_columns.add(key)
+                
+                # --- END NEW LOGIC ---
+
             # Process results for display
             results_data = {
                 'totalSize': result.get('totalSize', 0),
@@ -160,7 +249,8 @@ class QueryIndexView(View):
                 'nextRecordsUrl': result.get('nextRecordsUrl', None),
                 'execution_time': execution_time,
                 'history_id': history.id,
-                'object_type': object_type
+                'object_type': object_type,
+                'columns': all_columns, # Pass all columns to template
             }
 
             context = {
@@ -375,9 +465,18 @@ def query_more(request):
             if 'attributes' in result['records'][0]:
                 object_type = result['records'][0]['attributes'].get('type')
 
+        # Flatten records for query_more
+        processed_records = []
+        for record in result.get('records', []):
+            flat = flatten_record(record)
+            # Restore attributes for potential frontend use
+            if 'attributes' in record:
+                flat['attributes'] = record['attributes']
+            processed_records.append(flat)
+
         return JsonResponse({
             'success': True,
-            'records': result.get('records', []),
+            'records': processed_records,
             'done': result.get('done', True),
             'nextRecordsUrl': result.get('nextRecordsUrl', None),
             'object_type': object_type
@@ -435,28 +534,64 @@ class ExportResultsView(View):
             response = HttpResponse('No records to export', content_type='text/plain')
             return response
 
+        # Flatten all records first
+        flattened_records = [flatten_record(r) for r in records]
+
+        # Collect all unique keys from all records to ensure complete header
+        # Using OrderedDict or dict (Python 3.7+) to preserve insertion order if possible
+        fieldnames = []
+        seen_fields = set()
+        
+        # 1. Parse fields from SOQL query to ensure requested columns are in header even if data is null
+        try:
+            import re
+            # Use DOTALL flag to handle newlines
+            select_match = re.search(r'^\s*SELECT\s+(.+?)\s+FROM\s+', history.query_text, re.IGNORECASE | re.DOTALL)
+            
+            if select_match:
+                fields_str = select_match.group(1)
+                raw_fields = [f.strip() for f in fields_str.split(',')]
+                
+                for field in raw_fields:
+                    if not field.upper().startswith('(SELECT'):
+                        parts = field.split()
+                        col_name = parts[-1] if len(parts) > 1 and parts[-1].upper() not in ['AS'] else field
+                        
+                        fieldnames.append(col_name)
+                        seen_fields.add(col_name)
+        except Exception as e:
+            logger.warning(f"Failed to parse SOQL columns for export: {e}")
+        
+        # 2. Get keys from the first record data (fallback and supplement)
+        if flattened_records:
+            for key in flattened_records[0].keys():
+                if key != 'attributes' and key not in seen_fields:
+                    fieldnames.append(key)
+                    seen_fields.add(key)
+        
+        # 3. Check other records for any sparse keys
+        for record in flattened_records:
+            for key in record.keys():
+                if key != 'attributes' and key not in seen_fields:
+                    fieldnames.append(key)
+                    seen_fields.add(key)
+
         # Create CSV
         output = io.StringIO()
-
-        # Get field names from first record, excluding 'attributes'
-        fieldnames = [key for key in records[0].keys() if key != 'attributes'] if records else []
-
         writer = csv.DictWriter(output, fieldnames=fieldnames)
         writer.writeheader()
 
-        for record in records:
-            # Clean the record (remove None values, handle nested objects, exclude attributes)
-            clean_record = {}
-            for key, value in record.items():
-                if key == 'attributes':
-                    continue  # Skip attributes field
-                if isinstance(value, dict):
-                    clean_record[key] = json.dumps(value)
-                elif value is None:
-                    clean_record[key] = ''
+        for record in flattened_records:
+            # Filter record to only include fieldnames (exclude attributes)
+            clean_record = {k: v for k, v in record.items() if k in fieldnames}
+            
+            # Handle None values
+            for k in clean_record:
+                if clean_record[k] is None:
+                    clean_record[k] = ''
                 else:
-                    clean_record[key] = str(value)
-
+                    clean_record[k] = str(clean_record[k])
+            
             writer.writerow(clean_record)
         
         # Create response
@@ -845,6 +980,53 @@ def delete_record(request, object_type, record_id):
             'success': False,
             'error': str(e)
         }, status=500)
+
+
+@login_required
+@require_http_methods(["POST"])
+def explain_query_view(request):
+    """
+    Get query execution plan (explain)
+    """
+    try:
+        query = request.POST.get('query')
+        if not query:
+            return JsonResponse({'success': False, 'error': 'Query is required'}, status=400)
+        
+        # Clean the query (similar to execute)
+        execution_query = query.replace('\n', ' ').replace('\r', ' ').strip()
+        
+        connection = getattr(request, 'sf_connection', None)
+        if connection is None:
+            connection_id = request.session.get('sf_connection_id')
+            if connection_id:
+                connection = SalesforceConnection.objects.filter(
+                    id=connection_id,
+                    is_active=True
+                ).first()
+
+        if connection is None and request.user.is_authenticated:
+            connection = SalesforceConnection.objects.filter(
+                user=request.user,
+                is_active=True
+            ).order_by('-updated_at').first()
+            
+        if not connection:
+             return JsonResponse({'success': False, 'error': 'No active Salesforce connection'}, status=401)
+             
+        client = SalesforceClient(connection)
+        plans = client.explain_query(execution_query)
+        
+        return JsonResponse({
+            'success': True,
+            'plans': plans
+        })
+        
+    except SalesforceAPIError as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+    except Exception as e:
+        logger.error(f"Explain view error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
 
 @login_required

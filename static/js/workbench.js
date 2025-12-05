@@ -3,17 +3,21 @@
  */
 
 $(document).ready(function() {
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-    
-    // Initialize popovers
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl);
-    });
+    const bs = window.bootstrap || (typeof bootstrap !== 'undefined' ? bootstrap : null);
+
+    if (bs) {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bs.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Initialize popovers
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bs.Popover(popoverTriggerEl);
+        });
+    }
     
     // Auto-refresh token before expiry
     setupTokenRefresh();
@@ -317,17 +321,38 @@ function showToast(message, type = 'info', duration = 5000) {
     
     $('.toast-container').append(toastHtml);
     
-    const toast = new bootstrap.Toast(document.getElementById(toastId), {
-        autohide: true,
-        delay: duration
-    });
+    const toastEl = document.getElementById(toastId);
     
-    toast.show();
+    // Robustly get bootstrap object: Accessing window property never throws ReferenceError
+    const bs = window.bootstrap;
     
-    // Remove toast element after it's hidden
-    $(`#${toastId}`).on('hidden.bs.toast', function() {
-        $(this).remove();
-    });
+    if (bs && bs.Toast) {
+        const toast = new bs.Toast(toastEl, {
+            autohide: true,
+            delay: duration
+        });
+        toast.show();
+        
+        toastEl.addEventListener('hidden.bs.toast', function () {
+            $(this).remove();
+        });
+    } else {
+        // Fallback: Manual show using jQuery
+        $(toastEl).addClass('show').css('display', 'block').hide().fadeIn();
+        
+        setTimeout(function() {
+            $(toastEl).fadeOut(function() {
+                $(this).remove();
+            });
+        }, duration);
+        
+        // Manual close button handler
+        $(toastEl).find('.btn-close').on('click', function() {
+            $(toastEl).fadeOut(function() {
+                $(this).remove();
+            });
+        });
+    }
 }
 
 /**

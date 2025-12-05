@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.QueryIndexView.as_view(), name='index'),
     path('search/', views.SearchView.as_view(), name='search'),
     path('more/', views.query_more, name='query_more'),
+    path('explain/', views.explain_query_view, name='explain_query'),
     path('export/<int:history_id>/', views.ExportResultsView.as_view(), name='export'),
     path('saved/', views.SavedQueryView.as_view(), name='saved_queries'),
     path('saved/<int:query_id>/delete/', views.delete_saved_query, name='delete_saved_query'),
