@@ -189,6 +189,7 @@ class LoginView(View):
             'redirect_uri': settings.SALESFORCE_REDIRECT_URI,
             'state': form_data['state'],
             'scope': 'full refresh_token',
+            'prompt': 'login',  # Force login prompt
         }
 
         # Add PKCE parameters if code challenge is provided

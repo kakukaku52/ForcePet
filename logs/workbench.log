@@ -9945,3 +9945,40 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 "GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
 Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
 "GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+/Users/guohe/Documents/Project/ForcePet/authentication/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /auth/logout/ HTTP/1.1" 200 10520
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 37600
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/login/ HTTP/1.1" 200 37293
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 37600
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zfU0LxyJF1MZSwNSWZVIlCFLsaAo9HTNyovJSxuQbJRJVN5U6A%3D%3D&state=c5c33d9f-7c3d-43f0-a751-a4bd44084809 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 434408
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+"GET /auth/logout/ HTTP/1.1" 200 10520
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 37600
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/login/ HTTP/1.1" 200 37293
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 37600
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zXKzox9EWVY_ob8uvzfPk6Z3YyXxh9dr6iLF7z9Qs0weEoWu_A%3D%3D&state=009ba15b-7509-4144-9b11-c429afe057af HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 434408
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 37293
