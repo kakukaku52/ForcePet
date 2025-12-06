@@ -175,8 +175,12 @@
                     RESULT: {{ results.records|length }} rows ({{ results.totalSize }} total) in {{ results.execution_time|floatformat:3 }}s
                 </div>
                 <div class="d-flex gap-2">
-                    <input type="text" id="result-filter-input" class="fp-input" placeholder="Filter..." onkeyup="filterTableResults()">
+                    <input type="text" id="result-filter-input" class="fp-input" placeholder="Filter..." onkeyup="filterTableResults()"{% if not results.records %} disabled{% endif %}>
+                    {% if results.records %}
                     <a href="{% url 'query:export' results.history_id %}?format=csv" class="fp-btn fp-btn-icon" title="Download CSV"><i class="fas fa-download"></i></a>
+                    {% else %}
+                    <span class="fp-btn fp-btn-icon fp-btn-disabled" title="No data to download"><i class="fas fa-download"></i></span>
+                    {% endif %}
                 </div>
             </div>
 

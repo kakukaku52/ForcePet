@@ -25,17 +25,17 @@
     <div class="fp-workbench-shell">
         <!-- 1. Activity Bar (Leftmost) -->
         <nav class="fp-activity-bar">
-            <div class="fp-activity-item active" title="Query Editor">
-                <a href="{% url 'query:index' %}" style="color: inherit;"><i class="fas fa-search"></i></a>
+            <div class="fp-activity-item {% if request.resolver_match.app_name == 'query' %}active{% endif %}" title="Query Editor">
+                <a href="{% url 'query:index' %}" style="color: inherit; display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;"><i class="fas fa-search"></i></a>
             </div>
-            <div class="fp-activity-item" title="Data Loader">
-                <a href="#" style="color: inherit;"><i class="fas fa-database"></i></a>
+            <div class="fp-activity-item {% if request.resolver_match.app_name == 'data' %}active{% endif %}" title="Data Loader">
+                <a href="{% url 'data:insert' %}" style="color: inherit; display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;"><i class="fas fa-database"></i></a>
             </div>
-            <div class="fp-activity-item" title="Metadata Explorer">
-                <a href="#" style="color: inherit;"><i class="fas fa-cube"></i></a>
+            <div class="fp-activity-item {% if request.resolver_match.app_name == 'metadata' %}active{% endif %}" title="Metadata Explorer">
+                <a href="{% url 'metadata:home' %}" style="color: inherit; display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;"><i class="fas fa-cube"></i></a>
             </div>
-            <div class="fp-activity-item" title="Apex Console">
-                <a href="#" style="color: inherit;"><i class="fas fa-code"></i></a>
+            <div class="fp-activity-item {% if request.resolver_match.app_name == 'apex' %}active{% endif %}" title="Apex Console">
+                <a href="{% url 'apex:home' %}" style="color: inherit; display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;"><i class="fas fa-code"></i></a>
             </div>
             
             <div class="fp-activity-bottom">

@@ -328,6 +328,13 @@ body {
     color: var(--fp-text-main);
 }
 
+.fp-btn-disabled,
+.fp-btn-disabled:hover {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Input Fields */
 .fp-input {
     height: 28px;
