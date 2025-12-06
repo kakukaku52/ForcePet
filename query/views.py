@@ -195,64 +195,61 @@ class QueryIndexView(View):
                     if match:
                         object_type = match.group(1)
 
+            # Process results for display
+            try:
                 # --- NEW LOGIC: Deep Flatten for Display ---
                 processed_records = []
-                for record in result['records']:
-                    # Flatten the record
-                    flat = flatten_record(record)
-                    # Restore top-level attributes for template logic (like ID linking)
-                    if 'attributes' in record:
-                        flat['attributes'] = record['attributes']
-                    processed_records.append(flat)
-                result['records'] = processed_records
-                # --- END NEW LOGIC ---
-
+                if result.get('records'):
+                    for record in result['records']:
+                        # Flatten the record
+                        flat = flatten_record(record)
+                        # Restore top-level attributes for template logic (like ID linking)
+                        if 'attributes' in record:
+                            flat['attributes'] = record['attributes']
+                        processed_records.append(flat)
+                    result['records'] = processed_records
+                
                 # --- Generate all unique columns for the header ---
                 all_columns = []
                 seen_columns = set()
                 
-                # 1. Parse fields from SOQL to ensure requested columns are shown even if data is null
+                # 1. Parse fields from SOQL
                 try:
-                    # Simple regex to capture content between SELECT and FROM
                     import re
-                    # Use DOTALL flag to handle newlines
                     select_match = re.search(r'^\s*SELECT\s+(.+?)\s+FROM\s+', query_text, re.IGNORECASE | re.DOTALL)
-                    
                     if select_match:
                         fields_str = select_match.group(1)
-                        # Split by comma, handling simple cases (ignoring nested parens for now for simplicity)
-                        # A more robust parser would balance parentheses for subqueries
+                        # Split by comma, handling simple cases
                         raw_fields = [f.strip() for f in fields_str.split(',')]
-                        
                         for field in raw_fields:
-                            # Handle functions/aliases roughly (e.g., "count(id)" -> "count(id)")
-                            # For simple fields like "Account.Name", just use it
-                            # Skip subqueries "(SELECT ...)" as they are complex to display in flat table
                             if not field.upper().startswith('(SELECT'):
-                                # Remove potential aliases like "Name n" -> "n" (simplified)
                                 parts = field.split()
                                 col_name = parts[-1] if len(parts) > 1 and parts[-1].upper() not in ['AS'] else field
-                                
                                 all_columns.append(col_name)
                                 seen_columns.add(col_name)
                 except Exception as e:
                     logger.warning(f"Failed to parse SOQL columns: {e}")
 
-                # 2. Ensure 'Id' is first if present (and not added by parser)
+                # 2. Ensure 'Id' is first
                 if processed_records and 'Id' in processed_records[0] and 'Id' not in seen_columns:
                     all_columns.insert(0, 'Id')
                     seen_columns.add('Id')
                 
-                # 3. Collect any other dynamic keys from actual data (e.g. toType fields or unparsed ones)
-                for record in processed_records:
-                    for key in record.keys():
-                        if key != 'attributes' and key not in seen_columns:
-                            all_columns.append(key)
-                            seen_columns.add(key)
-                
-                # --- END NEW LOGIC ---
+                # 3. Collect other keys
+                if processed_records:
+                    for record in processed_records:
+                        for key in record.keys():
+                            if key != 'attributes' and key not in seen_columns:
+                                all_columns.append(key)
+                                seen_columns.add(key)
+                                
+            except Exception as e:
+                logger.error(f"Error processing query results: {e}", exc_info=True)
+                # Fallback: just use raw records if processing fails, or let it be empty
+                # Ideally we should try to recover
+                if not all_columns and result.get('records') and len(result['records']) > 0:
+                     all_columns = list(result['records'][0].keys())
 
-            # Process results for display
             results_data = {
                 'totalSize': result.get('totalSize', 0),
                 'done': result.get('done', True),
@@ -261,7 +258,7 @@ class QueryIndexView(View):
                 'execution_time': execution_time,
                 'history_id': history.id,
                 'object_type': object_type,
-                'columns': all_columns, # Pass all columns to template
+                'columns': all_columns,
             }
 
             context = {
@@ -839,6 +836,10 @@ def get_object_fields(request):
 
         client = SalesforceClient(connection)
         describe_result = client.describe_sobject(object_name)
+        
+        # --- NEW: Log full describe result to debug missing fields ---
+        logger.debug(f"Full describe result for {object_name}: {json.dumps(describe_result, indent=2)}")
+        # --- END NEW ---
 
         # Extract field information
         fields = []

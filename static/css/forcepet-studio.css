@@ -1,0 +1,515 @@
+/* ForcePet Studio - Enterprise Web IDE Design */
+
+:root {
+    /* 核心色板 (Slate & Indigo) */
+    --fp-bg-app: #f8fafc;       /* 应用背景 */
+    --fp-bg-sidebar: #f1f5f9;   /* 侧边栏背景 */
+    --fp-bg-activity: #1e293b;  /* 最左侧活动栏背景 (深色) */
+    --fp-bg-editor: #ffffff;    /* 编辑器背景 */
+    --fp-bg-panel: #ffffff;     /* 底部面板背景 */
+    --fp-bg-status: #334155;    /* 状态栏背景 */
+    
+    --fp-border: #cbd5e1;       /* 通用边框颜色 */
+    --fp-border-light: #e2e8f0;
+    
+    --fp-primary: #4f46e5;      /* 主色调 (Indigo) */
+    --fp-primary-hover: #4338ca;
+    --fp-text-main: #0f172a;
+    --fp-text-muted: #64748b;
+    --fp-text-on-dark: #f8fafc;
+    
+    /* 尺寸变量 */
+    --activity-bar-width: 50px;
+    --sidebar-width: 280px;
+    --status-bar-height: 24px;
+    --header-height: 40px; /* 类似 VSCode 的标题栏 */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    color: var(--fp-text-main);
+    background-color: var(--fp-bg-app);
+    overflow: hidden; /* 禁止 Body 滚动，由各区域内部滚动 */
+    font-size: 13px; /* IDE 倾向于更小的字体以显示更多信息 */
+}
+
+/* --- 布局网格 (CSS Grid) --- */
+.fp-workbench-shell {
+    display: grid;
+    grid-template-columns: var(--activity-bar-width) var(--sidebar-width) 1fr;
+    grid-template-rows: 1fr var(--status-bar-height);
+    grid-template-areas: 
+        "activity sidebar editor"
+        "status   status  status";
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 1. Activity Bar (最左侧图标栏) */
+.fp-activity-bar {
+    grid-area: activity;
+    background-color: var(--fp-bg-activity);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    border-right: 1px solid #0f172a;
+    z-index: 20;
+}
+
+.fp-activity-item {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.fp-activity-item:hover {
+    color: white;
+}
+
+.fp-activity-item.active {
+    color: white;
+    border-left: 2px solid var(--fp-primary); /* VSCode style */
+}
+
+.fp-activity-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: white;
+}
+
+.fp-activity-item i {
+    font-size: 20px;
+}
+
+.fp-activity-bottom {
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+/* 2. Side Bar (资源管理器) */
+.fp-sidebar {
+    grid-area: sidebar;
+    background-color: var(--fp-bg-sidebar);
+    border-right: 1px solid var(--fp-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.fp-sidebar-header {
+    height: 35px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--fp-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.fp-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Sidebar Section (Accordion style) */
+.fp-section {
+    margin-bottom: 10px;
+}
+
+.fp-section-header {
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--fp-text-main);
+}
+
+.fp-section-header:hover {
+    color: var(--fp-primary);
+}
+
+.fp-section-header i {
+    margin-right: 6px;
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+
+.fp-section.collapsed .fp-section-header i {
+    transform: rotate(-90deg);
+}
+
+.fp-section-body {
+    padding-left: 10px;
+}
+
+.fp-section.collapsed .fp-section-body {
+    display: none;
+}
+
+/* 3. Editor Area (主工作区) */
+.fp-editor-area {
+    grid-area: editor;
+    background-color: var(--fp-bg-editor);
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* 防止 flex 子元素溢出 */
+}
+
+/* Tabs / Toolbar */
+.fp-tabs-header {
+    height: 35px;
+    background-color: var(--fp-bg-sidebar); /* 与 Sidebar 顶部一致 */
+    border-bottom: 1px solid var(--fp-border);
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+}
+
+.fp-tab {
+    height: 100%;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    background-color: var(--fp-bg-editor);
+    border-right: 1px solid var(--fp-border);
+    border-top: 2px solid var(--fp-primary); /* Active tab indicator */
+    font-size: 12px;
+    color: var(--fp-text-main);
+    cursor: pointer;
+}
+
+.fp-tab i {
+    margin-right: 8px;
+    color: var(--fp-primary);
+}
+
+.fp-toolbar {
+    height: 40px;
+    border-bottom: 1px solid var(--fp-border-light);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+    background-color: #fff;
+}
+
+/* Split View */
+.fp-split-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.fp-upper-pane {
+    flex: 0 0 40%; /* 默认 40% 高度给编辑器 */
+    position: relative;
+    border-bottom: 1px solid var(--fp-border);
+}
+
+.fp-lower-pane {
+    flex: 1;
+    background-color: var(--fp-bg-panel);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 4. Status Bar */
+.fp-status-bar {
+    grid-area: status;
+    background-color: var(--fp-bg-primary);
+    background-color: #007acc; /* VSCode blue */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 11px;
+    z-index: 30;
+}
+
+.fp-status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.fp-status-item:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* --- Components --- */
+
+/* Buttons (Flat, Compact) */
+.fp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.1s;
+    border: 1px solid transparent;
+    gap: 6px;
+}
+
+.fp-btn-primary {
+    background-color: var(--fp-primary);
+    color: white;
+}
+
+.fp-btn-primary:hover {
+    background-color: var(--fp-primary-hover);
+}
+
+.fp-btn-secondary {
+    background-color: white;
+    border: 1px solid var(--fp-border);
+    color: var(--fp-text-main);
+}
+
+.fp-btn-secondary:hover {
+    background-color: #f1f5f9;
+}
+
+.fp-btn-icon {
+    width: 28px;
+    padding: 0;
+    color: var(--fp-text-muted);
+}
+
+.fp-btn-icon:hover {
+    background-color: #e2e8f0;
+    color: var(--fp-text-main);
+}
+
+/* Input Fields */
+.fp-input {
+    height: 28px;
+    border: 1px solid var(--fp-border);
+    border-radius: 4px;
+    padding: 0 8px;
+    font-size: 12px;
+    outline: none;
+    color: var(--fp-text-main);
+}
+
+.fp-input:focus {
+    border-color: var(--fp-primary);
+}
+
+/* Select/Dropdown */
+.fp-select {
+    height: 28px;
+    border: 1px solid var(--fp-border);
+    border-radius: 4px;
+    padding: 0 24px 0 8px;
+    font-size: 12px;
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 12px;
+}
+
+/* Table (High density) */
+.fp-table-container {
+    flex: 1;
+    overflow: auto;
+}
+
+.fp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.fp-table th {
+    background-color: #f1f5f9;
+    color: var(--fp-text-muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--fp-border);
+    border-right: 1px solid var(--fp-border-light);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    white-space: nowrap;
+}
+
+.fp-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--fp-border-light);
+    border-right: 1px solid #f8fafc;
+    color: var(--fp-text-main);
+    white-space: nowrap;
+}
+
+.fp-table tr:hover td {
+    background-color: #f0f9ff; /* Light blue highlight */
+}
+
+/* Monaco Fixes */
+#monaco-editor-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* --- Tree View (Studio Style) --- */
+.fp-tree-container {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.fp-tree-item {
+    display: flex;
+    align-items: center;
+    padding: 0 8px 0 0; /* Right padding for actions */
+    cursor: pointer;
+    color: var(--fp-text-main);
+    position: relative;
+    height: 26px; /* Fixed height for consistency */
+    border-radius: 3px;
+}
+
+.fp-tree-item:hover {
+    background-color: #e2e8f0;
+}
+
+/* Checkbox wrapper */
+.fp-tree-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 100%;
+    margin-right: 4px;
+}
+
+.fp-tree-checkbox input {
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Main Label (Name) */
+.fp-tree-label {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Type Badge & Actions (Right Aligned) */
+.fp-tree-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto; /* Push to right */
+    flex-shrink: 0; /* Don't shrink */
+}
+
+.fp-type-badge {
+    font-size: 10px;
+    color: #94a3b8;
+    background-color: rgba(0,0,0,0.03);
+    padding: 0 4px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    min-width: 20px; /* Ensure alignment */
+    text-align: center;
+}
+
+.fp-tree-action {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    color: #64748b;
+    transition: all 0.1s;
+}
+
+.fp-tree-action:hover {
+    background-color: #cbd5e1;
+    color: var(--fp-text-main);
+}
+
+/* Indentation & Guidelines */
+.fp-tree-children {
+    margin-left: 20px; /* Standard indent step */
+    border-left: 1px solid #e2e8f0; /* Guide line */
+    display: none; /* Hidden by default */
+}
+
+.fp-tree-children.expanded {
+    display: block;
+}
+
+/* Icons */
+.fp-icon-type {
+    opacity: 0.6;
+    font-size: 11px;
+    width: 14px;
+    text-align: center;
+}

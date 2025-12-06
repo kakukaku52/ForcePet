@@ -1,469 +1,98 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Django Workbench{% endblock %}</title>
+    <title>{% block title %}ForcePet Studio{% endblock %}</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    {% load static %}
-    <!-- Inter Font & Noto Sans JP for Modern Typography -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS (Utility & Modal only, overridden by Studio CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- ForcePet Studio CSS -->
+    <link href="{% static 'css/forcepet-studio.css' %}" rel="stylesheet">
     
-    <!-- Custom CSS -->
-    <link href="{% static 'css/workbench.css' %}" rel="stylesheet">
-    <link href="{% static 'css/workbench-modern-ui.css' %}" rel="stylesheet">
-    <!-- Fix for select element text cutoff -->
-    <link href="{% static 'css/select-fix.css' %}" rel="stylesheet">
-
-    <!-- Phoenix Framework Dark Navigation Styles -->
-    <style>
-        /* Global Font Setting for Japanese Support */
-        body {
-            font-family: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-            background-color: #F9FAFB;
-        }
-
-        /* Phoenix Dark Navigation Bar */
-        .modern-navbar {
-            background: #1F2937;
-            border-bottom: 1px solid #374151;
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .modern-navbar .container-fluid {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        /* Brand */
-        .modern-navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 0;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #F9FAFB;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .modern-navbar-brand:hover {
-            color: #60A5FA;
-        }
-
-        .modern-navbar-brand i {
-            font-size: 1.25rem;
-            color: #60A5FA;
-        }
-
-        /* Navigation Menu */
-        .modern-nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            flex: 1;
-        }
-
-        /* Navigation Item */
-        .modern-nav-item {
-            position: relative;
-        }
-
-        /* Navigation Link */
-        .modern-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 1rem;
-            color: #D1D5DB;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            text-decoration: none;
-            background: transparent;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .modern-nav-link i {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        .modern-nav-link:hover {
-            background-color: #374151;
-            color: #F9FAFB;
-        }
-
-        /* Active State */
-        .modern-nav-item.active .modern-nav-link {
-            background-color: #374151;
-            color: #F9FAFB;
-        }
-
-        /* Dropdown Menu */
-        .modern-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 220px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.2s ease;
-            z-index: 1050;
-            padding: 0.5rem;
-            margin-top: 0.25rem;
-        }
-
-        .modern-nav-item:hover .modern-dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* Right-aligned dropdown */
-        .modern-dropdown-menu-right {
-            left: auto;
-            right: 0;
-        }
-
-        /* Dropdown Item */
-        .modern-dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: #374151;
-            font-size: 0.875rem;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.15s ease;
-            white-space: nowrap;
-        }
-
-        .modern-dropdown-item i {
-            font-size: 1rem;
-            width: 1.25rem;
-            text-align: center;
-            opacity: 0.7;
-        }
-
-        .modern-dropdown-item:hover {
-            background-color: #f9fafb;
-            color: #111827;
-        }
-
-        .modern-dropdown-item:hover i {
-            opacity: 1;
-            color: #3B82F6;
-        }
-
-        /* Dropdown Divider */
-        .modern-dropdown-divider {
-            height: 1px;
-            background-color: #e5e7eb;
-            margin: 0.5rem 0;
-        }
-
-        /* Danger Item */
-        .modern-dropdown-item-danger:hover {
-            background-color: #fef2f2;
-            color: #dc2626;
-        }
-
-        .modern-dropdown-item-danger:hover i {
-            color: #dc2626;
-        }
-
-        /* User Menu */
-        .modern-nav-user {
-            margin-left: auto;
-        }
-
-        .modern-nav-user-link {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-        }
-
-        .modern-nav-user-link i {
-            font-size: 1.5rem;
-        }
-
-        /* Connection Info Bar */
-        .connection-bar {
-            background: #111827;
-            border-bottom: 1px solid #374151;
-            color: #D1D5DB;
-            padding: 0.375rem 1rem;
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .connection-bar strong {
-            color: #F9FAFB;
-        }
-
-        .connection-bar i {
-            color: #60A5FA;
-            margin-right: 0.25rem;
-        }
-
-        .connection-bar .container-fluid {
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 991px) {
-            .modern-navbar .container-fluid {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
-            .modern-nav-menu {
-                width: 100%;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .modern-nav-link {
-                font-size: 0.875rem;
-                padding: 0.75rem 0.875rem;
-            }
-
-            .modern-dropdown-menu {
-                position: fixed;
-                left: 1rem;
-                right: 1rem;
-                width: auto;
-            }
-        }
-    </style>
-
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Modern Navigation -->
-    <nav class="modern-navbar">
-        <div class="container-fluid">
-            <a class="modern-navbar-brand" href="{% url 'authentication:login' %}">
-                <i class="fas fa-tools"></i>
-                <span>Django Workbench</span>
-            </a>
-
-            {% if sf_connection %}
-            <div class="modern-nav-menu">
-                <!-- Query -->
-                <div class="modern-nav-item">
-                    <a href="#" class="modern-nav-link">
-                        <i class="fas fa-search"></i>
-                        <span>Query</span>
-                    </a>
-                    <div class="modern-dropdown-menu">
-                        <a href="{% url 'query:index' %}" class="modern-dropdown-item">
-                            <i class="fas fa-code"></i>
-                            <span>SOQL Query</span>
-                        </a>
-                        <a href="{% url 'query:search' %}" class="modern-dropdown-item">
-                            <i class="fas fa-search"></i>
-                            <span>SOSL Search</span>
-                        </a>
-                    </div>
+    <div class="fp-workbench-shell">
+        <!-- 1. Activity Bar (Leftmost) -->
+        <nav class="fp-activity-bar">
+            <div class="fp-activity-item active" title="Query Editor">
+                <a href="{% url 'query:index' %}" style="color: inherit;"><i class="fas fa-search"></i></a>
+            </div>
+            <div class="fp-activity-item" title="Data Loader">
+                <a href="#" style="color: inherit;"><i class="fas fa-database"></i></a>
+            </div>
+            <div class="fp-activity-item" title="Metadata Explorer">
+                <a href="#" style="color: inherit;"><i class="fas fa-cube"></i></a>
+            </div>
+            <div class="fp-activity-item" title="Apex Console">
+                <a href="#" style="color: inherit;"><i class="fas fa-code"></i></a>
+            </div>
+            
+            <div class="fp-activity-bottom">
+                <div class="fp-activity-item" title="Settings">
+                    <a href="#" style="color: inherit;"><i class="fas fa-cog"></i></a>
                 </div>
-
-                <!-- Data -->
-                <div class="modern-nav-item">
-                    <a href="#" class="modern-nav-link">
-                        <i class="fas fa-database"></i>
-                        <span>Data</span>
-                    </a>
-                    <div class="modern-dropdown-menu">
-                        <a href="{% url 'data:insert' %}" class="modern-dropdown-item">
-                            <i class="fas fa-plus"></i>
-                            <span>Insert</span>
-                        </a>
-                        <a href="{% url 'data:update' %}" class="modern-dropdown-item">
-                            <i class="fas fa-edit"></i>
-                            <span>Update</span>
-                        </a>
-                        <a href="{% url 'data:upsert' %}" class="modern-dropdown-item">
-                            <i class="fas fa-sync"></i>
-                            <span>Upsert</span>
-                        </a>
-                        <a href="{% url 'data:delete' %}" class="modern-dropdown-item">
-                            <i class="fas fa-trash"></i>
-                            <span>Delete</span>
-                        </a>
-                        <a href="{% url 'data:undelete' %}" class="modern-dropdown-item">
-                            <i class="fas fa-undo"></i>
-                            <span>Undelete</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Metadata -->
-                <div class="modern-nav-item">
-                    <a href="#" class="modern-nav-link">
-                        <i class="fas fa-cog"></i>
-                        <span>Metadata</span>
-                    </a>
-                    <div class="modern-dropdown-menu">
-                        <a href="{% url 'metadata:home' %}" class="modern-dropdown-item">
-                            <i class="fas fa-home"></i>
-                            <span>Metadata Home</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Apex -->
-                <div class="modern-nav-item">
-                    <a href="#" class="modern-nav-link">
-                        <i class="fas fa-code"></i>
-                        <span>Apex</span>
-                    </a>
-                    <div class="modern-dropdown-menu">
-                        <a href="{% url 'apex:home' %}" class="modern-dropdown-item">
-                            <i class="fas fa-play"></i>
-                            <span>Execute Anonymous</span>
-                        </a>
-                        <a href="#" class="modern-dropdown-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Run Tests</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Bulk -->
-                <div class="modern-nav-item">
-                    <a href="#" class="modern-nav-link">
-                        <i class="fas fa-upload"></i>
-                        <span>Bulk</span>
-                    </a>
-                    <div class="modern-dropdown-menu">
-                        <a href="{% url 'bulk:home' %}" class="modern-dropdown-item">
-                            <i class="fas fa-list"></i>
-                            <span>Bulk Jobs</span>
-                        </a>
-                        <a href="#" class="modern-dropdown-item">
-                            <i class="fas fa-plus-circle"></i>
-                            <span>Create Job</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- REST Explorer -->
-                <div class="modern-nav-item">
-                    <a href="{% url 'rest_explorer:home' %}" class="modern-nav-link">
-                        <i class="fas fa-globe"></i>
-                        <span>REST</span>
-                    </a>
-                </div>
-
-                <!-- Streaming -->
-                <div class="modern-nav-item">
-                    <a href="{% url 'streaming:home' %}" class="modern-nav-link">
-                        <i class="fas fa-stream"></i>
-                        <span>Streaming</span>
-                    </a>
+                <div class="fp-activity-item" title="Logout">
+                    <a href="{% url 'authentication:logout' %}" style="color: inherit;"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
+        </nav>
 
-            <!-- User Menu -->
-            <div class="modern-nav-user">
-                <div class="modern-nav-item">
-                    <a href="#" class="modern-nav-link modern-nav-user-link">
-                        <i class="fas fa-user-circle"></i>
-                        <span>{{ sf_user_info.username|default:"User" }}</span>
-                    </a>
-                    <div class="modern-dropdown-menu modern-dropdown-menu-right">
-                        <a href="{% url 'authentication:session_info' %}" class="modern-dropdown-item">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Session Info</span>
-                        </a>
-                        <a href="{% url 'authentication:settings' %}" class="modern-dropdown-item">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                        <div class="modern-dropdown-divider"></div>
-                        <a href="{% url 'authentication:logout' %}" class="modern-dropdown-item modern-dropdown-item-danger">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </div>
+        <!-- 2. Sidebar Area (Content injected by pages) -->
+        <aside class="fp-sidebar">
+            {% block sidebar %}
+            <!-- Default Sidebar Content if not overridden -->
+            <div class="fp-sidebar-header">EXPLORER</div>
+            <div class="fp-sidebar-content">
+                <div style="padding: 20px; text-align: center; color: #94a3b8;">
+                    No Sidebar Content
                 </div>
             </div>
-            {% endif %}
-        </div>
-    </nav>
+            {% endblock %}
+        </aside>
 
-    <!-- Connection Info Bar -->
-    {% if sf_connection %}
-    <div class="connection-bar">
-        <div class="container-fluid">
-            <i class="fas fa-plug"></i>
-            Connected to <strong>{{ sf_user_info.organization_name }}</strong>
-            ({{ sf_user_info.environment }})
-            as <strong>{{ sf_user_info.username }}</strong>
-            <span class="float-end">
-                API v{{ sf_user_info.api_version }}
-            </span>
-        </div>
-    </div>
-    {% endif %}
+        <!-- 3. Main Editor Area -->
+        <main class="fp-editor-area">
+            {% block content %}{% endblock %}
+        </main>
 
-    <!-- Messages -->
-    {% if messages %}
-    <div class="container-fluid mt-3">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <!-- Main Content -->
-    <div class="container-fluid mt-3">
-        {% block content %}{% endblock %}
+        <!-- 4. Status Bar -->
+        <footer class="fp-status-bar">
+            <div class="d-flex">
+                <div class="fp-status-item">
+                    <i class="fas fa-cloud"></i>
+                    <span>{{ sf_user_info.organization_name|default:"Not Connected" }}</span>
+                </div>
+                <div class="fp-status-item">
+                    <i class="fas fa-user"></i>
+                    <span>{{ sf_user_info.username }}</span>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="fp-status-item">
+                    <span>API v{{ sf_user_info.api_version|default:"62.0" }}</span>
+                </div>
+                <div class="fp-status-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>Online</span>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-3 mt-5">
-        <div class="container-fluid">
-            <small>
-                Django Workbench v{{ workbench_version }} |
-                Salesforce Developer Tool |
-                <a href="https://github.com/your-repo/django-workbench" target="_blank">GitHub</a>
-            </small>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS and jQuery (Local) -->
+    <!-- Scripts -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-
-    <!-- Custom JS -->
     <script src="{% static 'js/workbench.js' %}"></script>
-
     {% block extra_js %}{% endblock %}
 </body>
 </html>

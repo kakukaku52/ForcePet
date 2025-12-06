@@ -4,508 +4,180 @@
 {% block title %}Record Detail - {{ object_type }} - Django Workbench{% endblock %}
 
 {% block extra_css %}
-<!-- Salesforce Lightning Design System CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
+<!-- Enterprise IDE Layout -->
+<link href="{% static 'css/forcepet-studio.css' %}" rel="stylesheet">
 <style>
-    /* ===== Phoenix Framework 风格 ===== */
-
-    /* 全局样式 */
-    body {
-        background-color: #F9FAFB;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        color: #111827;
-    }
-
-    .container-fluid {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }
-
-    /* Record Header Card */
-    .record-header {
-        background: #FFFFFF;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
-        padding: 1.5rem 2rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .record-header h2 {
-        font-size: 1.875rem;
-        font-weight: 700;
-        color: #111827;
-        margin: 0 0 0.5rem 0;
-        letter-spacing: -0.02em;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .record-header h2 i {
-        font-size: 1.5rem;
-        color: #3B82F6;
-    }
-
-    .record-header p {
-        font-size: 0.875rem;
-        color: #6B7280;
-        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-        margin: 0;
-        padding: 0.5rem 0.875rem;
-        background: #F9FAFB;
-        border: 1px solid #E5E7EB;
-        border-radius: 6px;
-        display: inline-block;
-    }
-
-    /* Action Buttons */
-    .action-buttons {
-        display: flex;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-        flex-wrap: wrap;
-    }
-
-    /* Phoenix 精致按钮样式 */
-    .btn {
-        border-radius: 6px !important;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-        font-weight: 500 !important;
-        font-size: 0.875rem !important;
-        padding: 0.5rem 1rem !important;
-        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.5rem !important;
-        border: 1px solid transparent !important;
-        cursor: pointer !important;
-        letter-spacing: 0.01em !important;
-        min-height: 38px !important;
-    }
-
-    .btn-primary {
-        background: #3B82F6 !important;
-        border: 1px solid #3B82F6 !important;
-        color: white !important;
-        font-weight: 600 !important;
-    }
-
-    .btn-primary:hover {
-        background: #2563EB !important;
-        border-color: #2563EB !important;
-    }
-
-    .btn-primary:active {
-        background: #1D4ED8 !important;
-        border-color: #1D4ED8 !important;
-    }
-
-    .btn-success {
-        background: #10B981 !important;
-        border: 1px solid #10B981 !important;
-        color: white !important;
-        font-weight: 600 !important;
-    }
-
-    .btn-success:hover {
-        background: #059669 !important;
-        border-color: #059669 !important;
-    }
-
-    .btn-success:active {
-        background: #047857 !important;
-        border-color: #047857 !important;
-    }
-
-    .btn-danger {
-        background: #EF4444 !important;
-        border: 1px solid #EF4444 !important;
-        color: white !important;
-        font-weight: 600 !important;
-    }
-
-    .btn-danger:hover {
-        background: #DC2626 !important;
-        border-color: #DC2626 !important;
-    }
-
-    .btn-danger:active {
-        background: #B91C1C !important;
-        border-color: #B91C1C !important;
-    }
-
-    .btn-info {
-        background: #3B82F6 !important;
-        border: 1px solid #3B82F6 !important;
-        color: white !important;
-        font-weight: 600 !important;
-    }
-
-    .btn-info:hover {
-        background: #2563EB !important;
-        border-color: #2563EB !important;
-    }
-
-    .btn-secondary {
-        background: #FFFFFF !important;
-        border: 1px solid #E5E7EB !important;
-        color: #374151 !important;
-        font-weight: 500 !important;
-    }
-
-    .btn-secondary:hover {
-        background: #F9FAFB !important;
-        border-color: #D1D5DB !important;
-        color: #1F2937 !important;
-    }
-
-    .btn-secondary:active {
-        background: #F3F4F6 !important;
-    }
-
-    /* Fields Table Card */
-    .card {
-        background: #FFFFFF;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    .card-body {
+    /* Local overrides for record detail specific styling */
+    .fp-record-form-container {
         padding: 0;
-        background: #FFFFFF;
+        height: 100%;
+        overflow: auto;
     }
-
-    /* Field Grid */
-    .field-grid {
-        display: grid;
-        grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) minmax(300px, 2fr) minmax(100px, 0.5fr);
-        gap: 1rem;
-        align-items: center;
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid #F3F4F6;
-        background: white;
-        transition: all 0.15s ease;
+    
+    .edit-mode .fp-table input,
+    .edit-mode .fp-table select,
+    .edit-mode .fp-table textarea {
+        border: 1px solid #3b82f6;
+        background-color: #fff;
     }
-
-    .field-grid:hover:not(.header) {
-        background: #F9FAFB;
-    }
-
-    .field-grid.header {
-        background: #F9FAFB;
-        color: #374151;
-        font-weight: 700;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.075em;
-        border-bottom: 1px solid #E5E7EB;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-
-    .field-grid > div {
-        color: #111827;
-        font-size: 0.875rem;
-    }
-
-    .field-grid.header > div {
-        color: #6B7280;
-    }
-
-    /* Field Values */
-    .field-value {
-        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-        font-size: 0.875rem;
-        word-break: break-word;
-        color: #111827;
-    }
-
-    .field-value span {
-        display: block;
-        padding: 0.5rem 0.75rem;
-        background: #F9FAFB;
-        border-radius: 6px;
-        border: 1px solid #E5E7EB;
-    }
-
-    .field-value input,
-    .field-value textarea,
-    .field-value select {
+    
+    .fp-input-cell {
         width: 100%;
-        padding: 0.5rem 0.75rem;
-        border: 1px solid #D1D5DB;
-        border-radius: 6px;
-        background: white;
-        color: #111827;
-        font-size: 0.875rem;
-        transition: all 0.15s ease;
-        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-    }
-
-    .field-value input:focus,
-    .field-value textarea:focus,
-    .field-value select:focus {
-        border-color: #3B82F6;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        outline: none;
-    }
-
-    .field-value textarea {
-        min-height: 80px;
-        resize: vertical;
-    }
-
-    /* Edit Mode */
-    .edit-mode .field-value.editable span {
-        display: none;
-    }
-
-    .edit-mode .field-value.editable {
-        background: #FFFBEB;
-        padding: 0.25rem;
-        border-radius: 6px;
-    }
-
-    /* Field Types */
-    .field-grid > div:last-child {
-        font-size: 0.75rem;
-        color: #6B7280;
-        padding: 0.25rem 0.625rem;
-        background: #F3F4F6;
-        border-radius: 12px;
-        text-align: center;
-        font-weight: 600;
-        border: 1px solid #E5E7EB;
-    }
-
-    /* Modal Improvements */
-    .modal-content {
-        border-radius: 12px;
-        border: 1px solid #E5E7EB;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    .modal-header {
-        background: #FFFFFF;
-        color: #111827;
-        border-radius: 12px 12px 0 0;
-        border-bottom: 1px solid #E5E7EB;
-        padding: 1.25rem 1.5rem;
-    }
-
-    .modal-title {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: #111827;
-    }
-
-    .modal-body {
-        padding: 1.5rem;
-    }
-
-    .modal-footer {
-        border-top: 1px solid #E5E7EB;
-        padding: 1rem 1.5rem;
-        background: #F9FAFB;
-        border-radius: 0 0 12px 12px;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-        .field-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-        }
-
-        .field-grid > div:nth-child(3),
-        .field-grid > div:nth-child(4) {
-            grid-column: span 1;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .field-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .action-buttons {
-            flex-direction: column;
-        }
-
-        .action-buttons .btn {
-            width: 100%;
-        }
-
-        .container-fluid {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-    }
-
-    /* 简洁的滚动条样式 */
-    *::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-
-    *::-webkit-scrollbar-track {
-        background: #F9FAFB;
-        border-radius: 5px;
-    }
-
-    *::-webkit-scrollbar-thumb {
-        background: #D1D5DB;
-        border-radius: 5px;
-        border: 2px solid #F9FAFB;
-        transition: all 0.15s ease;
-    }
-
-    *::-webkit-scrollbar-thumb:hover {
-        background: #9CA3AF;
-    }
-
-    *::-webkit-scrollbar-thumb:active {
-        background: #6B7280;
-    }
-
-    /* API Name 样式 */
-    .api-name {
-        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-        color: #6B7280;
-        font-size: 0.8125rem;
-    }
-
-    /* 淡入动画 */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .card, .record-header {
-        animation: fadeIn 0.3s ease-out;
+        border: 1px solid transparent;
+        background: transparent;
+        padding: 4px 8px;
+        font-size: 12px;
+        border-radius: 3px;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="record-header">
-        <h2>
-            <i class="fas fa-file-alt"></i>
-            {{ object_type }} Record
-        </h2>
-        <p class="mb-0"><strong>ID:</strong> {{ record_id }}</p>
-    </div>
-
-    <div class="action-buttons">
-        <button class="btn btn-primary" id="editBtn" onclick="toggleEditMode()">
-            <i class="fas fa-edit"></i> 编辑
-        </button>
-        <button class="btn btn-success" id="saveBtn" onclick="saveRecord()" style="display: none;">
-            <i class="fas fa-save"></i> 保存
-        </button>
-        <button class="btn btn-secondary" id="cancelBtn" onclick="cancelEdit()" style="display: none;">
-            <i class="fas fa-times"></i> 取消
-        </button>
-        <button class="btn btn-danger" onclick="confirmDelete()">
-            <i class="fas fa-trash"></i> 删除
-        </button>
-        <button class="btn btn-info" onclick="viewInSalesforce()">
-            <i class="fas fa-external-link-alt"></i> 在 Salesforce 中查看
-        </button>
-        <a href="{% url 'query:index' %}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> 返回查询
-        </a>
-    </div>
-
-    <div class="card">
-        <div class="card-body">
-            <div class="field-grid header">
-                <div>字段标签</div>
-                <div>API 名称</div>
-                <div>值</div>
-                <div>类型</div>
+<div class="ide-layout">
+    <!-- Sidebar -->
+    <aside class="ide-sidebar">
+        <div class="fp-sidebar-header">RECORD INFO</div>
+        <div class="fp-sidebar-content">
+            <div class="fp-section">
+                <div class="fp-section-header" onclick="$(this).parent().toggleClass('collapsed')">
+                    <i class="fas fa-chevron-down"></i> PROPERTIES
+                </div>
+                <div class="fp-section-body" style="font-size: 12px;">
+                    <div style="padding: 4px 0;">
+                        <span style="color: #64748b;">Object:</span> 
+                        <span style="font-weight: 600;">{{ object_type }}</span>
+                    </div>
+                    <div style="padding: 4px 0; word-break: break-all;">
+                        <span style="color: #64748b;">ID:</span> 
+                        <span style="font-family: monospace;">{{ record_id }}</span>
+                    </div>
+                </div>
             </div>
+        </div>
+    </aside>
 
+    <!-- Main Area -->
+    <main class="fp-editor-area">
+        <!-- Toolbar -->
+        <div class="fp-toolbar">
+            <div class="d-flex align-items-center gap-2">
+                <a href="{% url 'query:index' %}" class="fp-btn fp-btn-icon" title="クエリに戻る">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div style="font-weight: 600; font-size: 13px;">
+                    {{ object_type }} / {{ record_id }}
+                </div>
+            </div>
+            
+            <div style="flex: 1;"></div>
+            
+            <!-- Action Buttons -->
+            <button class="fp-btn fp-btn-secondary" onclick="viewInSalesforce()" title="Salesforceで開く">
+                <i class="fas fa-external-link-alt"></i> Salesforce
+            </button>
+            
+            <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;"></div>
+            
+            <button class="fp-btn fp-btn-primary" id="editBtn" onclick="toggleEditMode()">
+                <i class="fas fa-edit"></i> 編集
+            </button>
+            
+            <button class="fp-btn fp-btn-secondary" id="cancelBtn" onclick="cancelEdit()" style="display: none;">
+                キャンセル
+            </button>
+            
+            <button class="fp-btn fp-btn-primary" id="saveBtn" onclick="saveRecord()" style="display: none;">
+                <i class="fas fa-save"></i> 保存
+            </button>
+            
+            <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;"></div>
+            
+            <button class="fp-btn fp-btn-secondary" style="color: #ef4444; border-color: #fecaca;" onclick="confirmDelete()">
+                <i class="fas fa-trash"></i> 削除
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="fp-record-form-container">
             <form id="recordForm">
                 {% csrf_token %}
-                {% for field in fields %}
-                <div class="field-grid">
-                    <div>{{ field.label }}</div>
-                    <div class="api-name">{{ field.name }}</div>
-                    <div class="field-value {% if field.updateable %}editable{% endif %}" data-field="{{ field.name }}">
-                        {% if field.updateable %}
-                            {% if field.type == 'boolean' %}
-                                <select name="{{ field.name }}" disabled class="edit-field">
-                                    <option value="">--None--</option>
-                                    <option value="true" {% if field.value %}selected{% endif %}>True</option>
-                                    <option value="false" {% if field.value == False %}selected{% endif %}>False</option>
-                                </select>
-                            {% elif field.type == 'picklist' %}
-                                <select name="{{ field.name }}" disabled class="edit-field">
-                                    <option value="">--None--</option>
-                                    {% for option in field.picklistValues %}
-                                        <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>
-                                            {{ option.label }}
-                                        </option>
-                                    {% endfor %}
-                                </select>
-                            {% elif field.type == 'textarea' %}
-                                <textarea name="{{ field.name }}" disabled class="edit-field">{{ field.value|default:"" }}</textarea>
-                            {% elif field.type == 'date' %}
-                                <input type="date" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
-                            {% elif field.type == 'datetime' %}
-                                <input type="datetime-local" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
-                            {% elif field.type == 'double' or field.type == 'currency' or field.type == 'percent' %}
-                                <input type="number" step="any" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
-                            {% elif field.type == 'int' %}
-                                <input type="number" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
-                            {% else %}
-                                <input type="text" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field">
-                            {% endif %}
-                            <span>{{ field.value|default:"-" }}</span>
-                        {% else %}
-                            <span>{{ field.value|default:"-" }}</span>
-                        {% endif %}
-                    </div>
-                    <div>{{ field.type }}</div>
-                </div>
-                {% endfor %}
+                <table class="fp-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">項目ラベル</th>
+                            <th style="width: 25%;">API 参照名</th>
+                            <th style="width: 40%;">値</th>
+                            <th style="width: 10%;">データ型</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for field in fields %}
+                        <tr>
+                            <td>{{ field.label }}</td>
+                            <td style="font-family: monospace; color: #64748b;">{{ field.name }}</td>
+                            <td>
+                                {% if field.updateable %}
+                                    {% if field.type == 'boolean' %}
+                                        <select name="{{ field.name }}" disabled class="edit-field fp-input-cell">
+                                            <option value="">--なし--</option>
+                                            <option value="true" {% if field.value %}selected{% endif %}>True</option>
+                                            <option value="false" {% if field.value == False %}selected{% endif %}>False</option>
+                                        </select>
+                                    {% elif field.type == 'picklist' %}
+                                        <select name="{{ field.name }}" disabled class="edit-field fp-input-cell">
+                                            <option value="">--なし--</option>
+                                            {% for option in field.picklistValues %}
+                                                <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>
+                                                    {{ option.label }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    {% elif field.type == 'textarea' %}
+                                        <textarea name="{{ field.name }}" disabled class="edit-field fp-input-cell" rows="1">{{ field.value|default:"" }}</textarea>
+                                    {% elif field.type == 'date' %}
+                                        <input type="date" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                    {% elif field.type == 'datetime' %}
+                                        <input type="datetime-local" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                    {% elif field.type == 'double' or field.type == 'currency' or field.type == 'percent' %}
+                                        <input type="number" step="any" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                    {% elif field.type == 'int' %}
+                                        <input type="number" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                    {% else %}
+                                        <input type="text" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                    {% endif %}
+                                {% else %}
+                                    <span style="padding: 4px 8px; display: block;">{{ field.value|default:"-" }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="fp-type-badge">{{ field.type }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </form>
         </div>
-    </div>
+    </main>
 </div>
 
-<!-- Delete Confirmation Modal -->
+<!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="fas fa-exclamation-triangle" style="color: #EF4444;"></i>
-                    确认删除
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-light border-bottom p-3">
+                <h5 class="modal-title h6 text-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>削除の確認
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                <p style="font-size: 0.9375rem; color: #374151;">确定要删除这条 <strong>{{ object_type }}</strong> 记录吗？</p>
-                <p style="color: #DC2626; font-weight: 600; margin: 0;">
-                    <i class="fas fa-exclamation-circle"></i>
-                    此操作无法撤销。
-                </p>
+            <div class="modal-body p-4">
+                <p>本当にこの <strong>{{ object_type }}</strong> レコードを削除しますか？</p>
+                <p class="text-danger fw-bold small mb-0">この操作は取り消せません。</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-danger" onclick="deleteRecord()">删除记录</button>
+            <div class="modal-footer bg-light border-top p-2">
+                <button type="button" class="fp-btn fp-btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                <button type="button" class="fp-btn fp-btn-primary" style="background-color: #ef4444; border-color: #ef4444;" onclick="deleteRecord()">削除</button>
             </div>
         </div>
     </div>
@@ -513,7 +185,6 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/workbench.js' %}"></script>
 <script>
 let originalValues = {};
 let editMode = false;
@@ -523,6 +194,9 @@ function toggleEditMode() {
     document.querySelectorAll('.edit-field').forEach(field => {
         field.disabled = false;
         originalValues[field.name] = field.value;
+        // Visual feedback
+        field.style.border = '1px solid #3b82f6';
+        field.style.background = '#fff';
     });
 
     document.getElementById('editBtn').style.display = 'none';
@@ -536,6 +210,9 @@ function cancelEdit() {
     document.querySelectorAll('.edit-field').forEach(field => {
         field.disabled = true;
         field.value = originalValues[field.name] || '';
+        // Reset visual
+        field.style.border = '1px solid transparent';
+        field.style.background = 'transparent';
     });
 
     document.getElementById('editBtn').style.display = 'inline-flex';
@@ -546,8 +223,6 @@ function cancelEdit() {
 
 function saveRecord() {
     const formData = new FormData(document.getElementById('recordForm'));
-
-    // Only include changed fields
     const changedData = new FormData();
     changedData.append('csrfmiddlewaretoken', formData.get('csrfmiddlewaretoken'));
 
@@ -560,7 +235,7 @@ function saveRecord() {
     });
 
     if (!hasChanges) {
-        workbench.showToast('没有需要保存的更改', 'info');
+        workbench.showToast('No changes to save', 'info');
         return;
     }
 
@@ -571,20 +246,27 @@ function saveRecord() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            workbench.showToast('记录更新成功', 'success');
+            workbench.showToast('Record updated', 'success');
             location.reload();
         } else {
-            workbench.showToast('更新记录时出错: ' + data.error, 'error');
+            workbench.showToast('Update failed: ' + data.error, 'error');
         }
     })
     .catch(error => {
-        workbench.showToast('更新记录时出错: ' + error, 'error');
+        workbench.showToast('Update failed: ' + error, 'error');
     });
 }
 
 function confirmDelete() {
-    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-    modal.show();
+    const modalEl = document.getElementById('deleteModal');
+    // Use native logic or Bootstrap if available
+    if (window.bootstrap) {
+        new bootstrap.Modal(modalEl).show();
+    } else {
+        modalEl.classList.add('show');
+        modalEl.style.display = 'block';
+        modalEl.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    }
 }
 
 function deleteRecord() {
@@ -600,14 +282,14 @@ function deleteRecord() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            workbench.showToast('记录删除成功', 'success');
+            workbench.showToast('Record deleted', 'success');
             window.location.href = data.redirect_url;
         } else {
-            workbench.showToast('删除记录时出错: ' + data.error, 'error');
+            workbench.showToast('Delete failed: ' + data.error, 'error');
         }
     })
     .catch(error => {
-        workbench.showToast('删除记录时出错: ' + error, 'error');
+        workbench.showToast('Delete failed: ' + error, 'error');
     });
 }
 
@@ -616,5 +298,14 @@ function viewInSalesforce() {
     const recordUrl = `${baseUrl}/lightning/r/{{ object_type }}/{{ record_id }}/view`;
     window.open(recordUrl, '_blank');
 }
+
+// Close modal handlers for native fallback
+document.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const modal = this.closest('.modal');
+        modal.classList.remove('show');
+        modal.style.display = 'none';
+    });
+});
 </script>
 {% endblock %}

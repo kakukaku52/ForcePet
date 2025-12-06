@@ -9982,3 +9982,359 @@ Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
 Unauthorized: /auth/refresh-token/
 "POST /auth/refresh-token/ HTTP/1.1" 401 33
 "GET /auth/login/ HTTP/1.1" 200 37293
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 230456
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10852
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=InquiryExam__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=InquiryExam__c HTTP/1.1" 200 22832
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+"GET /query/ HTTP/1.1" 200 270120
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13177
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 270120
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /query/ HTTP/1.1" 200 270120
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13177
+"GET /query/ HTTP/1.1" 200 266603
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 8742
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+"GET /query/ HTTP/1.1" 200 266603
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+"GET /query/ HTTP/1.1" 200 266603
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+"GET /query/ HTTP/1.1" 200 266603
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 8742
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=LoanCategory__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=LoanCategory__c HTTP/1.1" 200 21926
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Loading fields for object=FinanceBalanceSnapshot user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=FinanceBalanceSnapshot HTTP/1.1" 200 17073
+Loading fields for object=ApplicantExam__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ApplicantExam__c HTTP/1.1" 200 46331
+"GET /query/ HTTP/1.1" 200 266595
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=ApplicantExam__c user=tatuzawa0502@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=ApplicantExam__c HTTP/1.1" 200 46331
+Loading fields for object=Account user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Account HTTP/1.1" 200 131585
+"GET /query/ HTTP/1.1" 200 268427
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=ApplicantExam__c user=tatuzawa0502@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=ApplicantExam__c HTTP/1.1" 200 46331
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 264, in post
+    'columns': all_columns, # Pass all columns to template
+               ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'all_columns' where it is not associated with a value
+"POST /query/ HTTP/1.1" 500 81905
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 264, in post
+    'columns': all_columns, # Pass all columns to template
+               ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'all_columns' where it is not associated with a value
+"POST /query/ HTTP/1.1" 500 81903
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 264, in post
+    'columns': all_columns, # Pass all columns to template
+               ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'all_columns' where it is not associated with a value
+"POST /query/ HTTP/1.1" 500 81906
+Internal Server Error: /query/
+Traceback (most recent call last):
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/guohe/Documents/Project/ForcePet/query/views.py", line 264, in post
+    'columns': all_columns, # Pass all columns to template
+               ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'all_columns' where it is not associated with a value
+"POST /query/ HTTP/1.1" 500 81905
+/Users/guohe/Documents/Project/ForcePet/query/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /query/ HTTP/1.1" 200 267201
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ApplicantExam__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ApplicantExam__c HTTP/1.1" 200 46331
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"POST /query/ HTTP/1.1" 200 31444
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+"POST /query/ HTTP/1.1" 200 34679
+Loading fields for object=User user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=User HTTP/1.1" 200 880015
+"POST /query/ HTTP/1.1" 200 46735
+"POST /query/explain/ HTTP/1.1" 200 463
+"GET /query/export/163/?format=csv HTTP/1.1" 200 651
+"POST /query/explain/ HTTP/1.1" 200 464
+Loading fields for object=ApprovalSubmission user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ApprovalSubmission HTTP/1.1" 200 14730
+"POST /query/ HTTP/1.1" 200 48849
+Loading fields for object=Chat__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 61388
+"GET /query/ HTTP/1.1" 200 267536
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+"GET /query/ HTTP/1.1" 200 267536
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+"GET /query/ HTTP/1.1" 200 269351
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /auth/logout/ HTTP/1.1" 200 6185
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxRbsaO0DHTZ0xW_erDWt0zWAord2U4bVZcR5jL7dX7jdYaGHUF3AyqkKUhH8YhlpGuzuRsg%3D%3D&state=962f0da2-fcf7-4db2-adf7-54633b1eb7e0 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 269351
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/ HTTP/1.1" 200 270552
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"POST /query/ HTTP/1.1" 200 37689
+Loading fields for object=Chat__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 52866
+Loading fields for object=Chat__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 54972
+"GET /query/ HTTP/1.1" 200 271294
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Loading fields for object=Chat__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 44607
+Loading fields for object=Chat__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+"POST /query/ HTTP/1.1" 200 57319
+"POST /query/explain/ HTTP/1.1" 200 482
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+"GET /query/ HTTP/1.1" 200 272019
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 10853
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=ChatList__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=ChatList__c HTTP/1.1" 200 22388
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"POST /query/ HTTP/1.1" 200 38762
+"GET /query/record/ChatList__c/a065h00000JiPiCAAV/ HTTP/1.1" 200 29110
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/ChatList__c/a065h00000JiPiCAAV/ HTTP/1.1" 200 26081
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"POST /auth/refresh-token/ HTTP/1.1" 200 60
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+- Broken pipe from ('127.0.0.1', 54098)
+- Broken pipe from ('127.0.0.1', 54097)
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/images/login-illustration.svg HTTP/1.1" 200 51496
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /static/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/js/workbench.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 32958
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
