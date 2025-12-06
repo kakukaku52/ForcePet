@@ -4,13 +4,13 @@
 {% block title %}ログイン - ForcePet Studio{% endblock %}
 
 {% block extra_css %}
-<!-- Studio Styles are already in base.html, but we ensure no extra overrides here -->
+<link href="{% static 'css/forcepet-studio.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block layout %}
 <div class="fp-auth-wrapper">
     <div class="fp-auth-card">
-        
+
         <!-- Header -->
         <div class="fp-auth-header">
             <div class="fp-auth-logo">
@@ -23,21 +23,21 @@
         <!-- Custom Tabs -->
         <div class="fp-auth-tabs">
             <div class="fp-auth-tab active" id="tab-oauth" onclick="switchTab('oauth')">
-                OAuth ログイン
+                <i class="fas fa-cloud"></i>OAuth ログイン
             </div>
             <div class="fp-auth-tab" id="tab-standard" onclick="switchTab('standard')">
-                標準ログイン
+                <i class="fas fa-key"></i>標準ログイン
             </div>
         </div>
 
         <!-- Alerts -->
         <div id="auth-error" class="fp-alert fp-alert-danger" style="display: none;">
-            <i class="fas fa-exclamation-circle" style="margin-top: 2px;"></i>
+            <i class="fas fa-exclamation-circle"></i>
             <span id="auth-error-msg"></span>
         </div>
-        
+
         <div id="auth-success" class="fp-alert fp-alert-success" style="display: none;">
-            <i class="fas fa-check-circle" style="margin-top: 2px;"></i>
+            <i class="fas fa-check-circle"></i>
             <span id="auth-success-msg"></span>
         </div>
 
@@ -49,7 +49,9 @@
                 <input type="hidden" name="login_type" value="oauth">
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">環境 (Environment)</label>
+                    <label class="fp-form-label">
+                        環境<span class="fp-form-label-hint">(Environment)</span>
+                    </label>
                     <select name="environment" class="fp-select fp-input-lg" onchange="toggleCustomDomain(this.value)">
                         <option value="production">本番 (Production)</option>
                         <option value="sandbox">Sandbox</option>
@@ -63,19 +65,23 @@
                 </div>
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">API バージョン</label>
+                    <label class="fp-form-label">
+                        API バージョン<span class="fp-form-label-hint">(API Version)</span>
+                    </label>
                     <input type="text" name="api_version" class="fp-input fp-input-lg" value="62.0" placeholder="62.0">
                 </div>
 
                 {{ oauth_form.state }}
 
                 <button type="submit" class="fp-btn fp-btn-primary fp-btn-block">
+                    <i class="fab fa-salesforce"></i>
                     Salesforce でログイン
                 </button>
             </form>
             {% else %}
-            <div style="text-align: center; color: #94a3b8; padding: 20px;">
-                OAuth login is not configured.
+            <div class="fp-auth-info">
+                <i class="fas fa-info-circle"></i>
+                <span>OAuth login is not configured. Please use Standard Login or contact your administrator.</span>
             </div>
             {% endif %}
         </div>
@@ -87,22 +93,30 @@
                 <input type="hidden" name="login_type" value="standard">
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">ユーザー名 (Username)</label>
-                    <input type="text" name="username" class="fp-input fp-input-lg" required>
+                    <label class="fp-form-label">
+                        ユーザー名<span class="fp-form-label-hint">(Username)</span>
+                    </label>
+                    <input type="text" name="username" class="fp-input fp-input-lg" placeholder="user@example.com" required>
                 </div>
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">パスワード (Password)</label>
+                    <label class="fp-form-label">
+                        パスワード<span class="fp-form-label-hint">(Password)</span>
+                    </label>
                     <input type="password" name="password" class="fp-input fp-input-lg" required>
                 </div>
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">セキュリティトークン (Security Token)</label>
-                    <input type="text" name="security_token" class="fp-input fp-input-lg" placeholder="Optional">
+                    <label class="fp-form-label">
+                        セキュリティトークン<span class="fp-form-label-hint">(Security Token - Optional)</span>
+                    </label>
+                    <input type="text" name="security_token" class="fp-input fp-input-lg" placeholder="省略可能">
                 </div>
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">環境 (Environment)</label>
+                    <label class="fp-form-label">
+                        環境<span class="fp-form-label-hint">(Environment)</span>
+                    </label>
                     <select name="environment" class="fp-select fp-input-lg" onchange="toggleStandardCustomDomain(this.value)">
                         <option value="production">本番 (Production)</option>
                         <option value="sandbox">Sandbox</option>
@@ -116,18 +130,21 @@
                 </div>
 
                 <div class="fp-form-group">
-                    <label class="fp-form-label">API バージョン</label>
+                    <label class="fp-form-label">
+                        API バージョン<span class="fp-form-label-hint">(API Version)</span>
+                    </label>
                     <input type="text" name="api_version" class="fp-input fp-input-lg" value="62.0">
                 </div>
 
                 <div class="fp-form-group">
-                    <label style="display: flex; align-items: center; font-size: 12px; cursor: pointer;">
-                        <input type="checkbox" name="remember_me" style="margin-right: 6px;">
+                    <label class="fp-checkbox-label">
+                        <input type="checkbox" name="remember_me">
                         ログイン情報を記憶する
                     </label>
                 </div>
 
                 <button type="submit" class="fp-btn fp-btn-primary fp-btn-block">
+                    <i class="fas fa-sign-in-alt"></i>
                     ログイン
                 </button>
             </form>
@@ -135,6 +152,7 @@
 
         <!-- Footer -->
         <div class="fp-auth-footer">
+            <i class="fas fa-shield-alt"></i>
             <span>Protected by ForcePet Security</span>
         </div>
 
@@ -154,6 +172,10 @@ function switchTab(tabName) {
     document.getElementById('form-oauth').style.display = 'none';
     document.getElementById('form-standard').style.display = 'none';
     document.getElementById('form-' + tabName).style.display = 'block';
+
+    // Clear alerts when switching
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-success').style.display = 'none';
 }
 
 // Toggle Custom Domain Inputs
@@ -171,15 +193,15 @@ function toggleStandardCustomDomain(val) {
 $(document).ready(function() {
     $('#standard-login-form').on('submit', function(e) {
         e.preventDefault();
-        
+
         // Reset alerts
         $('#auth-error').hide();
         $('#auth-success').hide();
-        
+
         const btn = $(this).find('button[type="submit"]');
-        const originalText = btn.text();
-        btn.prop('disabled', true).text('Signing in...');
-        
+        const originalHtml = btn.html();
+        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> サインイン中...');
+
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
@@ -193,8 +215,8 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr) {
-                btn.prop('disabled', false).text(originalText);
-                let msg = 'Login failed';
+                btn.prop('disabled', false).html(originalHtml);
+                let msg = 'ログインに失敗しました';
                 if(xhr.responseJSON && xhr.responseJSON.error && xhr.responseJSON.error.message) {
                     msg = xhr.responseJSON.error.message;
                 }
