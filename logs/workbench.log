@@ -10829,3 +10829,80 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 "GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
 Not Found: /favicon.ico
 "GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 275713
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 16335
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Loading fields for object=AIApplicationConfig user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=AIApplicationConfig HTTP/1.1" 200 3245
+"GET /query/ HTTP/1.1" 200 275571
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 16989
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Loading fields for object=AIApplicationConfig user=tatuzawa0502@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=AIApplicationConfig HTTP/1.1" 200 3245
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Loading fields for object=AsyncApexJob user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=AsyncApexJob HTTP/1.1" 200 6351
+"GET /query/ HTTP/1.1" 200 1125009
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 20335
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=AsyncApexJob user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=AsyncApexJob HTTP/1.1" 200 6351
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Loading fields for object=Chat__c user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Chat__c HTTP/1.1" 200 32933
+Loading fields for object=Product__Share user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Product__Share HTTP/1.1" 200 2551
+"POST /query/ HTTP/1.1" 200 43054
+"GET /query/ HTTP/1.1" 200 1124901
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 20335
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Product__Share user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Product__Share HTTP/1.1" 200 2551
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 1125558
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 20863
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=Product__Share user=tatuzawa0502@gmail.com
+"GET /query/api/fields/?object=Product__Share HTTP/1.1" 200 2551
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"POST /query/ HTTP/1.1" 200 42933
+"GET /query/export/181/?format=csv HTTP/1.1" 200 20
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"POST /auth/refresh-token/ HTTP/1.1" 200 60

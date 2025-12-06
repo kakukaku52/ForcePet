@@ -17,26 +17,70 @@
             <i class="fas fa-chevron-down"></i> OBJECTS
         </div>
         <div class="fp-section-body">
-            <div style="padding: 5px 0;">
-                <select id="object-selector" class="fp-select" style="width: 100%;" 
-                        data-has-initial="{{ has_initial_objects|yesno:'true,false' }}"
-                        onchange="handleObjectSelection(this.value)">
-                    <option value="">Select Object...</option>
-                    {% if available_objects.standard %}
-                    <optgroup label="Standard">
-                        {% for obj in available_objects.standard %}
-                        <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
-                        {% endfor %}
-                    </optgroup>
-                    {% endif %}
-                    {% if available_objects.custom %}
-                    <optgroup label="Custom">
-                        {% for obj in available_objects.custom %}
-                        <option value="{{ obj.name }}">{{ obj.label }} ({{ obj.name }})</option>
-                        {% endfor %}
-                    </optgroup>
-                    {% endif %}
-                </select>
+            <!-- Custom Searchable Dropdown -->
+            <div class="fp-searchable-dropdown" id="object-dropdown">
+                <!-- Trigger Button -->
+                <div class="fp-dropdown-trigger" onclick="toggleObjectDropdown()">
+                    <span class="fp-dropdown-text placeholder" id="object-dropdown-text">Select Object...</span>
+                    <i class="fas fa-chevron-down fp-dropdown-arrow"></i>
+                </div>
+
+                <!-- Dropdown Panel -->
+                <div class="fp-dropdown-panel" id="object-dropdown-panel">
+                    <!-- Search Input -->
+                    <div class="fp-dropdown-search">
+                        <div class="fp-dropdown-search-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text"
+                                   class="fp-dropdown-search-input"
+                                   id="object-dropdown-search"
+                                   placeholder="Search objects..."
+                                   autocomplete="off"
+                                   onkeyup="filterObjectDropdown(this.value)"
+                                   onkeydown="handleDropdownKeydown(event)">
+                        </div>
+                    </div>
+
+                    <!-- Options List -->
+                    <div class="fp-dropdown-options" id="object-dropdown-options">
+                        {% if available_objects.standard %}
+                        <div class="fp-dropdown-group" data-group="standard">
+                            <div class="fp-dropdown-group-label">Standard</div>
+                            {% for obj in available_objects.standard %}
+                            <div class="fp-dropdown-option"
+                                 data-value="{{ obj.name }}"
+                                 data-label="{{ obj.label }}"
+                                 data-search="{{ obj.label|lower }} {{ obj.name|lower }}"
+                                 onclick="selectObject('{{ obj.name }}', '{{ obj.label }}')">
+                                <span class="fp-dropdown-option-label">{{ obj.label }}</span>
+                                <span class="fp-dropdown-option-api">{{ obj.name }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if available_objects.custom %}
+                        <div class="fp-dropdown-group" data-group="custom">
+                            <div class="fp-dropdown-group-label">Custom</div>
+                            {% for obj in available_objects.custom %}
+                            <div class="fp-dropdown-option"
+                                 data-value="{{ obj.name }}"
+                                 data-label="{{ obj.label }}"
+                                 data-search="{{ obj.label|lower }} {{ obj.name|lower }}"
+                                 onclick="selectObject('{{ obj.name }}', '{{ obj.label }}')">
+                                <span class="fp-dropdown-option-label">{{ obj.label }}</span>
+                                <span class="fp-dropdown-option-api">{{ obj.name }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Result Count -->
+                    <div class="fp-dropdown-count" id="object-dropdown-count"></div>
+                </div>
+
+                <!-- Hidden input to store selected value -->
+                <input type="hidden" id="object-selector-value" data-has-initial="{{ has_initial_objects|yesno:'true,false' }}">
             </div>
         </div>
     </div>
@@ -136,6 +180,7 @@
                 </div>
             </div>
 
+            {% if results.records %}
             <!-- Table -->
             <div class="fp-table-container">
                 <table class="fp-table">
@@ -160,7 +205,7 @@
                                     {% if value|is_subquery %}
                                         {% with unique_id=forloop.parentloop.counter|make_subquery_id:forloop.counter %}
                                             {{ value.records|json_script:unique_id }}
-                                            <span class="fp-badge subquery-badge-btn" 
+                                            <span class="fp-badge subquery-badge-btn"
                                                   style="background:#e0f2fe; color:#0284c7; padding:2px 6px; border-radius:10px; font-size:10px; cursor:pointer;"
                                                   data-record-id="{{ unique_id }}">
                                                 {{ value.count }} records
@@ -190,10 +235,19 @@
                 {% endif %}
             </div>
             {% else %}
-            <!-- Empty State -->
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #cbd5e1; flex-direction: column;">
-                <i class="fas fa-terminal" style="font-size: 48px; margin-bottom: 10px;"></i>
-                <div>Execute a query to see results</div>
+            <!-- No Records Found State -->
+            <div class="fp-empty-state">
+                <i class="fas fa-inbox"></i>
+                <div class="fp-empty-state-title">No records found</div>
+                <div class="fp-empty-state-desc">クエリは正常に実行されましたが、条件に一致するレコードがありません。</div>
+            </div>
+            {% endif %}
+            {% else %}
+            <!-- Empty State (No Query Executed) -->
+            <div class="fp-empty-state">
+                <i class="fas fa-terminal"></i>
+                <div class="fp-empty-state-title">Execute a query to see results</div>
+                <div class="fp-empty-state-desc">SOQLクエリを入力して「Run」ボタンをクリックしてください。</div>
             </div>
             {% endif %}
         </div>
@@ -268,6 +322,166 @@ let currentFields = [];
 let selectedFields = new Set();
 let allObjectsList = [];
 let soqlEditor = null;
+let dropdownHighlightIndex = -1;
+
+// ========================================
+// Custom Searchable Dropdown Functions
+// ========================================
+
+window.toggleObjectDropdown = function() {
+    const panel = document.getElementById('object-dropdown-panel');
+    const trigger = document.querySelector('.fp-dropdown-trigger');
+    const searchInput = document.getElementById('object-dropdown-search');
+
+    if (panel.classList.contains('open')) {
+        closeObjectDropdown();
+    } else {
+        panel.classList.add('open');
+        trigger.classList.add('active');
+        searchInput.value = '';
+        filterObjectDropdown('');
+        searchInput.focus();
+        updateDropdownCount();
+    }
+};
+
+window.closeObjectDropdown = function() {
+    const panel = document.getElementById('object-dropdown-panel');
+    const trigger = document.querySelector('.fp-dropdown-trigger');
+
+    panel.classList.remove('open');
+    trigger.classList.remove('active');
+    dropdownHighlightIndex = -1;
+    clearHighlight();
+};
+
+window.filterObjectDropdown = function(searchTerm) {
+    const options = document.querySelectorAll('#object-dropdown-options .fp-dropdown-option');
+    const groups = document.querySelectorAll('#object-dropdown-options .fp-dropdown-group');
+    const term = searchTerm.toLowerCase().trim();
+
+    let visibleCount = 0;
+    dropdownHighlightIndex = -1;
+    clearHighlight();
+
+    options.forEach(opt => {
+        const searchData = opt.dataset.search || '';
+        const matches = term === '' || searchData.includes(term);
+        opt.style.display = matches ? 'flex' : 'none';
+        if (matches) visibleCount++;
+    });
+
+    // Hide empty groups
+    groups.forEach(group => {
+        const visibleOptions = group.querySelectorAll('.fp-dropdown-option[style*="flex"], .fp-dropdown-option:not([style*="display"])');
+        const hasVisible = Array.from(group.querySelectorAll('.fp-dropdown-option')).some(opt => opt.style.display !== 'none');
+        group.style.display = hasVisible ? 'block' : 'none';
+    });
+
+    updateDropdownCount(visibleCount);
+
+    // Show empty state if no results
+    let emptyEl = document.getElementById('object-dropdown-empty');
+    if (visibleCount === 0) {
+        if (!emptyEl) {
+            emptyEl = document.createElement('div');
+            emptyEl.id = 'object-dropdown-empty';
+            emptyEl.className = 'fp-dropdown-empty';
+            emptyEl.innerHTML = '<i class="fas fa-search"></i>No objects found';
+            document.getElementById('object-dropdown-options').appendChild(emptyEl);
+        }
+        emptyEl.style.display = 'block';
+    } else if (emptyEl) {
+        emptyEl.style.display = 'none';
+    }
+};
+
+window.updateDropdownCount = function(count) {
+    const countEl = document.getElementById('object-dropdown-count');
+    const allOptions = document.querySelectorAll('#object-dropdown-options .fp-dropdown-option');
+    const total = allOptions.length;
+
+    if (count === undefined) {
+        count = Array.from(allOptions).filter(opt => opt.style.display !== 'none').length;
+    }
+
+    countEl.textContent = `${count} of ${total} objects`;
+};
+
+window.selectObject = function(value, label) {
+    const textEl = document.getElementById('object-dropdown-text');
+    const hiddenInput = document.getElementById('object-selector-value');
+
+    // Update display
+    textEl.textContent = `${label} (${value})`;
+    textEl.classList.remove('placeholder');
+
+    // Update hidden input
+    hiddenInput.value = value;
+
+    // Mark selected option
+    document.querySelectorAll('#object-dropdown-options .fp-dropdown-option').forEach(opt => {
+        opt.classList.toggle('selected', opt.dataset.value === value);
+    });
+
+    // Close dropdown
+    closeObjectDropdown();
+
+    // Trigger the existing object selection handler
+    handleObjectSelection(value);
+};
+
+window.handleDropdownKeydown = function(event) {
+    const options = Array.from(document.querySelectorAll('#object-dropdown-options .fp-dropdown-option'))
+        .filter(opt => opt.style.display !== 'none');
+
+    if (options.length === 0) return;
+
+    switch (event.key) {
+        case 'ArrowDown':
+            event.preventDefault();
+            dropdownHighlightIndex = Math.min(dropdownHighlightIndex + 1, options.length - 1);
+            updateHighlight(options);
+            break;
+        case 'ArrowUp':
+            event.preventDefault();
+            dropdownHighlightIndex = Math.max(dropdownHighlightIndex - 1, 0);
+            updateHighlight(options);
+            break;
+        case 'Enter':
+            event.preventDefault();
+            if (dropdownHighlightIndex >= 0 && options[dropdownHighlightIndex]) {
+                const opt = options[dropdownHighlightIndex];
+                selectObject(opt.dataset.value, opt.dataset.label);
+            }
+            break;
+        case 'Escape':
+            event.preventDefault();
+            closeObjectDropdown();
+            break;
+    }
+};
+
+function updateHighlight(options) {
+    clearHighlight();
+    if (dropdownHighlightIndex >= 0 && options[dropdownHighlightIndex]) {
+        options[dropdownHighlightIndex].classList.add('highlighted');
+        options[dropdownHighlightIndex].scrollIntoView({ block: 'nearest' });
+    }
+}
+
+function clearHighlight() {
+    document.querySelectorAll('#object-dropdown-options .fp-dropdown-option.highlighted')
+        .forEach(opt => opt.classList.remove('highlighted'));
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('object-dropdown');
+    if (dropdown && !dropdown.contains(event.target)) {
+        closeObjectDropdown();
+    }
+});
 
 // Monaco Init
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
@@ -328,8 +542,8 @@ require(['vs/editor/editor.main'], function() {
 
 // Init
 $(document).ready(function() {
-    const selector = $('#object-selector');
-    const hasInitialObjects = selector.data('has-initial') === true || selector.data('has-initial') === 'true';
+    const hiddenInput = document.getElementById('object-selector-value');
+    const hasInitialObjects = hiddenInput && (hiddenInput.dataset.hasInitial === 'true');
 
     if (hasInitialObjects) {
         extractObjectsFromDOM();
@@ -349,7 +563,7 @@ $(document).ready(function() {
                 alert('Error: Subquery data not found.');
                 return;
             }
-            
+
             const records = JSON.parse(scriptEl.textContent);
             showSubqueryRecords(records);
         } catch (err) {
@@ -361,9 +575,11 @@ $(document).ready(function() {
 
 function extractObjectsFromDOM() {
     allObjectsList = [];
-    $('#object-selector option').each(function() {
-        const val = $(this).val();
-        if (val) allObjectsList.push({ name: val, label: $(this).text() });
+    document.querySelectorAll('#object-dropdown-options .fp-dropdown-option').forEach(opt => {
+        allObjectsList.push({
+            name: opt.dataset.value,
+            label: opt.dataset.label
+        });
     });
 }
 
@@ -382,85 +598,75 @@ window.handleObjectSelection = function(objectName) {
 
 function restoreLastSelectedObject() {
     const last = localStorage.getItem('lastSelectedObject');
-    if (last && $('#object-selector option[value="' + last + '"]').length > 0) {
-        $('#object-selector').val(last);
-        handleObjectSelection(last);
+    if (!last) return;
+
+    const option = document.querySelector(`#object-dropdown-options .fp-dropdown-option[data-value="${last}"]`);
+    if (option) {
+        selectObject(option.dataset.value, option.dataset.label);
     }
 }
 
 function loadObjects() {
     $.ajax({ url: '/query/api/objects/', xhrFields: { withCredentials: true } })
     .done(function(response) {
-        if (response.success) {
-            const selector = $('#object-selector');
-            selector.empty();
-            selector.append('<option value="">Select Object...</option>');
-            
-            // Populate standard
+        if (response.success && response.objects) {
+            const optionsContainer = document.getElementById('object-dropdown-options');
+            optionsContainer.innerHTML = '';
+
+            allObjectsList = response.objects;
+
+            // Populate standard objects
             const standard = response.objects.filter(o => !o.custom);
             if (standard.length) {
-                const group = $('<optgroup label="Standard"></optgroup>');
-                standard.forEach(o => group.append(new Option(`${o.label} (${o.name})`, o.name)));
-                selector.append(group);
+                const group = document.createElement('div');
+                group.className = 'fp-dropdown-group';
+                group.dataset.group = 'standard';
+                group.innerHTML = '<div class="fp-dropdown-group-label">Standard</div>';
+
+                standard.forEach(o => {
+                    const opt = document.createElement('div');
+                    opt.className = 'fp-dropdown-option';
+                    opt.dataset.value = o.name;
+                    opt.dataset.label = o.label;
+                    opt.dataset.search = `${o.label.toLowerCase()} ${o.name.toLowerCase()}`;
+                    opt.onclick = () => selectObject(o.name, o.label);
+                    opt.innerHTML = `
+                        <span class="fp-dropdown-option-label">${o.label}</span>
+                        <span class="fp-dropdown-option-api">${o.name}</span>
+                    `;
+                    group.appendChild(opt);
+                });
+
+                optionsContainer.appendChild(group);
             }
-            
-            // Populate custom
+
+            // Populate custom objects
             const custom = response.objects.filter(o => o.custom);
             if (custom.length) {
-                const group = $('<optgroup label="Custom"></optgroup>');
-                custom.forEach(o => group.append(new Option(`${o.label} (${o.name})`, o.name)));
-                selector.append(group);
+                const group = document.createElement('div');
+                group.className = 'fp-dropdown-group';
+                group.dataset.group = 'custom';
+                group.innerHTML = '<div class="fp-dropdown-group-label">Custom</div>';
+
+                custom.forEach(o => {
+                    const opt = document.createElement('div');
+                    opt.className = 'fp-dropdown-option';
+                    opt.dataset.value = o.name;
+                    opt.dataset.label = o.label;
+                    opt.dataset.search = `${o.label.toLowerCase()} ${o.name.toLowerCase()}`;
+                    opt.onclick = () => selectObject(o.name, o.label);
+                    opt.innerHTML = `
+                        <span class="fp-dropdown-option-label">${o.label}</span>
+                        <span class="fp-dropdown-option-api">${o.name}</span>
+                    `;
+                    group.appendChild(opt);
+                });
+
+                optionsContainer.appendChild(group);
             }
-            
+
+            updateDropdownCount();
             restoreLastSelectedObject();
-        }
-    });
-} {
-    allObjectsList = [];
-    $('#object-selector option').each(function() {
-        const val = $(this).val();
-        if (val) allObjectsList.push({ name: val, label: $(this).text() });
-    });
-}
-
-window.handleObjectSelection = function(objectName) {
-    if (objectName) {
-        currentObject = objectName;
-        selectedFields = new Set(['Id']);
-        localStorage.setItem('lastSelectedObject', objectName);
-        loadObjectFields(objectName);
-        if (soqlEditor) soqlEditor.setValue(`SELECT Id FROM ${objectName}`);
-        else $('#id_query').val(`SELECT Id FROM ${objectName}`);
-    } else {
-        // Clear
-    }
-}
-
-function restoreLastSelectedObject() {
-    const last = localStorage.getItem('lastSelectedObject');
-    if (last && $('#object-selector option[value="' + last + '"]').length > 0) {
-        $('#object-selector').val(last);
-        handleObjectSelection(last);
-    }
-}
-
-function loadObjects() {
-    $.ajax({ url: '/query/api/objects/', xhrFields: { withCredentials: true } })
-    .done(function(response) {
-        if (response.success) {
-            // Populate select logic (Same as before, omitted for brevity in prompt but preserved in real file)
-            // For now, let's assume server rendering did most of it or this refreshes it
-            // Re-implementing simplified population:
-            const selector = $('#object-selector');
-            selector.empty();
-            selector.append('<option value="">Select Object...</option>');
-            // ... (Logic to populate standard/custom groups)
-            // Assuming available_objects was passed to template, this might be redundant if using server-side
-            // But for async loading:
-            if(response.objects) {
-                allObjectsList = response.objects;
-                // Populate...
-            }
         }
     });
 }
@@ -746,12 +952,27 @@ window.executeQueryAjax = function(e) {
         },
         error: function(xhr) {
             let errorMsg = 'Query execution failed';
-            // Try to find error in response if it's an HTML error page
+            let errorDetail = '';
+
+            // Try to extract error message from response
+            try {
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    errorMsg = xhr.responseJSON.error;
+                } else if (xhr.responseText) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(xhr.responseText, 'text/html');
+                    const alertEl = doc.querySelector('.alert-danger, .error-message');
+                    if (alertEl) {
+                        errorDetail = alertEl.textContent.trim();
+                    }
+                }
+            } catch(e) {}
+
             $results.html(`
-                <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column; color: #ef4444;">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 32px; margin-bottom: 10px;"></i>
-                    <div>${errorMsg}</div>
-                    <div style="font-size: 11px; margin-top: 5px;">Check console for details</div>
+                <div class="fp-empty-state">
+                    <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+                    <div class="fp-empty-state-title" style="color: #ef4444;">${errorMsg}</div>
+                    <div class="fp-empty-state-desc">${errorDetail || 'クエリの実行中にエラーが発生しました。クエリ構文を確認してください。'}</div>
                 </div>
             `);
             console.error(xhr);
