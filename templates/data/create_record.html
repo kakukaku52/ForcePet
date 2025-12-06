@@ -1,1259 +1,518 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Create Salesforce Record - Django Workbench{% endblock %}
+{% block title %}Data Loader - ForcePet Studio{% endblock %}
 
 {% block extra_css %}
-<!-- Salesforce Lightning Design System CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.22.1/styles/salesforce-lightning-design-system.min.css">
+<link href="{% static 'css/forcepet-studio.css' %}" rel="stylesheet">
 <style>
-    /* Figma Dashboard Style */
-    body {
-        background-color: #fafafb;
+    /* Data Loader Specific Styles */
+    .active-op {
+        background-color: #e0f2fe;
+        color: #0284c7;
+        border-radius: 4px;
     }
-
-    .create-record-card {
-        background-color: #ffffff;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        overflow: visible;
-    }
-
-    .create-record-card .card-body {
-        min-height: 620px;
-        overflow: visible;
-        position: relative;
-    }
-
-    /* Modern Select Wrapper */
-    .modern-select-wrapper {
-        position: relative;
-        width: 100%;
-    }
-
-    /* Input Wrapper */
-    .modern-select-input-wrapper {
-        position: relative;
-        width: 100%;
-    }
-
-    /* Modern Select Input */
-    .modern-select-input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: 0.875rem;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        background-color: white;
-        color: #1f2937;
-        transition: all 0.2s ease;
-    }
-
-    .modern-select-input:focus {
-        outline: none;
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
-    }
-
-    .modern-select-input::placeholder {
-        color: #9ca3af;
-        font-size: 0.875rem;
-    }
-
-    /* Placeholder Text (shown when not focused and no selection) */
-    .modern-select-placeholder {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af;
-        font-size: 0.875rem;
-        pointer-events: none;
-        transition: opacity 0.2s ease;
-    }
-
-    .modern-select-input:focus + .modern-select-placeholder {
-        opacity: 0;
-    }
-
-    .modern-select-wrapper.has-value .modern-select-placeholder {
+    
+    .step-container {
         display: none;
-    }
-
-    /* Dropdown Menu */
-    .modern-select-dropdown {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 0;
-        right: 0;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        max-height: 320px;
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1050;
-    }
-
-    .modern-select-wrapper.open .modern-select-dropdown {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    /* Options Container */
-    .modern-select-options {
-        max-height: 320px;
-        overflow-y: auto;
-        padding: 0.5rem;
-    }
-
-    /* Custom Scrollbar */
-    .modern-select-options::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .modern-select-options::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .modern-select-options::-webkit-scrollbar-thumb {
-        background: #d1d5db;
-        border-radius: 3px;
-    }
-
-    .modern-select-options::-webkit-scrollbar-thumb:hover {
-        background: #9ca3af;
-    }
-
-    /* Option Item */
-    .modern-select-option {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.15s ease;
-        color: #374151;
-        font-size: 0.875rem;
-        border: none;
-        background: transparent;
-        width: 100%;
-        text-align: left;
-    }
-
-    .modern-select-option:hover {
-        background-color: #f9fafb;
-        color: #111827;
-    }
-
-    .modern-select-option.active {
-        background-color: #ede9fe;
-        color: #605bff;
-        font-weight: 500;
-    }
-
-    .modern-select-option:focus {
-        outline: none;
-        background-color: #f3f4f6;
-    }
-
-    /* Option Color Dot */
-    .modern-select-option::before {
-        content: '';
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        flex-shrink: 0;
-        background-color: #605bff;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .modern-select-option.active::before {
-        opacity: 1;
-    }
-
-    .modern-select-option:nth-child(3n+1)::before {
-        background-color: #10b981;
-    }
-
-    .modern-select-option:nth-child(3n+2)::before {
-        background-color: #3b82f6;
-    }
-
-    .modern-select-option:nth-child(3n+3)::before {
-        background-color: #f59e0b;
-    }
-
-    /* No Results */
-    .modern-select-no-results {
-        display: flex;
+        height: 100%;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 1rem;
-        color: #9ca3af;
-        font-size: 0.875rem;
-        text-align: center;
     }
-
-    .modern-select-no-results i {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        opacity: 0.5;
-    }
-
-    /* Ensure parent container allows overflow */
-    .form-row-wrapper {
-        position: relative;
-        overflow: visible;
-    }
-
-    .form-group-item {
-        position: relative;
-        overflow: visible;
-    }
-
-    /* SLDS-like styling for form elements */
-    .form-label {
-        color: rgba(3, 2, 41, 0.7);
-        font-weight: 600;
-        font-size: 0.875rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .form-control,
-    .form-select {
-        background-color: white;
-        border: 1px solid #e8e8e9;
-        border-radius: 8px;
-        color: #030229;
-        font-size: 0.875rem;
-        padding: 0.75rem;
-        transition: all 0.2s ease;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
-        outline: 0;
-    }
-
-    .btn-primary {
-        background-color: #2563eb;
-        border-color: #2563eb;
-        border-radius: 6px;
-        font-weight: 600;
-        padding: 0.625rem 1.25rem;
-        font-size: 0.9375rem;
-        transition: all 0.2s ease;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    }
-
-    .btn-primary:hover {
-        background-color: #1d4ed8;
-        border-color: #1d4ed8;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-primary:active {
-        background-color: #1e40af;
-        border-color: #1e40af;
-    }
-
-    .btn-success {
-        background-color: #26c0e2;
-        border-color: #26c0e2;
-        border-radius: 8px;
-        font-weight: 600;
-    }
-
-    .btn-success:hover {
-        background-color: #1fa8c7;
-        border-color: #1fa8c7;
-    }
-
-    .btn-secondary,
-    .btn-outline-secondary {
-        border-radius: 8px;
-        background-color: #fafafb;
-        border-color: #e8e8e9;
-        color: #030229;
-        font-weight: 600;
-    }
-
-    .btn-secondary:hover,
-    .btn-outline-secondary:hover {
-        background-color: #f0f0f1;
-        border-color: #e8e8e9;
-    }
-
-    .btn-link {
-        color: #605bff;
-        font-weight: 600;
-    }
-
-    .btn-link:hover {
-        color: #4e47cc;
-    }
-
-    .btn-sm {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-    }
-
-    .badge {
-        border-radius: 8px;
-        font-weight: 600;
-        padding: 0.35rem 0.75rem;
-    }
-
-    .bg-light {
-        background-color: rgba(96, 91, 255, 0.1) !important;
-    }
-
-    .text-dark {
-        color: #605bff !important;
-    }
-
-    /* Removed old table styles - now using Phoenix design */
-
-    .alert {
-        border-radius: 8px;
-        border: none;
-    }
-
-    .alert-success {
-        background-color: rgba(38, 192, 226, 0.1);
-        color: #1fa8c7;
-    }
-
-    .alert-danger {
-        background-color: rgba(234, 64, 57, 0.1);
-        color: #c23934;
-    }
-
-    .alert-warning {
-        background-color: rgba(255, 165, 0, 0.1);
-        color: #ff8f00;
-    }
-
-    .form-text {
-        color: rgba(3, 2, 41, 0.5);
-        font-size: 0.75rem;
-        margin-top: 0.25rem;
-    }
-
-    .text-muted {
-        color: rgba(3, 2, 41, 0.5) !important;
-    }
-
-    h2, h3, h4, h5 {
-        color: rgba(3, 2, 41, 0.9);
-        font-weight: 700;
-    }
-
-    /* Form layout improvements */
-    .form-row-wrapper {
+    
+    .step-container.active {
         display: flex;
-        gap: 1rem;
-        align-items: flex-end;
-        flex-wrap: wrap;
     }
-
-    .form-group-item {
+    
+    .step-content {
         flex: 1;
-        min-width: 250px;
+        overflow: auto;
+        padding: 20px;
     }
-
-    /* Unified control height */
-    #sobject-toggle,
-    #mode-select,
-    #csv-file-input {
-        height: 44px;
+    
+    /* Mapping Table */
+    .mapping-row {
         display: flex;
+        gap: 10px;
+        margin-bottom: 8px;
         align-items: center;
-    }
-
-    #sobject-toggle {
-        padding: 0.75rem 1rem;
-    }
-
-    #mode-select,
-    #csv-file-input {
-        padding: 0.75rem 1rem;
-        line-height: 1.5;
-    }
-
-    /* Label consistency */
-    .form-label {
-        margin-bottom: 0.5rem;
-        display: block;
-        min-height: 1.25rem;
-    }
-
-    /* Help text consistency */
-    .form-text {
-        margin-top: 0.375rem;
-        min-height: 2.5rem;
-        display: block;
-    }
-
-    /* Dropdown button styling */
-    #sobject-toggle {
-        background-color: white;
-        border: 1px solid #e8e8e9;
-        color: #030229;
-        font-weight: 400;
-        transition: all 0.2s ease;
-    }
-
-    #sobject-toggle:hover {
-        border-color: #605bff;
-        background-color: #fafafb;
-    }
-
-    #sobject-toggle:focus {
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
-    }
-
-    /* Remove background from selected label to show border */
-    #sobject-selected-label {
-        background-color: transparent !important;
-        background: none !important;
-    }
-
-    /* Action button alignment */
-    .action-button-wrapper {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e8e8e9;
-    }
-
-    /* Section headers */
-    .section-header {
-        padding-bottom: 1rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 2px solid #e8e8e9;
-    }
-
-    .section-header h5 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: rgba(3, 2, 41, 0.9);
-        margin: 0;
-    }
-
-    /* Modern Clean Table Design */
-    .table-responsive {
-        border-radius: 8px;
-        overflow: hidden;
-        background: white;
-        border: 1px solid #e5e7eb;
-    }
-
-    /* Table Base Styling */
-    .table {
-        font-size: 0.875rem;
-        margin-bottom: 0;
-        background-color: white;
-    }
-
-    /* Table Headers - Clean Minimal Style */
-    .table thead th {
-        background-color: #fafbfc;
-        border-bottom: 1px solid #e5e7eb;
-        border-top: none;
-        color: #6b7280;
-        font-weight: 500;
-        font-size: 0.8125rem;
-        padding: 1rem 1.25rem;
-        vertical-align: middle;
-        white-space: nowrap;
-    }
-
-    /* First column checkbox */
-    .table thead th:first-child {
-        width: 50px;
-        text-align: left;
-    }
-
-    /* Last column action */
-    .table thead th:last-child {
-        text-align: right;
-        width: 100px;
-    }
-
-    /* Table Body Cells */
-    .table tbody td {
-        padding: 1rem 1.25rem;
-        vertical-align: middle;
-        border-bottom: 1px solid #f3f4f6;
-        border-top: none;
-        color: #1f2937;
-        font-size: 0.875rem;
-        background-color: white;
-    }
-
-    /* First column */
-    .table tbody td:first-child {
-        width: 50px;
-    }
-
-    /* Last column */
-    .table tbody td:last-child {
-        text-align: right;
-        width: 100px;
-    }
-
-    /* Remove last row border */
-    .table tbody tr:last-child td {
-        border-bottom: none;
-    }
-
-    /* Hover Effect - Subtle Gray */
-    .table tbody tr:hover {
-        background-color: #fafbfc !important;
-    }
-
-    .table tbody tr:hover td {
-        background-color: #fafbfc !important;
-    }
-
-    /* Action Column - Three Dots Button */
-    .btn-action-dots {
-        background: transparent;
-        border: none;
-        color: #9ca3af;
-        padding: 0.25rem 0.5rem;
-        cursor: pointer;
-        font-size: 1.25rem;
-        line-height: 1;
-        transition: color 0.2s ease;
-    }
-
-    .btn-action-dots:hover {
-        color: #4b5563;
-    }
-
-    /* Empty value indicator */
-    .table td:empty::after {
-        content: '—';
-        color: #d1d5db;
-    }
-
-    /* Confirm table specific styles */
-    #single-confirm-table td:first-child,
-    #csv-preview-table td:first-child {
-        font-weight: 500;
-        color: #6b7280;
-    }
-
-    #single-confirm-table td:last-child,
-    #csv-preview-table td:last-child {
-        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-        font-size: 0.8125rem;
-        color: #605bff;
-    }
-
-    /* Data entry tables */
-    #single-record-table td:first-child,
-    #csv-mapping-table td:first-child {
-        text-align: center;
-        width: 60px;
-    }
-
-    /* Form controls in tables */
-    .table .form-select,
-    .table .form-control {
-        font-size: 0.875rem;
-        padding: 0.5rem 0.75rem;
-        border-color: #e5e7eb;
-    }
-
-    .table .form-select:focus,
-    .table .form-control:focus {
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
-    }
-
-    /* Consistent button sizing */
-    .btn {
-        min-height: 38px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem 1rem;
-    }
-
-    .btn-sm {
-        min-height: 32px;
-        padding: 0.375rem 0.75rem;
-    }
-
-    /* Icon alignment in buttons */
-    .btn i {
-        line-height: 1;
-    }
-
-    /* Card header improvements */
-    .card-header-title {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .card-header-title h2 {
-        margin: 0;
-        font-size: 1.25rem;
-    }
-
-    /* Input file custom styling */
-    #csv-file-input {
-        cursor: pointer;
-    }
-
-    #csv-file-input::file-selector-button {
-        padding: 0.375rem 0.75rem;
-        margin-right: 0.75rem;
-        background-color: #fafafb;
-        border: 1px solid #e8e8e9;
-        border-radius: 6px;
-        color: #030229;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    #csv-file-input::file-selector-button:hover {
-        background-color: #f0f0f1;
-    }
-
-    /* List group items in dropdown */
-    .list-group-item {
-        border-radius: 6px;
-        margin-bottom: 2px;
-        border: none;
-        padding: 0.625rem 0.75rem;
-        transition: all 0.15s ease;
-    }
-
-    .list-group-item:hover {
-        background-color: rgba(96, 91, 255, 0.08);
-    }
-
-    .list-group-item.active {
-        background-color: rgba(96, 91, 255, 0.12);
-        color: #605bff;
-        font-weight: 600;
-    }
-
-    /* Smooth transitions */
-    section {
-        animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Empty state styling */
-    .empty-state {
-        text-align: center;
-        padding: 3rem 1rem;
-        color: rgba(3, 2, 41, 0.5);
-    }
-
-    .empty-state i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        color: rgba(96, 91, 255, 0.3);
-    }
-
-    /* Better spacing for form elements */
-    .form-group-item > label {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-    }
-
-    /* Tooltip styling for icons */
-    [data-bs-toggle="tooltip"] {
-        cursor: help;
-    }
-
-    /* Improved alert messages */
-    #insert-messages .alert {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        animation: slideDown 0.3s ease-out;
-    }
-
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    #insert-messages .alert::before {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 1.25rem;
-    }
-
-    #insert-messages .alert-success::before {
-        content: "\f058";
-        color: #26c0e2;
-    }
-
-    #insert-messages .alert-danger::before {
-        content: "\f06a";
-        color: #c23934;
-    }
-
-    #insert-messages .alert-warning::before {
-        content: "\f071";
-        color: #ff8f00;
-    }
-
-    /* Card body padding consistency */
-    .create-record-card .card-body {
-        padding: 2rem;
-    }
-
-    @media (max-width: 768px) {
-        .create-record-card .card-body {
-            padding: 1.5rem;
-        }
-
-        .form-row-wrapper {
-            flex-direction: column;
-        }
-
-        .form-group-item {
-            width: 100%;
-        }
-    }
-
-    /* Better hover states for interactive elements */
-    .table tbody tr {
-        transition: background-color 0.15s ease;
-    }
-
-    .table tbody tr:hover {
-        background-color: rgba(96, 91, 255, 0.04);
-    }
-
-    /* Loading state */
-    .btn.loading {
-        position: relative;
-        color: transparent;
-        pointer-events: none;
-    }
-
-    .btn.loading::after {
-        content: "";
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        top: 50%;
-        left: 50%;
-        margin-left: -8px;
-        margin-top: -8px;
-        border: 2px solid currentColor;
-        border-radius: 50%;
-        border-top-color: transparent;
-        animation: spin 0.6s linear infinite;
-    }
-
-    @keyframes spin {
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
-    /* CSV Mapping List Styling */
-    #csv-confirm-mapping-list li {
-        padding: 0.375rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: rgba(3, 2, 41, 0.8);
-    }
-
-    #csv-confirm-mapping-list li::before {
-        content: '→';
-        color: #605bff;
-        font-weight: 700;
-        font-size: 1rem;
-        flex-shrink: 0;
-    }
-
-    /* Badge enhancements */
-    .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
-        padding: 0.375rem 0.75rem;
-    }
-
-    /* Section headers with icons */
-    .section-header i {
-        flex-shrink: 0;
-    }
-
-    /* Table header icons */
-    #single-confirm-table thead i,
-    #csv-preview-table thead i {
-        opacity: 0.7;
-    }
-
-    /* Gradient background for info cards */
-    .info-card {
-        background: linear-gradient(135deg, #f3f2ff 0%, #fafafb 100%);
-        border-radius: 8px;
-        border: 1px solid #e8e8e9;
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .info-card-title {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 600;
-        font-size: 0.875rem;
-        color: rgba(3, 2, 41, 0.8);
-        margin-bottom: 0.75rem;
-    }
-
-    /* Empty state for tables */
-    .table tbody:empty::after {
-        content: '暂无数据';
-        display: block;
-        text-align: center;
-        padding: 2rem;
-        color: rgba(3, 2, 41, 0.4);
-        font-style: italic;
-    }
-
-    /* Modern styling for data configuration tables */
-    #single-record-table,
-    #csv-mapping-table {
-        border-collapse: separate;
-        border-spacing: 0;
-    }
-
-    #single-record-table thead,
-    #csv-mapping-table thead {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-
-    #single-record-table tbody tr,
-    #csv-mapping-table tbody tr {
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    #single-record-table tbody tr:hover,
-    #csv-mapping-table tbody tr:hover {
-        background: linear-gradient(90deg, rgba(96, 91, 255, 0.04) 0%, rgba(96, 91, 255, 0.01) 100%) !important;
-        box-shadow: -3px 0 0 0 rgba(96, 91, 255, 0.2) inset;
-    }
-
-    #single-record-table td,
-    #csv-mapping-table td {
-        border-bottom: 1px solid #f0f0f1;
-        padding: 0.875rem 0.75rem;
-    }
-
-    #single-record-table tbody tr:last-child td,
-    #csv-mapping-table tbody tr:last-child td {
-        border-bottom: none;
-    }
-
-    /* Style for form controls inside tables */
-    #single-record-table .form-select,
-    #single-record-table .form-control,
-    #csv-mapping-table .form-select,
-    #csv-mapping-table .form-control {
-        border: 1px solid #e8e8e9;
-        border-radius: 6px;
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
-    }
-
-    #single-record-table .form-select:focus,
-    #single-record-table .form-control:focus,
-    #csv-mapping-table .form-select:focus,
-    #csv-mapping-table .form-control:focus {
-        border-color: #605bff;
-        box-shadow: 0 0 0 3px rgba(96, 91, 255, 0.1);
-    }
-
-    /* Action column styling */
-    #single-record-table td:first-child,
-    #csv-mapping-table td:first-child {
-        text-align: center;
-        background: linear-gradient(90deg, rgba(250, 250, 251, 0.5) 0%, transparent 100%);
-    }
-
-    /* Delete button in tables */
-    #single-record-table .btn-link,
-    #csv-mapping-table .btn-link {
-        min-height: auto;
-        padding: 0.25rem;
-        color: #c23934;
-        transition: all 0.2s ease;
-    }
-
-    #single-record-table .btn-link:hover,
-    #csv-mapping-table .btn-link:hover {
-        color: #ea4040;
-        transform: scale(1.1);
-    }
-
-    /* Better spacing for table container */
-    .table-responsive {
-        margin-bottom: 1.5rem;
-    }
-
-    /* Scrollbar styling for table containers */
-    .table-responsive::-webkit-scrollbar {
-        height: 8px;
-        width: 8px;
-    }
-
-    .table-responsive::-webkit-scrollbar-track {
-        background: #f8f9fa;
-        border-radius: 4px;
-    }
-
-    .table-responsive::-webkit-scrollbar-thumb {
-        background: linear-gradient(90deg, #605bff 0%, #26c0e2 100%);
-        border-radius: 4px;
-    }
-
-    .table-responsive::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(90deg, #4e47cc 0%, #1fa8c7 100%);
     }
 </style>
 {% endblock %}
 
+{% block sidebar %}
+<div class="fp-sidebar-header">DATA LOADER</div>
+<div class="fp-sidebar-content">
+    
+    <!-- Operation -->
+    <div class="fp-section">
+        <div class="fp-section-header" onclick="$(this).parent().toggleClass('collapsed')">
+            <i class="fas fa-chevron-down"></i> OPERATION
+        </div>
+        <div class="fp-section-body">
+            <div class="field-item {% if '/data/insert' in request.path %}active-op{% endif %}" onclick="location.href='{% url 'data:insert' %}'">
+                <i class="fas fa-plus text-success" style="width: 20px;"></i> Insert
+            </div>
+            <div class="field-item {% if '/data/update' in request.path %}active-op{% endif %}" onclick="location.href='{% url 'data:update' %}'">
+                <i class="fas fa-edit text-warning" style="width: 20px;"></i> Update
+            </div>
+            <div class="field-item {% if '/data/upsert' in request.path %}active-op{% endif %}" onclick="location.href='{% url 'data:upsert' %}'">
+                <i class="fas fa-sync text-info" style="width: 20px;"></i> Upsert
+            </div>
+            <div class="field-item {% if '/data/delete' in request.path %}active-op{% endif %}" onclick="location.href='{% url 'data:delete' %}'">
+                <i class="fas fa-trash text-danger" style="width: 20px;"></i> Delete
+            </div>
+            <div class="field-item {% if '/data/undelete' in request.path %}active-op{% endif %}" onclick="location.href='{% url 'data:undelete' %}'">
+                <i class="fas fa-undo text-secondary" style="width: 20px;"></i> Undelete
+            </div>
+        </div>
+    </div>
+
+    <!-- Object Selection -->
+    <div class="fp-section">
+        <div class="fp-section-header" onclick="$(this).parent().toggleClass('collapsed')">
+            <i class="fas fa-chevron-down"></i> TARGET
+        </div>
+        <div class="fp-section-body">
+            <div style="margin-bottom: 10px;">
+                <label class="fp-form-label" style="font-size: 10px; color: #94a3b8;">OBJECT</label>
+                <!-- Native select for simplicity and robustness -->
+                <select id="sobject-select" class="fp-select w-100">
+                    <option value="">Select Object...</option>
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+            
+            <div>
+                <label class="fp-form-label" style="font-size: 10px; color: #94a3b8;">MODE</label>
+                <select id="mode-select" class="fp-select w-100" onchange="toggleMode(this.value)">
+                    <option value="single">Single Record</option>
+                    <option value="csv">CSV Upload</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
 {% block content %}
-<div class="slds-scope">
-    <div class="row">
-        <div class="col-xl-10 col-lg-11 mx-auto">
-            <div class="card create-record-card">
-                <div class="card-body">
-                    <!-- Page Header -->
-                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3" style="border-bottom: 2px solid #e8e8e9;">
-                        <div class="card-header-title">
-                            <i class="fas fa-plus-circle" style="color: #605bff; font-size: 1.5rem;"></i>
-                            <div>
-                                <h2 class="h4 mb-1">Create Salesforce Record</h2>
-                                <p class="text-muted mb-0" style="font-size: 0.875rem;">选择对象和录入模式，快速创建或导入记录</p>
-                            </div>
-                        </div>
-                        <div class="text-end">
-                            <span class="badge bg-light text-dark">Insert</span>
-                        </div>
-                    </div>
+<!-- Step 1: Configuration -->
+<div id="step-config" class="step-container active">
+    <!-- Toolbar -->
+    <div class="fp-toolbar">
+        <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-cog text-primary"></i>
+            <div style="font-weight: 600;">Configuration</div>
+        </div>
+        <div style="flex: 1;"></div>
+        <button class="fp-btn fp-btn-primary" onclick="goToNextStep()">Next <i class="fas fa-arrow-right ms-1"></i></button>
+    </div>
 
-                    <!-- Messages -->
-                    <div id="insert-messages" aria-live="polite"></div>
+    <!-- Content -->
+    <div class="step-content">
+        <!-- Single Record Config -->
+        <div id="config-single">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="m-0">Fields</h6>
+                <button class="fp-btn fp-btn-secondary" onclick="addSingleField()"><i class="fas fa-plus"></i> Add Field</button>
+            </div>
+            <table class="fp-table" id="single-fields-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Field</th>
+                        <th>Value</th>
+                        <th style="width: 50px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows -->
+                </tbody>
+            </table>
+            <div class="text-center p-4 text-muted fst-italic" id="single-empty-msg">
+                Add fields to start creating a record
+            </div>
+        </div>
 
-                    <!-- Main Form -->
-                    <form id="create-record-form" class="mb-4" autocomplete="off">
-                        {% csrf_token %}
-                        <div class="form-row-wrapper">
-                            <!-- Salesforce Object Selector -->
-                            <div class="form-group-item">
-                                <label for="sobject-filter-input" class="form-label">Salesforce Object</label>
-                                <input type="hidden" id="sobject-select" name="sobject" value="">
-                                <div class="modern-select-wrapper" id="sobject-dropdown">
-                                    <div class="modern-select-input-wrapper">
-                                        <input
-                                            type="text"
-                                            id="sobject-filter-input"
-                                            class="form-control modern-select-input"
-                                            autocomplete="off"
-                                            role="combobox"
-                                            aria-expanded="false"
-                                            aria-autocomplete="list"
-                                            aria-controls="sobject-option-list">
-                                        <span id="sobject-selected-display" class="modern-select-placeholder">请选择对象</span>
-                                    </div>
-                                    <div class="modern-select-dropdown" id="sobject-dropdown-menu">
-                                        <div id="sobject-option-list" class="modern-select-options" role="listbox" aria-label="可用的 Salesforce 对象"></div>
-                                        <div id="sobject-no-results" class="modern-select-no-results" hidden>
-                                            <i class="fas fa-search"></i>
-                                            <span>无匹配的对象</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="sobject-hint" class="form-text">选择要创建记录的 Salesforce 对象</div>
-                            </div>
-
-                            <!-- Mode Selector -->
-                            <div class="form-group-item">
-                                <label for="mode-select" class="form-label">录入模式</label>
-                                <select id="mode-select" class="form-select">
-                                    <option value="single">单一记录</option>
-                                    <option value="csv">文件上传</option>
-                                </select>
-                                <div class="form-text">选择单条记录或批量导入方式</div>
-                            </div>
-
-                            <!-- CSV File Upload -->
-                            <div class="form-group-item" id="file-upload-group" style="display:none;">
-                                <label for="csv-file-input" class="form-label">CSV 文件</label>
-                                <input type="file" id="csv-file-input" accept=".csv" class="form-control">
-                                <div class="form-text">上传包含表头的 CSV 文件</div>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="action-button-wrapper d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary" id="next-button">
-                                <span>下一步</span>
-                                <i class="fas fa-arrow-right ms-2"></i>
-                            </button>
-                        </div>
-                    </form>
-
-                <!-- Single Record Configuration -->
-                <section id="single-record-config" class="d-none" aria-live="polite">
-                    <div class="section-header d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-2">
-                            <button type="button" class="btn btn-link px-0 text-decoration-none" id="single-back-button">
-                                <i class="fas fa-arrow-left me-1" aria-hidden="true"></i>
-                                <span>返回</span>
-                            </button>
-                            <h5 class="mb-0">单一记录字段</h5>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" id="add-single-field">
-                            <i class="fas fa-plus me-1"></i>
-                            <span>添加字段</span>
-                        </button>
-                    </div>
-                    <div class="table-responsive mb-3">
-                        <table class="table" id="single-record-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">操作</th>
-                                    <th scope="col">字段名称</th>
-                                    <th scope="col">字段值</th>
-                                    <th scope="col">Smart Lookup</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                    <div class="action-button-wrapper d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary" id="single-insert-button">
-                            <i class="fas fa-check me-1"></i>
-                            <span>确认创建</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- Single Record Confirmation -->
-                <section id="single-confirm-section" class="d-none" aria-live="polite">
-                    <div class="section-header">
-                        <div class="d-flex align-items-center gap-2 mb-2">
-                            <i class="fas fa-check-circle" style="color: #26c0e2; font-size: 1.25rem;"></i>
-                            <h5 class="mb-0">确认单一记录</h5>
-                        </div>
-                        <div class="d-flex gap-3 align-items-center">
-                            <span class="badge" style="background-color: rgba(96, 91, 255, 0.1); color: #605bff; font-size: 0.75rem;">
-                                <i class="fas fa-cube me-1"></i>
-                                <span id="single-confirm-object">--</span>
-                            </span>
-                            <span class="text-muted small">请检查以下字段信息</span>
-                        </div>
-                    </div>
-                    <div class="table-responsive mb-3">
-                        <table class="table" id="single-confirm-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">字段名称</th>
-                                    <th scope="col">字段值</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                    <div class="action-button-wrapper d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-outline-secondary" id="single-confirm-edit-button">
-                            <i class="fas fa-arrow-left me-1" aria-hidden="true"></i>
-                            <span>返回修改</span>
-                        </button>
-                        <button type="button" class="btn btn-primary" id="single-confirm-insert-button">
-                            <i class="fas fa-check me-1" aria-hidden="true"></i>
-                            <span>确认创建</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- CSV Configuration -->
-                <section id="csv-config" class="d-none" aria-live="polite">
-                    <div class="section-header d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-2">
-                            <button type="button" class="btn btn-link px-0 text-decoration-none" id="csv-back-button">
-                                <i class="fas fa-arrow-left me-1" aria-hidden="true"></i>
-                                <span>返回</span>
-                            </button>
-                            <h5 class="mb-0">CSV 字段映射</h5>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" id="add-csv-mapping">
-                            <i class="fas fa-plus me-1"></i>
-                            <span>添加映射</span>
-                        </button>
-                    </div>
-                    <div class="table-responsive mb-3">
-                        <table class="table" id="csv-mapping-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">操作</th>
-                                    <th scope="col">Salesforce 字段</th>
-                                    <th scope="col">CSV 列名</th>
-                                    <th scope="col">Smart Lookup</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                    <div class="action-button-wrapper d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary" id="csv-insert-button">
-                            <i class="fas fa-upload me-1"></i>
-                            <span>确认导入</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- CSV Confirmation -->
-                <section id="csv-confirm-section" class="d-none" aria-live="polite">
-                    <div class="section-header">
-                        <div class="d-flex align-items-center gap-2 mb-3">
-                            <i class="fas fa-file-csv" style="color: #26c0e2; font-size: 1.25rem;"></i>
-                            <h5 class="mb-0">确认文件导入</h5>
-                        </div>
-                        <div class="d-flex gap-3 align-items-center flex-wrap">
-                            <span class="badge" style="background-color: rgba(96, 91, 255, 0.1); color: #605bff; font-size: 0.75rem;">
-                                <i class="fas fa-cube me-1"></i>
-                                <span id="csv-confirm-object">--</span>
-                            </span>
-                            <span class="badge" style="background-color: rgba(38, 192, 226, 0.1); color: #26c0e2; font-size: 0.75rem;">
-                                <i class="fas fa-database me-1"></i>
-                                <span id="csv-preview-count">0</span> 条记录
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Mapping Info Card -->
-                    <div class="mb-3 p-3" style="background: linear-gradient(135deg, #f3f2ff 0%, #fafafb 100%); border-radius: 8px; border: 1px solid #e8e8e9;">
-                        <div class="d-flex align-items-center gap-2 mb-2">
-                            <i class="fas fa-exchange-alt" style="color: #605bff; font-size: 0.875rem;"></i>
-                            <div class="text-muted small" style="font-weight: 600;">字段映射关系</div>
-                        </div>
-                        <ul class="small mb-0" id="csv-confirm-mapping-list" style="list-style-type: none; padding-left: 1.5rem;">
-                            <!-- Mapping items will be inserted here -->
-                        </ul>
-                    </div>
-
-                    <!-- Data Preview -->
-                    <div class="mb-2">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="fas fa-eye" style="color: #605bff; font-size: 0.875rem;"></i>
-                            <strong style="font-size: 0.875rem; color: rgba(3, 2, 41, 0.8);">数据预览</strong>
-                            <span class="text-muted small">（显示前 5 行）</span>
-                        </div>
-                    </div>
-                    <div class="table-responsive mb-3">
-                        <table class="table" id="csv-preview-table">
-                            <thead>
-                                <tr id="csv-preview-table-head"></tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-
-                    <div class="action-button-wrapper d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-outline-secondary" id="csv-confirm-edit-button">
-                            <i class="fas fa-arrow-left me-1" aria-hidden="true"></i>
-                            <span>返回修改</span>
-                        </button>
-                        <button type="button" class="btn btn-primary" id="csv-confirm-insert-button">
-                            <i class="fas fa-upload me-1" aria-hidden="true"></i>
-                            <span>确认导入</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- Operation Result -->
-                <section id="operation-result-section" class="d-none" aria-live="polite">
-                    <div class="section-header">
-                        <h5 class="mb-0">操作结果</h5>
-                    </div>
-                    <div id="operation-result-message" class="mb-3"></div>
-                    <div class="table-responsive d-none mb-3" id="operation-error-table-wrapper">
-                        <div class="mb-2">
-                            <strong style="color: #c23934;">错误详情：</strong>
-                        </div>
-                        <table class="table" id="operation-error-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">行号</th>
-                                    <th scope="col">错误信息</th>
-                                    <th scope="col">记录内容</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                    <div class="action-button-wrapper d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary" id="result-back-button">
-                            <i class="fas fa-rotate-left me-1" aria-hidden="true"></i>
-                            <span>返回创建记录</span>
-                        </button>
-                    </div>
-                </section>
+        <!-- CSV Config -->
+        <div id="config-csv" style="display: none;">
+            <div class="mb-4" style="max-width: 600px;">
+                <label class="fp-form-label">Upload CSV File</label>
+                <input type="file" id="csv-file-input" accept=".csv" class="fp-input" style="height: auto; padding: 8px; width: 100%;">
+                <div class="mt-2 text-muted" style="font-size: 11px;">File must contain a header row.</div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Step 2: Confirmation (CSV Mapping or Single Preview) -->
+<div id="step-confirm" class="step-container">
+    <div class="fp-toolbar">
+        <button class="fp-btn fp-btn-secondary" onclick="goToConfigStep()"><i class="fas fa-arrow-left ms-1"></i> Back</button>
+        <div class="ms-2" style="font-weight: 600;">Confirmation</div>
+        <div style="flex: 1;"></div>
+        <button class="fp-btn fp-btn-primary" id="execute-btn" onclick="executeOperation()">
+            <i class="fas fa-play me-1"></i> 
+            <span id="execute-label">Insert</span>
+        </button>
+    </div>
+    
+    <div class="step-content">
+        <!-- Single Confirm -->
+        <div id="confirm-single">
+            <div class="alert fp-alert-success mb-3">
+                <i class="fas fa-info-circle"></i> Ready to insert 1 record into <strong id="confirm-obj-name" class="ms-1"></strong>
+            </div>
+            <table class="fp-table">
+                <thead><tr><th>Field</th><th>Value</th></tr></thead>
+                <tbody id="confirm-single-tbody"></tbody>
+            </table>
+        </div>
+
+        <!-- CSV Mapping & Preview -->
+        <div id="confirm-csv" style="display: none;">
+            <!-- Mapping -->
+            <div class="mb-4">
+                <h6 class="mb-2">Field Mapping</h6>
+                <div class="p-3 bg-light border rounded" id="csv-mapping-container">
+                    <!-- Mappings -->
+                </div>
+            </div>
+            <!-- Preview -->
+            <div>
+                <h6 class="mb-2">Data Preview (Top 5)</h6>
+                <div style="overflow-x: auto;">
+                    <table class="fp-table" id="csv-preview-table">
+                        <thead id="csv-preview-head"></thead>
+                        <tbody id="csv-preview-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Step 3: Results -->
+<div id="step-results" class="step-container">
+    <div class="fp-toolbar">
+        <button class="fp-btn fp-btn-secondary" onclick="location.reload()"><i class="fas fa-redo ms-1"></i> Start Over</button>
+        <div class="ms-2" style="font-weight: 600;">Operation Results</div>
+    </div>
+    <div class="step-content">
+        <div id="result-summary" class="mb-3"></div>
+        <table class="fp-table" id="result-table">
+            <thead>
+                <tr><th>Status</th><th>ID</th><th>Errors</th></tr>
+            </thead>
+            <tbody id="result-tbody"></tbody>
+        </table>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block extra_js %}
-{{ sobjects|json_script:"sobject-options-data" }}
+<!-- Pass data to JS -->
+{{ sobjects|json_script:"sobject-data" }}
+
 <script>
-    window.DATA_FIELDS_ENDPOINT = "{{ fields_api_url }}";
-    window.CREATE_RECORD_POST_URL = "{{ insert_post_url }}";
+// Global State
+const STATE = {
+    sobjects: JSON.parse(document.getElementById('sobject-data').textContent),
+    fields: [], // Loaded fields for current object
+    currentObj: null,
+    mode: 'single', // single | csv
+    csvData: null, // Parsed CSV data
+    csvHeaders: [],
+    mappings: {}, // CSV Header -> SF Field
+    singleData: [] // Array of {field, value}
+};
+
+// URLs
+const URLS = {
+    fields: "{{ fields_api_url }}",
+    insert: "{{ insert_post_url }}" 
+};
+
+$(document).ready(function() {
+    initSObjectSelect();
+});
+
+// --- Init ---
+function initSObjectSelect() {
+    const sel = $('#sobject-select');
+    STATE.sobjects.forEach(obj => {
+        sel.append(new Option(`${obj.label} (${obj.name})`, obj.name));
+    });
+    
+    sel.on('change', function() {
+        const val = $(this).val();
+        if (val) loadFields(val);
+        else STATE.fields = [];
+        STATE.currentObj = val;
+        $('#single-empty-msg').text(val ? 'Add fields to start' : 'Select an object first');
+    });
+}
+
+function toggleMode(mode) {
+    STATE.mode = mode;
+    if (mode === 'single') {
+        $('#config-single').show();
+        $('#config-csv').hide();
+    } else {
+        $('#config-single').hide();
+        $('#config-csv').show();
+    }
+}
+
+function loadFields(objName) {
+    // Show loading?
+    $.get(URLS.fields, { object: objName }, function(res) {
+        if (res.success) {
+            STATE.fields = res.fields.sort((a,b) => a.label.localeCompare(b.label));
+            // Clear current table if any
+            $('#single-fields-table tbody').empty();
+            $('#single-empty-msg').show();
+        }
+    });
+}
+
+// --- Single Record Logic ---
+function addSingleField() {
+    if (!STATE.currentObj) {
+        alert('Please select an object first.');
+        return;
+    }
+    $('#single-empty-msg').hide();
+    
+    const rowId = Date.now();
+    const options = STATE.fields.map(f => `<option value="${f.name}">${f.label} (${f.name})</option>`).join('');
+    
+    const row = `
+        <tr id="row-${rowId}">
+            <td>
+                <select class="fp-select w-100 field-select">
+                    <option value="">Select Field...</option>
+                    ${options}
+                </select>
+            </td>
+            <td>
+                <input type="text" class="fp-input w-100 field-value" placeholder="Value">
+            </td>
+            <td class="text-center">
+                <button class="fp-btn fp-btn-icon text-danger" onclick="$('#row-${rowId}').remove()"><i class="fas fa-times"></i></button>
+            </td>
+        </tr>
+    `;
+    $('#single-fields-table tbody').append(row);
+}
+
+// --- Navigation ---
+function goToNextStep() {
+    if (!STATE.currentObj) {
+        alert('Please select an object.');
+        return;
+    }
+
+    if (STATE.mode === 'single') {
+        // Validate Single
+        STATE.singleData = [];
+        let isValid = true;
+        $('#single-fields-table tbody tr').each(function() {
+            const field = $(this).find('.field-select').val();
+            const val = $(this).find('.field-value').val();
+            if (field && val) {
+                STATE.singleData.push({ field, value: val });
+            }
+        });
+        
+        if (STATE.singleData.length === 0) {
+            alert('Please add at least one field value.');
+            return;
+        }
+        
+        // Render Confirm
+        $('#confirm-obj-name').text(STATE.currentObj);
+        const tbody = $('#confirm-single-tbody');
+        tbody.empty();
+        STATE.singleData.forEach(d => {
+            tbody.append(`<tr><td>${d.field}</td><td>${d.value}</td></tr>`);
+        });
+        
+        $('#confirm-single').show();
+        $('#confirm-csv').hide();
+        
+    } else {
+        // Validate CSV
+        const fileInput = document.getElementById('csv-file-input');
+        if (!fileInput.files[0]) {
+            alert('Please select a CSV file.');
+            return;
+        }
+        
+        // Parse CSV (Simple implementation)
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const text = e.target.result;
+            const rows = text.split('\n').map(r => r.split(',')); // Very basic CSV parser
+            if (rows.length < 2) { alert('Empty CSV'); return; }
+            
+            STATE.csvHeaders = rows[0].map(h => h.trim());
+            STATE.csvData = rows.slice(1).filter(r => r.length === STATE.csvHeaders.length); // Filter bad rows
+            
+            renderCsvPreview();
+            renderCsvMapping();
+            
+            $('#confirm-single').hide();
+            $('#confirm-csv').show();
+            
+            // Switch view
+            showStep('step-confirm');
+        };
+        reader.readAsText(fileInput.files[0]);
+        return; // Async wait
+    }
+    
+    showStep('step-confirm');
+}
+
+function goToConfigStep() {
+    showStep('step-config');
+}
+
+function showStep(stepId) {
+    $('.step-container').removeClass('active');
+    $('#' + stepId).addClass('active');
+}
+
+function renderCsvPreview() {
+    const thead = $('#csv-preview-head');
+    const tbody = $('#csv-preview-body');
+    thead.empty();
+    tbody.empty();
+    
+    let hRow = '<tr>';
+    STATE.csvHeaders.forEach(h => hRow += `<th>${h}</th>`);
+    hRow += '</tr>';
+    thead.html(hRow);
+    
+    STATE.csvData.slice(0, 5).forEach(row => {
+        let bRow = '<tr>';
+        row.forEach(c => bRow += `<td>${c}</td>`);
+        bRow += '</tr>';
+        tbody.append(bRow);
+    });
+}
+
+function renderCsvMapping() {
+    const container = $('#csv-mapping-container');
+    container.empty();
+    
+    STATE.csvHeaders.forEach((header, idx) => {
+        // Auto-match
+        const match = STATE.fields.find(f => f.name.toLowerCase() === header.toLowerCase() || f.label.toLowerCase() === header.toLowerCase());
+        const selected = match ? match.name : '';
+        
+        const options = STATE.fields.map(f => `<option value="${f.name}" ${f.name === selected ? 'selected' : ''}>${f.label} (${f.name})</option>`).join('');
+        
+        const html = `
+            <div class="mapping-row">
+                <div style="width: 150px; font-weight:600;">${header}</div>
+                <div style="color: #94a3b8;">&rarr;</div>
+                <select class="fp-select mapping-select" data-csv-index="${idx}" style="flex:1;">
+                    <option value="">(Skip)</option>
+                    ${options}
+                </select>
+            </div>
+        `;
+        container.append(html);
+    });
+}
+
+// --- Execute ---
+function executeOperation() {
+    const btn = $('#execute-btn');
+    const originalText = btn.html();
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Processing...');
+    
+    let payload = {};
+    
+    if (STATE.mode === 'single') {
+        const record = {};
+        STATE.singleData.forEach(d => record[d.field] = d.value);
+        payload = {
+            sobject: STATE.currentObj,
+            records: JSON.stringify([record]), // Array of 1
+            mode: 'single'
+        };
+    } else {
+        // Map CSV data
+        const mappedRecords = [];
+        const mappings = []; // Index -> FieldName
+        
+        $('.mapping-select').each(function() {
+            const idx = $(this).data('csv-index');
+            const field = $(this).val();
+            if (field) mappings[idx] = field;
+        });
+        
+        STATE.csvData.forEach(row => {
+            const rec = {};
+            row.forEach((val, idx) => {
+                if (mappings[idx]) rec[mappings[idx]] = val;
+            });
+            mappedRecords.push(rec);
+        });
+        
+        payload = {
+            sobject: STATE.currentObj,
+            records: JSON.stringify(mappedRecords),
+            mode: 'bulk' // or csv
+        };
+    }
+    
+    // AJAX Post
+    const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    payload.csrfmiddlewaretoken = csrf;
+    
+    $.post(URLS.insert, payload, function(res) {
+        btn.prop('disabled', false).html(originalText);
+        renderResults(res);
+        showStep('step-results');
+    }).fail(function(xhr) {
+        btn.prop('disabled', false).html(originalText);
+        alert('Error: ' + xhr.responseText);
+    });
+}
+
+function renderResults(res) {
+    const tbody = $('#result-tbody');
+    tbody.empty();
+    
+    let successCount = 0;
+    let failCount = 0;
+    
+    // Handle single or bulk response structure
+    // Assuming response is list of results
+    const results = res.results || (Array.isArray(res) ? res : [res]);
+    
+    results.forEach(r => {
+        if (r.success) successCount++; else failCount++;
+        const err = r.errors ? r.errors.map(e => e.message).join('; ') : '';
+        
+        tbody.append(`
+            <tr>
+                <td>${r.success ? '<span class="fp-badge bg-success text-white">Success</span>' : '<span class="fp-badge bg-danger text-white">Failed</span>'}</td>
+                <td>${r.id || '-'}</td>
+                <td class="text-danger">${err}</td>
+            </tr>
+        `);
+    });
+    
+    $('#result-summary').html(
+        `<span class="text-success fw-bold">${successCount} Success</span>, 
+        <span class="text-danger fw-bold">${failCount} Failed</span>`
+    );
+}
+
 </script>
-<script src="{% static 'js/data_create_record.js' %}"></script>
 {% endblock %}
