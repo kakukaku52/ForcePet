@@ -1,929 +1,208 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}ログイン - Django Workbench{% endblock %}
+{% block title %}ログイン - ForcePet Studio{% endblock %}
 
 {% block extra_css %}
-<style>
-    /* Full screen layout */
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .login-wrapper {
-        display: flex;
-        height: 100vh;
-        width: 100%;
-    }
-
-    /* Left panel - Brand & Illustration */
-    .login-left-panel {
-        flex: 1;
-        background: linear-gradient(135deg, #E8F4F8 0%, #D6E9F5 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-        padding: 50px;
-    }
-
-    /* Right panel - Login Form */
-    .login-right-panel {
-        width: 550px;
-        background: #FFFFFF;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 80px 60px;
-        overflow-y: auto;
-    }
-
-    /* Brand showcase - left panel */
-    .brand-showcase {
-        max-width: 450px;
-        width: 100%;
-    }
-
-    .brand-header {
-        margin-bottom: 30px;
-    }
-
-    .brand-title {
-        font-size: 26px;
-        font-weight: 700;
-        color: #1A365D;
-        margin-bottom: 15px;
-    }
-
-    .brand-description {
-        color: #2D3748;
-        line-height: 1.8;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .brand-description i {
-        color: #48BB78;
-        font-size: 18px;
-    }
-
-    .illustration-container {
-        margin-top: 40px;
-        text-align: center;
-    }
-
-    .illustration-image {
-        width: 100%;
-        height: auto;
-        max-width: 400px;
-    }
-
-    /* Logo and title - right panel */
-    .login-logo {
-        width: 60px;
-        height: 60px;
-        background: #4299E1;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
-    .login-logo i {
-        font-size: 32px;
-        color: white;
-    }
-
-    .login-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1A202C;
-        margin-bottom: 8px;
-    }
-
-    .login-subtitle {
-        font-size: 15px;
-        color: #718096;
-        margin-bottom: 35px;
-    }
-
-    /* Social login buttons */
-    .social-buttons {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-
-    .btn-social {
-        flex: 1;
-        height: 52px;
-        border-radius: 10px;
-        border: 1.5px solid #E2E8F0;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-weight: 500;
-        font-size: 15px;
-        color: #2D3748;
-        transition: all 0.2s ease;
-        cursor: pointer;
-    }
-
-    .btn-social:hover {
-        background: #F7FAFC;
-        border-color: #4299E1;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(66, 153, 225, 0.15);
-    }
-
-    .btn-social i {
-        font-size: 20px;
-    }
-
-    .btn-social.google i {
-        color: #DB4437;
-    }
-
-    .btn-social.salesforce i {
-        color: #00A1E0;
-    }
-
-    /* Divider */
-    .login-divider {
-        display: flex;
-        align-items: center;
-        margin: 20px 0;
-        color: #A0AEC0;
-        font-size: 13px;
-        text-transform: lowercase;
-    }
-
-    .login-divider::before,
-    .login-divider::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: #E2E8F0;
-    }
-
-    .login-divider span {
-        padding: 0 15px;
-    }
-
-    /* Form fields */
-    .form-group-modern {
-        margin-bottom: 20px;
-    }
-
-    .form-group-modern label {
-        display: block;
-        font-size: 13px;
-        font-weight: 600;
-        color: #2D3748;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .input-with-icon {
-        position: relative;
-    }
-
-    .input-with-icon i {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #A0AEC0;
-        font-size: 16px;
-        pointer-events: none;
-    }
-
-    .input-with-icon .form-control {
-        padding-left: 45px;
-    }
-
-    .form-group-modern .form-control {
-        height: 52px;
-        border-radius: 10px;
-        border: 1.5px solid #E2E8F0;
-        background: #F7FAFC;
-        padding: 0 16px;
-        font-size: 15px;
-        transition: all 0.2s ease;
-        width: 100%;
-    }
-
-    .form-group-modern .form-control:focus {
-        border-color: #4299E1;
-        background: white;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-        outline: none;
-    }
-
-    .form-group-modern .form-control::placeholder {
-        color: #CBD5E0;
-    }
-
-    /* Remember me and reset password */
-    .form-options {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 25px;
-        font-size: 14px;
-    }
-
-    .remember-me {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #4A5568;
-        cursor: pointer;
-    }
-
-    .remember-me input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
-        accent-color: #4299E1;
-    }
-
-    .reset-password-link {
-        color: #4299E1;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-    }
-
-    .reset-password-link:hover {
-        color: #2B6CB0;
-    }
-
-    /* Login button */
-    .btn-login {
-        width: 100%;
-        height: 52px;
-        border-radius: 10px;
-        background: #4299E1;
-        border: none;
-        color: white;
-        font-size: 16px;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
-    }
-
-    .btn-login:hover {
-        background: #3182CE;
-        transform: translateY(-1px);
-        box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
-    }
-
-    .btn-login:active {
-        transform: translateY(0);
-    }
-
-    /* Sign up link */
-    .signup-link {
-        text-align: center;
-        margin-top: 25px;
-        font-size: 14px;
-        color: #718096;
-    }
-
-    .signup-link a {
-        color: #4299E1;
-        font-weight: 600;
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-
-    .signup-link a:hover {
-        color: #2B6CB0;
-    }
-
-    /* Tabs styling - keeping existing functionality */
-    .login-tabs {
-        margin-bottom: 30px;
-        border-bottom: 2px solid #E2E8F0;
-    }
-
-    .login-tabs .nav-link {
-        font-weight: 500;
-        transition: all 0.3s ease;
-        color: #718096;
-        border: none;
-        border-bottom: 2px solid transparent;
-        margin-bottom: -2px;
-        padding: 12px 20px;
-    }
-
-    .login-tabs .nav-link:hover {
-        color: #667eea;
-    }
-
-    .login-tabs .nav-link.active {
-        background: transparent;
-        color: #667eea;
-        border-bottom: 2px solid #667eea;
-    }
-
-    /* Error Alert Styles */
-    .error-alert {
-        display: none;
-        animation: slideDown 0.3s ease;
-        border-radius: 8px;
-        margin-bottom: 20px;
-    }
-
-    .error-alert.show {
-        display: block;
-    }
-
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .alert-danger-modern {
-        background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
-        border: none;
-        color: white;
-        padding: 1rem 1.25rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .alert-danger-modern::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.5);
-        animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-    }
-
-    .alert-danger-modern .alert-icon {
-        font-size: 1.2rem;
-        margin-right: 10px;
-    }
-
-    .alert-danger-modern .close {
-        color: white;
-        opacity: 0.8;
-        font-size: 1.2rem;
-        background: none;
-        border: none;
-        padding: 0;
-        margin-left: auto;
-    }
-
-    .alert-danger-modern .close:hover {
-        opacity: 1;
-    }
-
-    /* Field Error Styles */
-    .field-error {
-        color: #dc3545;
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-        display: none;
-    }
-
-    .field-error.show {
-        display: block;
-        animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    .form-control.is-invalid {
-        border-color: #dc3545;
-        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-    }
-
-    /* Loading State */
-    .btn-loading {
-        position: relative;
-        color: transparent !important;
-    }
-
-    .btn-loading::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        top: 50%;
-        left: 50%;
-        margin-left: -10px;
-        margin-top: -10px;
-        border: 2px solid #ffffff;
-        border-radius: 50%;
-        border-top-color: transparent;
-        animation: spinner 0.6s linear infinite;
-    }
-
-    @keyframes spinner {
-        to { transform: rotate(360deg); }
-    }
-
-    /* Success Message */
-    .alert-success-modern {
-        background: linear-gradient(135deg, #2DCE89 0%, #3DDC97 100%);
-        border: none;
-        color: white;
-        padding: 1rem 1.25rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(45, 206, 137, 0.3);
-    }
-
-    /* Responsive design */
-    @media (max-width: 992px) {
-        .login-wrapper {
-            flex-direction: column;
-        }
-
-        .login-left-panel {
-            display: none;
-        }
-
-        .login-right-panel {
-            width: 100%;
-            min-height: 100vh;
-            padding: 40px 30px;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .login-right-panel {
-            padding: 30px 20px;
-        }
-
-        .login-title {
-            font-size: 28px;
-        }
-
-        .social-buttons {
-            flex-direction: column;
-        }
-    }
-
-    /* Hide base.html container */
-    .container-fluid {
-        padding: 0 !important;
-        margin: 0 !important;
-        max-width: 100% !important;
-    }
-
-    /* Update form control styling for Django forms */
-    .form-group-modern .form-control,
-    .form-group-modern input[type="text"],
-    .form-group-modern input[type="password"],
-    .form-group-modern select {
-        height: 50px;
-        border-radius: 8px;
-        border: 1px solid #E2E8F0;
-        background: white;
-        padding: 0 15px;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        width: 100%;
-    }
-
-    .form-text {
-        font-size: 12px;
-        color: #A0AEC0;
-        margin-top: 5px;
-    }
-
-    /* OAuth form styling */
-    .row {
-        margin-bottom: 0;
-    }
-
-    .col-form-label {
-        font-size: 14px;
-        font-weight: 500;
-        color: #2D3748;
-    }
-
-    /* Adjust tab content padding */
-    .tab-content {
-        padding: 0;
-    }
-
-    .tab-pane {
-        padding: 0;
-    }
-</style>
+<!-- Studio Styles are already in base.html, but we ensure no extra overrides here -->
 {% endblock %}
 
 {% block content %}
-<div class="login-wrapper">
-    <!-- Left Panel - Brand Showcase -->
-    <div class="login-left-panel">
-        <div class="brand-showcase">
-            <div class="brand-header">
-                <h2 class="brand-title">ForcePet 認証</h2>
-                <p class="brand-description">
-                    <i class="fas fa-check-circle"></i>
-                    <span>高速</span>
-                </p>
-                <p class="brand-description">
-                    <i class="fas fa-check-circle"></i>
-                    <span>シンプル</span>
-                </p>
-                <p class="brand-description">
-                    <i class="fas fa-check-circle"></i>
-                    <span>安全</span>
-                </p>
+<div class="fp-auth-wrapper">
+    <div class="fp-auth-card">
+        
+        <!-- Header -->
+        <div class="fp-auth-header">
+            <div class="fp-auth-logo">
+                <i class="fas fa-cube"></i>
             </div>
-            <div class="illustration-container">
-                <img src="{% static 'images/login-illustration.svg' %}" alt="Login illustration" class="illustration-image" onerror="this.style.display='none'">
+            <div class="fp-auth-title">ForcePet Studio</div>
+            <div class="fp-auth-subtitle">Salesforce 開発者向け統合環境</div>
+        </div>
+
+        <!-- Custom Tabs -->
+        <div class="fp-auth-tabs">
+            <div class="fp-auth-tab active" id="tab-oauth" onclick="switchTab('oauth')">
+                OAuth ログイン
+            </div>
+            <div class="fp-auth-tab" id="tab-standard" onclick="switchTab('standard')">
+                標準ログイン
             </div>
         </div>
-    </div>
 
-    <!-- Right Panel - Login Form -->
-    <div class="login-right-panel">
-        <!-- Logo and Title -->
-        <div class="login-logo">
-            <i class="fas fa-cloud"></i>
+        <!-- Alerts -->
+        <div id="auth-error" class="fp-alert fp-alert-danger" style="display: none;">
+            <i class="fas fa-exclamation-circle" style="margin-top: 2px;"></i>
+            <span id="auth-error-msg"></span>
         </div>
-        <h1 class="login-title">ログイン</h1>
-        <p class="login-subtitle">Salesforce アカウントにアクセスする</p>
+        
+        <div id="auth-success" class="fp-alert fp-alert-success" style="display: none;">
+            <i class="fas fa-check-circle" style="margin-top: 2px;"></i>
+            <span id="auth-success-msg"></span>
+        </div>
 
-        <div class="login-form-content">
-            <!-- Global Error Alert -->
-            <div id="global-error-alert" class="error-alert">
-                <div class="alert alert-danger-modern d-flex align-items-center">
-                    <i class="fas fa-exclamation-triangle alert-icon"></i>
-                    <div class="flex-grow-1" id="global-error-message"></div>
-                    <button type="button" class="close" onclick="hideGlobalError()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <!-- OAuth Form -->
+        <div id="form-oauth">
+            {% if oauth_enabled %}
+            <form method="post" action="{% url 'authentication:login' %}" id="oauth-login-form">
+                {% csrf_token %}
+                <input type="hidden" name="login_type" value="oauth">
+
+                <div class="fp-form-group">
+                    <label class="fp-form-label">環境 (Environment)</label>
+                    <select name="environment" class="fp-select fp-input-lg" onchange="toggleCustomDomain(this.value)">
+                        <option value="production">本番 (Production)</option>
+                        <option value="sandbox">Sandbox</option>
+                        <option value="custom">カスタムドメイン</option>
+                    </select>
                 </div>
-            </div>
 
-            <!-- Success Alert -->
-            <div id="global-success-alert" class="error-alert">
-                <div class="alert alert-success-modern d-flex align-items-center">
-                    <i class="fas fa-check-circle alert-icon"></i>
-                    <div class="flex-grow-1" id="global-success-message"></div>
+                <div class="fp-form-group" id="oauth-custom-domain" style="display: none;">
+                    <label class="fp-form-label">カスタムドメイン URL</label>
+                    <input type="text" name="custom_domain" class="fp-input fp-input-lg" placeholder="https://my-domain.my.salesforce.com">
                 </div>
-            </div>
 
-            <!-- Social Login Buttons (Tabs disguised as social buttons) -->
-            <div class="social-buttons">
-                {% if oauth_enabled %}
-                <!-- Removed data-bs-toggle/target to fix JS error. Rely on manual JS trigger below. -->
-                <button class="btn-social salesforce" id="oauth-tab-btn" type="button">
-                    <i class="fab fa-salesforce"></i>
-                    <span>Salesforce でログイン</span>
+                <div class="fp-form-group">
+                    <label class="fp-form-label">API バージョン</label>
+                    <input type="text" name="api_version" class="fp-input fp-input-lg" value="62.0" placeholder="62.0">
+                </div>
+
+                {{ oauth_form.state }}
+
+                <button type="submit" class="fp-btn fp-btn-primary fp-btn-block">
+                    Salesforce でログイン
                 </button>
-                {% endif %}
-                <button class="btn-social" id="standard-tab-btn" type="button">
-                    <i class="fas fa-envelope"></i>
-                    <span>メールアドレスでログイン</span>
-                </button>
+            </form>
+            {% else %}
+            <div style="text-align: center; color: #94a3b8; padding: 20px;">
+                OAuth login is not configured.
             </div>
-
-            <!-- Login Type Tabs (hidden, for functionality) -->
-            <ul class="nav nav-tabs login-tabs" id="loginTabs" role="tablist" style="display: none;">
-                {% if oauth_enabled %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="oauth-tab" data-bs-toggle="tab" data-bs-target="#oauth"
-                            type="button" role="tab" aria-controls="oauth" aria-selected="true">
-                        OAuth ログイン
-                    </button>
-                </li>
-                {% endif %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link {% if not oauth_enabled %}active{% endif %}" id="standard-tab" data-bs-toggle="tab"
-                            data-bs-target="#standard" type="button" role="tab" aria-controls="standard"
-                            aria-selected="{% if not oauth_enabled %}true{% else %}false{% endif %}">
-                        ユーザー名/パスワード
-                    </button>
-                </li>
-            </ul>
-
-            <!-- Divider -->
-            <div class="login-divider">
-                <span>または</span>
-            </div>
-
-            <div class="tab-content" id="loginTabContent">
-                <!-- OAuth Login Tab -->
-                {% if oauth_enabled %}
-                <div class="tab-pane fade show active" id="oauth" role="tabpanel" aria-labelledby="oauth-tab">
-                    <form method="post" action="{% url 'authentication:login' %}" id="oauth-form">
-                        {% csrf_token %}
-                        <input type="hidden" name="login_type" value="oauth">
-
-                        <div class="form-group-modern">
-                            <label for="id_environment">環境</label>
-                            {{ oauth_form.environment }}
-                            <small class="form-text">Salesforce 環境を選択してください</small>
-                        </div>
-
-                        <div class="form-group-modern" id="custom-domain-row" style="display: none;">
-                            <label for="id_custom_domain">カスタムドメイン</label>
-                            {{ oauth_form.custom_domain }}
-                            <small class="form-text">Salesforce カスタムドメインを入力してください</small>
-                        </div>
-
-                        <div class="form-group-modern">
-                            <label for="id_api_version">API バージョン</label>
-                            <input type="text" name="api_version" class="form-control" id="id_api_version" value="62.0" placeholder="62.0">
-                            <small class="form-text">使用する Salesforce API バージョン</small>
-                        </div>
-
-                        {{ oauth_form.state }}
-
-                        <button type="submit" class="btn-login">
-                            <i class="fab fa-salesforce"></i> Salesforce でログイン
-                        </button>
-
-                        <div class="signup-link">
-                            OAuth 2.0 で安全に接続
-                        </div>
-                    </form>
-                </div>
-                {% endif %}
-
-                <!-- Standard Login Tab -->
-                <div class="tab-pane fade {% if not oauth_enabled %}show active{% endif %}" id="standard" role="tabpanel" aria-labelledby="standard-tab">
-                    <form method="post" action="{% url 'authentication:login' %}" id="standard-form">
-                        {% csrf_token %}
-                        <input type="hidden" name="login_type" value="standard">
-
-                        <div class="form-group-modern">
-                            <label for="id_username">ユーザー名</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-user"></i>
-                                {{ standard_form.username }}
-                            </div>
-                            <div class="field-error" id="username-error"></div>
-                        </div>
-
-                        <div class="form-group-modern">
-                            <label for="id_password">パスワード</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-lock"></i>
-                                {{ standard_form.password }}
-                            </div>
-                            <div class="field-error" id="password-error"></div>
-                        </div>
-
-                        <div class="form-group-modern">
-                            <label for="id_security_token">セキュリティトークン</label>
-                            {{ standard_form.security_token }}
-                            <small class="form-text text-muted">{{ standard_form.security_token.help_text }}</small>
-                            <div class="field-error" id="security_token-error"></div>
-                        </div>
-
-                        <div class="form-group-modern">
-                            <label for="id_environment_standard">環境</label>
-                            <select name="environment" class="form-control" id="id_environment_standard">
-                                <option value="production">本番 (Production)</option>
-                                <option value="sandbox">Sandbox</option>
-                                <option value="custom">カスタムドメイン</option>
-                            </select>
-                            <div class="field-error" id="environment-error"></div>
-                        </div>
-
-                        <div class="form-group-modern" id="standard-custom-domain-row" style="display: none;">
-                            <label for="id_custom_domain_standard">カスタムドメイン</label>
-                            <input type="text" name="custom_domain" class="form-control" id="id_custom_domain_standard" placeholder="https://mydomain.my.salesforce.com">
-                            <small class="form-text text-muted">Salesforce カスタムドメインを入力してください</small>
-                            <div class="field-error" id="custom_domain-error"></div>
-                        </div>
-
-                        <div class="form-group-modern">
-                            <label for="id_api_version_standard">API バージョン</label>
-                            <input type="text" name="api_version" class="form-control" id="id_api_version_standard" value="62.0" placeholder="62.0">
-                            <div class="field-error" id="api_version-error"></div>
-                        </div>
-
-                        <div class="form-options">
-                            <label class="remember-me">
-                                <input type="checkbox" name="remember_me">
-                                <span>ログイン情報を記憶する</span>
-                            </label>
-                            <!-- パスワードをお忘れですか？ リンクを削除 -->
-                        </div>
-
-                        <button type="submit" class="btn-login" id="standard-submit-btn">
-                            ログイン
-                        </button>
-
-                        <!-- 新規登録リンクを削除 -->
-                    </form>
-                </div>
-            </div>
+            {% endif %}
         </div>
+
+        <!-- Standard Form (Hidden by default) -->
+        <div id="form-standard" style="display: none;">
+            <form method="post" action="{% url 'authentication:login' %}" id="standard-login-form">
+                {% csrf_token %}
+                <input type="hidden" name="login_type" value="standard">
+
+                <div class="fp-form-group">
+                    <label class="fp-form-label">ユーザー名 (Username)</label>
+                    <input type="text" name="username" class="fp-input fp-input-lg" required>
+                </div>
+
+                <div class="fp-form-group">
+                    <label class="fp-form-label">パスワード (Password)</label>
+                    <input type="password" name="password" class="fp-input fp-input-lg" required>
+                </div>
+
+                <div class="fp-form-group">
+                    <label class="fp-form-label">セキュリティトークン (Security Token)</label>
+                    <input type="text" name="security_token" class="fp-input fp-input-lg" placeholder="Optional">
+                </div>
+
+                <div class="fp-form-group">
+                    <label class="fp-form-label">環境 (Environment)</label>
+                    <select name="environment" class="fp-select fp-input-lg" onchange="toggleStandardCustomDomain(this.value)">
+                        <option value="production">本番 (Production)</option>
+                        <option value="sandbox">Sandbox</option>
+                        <option value="custom">カスタムドメイン</option>
+                    </select>
+                </div>
+
+                <div class="fp-form-group" id="standard-custom-domain" style="display: none;">
+                    <label class="fp-form-label">カスタムドメイン URL</label>
+                    <input type="text" name="custom_domain" class="fp-input fp-input-lg" placeholder="https://my-domain.my.salesforce.com">
+                </div>
+
+                <div class="fp-form-group">
+                    <label class="fp-form-label">API バージョン</label>
+                    <input type="text" name="api_version" class="fp-input fp-input-lg" value="62.0">
+                </div>
+
+                <div class="fp-form-group">
+                    <label style="display: flex; align-items: center; font-size: 12px; cursor: pointer;">
+                        <input type="checkbox" name="remember_me" style="margin-right: 6px;">
+                        ログイン情報を記憶する
+                    </label>
+                </div>
+
+                <button type="submit" class="fp-btn fp-btn-primary fp-btn-block">
+                    ログイン
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="fp-auth-footer">
+            <span>Protected by ForcePet Security</span>
+        </div>
+
     </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
+// Tab Switching Logic
+function switchTab(tabName) {
+    // Update Tabs
+    document.querySelectorAll('.fp-auth-tab').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabName).classList.add('active');
+
+    // Update Content
+    document.getElementById('form-oauth').style.display = 'none';
+    document.getElementById('form-standard').style.display = 'none';
+    document.getElementById('form-' + tabName).style.display = 'block';
+}
+
+// Toggle Custom Domain Inputs
+function toggleCustomDomain(val) {
+    const el = document.getElementById('oauth-custom-domain');
+    el.style.display = (val === 'custom') ? 'block' : 'none';
+}
+
+function toggleStandardCustomDomain(val) {
+    const el = document.getElementById('standard-custom-domain');
+    el.style.display = (val === 'custom') ? 'block' : 'none';
+}
+
+// AJAX for Standard Login
 $(document).ready(function() {
-    // Handle social button clicks (trigger tab change)
-    $('#oauth-tab-btn').click(function() {
-        $('#oauth-tab').click();
-    });
-
-    $('#standard-tab-btn').click(function() {
-        $('#standard-tab').click();
-    });
-
-    // Handle environment selection for OAuth
-    $('#id_environment').change(function() {
-        if ($(this).val() === 'custom') {
-            $('#custom-domain-row').show();
-        } else {
-            $('#custom-domain-row').hide();
-        }
-    });
-
-    // Handle environment selection for Standard login
-    $('#id_environment_standard').change(function() {
-        if ($(this).val() === 'custom') {
-            $('#standard-custom-domain-row').show();
-        } else {
-            $('#standard-custom-domain-row').hide();
-        }
-    });
-
-    // Show/hide custom domain based on initial selection
-    if ($('#id_environment').val() === 'custom') {
-        $('#custom-domain-row').show();
-    }
-
-    if ($('#id_environment_standard').val() === 'custom') {
-        $('#standard-custom-domain-row').show();
-    }
-
-    // Ajax form submission for standard login
-    $('#standard-form').on('submit', function(e) {
+    $('#standard-login-form').on('submit', function(e) {
         e.preventDefault();
-
-        // Clear previous errors
-        clearAllErrors();
-
-        // Get form data
-        var formData = $(this).serialize();
-        var submitBtn = $('#standard-submit-btn');
-        var originalBtnText = submitBtn.html();
-
-        // Show loading state
-        submitBtn.addClass('btn-loading').prop('disabled', true);
-
-        // Make Ajax request
+        
+        // Reset alerts
+        $('#auth-error').hide();
+        $('#auth-success').hide();
+        
+        const btn = $(this).find('button[type="submit"]');
+        const originalText = btn.text();
+        btn.prop('disabled', true).text('Signing in...');
+        
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
-            data: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            success: function(response) {
-                if (response.success) {
-                    // Show success message
-                    showGlobalSuccess(response.message);
-
-                    // Redirect after a short delay
-                    setTimeout(function() {
-                        window.location.href = response.redirect_url;
-                    }, 1000);
+            data: $(this).serialize(),
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            success: function(res) {
+                if(res.success) {
+                    $('#auth-success-msg').text(res.message);
+                    $('#auth-success').show();
+                    setTimeout(() => window.location.href = res.redirect_url, 500);
                 }
             },
             error: function(xhr) {
-                // Re-enable submit button
-                submitBtn.removeClass('btn-loading').prop('disabled', false).html(originalBtnText);
-
-                var response = xhr.responseJSON;
-
-                if (response) {
-                    // Handle field errors
-                    if (response.errors) {
-                        Object.keys(response.errors).forEach(function(field) {
-                            showFieldError(field, response.errors[field]);
-                        });
-                    }
-
-                    // Handle general error
-                    if (response.error) {
-                        var errorMessage = response.error.message || 'ログイン中にエラーが発生しました。';
-                        showGlobalError(errorMessage);
-
-                        // Add specific help for common errors
-                        if (response.error.type === 'invalid_credentials') {
-                            addHelpSuggestions([
-                                'ユーザー名が正しいか確認してください',
-                                'パスワードの末尾にセキュリティトークンを追加する必要があるかもしれません',
-                                'アカウントがロックされていないか確認してください'
-                            ]);
-                        } else if (response.error.type === 'token_required') {
-                            addHelpSuggestions([
-                                '設定 → 私の個人情報 → セキュリティトークンのリセット からトークンを取得できます',
-                                'セキュリティトークンをパスワードの直後に（スペースなしで）追加してください',
-                                'または、Salesforce の信頼できる IP 範囲にあなたの IP を追加してください'
-                            ]);
-                        } else if (response.error.type === 'api_disabled') {
-                            addHelpSuggestions([
-                                'システム管理者に連絡して API アクセスを有効にしてください',
-                                'ユーザープロファイルで「API の有効化」権限があるか確認してください'
-                            ]);
-                        }
-                    } else if (response.message) {
-                        showGlobalError(response.message);
-                    } else {
-                        showGlobalError('ログインに失敗しました。認証情報を確認して再試行してください。');
-                    }
-                } else {
-                    showGlobalError('予期しないエラーが発生しました。再試行してください。');
+                btn.prop('disabled', false).text(originalText);
+                let msg = 'Login failed';
+                if(xhr.responseJSON && xhr.responseJSON.error && xhr.responseJSON.error.message) {
+                    msg = xhr.responseJSON.error.message;
                 }
+                $('#auth-error-msg').text(msg);
+                $('#auth-error').show();
             }
         });
     });
 });
-
-// Error display functions
-function showGlobalError(message) {
-    $('#global-error-message').html(message);
-    $('#global-error-alert').addClass('show');
-
-    // Error messages must be manually closed - no auto-hide
-}
-
-function hideGlobalError() {
-    $('#global-error-alert').removeClass('show');
-}
-
-function showGlobalSuccess(message) {
-    $('#global-success-message').html(message);
-    $('#global-success-alert').addClass('show');
-}
-
-function showFieldError(field, message) {
-    var errorElement = $('#' + field + '-error');
-    var inputElement = $('[name="' + field + '"]');
-
-    if (errorElement.length) {
-        errorElement.text(message).addClass('show');
-        inputElement.addClass('is-invalid');
-    }
-}
-
-function clearAllErrors() {
-    $('.field-error').removeClass('show').text('');
-    $('.form-control').removeClass('is-invalid');
-    $('#global-error-alert').removeClass('show');
-    $('#global-success-alert').removeClass('show');
-}
-
-function addHelpSuggestions(suggestions) {
-    if (suggestions && suggestions.length > 0) {
-        var helpHtml = '<div class="mt-3"><strong>提案:</strong><ul class="mb-0 mt-2">';
-        suggestions.forEach(function(suggestion) {
-            helpHtml += '<li>' + suggestion + '</li>';
-        });
-        helpHtml += '</ul></div>';
-
-        var currentMessage = $('#global-error-message').html();
-        $('#global-error-message').html(currentMessage + helpHtml);
-    }
-}
 </script>
 {% endblock %}

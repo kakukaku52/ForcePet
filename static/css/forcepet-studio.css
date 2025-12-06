@@ -513,3 +513,137 @@ body {
     width: 14px;
     text-align: center;
 }
+
+/* --- Auth Pages (Login/Logout) --- */
+.fp-auth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f1f5f9; /* Slate-100 */
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.fp-auth-card {
+    width: 400px;
+    background: white;
+    border: 1px solid var(--fp-border);
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 32px;
+}
+
+.fp-auth-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.fp-auth-logo {
+    font-size: 32px;
+    color: var(--fp-primary);
+    margin-bottom: 12px;
+}
+
+.fp-auth-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--fp-text-main);
+}
+
+.fp-auth-subtitle {
+    font-size: 13px;
+    color: var(--fp-text-muted);
+    margin-top: 4px;
+}
+
+.fp-auth-tabs {
+    display: flex;
+    background-color: #f1f5f9;
+    padding: 4px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+}
+
+.fp-auth-tab {
+    flex: 1;
+    text-align: center;
+    padding: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fp-text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.fp-auth-tab.active {
+    background-color: white;
+    color: var(--fp-primary);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.fp-form-group {
+    margin-bottom: 16px;
+}
+
+.fp-form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fp-text-main);
+    margin-bottom: 6px;
+}
+
+.fp-input-lg {
+    height: 36px; /* Slightly taller for login */
+    width: 100%;
+    font-size: 13px;
+}
+
+.fp-btn-block {
+    width: 100%;
+    height: 36px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.fp-auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--fp-text-muted);
+}
+
+.fp-auth-footer a {
+    color: var(--fp-primary);
+    text-decoration: none;
+}
+
+.fp-auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Alert styles for Auth */
+.fp-alert {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.fp-alert-danger {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.fp-alert-success {
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
