@@ -10453,3 +10453,315 @@ Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.
 "GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
 "GET /favicon.ico HTTP/1.1" 302 0
 "GET /auth/login/ HTTP/1.1" 200 12116
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxTrsx.8FV0DOztlQAQ6XntkljmaNsDMNMxMxGbcejf7Ft7d.pkk1PVabpBV4WJ_K.5l3Qmg%3D%3D&state=c529db81-e285-48fd-82bb-f9cf5fd0d32c HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 156157
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"GET /query/ HTTP/1.1" 200 156157
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"GET /query/ HTTP/1.1" 200 156157
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"GET /query/ HTTP/1.1" 200 156157
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36197
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 23838
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/logout/ HTTP/1.1" 200 6208
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/logout/ HTTP/1.1" 200 5942
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET /auth/callback/?code=aPrxTrsx.8FV0DOztlQAQ6XntlCS9w0qcNhFJNfeDeRYwd.4DYG4FRAs4T7mGy9iDi1jEpu6gQ%3D%3D&state=773f317c-e2c1-4b91-aebc-bb3cc219e287 HTTP/1.1" 302 0
+"GET /query/ HTTP/1.1" 200 156672
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36207
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 23848
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 23121
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 157177
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36207
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 23121
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 157684
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36207
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+- Broken pipe from ('127.0.0.1', 55565)
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22800
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22899
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22899
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22899
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 158191
+- Broken pipe from ('127.0.0.1', 58744)
+"GET /query/ HTTP/1.1" 200 158191
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36207
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22899
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22899
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 158695
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36207
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22899
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22513
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22513
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22513
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/ HTTP/1.1" 200 159201
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"GET /query/ HTTP/1.1" 200 159201
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"GET /query/ HTTP/1.1" 200 159201
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358
+"POST /query/ HTTP/1.1" 200 36207
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22513
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/record/CodeBuilder__Workspace__c/a01NS00002DIuarYAD/ HTTP/1.1" 200 22513
+"GET /static/css/forcepet-studio.css HTTP/1.1" 200 13390
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/js/jquery.min.js HTTP/1.1" 200 89501
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+"GET /static/js/workbench.js HTTP/1.1" 200 13071
+"GET /static/js/bootstrap.bundle.min.js HTTP/1.1" 200 78129
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3441
+Unauthorized: /auth/refresh-token/
+"POST /auth/refresh-token/ HTTP/1.1" 401 33
+"GET /auth/login/ HTTP/1.1" 200 9494
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+"GET /query/ HTTP/1.1" 200 159709
+"GET /static/css/forcepet-studio.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3552
+Loading fields for object=CodeBuilder__Workspace__c user=tatsuzawa0502123@gmail.com
+"GET /static/js/bootstrap.bundle.min.js.map HTTP/1.1" 404 1950
+"GET /query/api/fields/?object=CodeBuilder__Workspace__c HTTP/1.1" 200 17358

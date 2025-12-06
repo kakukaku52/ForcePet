@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Record Detail - {{ object_type }} - Django Workbench{% endblock %}
+{% block title %}レコード詳細 - {{ object_type }} - ForcePet Studio{% endblock %}
 
 {% block extra_css %}
 <!-- Enterprise IDE Layout -->
 <link href="{% static 'css/forcepet-studio.css' %}" rel="stylesheet">
 <style>
     /* Local overrides for record detail specific styling */
+    .fp-workbench-shell {
+        /* Hide Sidebar for Record Detail View */
+        grid-template-columns: var(--activity-bar-width) 0px 1fr !important;
+    }
+    .fp-sidebar {
+        display: none !important;
+    }
+
     .fp-record-form-container {
         padding: 0;
-        height: 100%;
+        flex: 1;
         overflow: auto;
+        min-height: 0;
     }
     
     .edit-mode .fp-table input,
@@ -28,138 +37,120 @@
         padding: 4px 8px;
         font-size: 12px;
         border-radius: 3px;
+        color: var(--fp-text-main);
+    }
+    .fp-table td > span {
+        padding: 4px 8px;
+        display: block;
+        color: var(--fp-text-main);
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="ide-layout">
-    <!-- Sidebar -->
-    <aside class="ide-sidebar">
-        <div class="fp-sidebar-header">RECORD INFO</div>
-        <div class="fp-sidebar-content">
-            <div class="fp-section">
-                <div class="fp-section-header" onclick="$(this).parent().toggleClass('collapsed')">
-                    <i class="fas fa-chevron-down"></i> PROPERTIES
-                </div>
-                <div class="fp-section-body" style="font-size: 12px;">
-                    <div style="padding: 4px 0;">
-                        <span style="color: #64748b;">Object:</span> 
-                        <span style="font-weight: 600;">{{ object_type }}</span>
-                    </div>
-                    <div style="padding: 4px 0; word-break: break-all;">
-                        <span style="color: #64748b;">ID:</span> 
-                        <span style="font-family: monospace;">{{ record_id }}</span>
-                    </div>
-                </div>
+<!-- Main Area (Full Width) -->
+<main class="fp-editor-area" style="grid-column: 2 / 4;">
+    <!-- Toolbar -->
+    <div class="fp-toolbar">
+        <div class="d-flex align-items-center gap-2">
+            <a href="{% url 'query:index' %}" class="fp-btn fp-btn-icon" title="クエリに戻る">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div style="font-weight: 600; font-size: 13px;">
+                <span class="text-muted">オブジェクト:</span> {{ object_type }} / <span class="text-muted">ID:</span> {{ record_id }}
             </div>
         </div>
-    </aside>
+        
+        <div style="flex: 1;"></div>
+        
+        <!-- Action Buttons -->
+        <button class="fp-btn fp-btn-secondary" onclick="viewInSalesforce()" title="Salesforce で開く">
+            <i class="fas fa-external-link-alt"></i> Salesforce
+        </button>
+        
+        <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;"></div>
+        
+        <button class="fp-btn fp-btn-primary" id="editBtn" onclick="toggleEditMode()">
+            <i class="fas fa-edit"></i> 編集
+        </button>
+        
+        <button class="fp-btn fp-btn-secondary" id="cancelBtn" onclick="cancelEdit()" style="display: none;">
+            キャンセル
+        </button>
+        
+        <button class="fp-btn fp-btn-primary" id="saveBtn" onclick="saveRecord()" style="display: none;">
+            <i class="fas fa-save"></i> 保存
+        </button>
+        
+        <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;"></div>
+        
+        <button class="fp-btn fp-btn-secondary" style="color: #ef4444; border-color: #fecaca;" onclick="confirmDelete()">
+            <i class="fas fa-trash"></i> 削除
+        </button>
+    </div>
 
-    <!-- Main Area -->
-    <main class="fp-editor-area">
-        <!-- Toolbar -->
-        <div class="fp-toolbar">
-            <div class="d-flex align-items-center gap-2">
-                <a href="{% url 'query:index' %}" class="fp-btn fp-btn-icon" title="クエリに戻る">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                <div style="font-weight: 600; font-size: 13px;">
-                    {{ object_type }} / {{ record_id }}
-                </div>
-            </div>
-            
-            <div style="flex: 1;"></div>
-            
-            <!-- Action Buttons -->
-            <button class="fp-btn fp-btn-secondary" onclick="viewInSalesforce()" title="Salesforceで開く">
-                <i class="fas fa-external-link-alt"></i> Salesforce
-            </button>
-            
-            <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;"></div>
-            
-            <button class="fp-btn fp-btn-primary" id="editBtn" onclick="toggleEditMode()">
-                <i class="fas fa-edit"></i> 編集
-            </button>
-            
-            <button class="fp-btn fp-btn-secondary" id="cancelBtn" onclick="cancelEdit()" style="display: none;">
-                キャンセル
-            </button>
-            
-            <button class="fp-btn fp-btn-primary" id="saveBtn" onclick="saveRecord()" style="display: none;">
-                <i class="fas fa-save"></i> 保存
-            </button>
-            
-            <div style="width: 1px; height: 20px; background: #e2e8f0; margin: 0 5px;"></div>
-            
-            <button class="fp-btn fp-btn-secondary" style="color: #ef4444; border-color: #fecaca;" onclick="confirmDelete()">
-                <i class="fas fa-trash"></i> 削除
-            </button>
-        </div>
-
-        <!-- Content -->
-        <div class="fp-record-form-container">
-            <form id="recordForm">
-                {% csrf_token %}
-                <table class="fp-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 25%;">項目ラベル</th>
-                            <th style="width: 25%;">API 参照名</th>
-                            <th style="width: 40%;">値</th>
-                            <th style="width: 10%;">データ型</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for field in fields %}
-                        <tr>
-                            <td>{{ field.label }}</td>
-                            <td style="font-family: monospace; color: #64748b;">{{ field.name }}</td>
-                            <td>
-                                {% if field.updateable %}
-                                    {% if field.type == 'boolean' %}
-                                        <select name="{{ field.name }}" disabled class="edit-field fp-input-cell">
-                                            <option value="">--なし--</option>
-                                            <option value="true" {% if field.value %}selected{% endif %}>True</option>
-                                            <option value="false" {% if field.value == False %}selected{% endif %}>False</option>
-                                        </select>
-                                    {% elif field.type == 'picklist' %}
-                                        <select name="{{ field.name }}" disabled class="edit-field fp-input-cell">
-                                            <option value="">--なし--</option>
-                                            {% for option in field.picklistValues %}
-                                                <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>
-                                                    {{ option.label }}
-                                                </option>
-                                            {% endfor %}
-                                        </select>
-                                    {% elif field.type == 'textarea' %}
-                                        <textarea name="{{ field.name }}" disabled class="edit-field fp-input-cell" rows="1">{{ field.value|default:"" }}</textarea>
-                                    {% elif field.type == 'date' %}
-                                        <input type="date" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
-                                    {% elif field.type == 'datetime' %}
-                                        <input type="datetime-local" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
-                                    {% elif field.type == 'double' or field.type == 'currency' or field.type == 'percent' %}
-                                        <input type="number" step="any" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
-                                    {% elif field.type == 'int' %}
-                                        <input type="number" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
-                                    {% else %}
-                                        <input type="text" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
-                                    {% endif %}
+    <!-- Content -->
+    <div class="fp-record-form-container">
+        <form id="recordForm">
+            {% csrf_token %}
+            <table class="fp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">項目ラベル</th>
+                        <th style="width: 25%;">API 参照名</th>
+                        <th style="width: 40%;">値</th>
+                        <th style="width: 10%;">データ型</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in fields %}
+                    <tr>
+                        <td>{{ field.label }}</td>
+                        <td style="font-family: monospace; color: #64748b;">{{ field.name }}</td>
+                        <td>
+                            {% if field.updateable %}
+                                {% if field.type == 'boolean' %}
+                                    <select name="{{ field.name }}" disabled class="edit-field fp-input-cell">
+                                        <option value="">--なし--</option>
+                                        <option value="true" {% if field.value %}selected{% endif %}>True</option>
+                                        <option value="false" {% if field.value == False %}selected{% endif %}>False</option>
+                                    </select>
+                                {% elif field.type == 'picklist' %}
+                                    <select name="{{ field.name }}" disabled class="edit-field fp-input-cell">
+                                        <option value="">--なし--</option>
+                                        {% for option in field.picklistValues %}
+                                            <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>
+                                                {{ option.label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                {% elif field.type == 'textarea' %}
+                                    <textarea name="{{ field.name }}" disabled class="edit-field fp-input-cell" rows="1">{{ field.value|default:"" }}</textarea>
+                                {% elif field.type == 'date' %}
+                                    <input type="date" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                {% elif field.type == 'datetime' %}
+                                    <input type="datetime-local" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                {% elif field.type == 'double' or field.type == 'currency' or field.type == 'percent' %}
+                                    <input type="number" step="any" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
+                                {% elif field.type == 'int' %}
+                                    <input type="number" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
                                 {% else %}
-                                    <span style="padding: 4px 8px; display: block;">{{ field.value|default:"-" }}</span>
+                                    <input type="text" name="{{ field.name }}" value="{{ field.value|default:"" }}" disabled class="edit-field fp-input-cell">
                                 {% endif %}
-                            </td>
-                            <td>
-                                <span class="fp-type-badge">{{ field.type }}</span>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </form>
-        </div>
-    </main>
-</div>
+                            {% else %}
+                                <span style="padding: 4px 8px; display: block;">{{ field.value|default:"-" }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="fp-type-badge">{{ field.type }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</main>
 
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1">
@@ -235,7 +226,12 @@ function saveRecord() {
     });
 
     if (!hasChanges) {
-        workbench.showToast('No changes to save', 'info');
+        // Use alert if workbench.showToast not available
+        if (window.workbench && window.workbench.showToast) {
+            workbench.showToast('変更がありません。', 'info');
+        } else {
+            alert('変更がありません。');
+        }
         return;
     }
 
@@ -246,27 +242,26 @@ function saveRecord() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            workbench.showToast('Record updated', 'success');
+            if (window.workbench && window.workbench.showToast) {
+                workbench.showToast('レコードを更新しました。', 'success');
+            } else {
+                alert('レコードを更新しました。');
+            }
             location.reload();
         } else {
-            workbench.showToast('Update failed: ' + data.error, 'error');
+            alert('レコードの更新に失敗しました: ' + data.error);
         }
     })
     .catch(error => {
-        workbench.showToast('Update failed: ' + error, 'error');
+        alert('レコードの更新に失敗しました: ' + error);
     });
 }
 
 function confirmDelete() {
     const modalEl = document.getElementById('deleteModal');
-    // Use native logic or Bootstrap if available
-    if (window.bootstrap) {
-        new bootstrap.Modal(modalEl).show();
-    } else {
-        modalEl.classList.add('show');
-        modalEl.style.display = 'block';
-        modalEl.style.backgroundColor = 'rgba(0,0,0,0.5)';
-    }
+    modalEl.classList.add('show');
+    modalEl.style.display = 'block';
+    modalEl.style.backgroundColor = 'rgba(0,0,0,0.5)';
 }
 
 function deleteRecord() {
@@ -282,14 +277,14 @@ function deleteRecord() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            workbench.showToast('Record deleted', 'success');
+            alert('レコードを削除しました。');
             window.location.href = data.redirect_url;
         } else {
-            workbench.showToast('Delete failed: ' + data.error, 'error');
+            alert('レコードの削除に失敗しました: ' + data.error);
         }
     })
     .catch(error => {
-        workbench.showToast('Delete failed: ' + error, 'error');
+        alert('レコードの削除に失敗しました: ' + error);
     });
 }
 

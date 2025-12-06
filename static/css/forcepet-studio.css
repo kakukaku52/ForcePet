@@ -30,15 +30,29 @@
 }
 
 body {
+
     margin: 0;
+
     padding: 0;
+
     height: 100vh;
+
     width: 100vw;
+
     font-family: 'Inter', 'Noto Sans JP', sans-serif;
+
     color: var(--fp-text-main);
-    background-color: var(--fp-bg-app);
+
+    background-color: #f1f5f9; /* 应用背景，比卡片背景稍深 */
+
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+
+    background-size: 20px 20px;
+
     overflow: hidden; /* 禁止 Body 滚动，由各区域内部滚动 */
+
     font-size: 13px; /* IDE 倾向于更小的字体以显示更多信息 */
+
 }
 
 /* --- 布局网格 (CSS Grid) --- */
@@ -520,9 +534,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f1f5f9; /* Slate-100 */
-    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-color: transparent; /* Allow body's background to show through */
 }
 
 .fp-auth-card {

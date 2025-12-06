@@ -21,6 +21,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    {% block layout %}
     <div class="fp-workbench-shell">
         <!-- 1. Activity Bar (Leftmost) -->
         <nav class="fp-activity-bar">
@@ -88,6 +89,7 @@
             </div>
         </footer>
     </div>
+    {% endblock %}
 
     <!-- Scripts -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
